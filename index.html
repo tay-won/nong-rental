@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>농기계 임대 현황</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  --bg:       #0b0e18;
+  --surf:     #141828;
+  --card:     #1c2138;
+  --border:   #272f4a;
+  --border2:  #323c5e;
+  --green:    #34d399;
+  --yellow:   #fbbf24;
+  --red:      #f87171;
+  --blue:     #60a5fa;
+  --indigo:   #818cf8;
+  --text:     #e2e8f0;
+  --muted:    #64748b;
+  --dim:      #94a3b8;
+  --본소:     #60a5fa;
+  --북부:     #a78bfa;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Noto Sans KR',sans-serif;
+  min-height:100vh;
+  padding:0 0 40px;
+}
+
+/* ══ HEADER ══════════════════════════════════════════ */
+.top-bar{
+  background:linear-gradient(135deg,#0f1729 0%,#1a2040 100%);
+  border-bottom:1px solid var(--border);
+  padding:18px 20px 14px;
+  position:sticky;top:0;z-index:100;
+  backdrop-filter:blur(12px);
+}
+.top-bar h1{
+  font-size:clamp(16px,4vw,22px);
+  font-weight:900;
+  color:#fff;
+  letter-spacing:-0.5px;
+  display:flex;align-items:center;gap:8px;
+}
+.top-bar h1 .icon{font-size:1.1em}
+.top-bar .meta{font-size:11px;color:var(--muted);margin-top:3px}
+
+/* 사업소 탭 */
+.site-tabs{
+  display:flex;gap:6px;margin-top:12px;
+  flex-wrap:wrap;
+}
+.site-tab{
+  padding:6px 18px;
+  border-radius:20px;
+  border:1px solid var(--border2);
+  background:transparent;
+  color:var(--dim);
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:13px;font-weight:700;
+  cursor:pointer;
+  transition:all .2s;
+}
+.site-tab:hover{border-color:var(--indigo);color:#fff}
+.site-tab.active-전체{background:var(--indigo);border-color:var(--indigo);color:#fff}
+.site-tab.active-본소 {background:var(--본소); border-color:var(--본소); color:#fff}
+.site-tab.active-북부 {background:var(--북부); border-color:var(--북부); color:#fff}
+
+/* 날짜 탭 */
+.date-tabs-wrap{
+  padding:0 16px;
+  margin:14px 0 0;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.date-tabs-wrap::-webkit-scrollbar{display:none}
+.date-tabs{
+  display:flex;gap:6px;
+  width:max-content;
+  padding-bottom:4px;
+}
+.date-tab{
+  display:flex;flex-direction:column;align-items:center;
+  padding:8px 12px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:var(--surf);
+  cursor:pointer;
+  transition:all .2s;
+  min-width:56px;
+}
+.date-tab:hover{border-color:var(--border2);background:var(--card)}
+.date-tab.active{border-color:var(--indigo);background:rgba(129,140,248,.15)}
+.date-tab .d-day{font-size:18px;font-weight:900;color:#fff;line-height:1}
+.date-tab .d-dow{font-size:10px;color:var(--muted);margin-top:2px}
+.date-tab .d-load{
+  font-size:9px;font-weight:700;
+  margin-top:4px;padding:2px 6px;
+  border-radius:8px;
+  font-family:'JetBrains Mono',monospace;
+}
+.date-tab.active .d-day{color:var(--indigo)}
+.date-tab .d-today{font-size:9px;color:var(--indigo);font-weight:700}
+
+/* ══ BODY ════════════════════════════════════════════ */
+.body-wrap{padding:16px}
+
+/* ══ SUMMARY STRIP ══════════════════════════════════ */
+.summary-strip{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:10px;
+  margin-bottom:16px;
+}
+.sum-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  position:relative;
+  overflow:hidden;
+}
+.sum-card::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--accent-color,var(--indigo));
+  border-radius:12px 12px 0 0;
+}
+.sum-card .lbl{font-size:11px;color:var(--muted);margin-bottom:4px}
+.sum-card .val{
+  font-family:'JetBrains Mono',monospace;
+  font-size:26px;font-weight:700;color:#fff;
+  line-height:1;
+}
+.sum-card .val span{font-size:13px;color:var(--muted)}
+.sum-card .sub{font-size:10px;color:var(--muted);margin-top:3px}
+
+/* ══ GAUGE ═══════════════════════════════════════════ */
+.gauge-section{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px;
+  margin-bottom:14px;
+}
+.gauge-header{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:12px;
+}
+.gauge-title{font-size:13px;font-weight:700;color:var(--dim)}
+.status-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:4px 12px;border-radius:16px;
+  font-size:12px;font-weight:700;
+}
+.s-정상{background:rgba(52,211,153,.12);color:var(--green);border:1px solid rgba(52,211,153,.25)}
+.s-주의{background:rgba(251,191,36,.12);color:var(--yellow);border:1px solid rgba(251,191,36,.25)}
+.s-마감{background:rgba(248,113,113,.12);color:var(--red);border:1px solid rgba(248,113,113,.25)}
+.pulse{width:7px;height:7px;border-radius:50%;animation:pulse 1.6s infinite}
+.s-정상 .pulse{background:var(--green)}
+.s-주의 .pulse{background:var(--yellow)}
+.s-마감 .pulse{background:var(--red)}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
+
+.gauge-track{
+  height:24px;background:var(--surf);border-radius:12px;
+  border:1px solid var(--border);overflow:hidden;position:relative;
+}
+.gauge-bar{
+  height:100%;border-radius:12px;
+  transition:width .7s cubic-bezier(.4,0,.2,1),background .4s;
+  min-width:0;display:flex;align-items:center;justify-content:flex-end;
+  padding-right:8px;
+}
+.gauge-bar span{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  font-weight:700;color:#fff;white-space:nowrap;
+}
+.gauge-marks{display:flex;justify-content:space-between;padding:3px 4px 0;font-size:10px;color:var(--muted)}
+
+/* ══ WORKER SECTION ══════════════════════════════════ */
+.section-title{
+  font-size:11px;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:1px;
+  margin-bottom:10px;
+  display:flex;align-items:center;gap:6px;
+}
+.section-title::before{
+  content:'';display:inline-block;
+  width:3px;height:11px;background:var(--indigo);border-radius:2px;
+}
+
+.site-block{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:14px;margin-bottom:12px;
+}
+.site-block-header{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:10px;
+}
+.site-label{
+  font-size:12px;font-weight:700;
+  padding:3px 10px;border-radius:10px;
+}
+.site-label.본소{background:rgba(96,165,250,.15);color:var(--본소)}
+.site-label.북부{background:rgba(167,139,250,.15);color:var(--북부)}
+.site-avail{
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;color:var(--green);font-weight:700;
+}
+
+.worker-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.worker-item{
+  background:var(--surf);border:1px solid var(--border);
+  border-radius:8px;padding:8px 10px;
+}
+.worker-item .wname{
+  font-size:12px;font-weight:700;margin-bottom:5px;
+}
+.wtype-임기제{color:var(--blue)}
+.wtype-기간제{color:var(--indigo)}
+select{
+  width:100%;background:var(--bg);border:1px solid var(--border);
+  border-radius:6px;color:var(--text);
+  font-family:'Noto Sans KR',sans-serif;font-size:12px;
+  padding:5px 7px;outline:none;transition:border-color .2s;
+}
+select:focus{border-color:var(--indigo)}
+
+/* ══ MACHINE PANEL ═══════════════════════════════════ */
+.two-col{display:flex;gap:12px;flex-wrap:wrap}
+.panel-machines{flex:2 1 320px}
+.panel-summary {flex:1 1 220px}
+
+.search-box{
+  width:100%;background:var(--bg);border:1px solid var(--border);
+  border-radius:8px;color:var(--text);
+  font-family:'Noto Sans KR',sans-serif;font-size:13px;
+  padding:9px 12px;outline:none;margin-bottom:10px;
+  transition:border-color .2s;
+}
+.search-box:focus{border-color:var(--indigo)}
+
+.machine-list{
+  display:flex;flex-direction:column;gap:5px;
+  max-height:380px;overflow-y:auto;padding-right:3px;
+}
+.machine-list::-webkit-scrollbar{width:3px}
+.machine-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+
+.mrow{
+  display:flex;align-items:center;gap:6px;
+  background:var(--surf);border:1px solid var(--border);
+  border-radius:8px;padding:7px 9px;
+  transition:border-color .2s;
+}
+.mrow:hover{border-color:var(--border2)}
+.mrow.active{border-color:var(--indigo);background:rgba(129,140,248,.07)}
+.mname{flex:1;font-size:12px;font-weight:500;min-width:0;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mtime{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);white-space:nowrap}
+.cnt-ctrl{display:flex;align-items:center;gap:3px}
+.btn-c{
+  width:22px;height:22px;border-radius:5px;border:1px solid var(--border);
+  background:var(--bg);color:var(--text);font-size:13px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .15s;line-height:1;
+}
+.btn-c:hover{background:var(--indigo);border-color:var(--indigo);color:#fff}
+.cnt-val{
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;font-weight:700;color:#fff;
+  width:20px;text-align:center;
+}
+.cnt-zero{color:var(--muted)!important}
+
+/* selected summary */
+.sel-list{
+  display:flex;flex-direction:column;gap:4px;
+  max-height:300px;overflow-y:auto;
+}
+.sel-item{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:11px;padding:5px 8px;
+  background:var(--surf);border-radius:6px;
+  border-left:3px solid var(--indigo);
+}
+.sel-mins{font-family:'JetBrains Mono',monospace;color:var(--indigo);font-size:10px}
+.empty{text-align:center;color:var(--muted);font-size:12px;padding:20px 0}
+
+.btn-reset{
+  width:100%;padding:9px;background:transparent;
+  border:1px solid var(--border);border-radius:8px;
+  color:var(--muted);font-family:'Noto Sans KR',sans-serif;
+  font-size:12px;cursor:pointer;transition:all .2s;margin-top:8px;
+}
+.btn-reset:hover{border-color:var(--red);color:var(--red)}
+
+/* ══ DATE OVERVIEW TABLE ════════════════════════════ */
+.date-overview{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:14px;margin-bottom:14px;
+  overflow-x:auto;
+}
+.overview-table{
+  width:100%;border-collapse:collapse;font-size:11px;
+  min-width:540px;
+}
+.overview-table th{
+  padding:6px 8px;text-align:center;
+  background:var(--surf);color:var(--muted);
+  font-weight:700;border-bottom:1px solid var(--border);
+}
+.overview-table td{
+  padding:6px 8px;text-align:center;
+  border-bottom:1px solid var(--border);
+  color:var(--dim);cursor:pointer;
+  transition:background .15s;
+}
+.overview-table tr:hover td{background:rgba(129,140,248,.06)}
+.overview-table td.date-col{font-weight:700;color:#fff;white-space:nowrap}
+.overview-table td.today-col{color:var(--indigo);font-weight:900}
+.load-chip{
+  display:inline-block;padding:2px 8px;border-radius:8px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;
+}
+.chip-정상{background:rgba(52,211,153,.12);color:var(--green)}
+.chip-주의{background:rgba(251,191,36,.12);color:var(--yellow)}
+.chip-마감{background:rgba(248,113,113,.12);color:var(--red)}
+.chip-없음{background:rgba(100,116,139,.1);color:var(--muted)}
+
+/* ══ RESPONSIVE ══════════════════════════════════════ */
+@media(max-width:600px){
+  .worker-grid{grid-template-columns:1fr 1fr}
+  .summary-strip{grid-template-columns:1fr 1fr}
+  .two-col{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ TOP BAR ══════════════════════════════════════════════ -->
+<div class="top-bar">
+  <h1><span class="icon">🚜</span> 농기계 임대 현황</h1>
+  <div class="meta" id="metaLine">파주시 농업기계임대사업소 · 로딩중…</div>
+
+  <!-- 사업소 탭 -->
+  <div class="site-tabs">
+    <button class="site-tab active-전체" onclick="setSite('전체')">전체</button>
+    <button class="site-tab" onclick="setSite('본소')">본소</button>
+    <button class="site-tab" onclick="setSite('북부')">북부</button>
+  </div>
+</div>
+
+<!-- 날짜 탭 -->
+<div class="date-tabs-wrap">
+  <div class="date-tabs" id="dateTabs"></div>
+</div>
+
+<!-- ══ BODY ═════════════════════════════════════════════════ -->
+<div class="body-wrap">
+
+  <!-- 요약 스트립 -->
+  <div class="summary-strip">
+    <div class="sum-card" style="--accent-color:var(--indigo)">
+      <div class="lbl">업무 부하율</div>
+      <div class="val" id="sumPct">0<span>%</span></div>
+      <div class="sub" id="sumSub">–</div>
+    </div>
+    <div class="sum-card" style="--accent-color:var(--blue)">
+      <div class="lbl">소요 정비시간</div>
+      <div class="val" id="sumUsed">0<span>분</span></div>
+      <div class="sub" id="sumUsedSub">–</div>
+    </div>
+    <div class="sum-card" style="--accent-color:var(--green)">
+      <div class="lbl">총 가용시간</div>
+      <div class="val" id="sumAvail">–<span>분</span></div>
+      <div class="sub" id="sumAvailSub">–</div>
+    </div>
+    <div class="sum-card" style="--accent-color:var(--yellow)">
+      <div class="lbl">여유 시간</div>
+      <div class="val" id="sumRemain">–<span>분</span></div>
+      <div class="sub" id="sumRemainSub">–</div>
+    </div>
+  </div>
+
+  <!-- 부하율 게이지 -->
+  <div class="gauge-section">
+    <div class="gauge-header">
+      <div class="gauge-title" id="gaugeTitle">전체 · 오늘 업무 부하율</div>
+      <div class="status-badge s-정상" id="statusBadge">
+        <span class="pulse"></span>
+        <span id="statusText">정상 — 접수 가능</span>
+      </div>
+    </div>
+    <div class="gauge-track">
+      <div class="gauge-bar" id="gaugeBar" style="width:0%;background:var(--green)">
+        <span id="gaugePctTxt">0%</span>
+      </div>
+    </div>
+    <div class="gauge-marks">
+      <span>0%</span>
+      <span style="color:var(--yellow)">⚠ 80%</span>
+      <span style="color:var(--red)">🚫 100%</span>
+    </div>
+  </div>
+
+  <!-- 20일 전체 현황 테이블 -->
+  <div class="date-overview">
+    <div class="section-title">20일 기간 전체 부하 현황</div>
+    <table class="overview-table" id="overviewTable">
+      <thead>
+        <tr>
+          <th>날짜</th><th>요일</th>
+          <th>전체 부하율</th><th>전체 상태</th>
+          <th>본소 부하율</th><th>본소 상태</th>
+          <th>북부 부하율</th><th>북부 상태</th>
+        </tr>
+      </thead>
+      <tbody id="overviewBody"></tbody>
+    </table>
+  </div>
+
+  <!-- 근무자 설정 -->
+  <div style="margin-bottom:14px">
+    <div class="section-title">근무자 설정 — <span id="dateLabel" style="color:var(--indigo)">오늘</span></div>
+    <div id="workerBlocks"></div>
+  </div>
+
+  <!-- 기종 + 요약 -->
+  <div class="two-col">
+    <div class="panel-machines">
+      <div class="section-title">임대 기종별 건수 입력</div>
+      <input type="text" class="search-box" id="searchInput"
+             placeholder="🔍 기종명 검색…" oninput="renderMachines()">
+      <div class="machine-list" id="machineList"></div>
+    </div>
+    <div class="panel-summary">
+      <div class="section-title">선택 요약</div>
+      <div class="sel-list" id="selList"></div>
+      <button class="btn-reset" onclick="resetCounts()">↺ 이 날짜 초기화</button>
+    </div>
+  </div>
+
+</div><!-- /body-wrap -->
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// 데이터
+// ═══════════════════════════════════════════════════════════
+const MACHINES = [
+  {n:"배송(입출고 1회)",m:240},{n:"고속쟁기(평탄쟁기)",m:60},
+  {n:"고심경쟁기-5련",m:60},{n:"고심경쟁기-5련(유압식)",m:60},
+  {n:"고심경쟁기-7련(유압식)",m:60},{n:"굴착기(1T/2T)",m:80},
+  {n:"논두렁조성기(大/中/小)",m:90},{n:"농산물선별기(마늘선별기)",m:40},
+  {n:"농산물세척기(고추)",m:40},{n:"돌수집기 1400",m:90},
+  {n:"돌파쇄기",m:60},{n:"동력살분무기(입제/액제)",m:40},
+  {n:"동력운반차",m:80},{n:"동력제초기(보행-덩굴파쇄기)",m:60},
+  {n:"동력제초기(승용)",m:80},{n:"동력파종기(전기종)",m:80},
+  {n:"땅속작물수확기(전기종)",m:60},{n:"로타베이터(1550-1950)",m:90},
+  {n:"로타베이터(2150-2350)",m:120},{n:"마늘파종기 6조-경운기",m:50},
+  {n:"마늘파종기-트랙터부착용",m:60},{n:"못자리성형기 1750",m:90},
+  {n:"못자리성형기 2150",m:110},{n:"무논정지기(220/240)",m:90},
+  {n:"발근기",m:50},{n:"배토기(175/195)",m:90},
+  {n:"보통쟁기 3련",m:60},{n:"보행관리기(전기종/덩굴파쇄기 포함)",m:50},
+  {n:"분무기(배낭식)",m:40},{n:"분무기(엔진식 밀차형)",m:50},
+  {n:"붐스프레이어",m:150},{n:"비닐수거기",m:40},
+  {n:"비료살포기",m:60},{n:"석회살포기 500kg",m:70},
+  {n:"소형트랙터 18HP 감자비닐피복파종기",m:50},
+  {n:"소형트랙터 25HP+(로터베이터 1150/쟁기2련)",m:90},
+  {n:"소형트랙터 18HP",m:70},{n:"수확기(마늘/고구마)",m:50},
+  {n:"승용관리기 20HP",m:140},{n:"심토파쇄기(전기종)",m:130},
+  {n:"양용쟁(3련/4련)",m:80},{n:"옥수수파종기",m:90},
+  {n:"원판쟁기(4련/6련)",m:60},{n:"원판쟁기(8련/10련)",m:90},
+  {n:"육묘상자 정렬기",m:60},{n:"육묘적재이송기",m:80},
+  {n:"잔가지파쇄기(궤도형)",m:80},{n:"잡곡예취기",m:80},
+  {n:"잡곡정선기",m:50},{n:"줄기절단기",m:70},
+  {n:"중경제초기(1500/1800)",m:60},{n:"채소이식기(반자동)",m:60},
+  {n:"채소이식기(자동)",m:60},{n:"콩선별기",m:50},
+  {n:"콩예취기",m:70},{n:"콩적심기",m:40},
+  {n:"콩정선기",m:50},{n:"탈곡기(궤도형)",m:110},
+  {n:"탈곡기(모터형-220V)",m:60},{n:"탈곡기(트랙터부착용-大)",m:150},
+  {n:"탈곡기(트랙터부착용-小)",m:90},{n:"탈곡기(트랙터부착용-中)",m:120},
+  {n:"퇴비살포기 500H",m:90},{n:"퇴비살포기 900H",m:90},
+  {n:"퇴비살포기 HM-3000",m:150},{n:"퇴비살포기 TS-45H",m:150},
+  {n:"퇴비살포기(승용)",m:140},{n:"파종기-인력",m:30},
+  {n:"피복기-인력 8자(240cm)",m:40},{n:"휴립복토기",m:60},
+  {n:"휴립복토파종기",m:80},{n:"휴립피복기(1조/2조)",m:60},
+];
+
+const SITES = ['본소','북부'];
+const WORKERS_DEF = {
+  '본소': [
+    {id:'bs1',name:'임기제 1',type:'임기제'},
+    {id:'bs2',name:'임기제 2',type:'임기제'},
+    {id:'bs3',name:'기간제 1',type:'기간제'},
+    {id:'bs4',name:'기간제 2',type:'기간제'},
+  ],
+  '북부': [
+    {id:'nb1',name:'임기제 1',type:'임기제'},
+    {id:'nb2',name:'임기제 2',type:'임기제'},
+    {id:'nb3',name:'기간제 1',type:'기간제'},
+    {id:'nb4',name:'기간제 2',type:'기간제'},
+  ],
+};
+const SCHED = [
+  {label:'정상근무 (7h)',  value:420},
+  {label:'반일 오전 (3.5h)', value:210},
+  {label:'반일 오후 (3.5h)', value:210},
+  {label:'휴가 / 결근 (0h)', value:0},
+];
+
+// ── state ──
+const TODAY = new Date();
+TODAY.setHours(0,0,0,0);
+const DATES = Array.from({length:21}, (_,i) => {
+  const d = new Date(TODAY); d.setDate(TODAY.getDate()+i); return d;
+});
+const DKEYS = DATES.map(d => d.toISOString().slice(0,10));
+
+let curSite = '전체';
+let curDateIdx = 0;
+
+// dateKey → site → workerId → mins
+const workerMins = {};
+// dateKey → site → machineName → count
+const machineCounts = {};
+
+DKEYS.forEach(dk => {
+  workerMins[dk] = {};
+  machineCounts[dk] = {};
+  SITES.forEach(s => {
+    workerMins[dk][s] = {};
+    machineCounts[dk][s] = {};
+    WORKERS_DEF[s].forEach(w => workerMins[dk][s][w.id] = 420);
+    MACHINES.forEach(m => machineCounts[dk][s][m.n] = 0);
+  });
+});
+
+// ── helpers ──
+const DOW = ['일','월','화','수','목','금','토'];
+function fmtDate(d){ return `${d.getMonth()+1}/${d.getDate()}` }
+function isToday(d){ return d.toISOString().slice(0,10) === TODAY.toISOString().slice(0,10) }
+function getAvail(dk, site){
+  if(site==='전체') return SITES.reduce((s,st)=>s+getAvail(dk,st),0);
+  return Object.values(workerMins[dk][site]).reduce((a,b)=>a+b,0);
+}
+function getUsed(dk, site){
+  if(site==='전체') return SITES.reduce((s,st)=>s+getUsed(dk,st),0);
+  return MACHINES.reduce((s,m)=>s+m.m*(machineCounts[dk][site][m.n]||0),0);
+}
+function getPct(dk, site){
+  const a = getAvail(dk,site); if(!a) return 0;
+  return Math.round(getUsed(dk,site)/a*100);
+}
+function getStatus(pct){
+  if(pct>=100) return '마감';
+  if(pct>=80)  return '주의';
+  return '정상';
+}
+function statusColor(s){
+  return s==='마감'?'var(--red)':s==='주의'?'var(--yellow)':'var(--green)';
+}
+
+// ═══════════════════════════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════════════════════════
+function setSite(s){
+  curSite = s;
+  document.querySelectorAll('.site-tab').forEach(t=>{
+    t.className = 'site-tab';
+    if(t.textContent===s) t.classList.add('active-'+s);
+  });
+  renderAll();
+}
+function setDateIdx(i){
+  curDateIdx = i;
+  renderAll();
+}
+
+function renderAll(){
+  renderDateTabs();
+  renderGauge();
+  renderSummary();
+  renderWorkerBlocks();
+  renderMachines();
+  renderSelList();
+  renderOverviewTable();
+  const d = DATES[curDateIdx];
+  document.getElementById('dateLabel').textContent =
+    isToday(d) ? '오늘 ('+fmtDate(d)+')' : fmtDate(d)+' ('+DOW[d.getDay()]+'요일)';
+  document.getElementById('metaLine').textContent =
+    '파주시 농업기계임대사업소 · '+TODAY.getFullYear()+'년 '+
+    (TODAY.getMonth()+1)+'월 '+TODAY.getDate()+'일 기준';
+  document.getElementById('gaugeTitle').textContent =
+    (curSite==='전체'?'전 체':'본소/북부')+
+    ' · '+fmtDate(DATES[curDateIdx])+' 업무 부하율';
+}
+
+// ── 날짜 탭 ──
+function renderDateTabs(){
+  const wrap = document.getElementById('dateTabs');
+  wrap.innerHTML = DATES.map((d,i)=>{
+    const pct = getPct(DKEYS[i], curSite);
+    const st  = getStatus(pct);
+    const col = statusColor(st);
+    const chipCls = 'chip-'+st;
+    return `<div class="date-tab${i===curDateIdx?' active':''}" onclick="setDateIdx(${i})">
+      ${isToday(d)?'<div class="d-today">TODAY</div>':''}
+      <div class="d-day">${d.getDate()}</div>
+      <div class="d-dow">${DOW[d.getDay()]}</div>
+      <div class="d-load load-chip ${chipCls}">${pct}%</div>
+    </div>`;
+  }).join('');
+}
+
+// ── 게이지 ──
+function renderGauge(){
+  const dk = DKEYS[curDateIdx];
+  const pct = getPct(dk, curSite);
+  const st  = getStatus(pct);
+  const bar = document.getElementById('gaugeBar');
+  bar.style.width = Math.min(pct,100)+'%';
+  const col = statusColor(st);
+  bar.style.background = col;
+  document.getElementById('gaugePctTxt').textContent = pct+'%';
+  const badge = document.getElementById('statusBadge');
+  badge.className = 'status-badge s-'+st;
+  const msgs = {정상:'✅ 정상 — 접수 가능', 주의:'⚠ 주의 — 신중 검토', 마감:'🚫 신청 마감'};
+  document.getElementById('statusText').textContent = msgs[st];
+}
+
+// ── 요약 수치 ──
+function renderSummary(){
+  const dk = DKEYS[curDateIdx];
+  const avail  = getAvail(dk, curSite);
+  const used   = getUsed(dk, curSite);
+  const pct    = getPct(dk, curSite);
+  const remain = avail - used;
+  document.getElementById('sumPct').innerHTML    = pct+'<span>%</span>';
+  document.getElementById('sumUsed').innerHTML   = used+'<span>분</span>';
+  document.getElementById('sumAvail').innerHTML  = avail+'<span>분</span>';
+  document.getElementById('sumRemain').innerHTML = (remain>=0?remain:'초과 '+Math.abs(remain))+'<span>분</span>';
+  document.getElementById('sumSub').textContent  = getStatus(pct)+' 상태';
+  document.getElementById('sumUsedSub').textContent  = (used/60).toFixed(1)+'h';
+  document.getElementById('sumAvailSub').textContent = (avail/60).toFixed(1)+'h';
+  document.getElementById('sumRemainSub').textContent= remain>=0?(remain/60).toFixed(1)+'h 여유':'한도 초과';
+  document.getElementById('sumRemain').style.color = remain<0?'var(--red)':'#fff';
+}
+
+// ── 근무자 블록 ──
+function renderWorkerBlocks(){
+  const dk   = DKEYS[curDateIdx];
+  const sites = curSite==='전체' ? SITES : [curSite];
+  const html = sites.map(s => {
+    const av = getAvail(dk, s);
+    const workers = WORKERS_DEF[s].map(w => `
+      <div class="worker-item">
+        <div class="wname wtype-${w.type}">${w.name} <span style="font-size:10px;opacity:.5">${w.type}</span></div>
+        <select onchange="workerMins['${dk}']['${s}']['${w.id}']=+this.value;renderAll()">
+          ${SCHED.map(o=>`<option value="${o.value}"${o.value===workerMins[dk][s][w.id]?' selected':''}>${o.label}</option>`).join('')}
+        </select>
+      </div>`).join('');
+    return `<div class="site-block">
+      <div class="site-block-header">
+        <span class="site-label ${s}">${s}</span>
+        <span class="site-avail">${av}분 (${(av/60).toFixed(1)}h)</span>
+      </div>
+      <div class="worker-grid">${workers}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('workerBlocks').innerHTML = html;
+}
+
+// ── 기종 목록 ──
+function renderMachines(){
+  const q  = (document.getElementById('searchInput').value||'').toLowerCase();
+  const dk = DKEYS[curDateIdx];
+  const sites = curSite==='전체' ? SITES : [curSite];
+  const list = document.getElementById('machineList');
+  list.innerHTML = MACHINES
+    .filter(m => m.n.toLowerCase().includes(q))
+    .map(m => {
+      // 현재 사업소 뷰에서 합산 수량
+      const totalCnt = sites.reduce((s,st)=>s+(machineCounts[dk][st][m.n]||0),0);
+      // 사이트별 카운트 UI
+      const siteCtrl = curSite==='전체'
+        ? SITES.map(st=>{
+            const c = machineCounts[dk][st][m.n]||0;
+            return `<span style="font-size:10px;color:var(--${st});margin-right:2px">${st}</span>
+              <button class="btn-c" onclick="chg('${dk}','${st}','${m.n}',-1)">−</button>
+              <span class="cnt-val ${c===0?'cnt-zero':''}">${c}</span>
+              <button class="btn-c" onclick="chg('${dk}','${st}','${m.n}',+1)">+</button>`;
+          }).join('<span style="margin:0 4px;color:var(--border2)">|</span>')
+        : (()=>{
+            const c = machineCounts[dk][curSite][m.n]||0;
+            return `<button class="btn-c" onclick="chg('${dk}','${curSite}','${m.n}',-1)">−</button>
+              <span class="cnt-val ${c===0?'cnt-zero':''}">${c}</span>
+              <button class="btn-c" onclick="chg('${dk}','${curSite}','${m.n}',+1)">+</button>`;
+          })();
+      return `<div class="mrow${totalCnt>0?' active':''}">
+        <span class="mname" title="${m.n}">${m.n}</span>
+        <span class="mtime">${m.m}분</span>
+        <div class="cnt-ctrl">${siteCtrl}</div>
+      </div>`;
+    }).join('');
+}
+
+function chg(dk, site, name, delta){
+  machineCounts[dk][site][name] = Math.max(0,(machineCounts[dk][site][name]||0)+delta);
+  renderAll();
+}
+
+// ── 선택 요약 ──
+function renderSelList(){
+  const dk = DKEYS[curDateIdx];
+  const sites = curSite==='전체' ? SITES : [curSite];
+  const items = MACHINES.filter(m => sites.some(s=>(machineCounts[dk][s][m.n]||0)>0));
+  const cont = document.getElementById('selList');
+  if(!items.length){ cont.innerHTML='<div class="empty">기종을 선택하세요</div>'; return; }
+  cont.innerHTML = items.map(m=>{
+    const rows = sites.map(s=>{
+      const c = machineCounts[dk][s][m.n]||0;
+      if(!c) return '';
+      return `<div class="sel-item">
+        <span>${m.n} (${s}) × ${c}</span>
+        <span class="sel-mins">${m.m*c}분</span>
+      </div>`;
+    }).join('');
+    return rows;
+  }).join('');
+}
+
+// ── 20일 전체 테이블 ──
+function renderOverviewTable(){
+  const tbody = document.getElementById('overviewBody');
+  tbody.innerHTML = DKEYS.map((dk,i)=>{
+    const d   = DATES[i];
+    const tod = isToday(d);
+    const pctAll = getPct(dk,'전체');
+    const pct본  = getPct(dk,'본소');
+    const pct북  = getPct(dk,'북부');
+    const stAll  = getStatus(pctAll);
+    const st본   = getStatus(pct본);
+    const st북   = getStatus(pct북);
+    return `<tr onclick="setDateIdx(${i})" style="${i===curDateIdx?'background:rgba(129,140,248,.1)':''}">
+      <td class="date-col${tod?' today-col':''}">${fmtDate(d)}${tod?' ★':''}</td>
+      <td style="color:var(--muted)">${DOW[d.getDay()]}요일</td>
+      <td><span class="load-chip chip-${stAll}">${pctAll}%</span></td>
+      <td><span class="load-chip chip-${stAll}">${stAll}</span></td>
+      <td><span class="load-chip chip-${st본}">${pct본}%</span></td>
+      <td><span class="load-chip chip-${st본}">${st본}</span></td>
+      <td><span class="load-chip chip-${st북}">${pct북}%</span></td>
+      <td><span class="load-chip chip-${st북}">${st북}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+function resetCounts(){
+  const dk = DKEYS[curDateIdx];
+  SITES.forEach(s => MACHINES.forEach(m => machineCounts[dk][s][m.n]=0));
+  renderAll();
+}
+
+// ── 초기 실행 ──
+renderAll();
+</script>
+</body>
+</html>
