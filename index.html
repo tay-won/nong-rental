@@ -279,11 +279,23 @@ select:focus{border-color:var(--accent)}
   </div>
 </div>
 
-<script src="config.js"></script>
 <script>
 
 
+// 토큰을 브라우저 localStorage에서 불러옴 (파일에 저장 안 함)
+let GH_TOKEN = localStorage.getItem('gh_token') || '';
+const GH_REPO = 'tay-won/nong-rental';
 const GH_API='https://api.github.com/repos/'+GH_REPO+'/contents/data.json';
+
+function checkToken() {
+  if (!GH_TOKEN) {
+    const t = prompt('GitHub 토큰을 입력하세요:\n(한 번만 입력하면 이 기기에 저장됩니다)');
+    if (t && t.trim()) {
+      GH_TOKEN = t.trim();
+      localStorage.setItem('gh_token', GH_TOKEN);
+    }
+  }
+}
 
 const SITES=['본소','북부'];
 const MACHINES=[
@@ -349,6 +361,8 @@ function initState(){getDkeys().forEach(dk=>ensureDay(dk));}
 function setSyncUI(mode,msg){document.getElementById('sdot').className='sdot '+mode;document.getElementById('stxt').textContent=msg;}
 
 async function loadData(){
+  checkToken();
+  if(!GH_TOKEN){setSyncUI('err','토큰 없음 — 새로고침하여 입력');return;}
   setSyncUI('saving','불러오는 중…');
   document.getElementById('loadingOverlay').classList.remove('hidden');
   try{
