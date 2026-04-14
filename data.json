@@ -707,6 +707,12 @@
           "half": false,
           "qty": 4,
           "mins": 50
+        },
+        {
+          "name": "피복기-인력 8자(240cm)",
+          "half": false,
+          "qty": 1,
+          "mins": 40
         }
       ]
     }
