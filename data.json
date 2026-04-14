@@ -7,7 +7,14 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": []
+      "entries": [
+        {
+          "name": "배송(입출고 1회)",
+          "half": true,
+          "qty": 1,
+          "mins": 120
+        }
+      ]
     },
     "북부": {
       "workers": {
