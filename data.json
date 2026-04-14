@@ -928,6 +928,12 @@
           "half": true,
           "qty": 1,
           "mins": 45
+        },
+        {
+          "name": "못자리성형기 2150",
+          "half": true,
+          "qty": 1,
+          "mins": 55
         }
       ]
     }
