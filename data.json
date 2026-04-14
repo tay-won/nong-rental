@@ -194,6 +194,30 @@
           "half": false,
           "qty": 1,
           "mins": 60
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
         }
       ]
     },
