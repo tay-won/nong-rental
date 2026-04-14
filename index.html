@@ -409,7 +409,9 @@ function setSyncUI(mode,msg){document.getElementById('sdot').className='sdot '+m
 async function loadData(){
   if(!checkToken()) return;
   setSyncUI('saving','불러오는 중…');
-  document.getElementById('loadingOverlay').classList.remove('hidden');
+  // 토큰 모달이 열려있으면 로딩 오버레이 표시 안 함
+  const tokenModalOpen = !document.getElementById('tokenModal').classList.contains('hidden');
+  if(!tokenModalOpen) document.getElementById('loadingOverlay').classList.remove('hidden');
   try{
     const res = await fetch(GH_API+'?t='+Date.now(), {
       headers: {
@@ -667,7 +669,26 @@ document.addEventListener('click',e=>{
 filterDD();
 
 const t=today();
-document.getElementById('tokenModal').classList.toggle('hidden', !!GH_TOKEN);
+// URL 파라미터로 토큰 자동 설정 (?token=ghp_...)
+const urlParams = new URLSearchParams(window.location.search);
+const urlToken = urlParams.get('token');
+if(urlToken) {
+  GH_TOKEN = urlToken;
+  localStorage.setItem('gh_token', urlToken);
+  // URL에서 토큰 파라미터 제거 (보안)
+  const cleanUrl = window.location.pathname;
+  window.history.replaceState({}, document.title, cleanUrl);
+}
+
+// 토큰 있으면 바로 로드, 없으면 모달만 표시
+if(GH_TOKEN) {
+  document.getElementById('tokenModal').classList.add('hidden');
+  loadData();
+} else {
+  document.getElementById('tokenModal').classList.remove('hidden');
+  initState();
+  renderAll();
+}
 document.getElementById('headerSub').textContent='파주시 농업기계임대사업소 · '+t.getFullYear()+'년 '+(t.getMonth()+1)+'월 '+t.getDate()+'일';
 loadData();
 </script>
