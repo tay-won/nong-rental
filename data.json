@@ -7,20 +7,7 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": [
-        {
-          "name": "고심경쟁기-5련(유압식)",
-          "half": false,
-          "qty": 4,
-          "mins": 60
-        },
-        {
-          "name": "고심경쟁기-7련(유압식)",
-          "half": false,
-          "qty": 4,
-          "mins": 60
-        }
-      ]
+      "entries": []
     },
     "북부": {
       "workers": {
