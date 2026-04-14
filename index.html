@@ -212,10 +212,13 @@ select:focus{border-color:var(--accent)}
 <header>
   <h1>🚜 농기계 <span>임대 현황</span></h1>
   <div class="sub" id="headerSub">파주시 농업기계임대사업소</div>
-  <div class="site-tabs">
-    <button class="stab a-전체" onclick="setSite('전체')">전체</button>
-    <button class="stab" onclick="setSite('본소')">본소</button>
-    <button class="stab" onclick="setSite('북부')">북부</button>
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:10px">
+    <div class="site-tabs" style="margin-top:0">
+      <button class="stab a-전체" onclick="setSite('전체')">전체</button>
+      <button class="stab" onclick="setSite('본소')">본소</button>
+      <button class="stab" onclick="setSite('북부')">북부</button>
+    </div>
+    <button onclick="clearToken()" style="padding:4px 12px;background:transparent;border:1px solid var(--border);border-radius:14px;color:var(--muted);font-family:'Noto Sans KR',sans-serif;font-size:11px;cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">🔑 토큰 변경</button>
   </div>
 </header>
 
