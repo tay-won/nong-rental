@@ -463,8 +463,10 @@ async function saveData(){
   setSyncUI('saving','저장 중…');
   const vk = new Set(getDkeys());
   const trimmed = {};
-  Object.keys(state).forEach(k => { if(vk.has(k)) trimmed[k] = state[k]; });
-  // UTF-8 안전 base64 인코딩
+  // 깊은 복사로 저장 (참조 문제 방지)
+  Object.keys(state).forEach(k => {
+    if(vk.has(k)) trimmed[k] = JSON.parse(JSON.stringify(state[k]));
+  });
   const jsonStr = JSON.stringify(trimmed, null, 2);
   const content = btoa(unescape(encodeURIComponent(jsonStr)));
   const body = {
@@ -490,7 +492,7 @@ async function saveData(){
     setSyncUI('err','저장 실패: '+e.message);
   }
 }
-function scheduleSave(){if(saveTimer)clearTimeout(saveTimer);setSyncUI('saving','변경됨…');saveTimer=setTimeout(saveData,2000);}
+function scheduleSave(){if(saveTimer)clearTimeout(saveTimer);setSyncUI('saving','변경됨…');saveTimer=setTimeout(saveData,1000);}
 
 // ─── 계산 ───
 function getAvailSite(dk,st){return Object.values(state[dk][st].workers).reduce((a,b)=>a+b,0);}
@@ -546,28 +548,32 @@ function changeQty(d){
   document.getElementById('qtyVal').textContent=selQty;
 }
 function addEntry(){
-  if(!selMachine)return;
-  const dk=getDkeys()[curIdx];
-  const site=curSite==='전체'?'본소':curSite; // 전체 뷰면 본소 기본
-  const base=MMAP[selMachine]||0;
-  const mins=selHalf?base/2:base;
-  state[dk][site].entries.push({name:selMachine,half:selHalf,qty:selQty,mins});
-  scheduleSave();
+  if(!selMachine) return;
+  const dk = getDkeys()[curIdx];
+  const site = curSite==='전체' ? '본소' : curSite;
+  const base = MMAP[selMachine] || 0;
+  const mins = selHalf ? base/2 : base;
+  state[dk][site].entries.push({name:selMachine, half:selHalf, qty:selQty, mins});
+  // 즉시 저장 (딜레이 없이)
+  if(saveTimer) clearTimeout(saveTimer);
+  saveData();
   // 입력창 초기화
   selQty=1; selHalf=false;
   document.getElementById('qtyVal').textContent='1';
   document.getElementById('halfToggle').classList.remove('on');
   document.getElementById('halfCheck').checked=false;
   updateHalfLabel();
-  renderGauge();renderSelList();renderDateTabs();renderMiniTable();
-}
-function delEntry(site,idx){
-  const dk=getDkeys()[curIdx];
-  state[dk][site].entries.splice(idx,1);
-  scheduleSave();renderAll();
+  renderGauge(); renderSelList(); renderDateTabs(); renderMiniTable();
 }
 
-// ─── 렌더 ───
+function delEntry(site,idx){
+  const dk = getDkeys()[curIdx];
+  state[dk][site].entries.splice(idx,1);
+  if(saveTimer) clearTimeout(saveTimer);
+  saveData();
+  renderAll();
+}
+
 function setSite(s){
   curSite=s;
   document.querySelectorAll('.stab').forEach(t=>{t.className='stab';if(t.textContent===s)t.classList.add('a-'+s);});
