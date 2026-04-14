@@ -41,6 +41,12 @@
           "half": true,
           "qty": 1,
           "mins": 45
+        },
+        {
+          "name": "고심경쟁기-5련",
+          "half": true,
+          "qty": 1,
+          "mins": 30
         }
       ]
     }
