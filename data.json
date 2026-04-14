@@ -263,6 +263,24 @@
           "half": false,
           "qty": 1,
           "mins": 60
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
         }
       ]
     },
@@ -284,7 +302,32 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": []
+      "entries": [
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
+        }
+      ]
     },
     "북부": {
       "workers": {
