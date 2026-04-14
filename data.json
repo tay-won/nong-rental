@@ -626,6 +626,12 @@
           "half": false,
           "qty": 1,
           "mins": 50
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
         }
       ]
     }
