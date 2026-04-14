@@ -53,6 +53,12 @@
           "half": true,
           "qty": 2,
           "mins": 25
+        },
+        {
+          "name": "퇴비살포기 900H",
+          "half": false,
+          "qty": 1,
+          "mins": 90
         }
       ]
     }
