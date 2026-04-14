@@ -7,7 +7,20 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": []
+      "entries": [
+        {
+          "name": "고속쟁기(평탄쟁기)",
+          "half": false,
+          "qty": 1,
+          "mins": 60
+        },
+        {
+          "name": "고속쟁기(평탄쟁기)",
+          "half": false,
+          "qty": 1,
+          "mins": 60
+        }
+      ]
     },
     "북부": {
       "workers": {
