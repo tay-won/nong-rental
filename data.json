@@ -1417,6 +1417,12 @@
           "half": false,
           "qty": 2,
           "mins": 90
+        },
+        {
+          "name": "양용쟁(3련/4련)",
+          "half": false,
+          "qty": 1,
+          "mins": 80
         }
       ]
     }
