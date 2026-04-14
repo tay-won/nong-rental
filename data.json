@@ -125,6 +125,12 @@
           "half": false,
           "qty": 1,
           "mins": 80
+        },
+        {
+          "name": "비료살포기",
+          "half": false,
+          "qty": 1,
+          "mins": 60
         }
       ]
     }
