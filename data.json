@@ -272,6 +272,12 @@
           "half": false,
           "qty": 1,
           "mins": 90
+        },
+        {
+          "name": "고심경쟁기-7련(유압식)",
+          "half": false,
+          "qty": 1,
+          "mins": 60
         }
       ]
     }
