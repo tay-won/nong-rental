@@ -857,6 +857,12 @@
           "half": true,
           "qty": 1,
           "mins": 45
+        },
+        {
+          "name": "육묘적재이송기",
+          "half": true,
+          "qty": 1,
+          "mins": 40
         }
       ]
     }
