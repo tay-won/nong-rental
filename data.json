@@ -1465,6 +1465,12 @@
           "half": true,
           "qty": 1,
           "mins": 40
+        },
+        {
+          "name": "보통쟁기 3련",
+          "half": true,
+          "qty": 1,
+          "mins": 30
         }
       ]
     }
