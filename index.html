@@ -411,41 +411,73 @@ async function loadData(){
   setSyncUI('saving','불러오는 중…');
   document.getElementById('loadingOverlay').classList.remove('hidden');
   try{
-    const res=await fetch(GH_API+'?t='+Date.now(),{headers:{Authorization:'token '+GH_TOKEN,Accept:'application/vnd.github.v3+json'}});
-    if(res.status===404){initState();ghSha=null;setSyncUI('ok','첫 실행 — 입력 후 자동 저장');}
-    else if(res.ok){
-      const json=await res.json();ghSha=json.sha;
+    const res=await fetch(GH_API+'?t='+Date.now(),{
+      headers:{Authorization:'token '+GH_TOKEN,Accept:'application/vnd.github.v3+json'}
+    });
+    if(res.status===404){
+      // 첫 실행 - 빈 상태로 시작
+      initState(); ghSha=null;
+      setSyncUI('ok','첫 실행 — 입력 후 자동 저장됩니다');
+    } else if(res.ok){
+      const json=await res.json();
+      ghSha=json.sha;
       const decoded=JSON.parse(atob(json.content.replace(/\n/g,'')));
+      // 먼저 21일 기본 구조 초기화
       initState();
+      // 저장된 데이터 전부 복원
       Object.keys(decoded).forEach(dk=>{
         ensureDay(dk);
         SITES.forEach(st=>{
-          if(!decoded[dk][st])return;
+          if(!decoded[dk]||!decoded[dk][st]) return;
           const src=decoded[dk][st];
-          if(src.workers)Object.assign(state[dk][st].workers,src.workers);
-          if(src.entries)state[dk][st].entries=src.entries;
+          if(src.workers) Object.assign(state[dk][st].workers, src.workers);
+          if(Array.isArray(src.entries)) state[dk][st].entries=src.entries;
         });
       });
       setSyncUI('ok','동기화 완료 · '+new Date().toLocaleTimeString('ko-KR'));
-    }else throw new Error('HTTP '+res.status);
-  }catch(e){initState();setSyncUI('err','실패: '+e.message);}
+    } else {
+      throw new Error('HTTP '+res.status);
+    }
+  } catch(e){
+    // 오류 시 기존 state 유지 (초기화 안 함)
+    setSyncUI('err','불러오기 실패 — '+e.message);
+  }
   document.getElementById('loadingOverlay').classList.add('hidden');
   renderAll();
 }
 
 async function saveData(){
   setSyncUI('saving','저장 중…');
-  const vk=new Set(getDkeys()),trimmed={};
-  Object.keys(state).forEach(k=>{if(vk.has(k))trimmed[k]=state[k];});
+  // 21일 범위 키만 저장
+  const vk=new Set(getDkeys());
+  const trimmed={};
+  Object.keys(state).forEach(k=>{
+    if(vk.has(k)) trimmed[k]=state[k];
+  });
+  // 저장할 데이터가 있는지 확인
+  const hasData = Object.values(trimmed).some(dk=>
+    SITES.some(st=> dk[st] && (
+      dk[st].entries.length>0 ||
+      Object.values(dk[st].workers).some(v=>v!==420)
+    ))
+  );
   const content=btoa(unescape(encodeURIComponent(JSON.stringify(trimmed,null,2))));
   const body={message:'update '+new Date().toISOString(),content,...(ghSha?{sha:ghSha}:{})};
   try{
-    const res=await fetch(GH_API,{method:'PUT',headers:{Authorization:'token '+GH_TOKEN,Accept:'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});
-    if(!res.ok)throw new Error('HTTP '+res.status);
-    const json=await res.json();ghSha=json.content.sha;
+    const res=await fetch(GH_API,{
+      method:'PUT',
+      headers:{Authorization:'token '+GH_TOKEN,Accept:'application/vnd.github.v3+json','Content-Type':'application/json'},
+      body:JSON.stringify(body)
+    });
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const json=await res.json();
+    ghSha=json.content.sha;
     setSyncUI('ok','저장 완료 · '+new Date().toLocaleTimeString('ko-KR'));
-  }catch(e){setSyncUI('err','저장 실패: '+e.message);}
+  } catch(e){
+    setSyncUI('err','저장 실패: '+e.message);
+  }
 }
+
 function scheduleSave(){if(saveTimer)clearTimeout(saveTimer);setSyncUI('saving','변경됨…');saveTimer=setTimeout(saveData,2000);}
 
 // ─── 계산 ───
