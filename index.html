@@ -169,9 +169,40 @@ select:focus{border-color:var(--accent)}
 @keyframes spin{to{transform:rotate(360deg)}}
 .loading-txt{font-size:13px;color:var(--dim)}
 @media(max-width:600px){.worker-grid{grid-template-columns:1fr 1fr}.stats-row{grid-template-columns:repeat(3,1fr)}.input-controls{gap:6px}}
+
+/* ── 토큰 설정 모달 ── */
+.token-modal{position:fixed;inset:0;background:rgba(15,17,23,.95);display:flex;align-items:center;justify-content:center;z-index:999;padding:20px}
+.token-modal.hidden{display:none}
+.token-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 24px;width:100%;max-width:420px}
+.token-box h2{font-size:16px;font-weight:900;color:#fff;margin-bottom:6px}
+.token-box p{font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6}
+.token-box .steps{font-size:11px;color:var(--dim);margin-bottom:16px;padding:10px 12px;background:var(--surface);border-radius:8px;line-height:2}
+.token-inp{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:12px;padding:10px 12px;outline:none;margin-bottom:10px;transition:border-color .2s}
+.token-inp:focus{border-color:var(--accent)}
+.btn-token-save{width:100%;padding:11px;background:var(--accent);border:none;border-radius:8px;color:#fff;font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-token-save:hover{background:#5254d4}
+.token-reset{font-size:10px;color:var(--muted);text-align:center;margin-top:8px;cursor:pointer;text-decoration:underline}
+.token-reset:hover{color:var(--dim)}
 </style>
 </head>
 <body>
+
+<!-- 토큰 설정 모달 -->
+<div class="token-modal" id="tokenModal">
+  <div class="token-box">
+    <h2>🔑 GitHub 토큰 설정</h2>
+    <p>데이터 연동을 위해 GitHub Personal Access Token이 필요합니다.<br>한 번 입력하면 이 기기에 저장됩니다.</p>
+    <div class="steps">
+      1. GitHub → 프로필 → Settings<br>
+      2. Developer settings → Personal access tokens<br>
+      3. Generate new token → repo 권한 체크<br>
+      4. 생성된 토큰(ghp_…) 아래에 붙여넣기
+    </div>
+    <input type="password" class="token-inp" id="tokenInp" placeholder="ghp_…토큰 붙여넣기">
+    <button class="btn-token-save" onclick="saveToken()">저장하고 시작하기</button>
+    <div class="token-reset" onclick="clearToken()">저장된 토큰 초기화</div>
+  </div>
+</div>
 
 <div class="loading-overlay" id="loadingOverlay">
   <div class="spinner"></div>
@@ -282,19 +313,31 @@ select:focus{border-color:var(--accent)}
 <script>
 
 
-// 토큰을 브라우저 localStorage에서 불러옴 (파일에 저장 안 함)
+// 토큰 관리 (localStorage 기반)
 let GH_TOKEN = localStorage.getItem('gh_token') || '';
 const GH_REPO = 'tay-won/nong-rental';
 const GH_API='https://api.github.com/repos/'+GH_REPO+'/contents/data.json';
 
 function checkToken() {
   if (!GH_TOKEN) {
-    const t = prompt('GitHub 토큰을 입력하세요:\n(한 번만 입력하면 이 기기에 저장됩니다)');
-    if (t && t.trim()) {
-      GH_TOKEN = t.trim();
-      localStorage.setItem('gh_token', GH_TOKEN);
-    }
+    document.getElementById('tokenModal').classList.remove('hidden');
+    return false;
   }
+  return true;
+}
+function saveToken() {
+  const t = document.getElementById('tokenInp').value.trim();
+  if (!t) { alert('토큰을 입력해주세요'); return; }
+  GH_TOKEN = t;
+  localStorage.setItem('gh_token', t);
+  document.getElementById('tokenModal').classList.add('hidden');
+  loadData();
+}
+function clearToken() {
+  localStorage.removeItem('gh_token');
+  GH_TOKEN = '';
+  document.getElementById('tokenInp').value = '';
+  document.getElementById('tokenModal').classList.remove('hidden');
 }
 
 const SITES=['본소','북부'];
@@ -361,8 +404,7 @@ function initState(){getDkeys().forEach(dk=>ensureDay(dk));}
 function setSyncUI(mode,msg){document.getElementById('sdot').className='sdot '+mode;document.getElementById('stxt').textContent=msg;}
 
 async function loadData(){
-  checkToken();
-  if(!GH_TOKEN){setSyncUI('err','토큰 없음 — 새로고침하여 입력');return;}
+  if(!checkToken()) return;
   setSyncUI('saving','불러오는 중…');
   document.getElementById('loadingOverlay').classList.remove('hidden');
   try{
@@ -580,6 +622,7 @@ document.addEventListener('click',e=>{
 filterDD();
 
 const t=today();
+document.getElementById('tokenModal').classList.toggle('hidden', !!GH_TOKEN);
 document.getElementById('headerSub').textContent='파주시 농업기계임대사업소 · '+t.getFullYear()+'년 '+(t.getMonth()+1)+'월 '+t.getDate()+'일';
 loadData();
 </script>
