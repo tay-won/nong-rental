@@ -411,27 +411,39 @@ async function loadData(){
   setSyncUI('saving','불러오는 중…');
   document.getElementById('loadingOverlay').classList.remove('hidden');
   try{
-    const res=await fetch(GH_API+'?t='+Date.now(),{
-      headers:{Authorization:'token '+GH_TOKEN,Accept:'application/vnd.github.v3+json'}
+    const res = await fetch(GH_API+'?t='+Date.now(), {
+      headers: {
+        Authorization: 'token '+GH_TOKEN,
+        Accept: 'application/vnd.github.v3+json'
+      }
     });
-    if(res.status===404){
-      // 첫 실행 - 빈 상태로 시작
-      initState(); ghSha=null;
+    if(res.status === 404){
+      initState();
+      ghSha = null;
       setSyncUI('ok','첫 실행 — 입력 후 자동 저장됩니다');
     } else if(res.ok){
-      const json=await res.json();
-      ghSha=json.sha;
-      const decoded=JSON.parse(atob(json.content.replace(/\n/g,'')));
-      // 먼저 21일 기본 구조 초기화
+      const json = await res.json();
+      ghSha = json.sha;
+      // base64 디코딩
+      const jsonStr = decodeURIComponent(escape(atob(json.content.replace(/\n/g,''))));
+      const decoded = JSON.parse(jsonStr);
+      // 빈 상태로 초기화 후 복원
       initState();
-      // 저장된 데이터 전부 복원
-      Object.keys(decoded).forEach(dk=>{
+      Object.keys(decoded).forEach(dk => {
         ensureDay(dk);
-        SITES.forEach(st=>{
-          if(!decoded[dk]||!decoded[dk][st]) return;
-          const src=decoded[dk][st];
-          if(src.workers) Object.assign(state[dk][st].workers, src.workers);
-          if(Array.isArray(src.entries)) state[dk][st].entries=src.entries;
+        ['본소','북부'].forEach(st => {
+          if(!decoded[dk] || !decoded[dk][st]) return;
+          const src = decoded[dk][st];
+          // workers 복원
+          if(src.workers){
+            Object.keys(src.workers).forEach(wid => {
+              state[dk][st].workers[wid] = src.workers[wid];
+            });
+          }
+          // entries 복원
+          if(Array.isArray(src.entries)){
+            state[dk][st].entries = src.entries;
+          }
         });
       });
       setSyncUI('ok','동기화 완료 · '+new Date().toLocaleTimeString('ko-KR'));
@@ -439,8 +451,7 @@ async function loadData(){
       throw new Error('HTTP '+res.status);
     }
   } catch(e){
-    // 오류 시 기존 state 유지 (초기화 안 함)
-    setSyncUI('err','불러오기 실패 — '+e.message);
+    setSyncUI('err','불러오기 실패: '+e.message);
   }
   document.getElementById('loadingOverlay').classList.add('hidden');
   renderAll();
@@ -448,36 +459,35 @@ async function loadData(){
 
 async function saveData(){
   setSyncUI('saving','저장 중…');
-  // 21일 범위 키만 저장
-  const vk=new Set(getDkeys());
-  const trimmed={};
-  Object.keys(state).forEach(k=>{
-    if(vk.has(k)) trimmed[k]=state[k];
-  });
-  // 저장할 데이터가 있는지 확인
-  const hasData = Object.values(trimmed).some(dk=>
-    SITES.some(st=> dk[st] && (
-      dk[st].entries.length>0 ||
-      Object.values(dk[st].workers).some(v=>v!==420)
-    ))
-  );
-  const content=btoa(unescape(encodeURIComponent(JSON.stringify(trimmed,null,2))));
-  const body={message:'update '+new Date().toISOString(),content,...(ghSha?{sha:ghSha}:{})};
+  const vk = new Set(getDkeys());
+  const trimmed = {};
+  Object.keys(state).forEach(k => { if(vk.has(k)) trimmed[k] = state[k]; });
+  // UTF-8 안전 base64 인코딩
+  const jsonStr = JSON.stringify(trimmed, null, 2);
+  const content = btoa(unescape(encodeURIComponent(jsonStr)));
+  const body = {
+    message: 'update '+new Date().toISOString(),
+    content: content,
+    ...(ghSha ? {sha: ghSha} : {})
+  };
   try{
-    const res=await fetch(GH_API,{
-      method:'PUT',
-      headers:{Authorization:'token '+GH_TOKEN,Accept:'application/vnd.github.v3+json','Content-Type':'application/json'},
-      body:JSON.stringify(body)
+    const res = await fetch(GH_API, {
+      method: 'PUT',
+      headers: {
+        Authorization: 'token '+GH_TOKEN,
+        Accept: 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
     });
     if(!res.ok) throw new Error('HTTP '+res.status);
-    const json=await res.json();
-    ghSha=json.content.sha;
+    const json = await res.json();
+    ghSha = json.content.sha;
     setSyncUI('ok','저장 완료 · '+new Date().toLocaleTimeString('ko-KR'));
   } catch(e){
     setSyncUI('err','저장 실패: '+e.message);
   }
 }
-
 function scheduleSave(){if(saveTimer)clearTimeout(saveTimer);setSyncUI('saving','변경됨…');saveTimer=setTimeout(saveData,2000);}
 
 // ─── 계산 ───
