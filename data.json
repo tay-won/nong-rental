@@ -3,24 +3,11 @@
     "본소": {
       "workers": {
         "bs1": 420,
-        "bs2": 420,
+        "bs2": 210,
         "bs3": 420,
         "bs4": 420
       },
-      "entries": [
-        {
-          "name": "고심경쟁기-5련(유압식)",
-          "half": false,
-          "qty": 4,
-          "mins": 60
-        },
-        {
-          "name": "고심경쟁기-5련",
-          "half": false,
-          "qty": 4,
-          "mins": 60
-        }
-      ]
+      "entries": []
     },
     "북부": {
       "workers": {
@@ -29,14 +16,7 @@
         "nb3": 420,
         "nb4": 420
       },
-      "entries": [
-        {
-          "name": "고심경쟁기-7련(유압식)",
-          "half": false,
-          "qty": 4,
-          "mins": 60
-        }
-      ]
+      "entries": []
     }
   },
   "2026-04-14": {
@@ -47,26 +27,7 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": [
-        {
-          "name": "고심경쟁기-5련",
-          "half": false,
-          "qty": 1,
-          "mins": 60
-        },
-        {
-          "name": "고심경쟁기-5련",
-          "half": false,
-          "qty": 1,
-          "mins": 60
-        },
-        {
-          "name": "고심경쟁기-5련",
-          "half": false,
-          "qty": 1,
-          "mins": 60
-        }
-      ]
+      "entries": []
     },
     "북부": {
       "workers": {
@@ -75,26 +36,7 @@
         "nb3": 420,
         "nb4": 420
       },
-      "entries": [
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        }
-      ]
+      "entries": []
     }
   },
   "2026-04-15": {
@@ -105,32 +47,7 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": [
-        {
-          "name": "고심경쟁기-5련",
-          "half": false,
-          "qty": 1,
-          "mins": 60
-        },
-        {
-          "name": "고심경쟁기-5련",
-          "half": false,
-          "qty": 1,
-          "mins": 60
-        },
-        {
-          "name": "고심경쟁기-5련",
-          "half": false,
-          "qty": 1,
-          "mins": 60
-        },
-        {
-          "name": "고심경쟁기-5련",
-          "half": false,
-          "qty": 1,
-          "mins": 60
-        }
-      ]
+      "entries": []
     },
     "북부": {
       "workers": {
@@ -139,14 +56,7 @@
         "nb3": 420,
         "nb4": 420
       },
-      "entries": [
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        }
-      ]
+      "entries": []
     }
   },
   "2026-04-16": {
@@ -157,32 +67,7 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": [
-        {
-          "name": "고심경쟁기-5련",
-          "half": false,
-          "qty": 1,
-          "mins": 60
-        },
-        {
-          "name": "고심경쟁기-5련",
-          "half": false,
-          "qty": 1,
-          "mins": 60
-        },
-        {
-          "name": "고심경쟁기-5련",
-          "half": false,
-          "qty": 1,
-          "mins": 60
-        },
-        {
-          "name": "고심경쟁기-5련",
-          "half": false,
-          "qty": 1,
-          "mins": 60
-        }
-      ]
+      "entries": []
     },
     "북부": {
       "workers": {
@@ -191,14 +76,7 @@
         "nb3": 420,
         "nb4": 420
       },
-      "entries": [
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        }
-      ]
+      "entries": []
     }
   },
   "2026-04-17": {
@@ -209,50 +87,7 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": [
-        {
-          "name": "고심경쟁기-5련",
-          "half": false,
-          "qty": 1,
-          "mins": 60
-        },
-        {
-          "name": "고심경쟁기-5련",
-          "half": false,
-          "qty": 1,
-          "mins": 60
-        },
-        {
-          "name": "고심경쟁기-5련",
-          "half": false,
-          "qty": 1,
-          "mins": 60
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        }
-      ]
+      "entries": []
     },
     "북부": {
       "workers": {
@@ -261,20 +96,7 @@
         "nb3": 420,
         "nb4": 420
       },
-      "entries": [
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        }
-      ]
+      "entries": []
     }
   },
   "2026-04-18": {
@@ -285,50 +107,7 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": [
-        {
-          "name": "고심경쟁기-5련",
-          "half": false,
-          "qty": 1,
-          "mins": 60
-        },
-        {
-          "name": "고심경쟁기-5련",
-          "half": false,
-          "qty": 1,
-          "mins": 60
-        },
-        {
-          "name": "고심경쟁기-5련",
-          "half": false,
-          "qty": 1,
-          "mins": 60
-        },
-        {
-          "name": "고심경쟁기-5련",
-          "half": false,
-          "qty": 1,
-          "mins": 60
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        }
-      ]
+      "entries": []
     },
     "북부": {
       "workers": {
@@ -337,32 +116,7 @@
         "nb3": 420,
         "nb4": 420
       },
-      "entries": [
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        }
-      ]
+      "entries": []
     }
   },
   "2026-04-19": {
@@ -373,32 +127,7 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": [
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        }
-      ]
+      "entries": []
     },
     "북부": {
       "workers": {
@@ -407,32 +136,7 @@
         "nb3": 420,
         "nb4": 420
       },
-      "entries": [
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        }
-      ]
+      "entries": []
     }
   },
   "2026-04-20": {
