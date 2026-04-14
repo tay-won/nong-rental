@@ -127,14 +127,7 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": [
-        {
-          "name": "고속쟁기(평탄쟁기)",
-          "half": false,
-          "qty": 3,
-          "mins": 60
-        }
-      ]
+      "entries": []
     },
     "북부": {
       "workers": {
@@ -214,7 +207,14 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": []
+      "entries": [
+        {
+          "name": "배송(입출고 1회)",
+          "half": true,
+          "qty": 5,
+          "mins": 120
+        }
+      ]
     },
     "북부": {
       "workers": {
