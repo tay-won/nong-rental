@@ -1384,6 +1384,12 @@
           "half": true,
           "qty": 1,
           "mins": 40
+        },
+        {
+          "name": "고속쟁기(평탄쟁기)",
+          "half": true,
+          "qty": 1,
+          "mins": 30
         }
       ]
     }
