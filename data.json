@@ -7,14 +7,7 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": [
-        {
-          "name": "원판쟁기(8련/10련)",
-          "half": false,
-          "qty": 1,
-          "mins": 90
-        }
-      ]
+      "entries": []
     },
     "북부": {
       "workers": {
