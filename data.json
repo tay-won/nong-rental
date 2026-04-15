@@ -1929,12 +1929,6 @@
           "mins": 45
         },
         {
-          "name": "논두렁조성기(大/中/小)",
-          "half": false,
-          "qty": 1,
-          "mins": 90
-        },
-        {
           "name": "굴착기(1T/2T)",
           "half": false,
           "qty": 2,
