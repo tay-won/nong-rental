@@ -61,6 +61,12 @@
           "half": false,
           "qty": 1,
           "mins": 90
+        },
+        {
+          "name": "휴립피복기(1조/2조)",
+          "half": false,
+          "qty": 1,
+          "mins": 60
         }
       ]
     },
