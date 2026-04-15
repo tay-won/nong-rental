@@ -453,7 +453,14 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": []
+      "entries": [
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        }
+      ]
     },
     "북부": {
       "workers": {
