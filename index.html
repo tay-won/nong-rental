@@ -218,7 +218,10 @@ select:focus{border-color:var(--accent)}
       <button class="stab" onclick="setSite('본소')">본소</button>
       <button class="stab" onclick="setSite('북부')">북부</button>
     </div>
+    <div style="display:flex;gap:6px">
+    <button onclick="downloadReport()" style="padding:4px 12px;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);border-radius:14px;color:#22c55e;font-family:'Noto Sans KR',sans-serif;font-size:11px;cursor:pointer;transition:all .2s" onmouseover="this.style.background='rgba(34,197,94,.25)'" onmouseout="this.style.background='rgba(34,197,94,.15)'">📊 엑셀 다운로드</button>
     <button onclick="clearToken()" style="padding:4px 12px;background:transparent;border:1px solid var(--border);border-radius:14px;color:var(--muted);font-family:'Noto Sans KR',sans-serif;font-size:11px;cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">🔑 토큰 변경</button>
+  </div>
   </div>
 </header>
 
@@ -492,6 +495,113 @@ async function saveData(){
     setSyncUI('err','저장 실패: '+e.message);
   }
 }
+
+// ═══ 엑셀 리포트 다운로드 ═══
+function downloadReport(){
+  const DATES = getDates();
+  const DKEYS = getDkeys();
+
+  // ── 시트1: 일자별 부하 현황 ──
+  let s1 = '날짜,요일,전체부하율(%),전체상태,본소부하율(%),본소상태,북부부하율(%),북부상태,전체소요(분),본소소요(분),북부소요(분),전체가용(분),본소가용(분),북부가용(분)\n';
+  const DOW2 = ['일','월','화','수','목','금','토'];
+  DKEYS.forEach((dk,i) => {
+    ensureDay(dk);
+    const d = DATES[i];
+    const pa = getPct(dk,'전체'), pb = getPct(dk,'본소'), pn = getPct(dk,'북부');
+    const ua = getUsed(dk,'전체'), ub = getUsedSite(dk,'본소'), un = getUsedSite(dk,'북부');
+    const aa = getAvail(dk,'전체'), ab = getAvailSite(dk,'본소'), an = getAvailSite(dk,'북부');
+    s1 += [
+      (d.getMonth()+1)+'/'+d.getDate(),
+      DOW2[d.getDay()]+'요일',
+      pa, getStatus(pa),
+      pb, getStatus(pb),
+      pn, getStatus(pn),
+      ua, ub, un,
+      aa, ab, an
+    ].join(',') + '\n';
+  });
+
+  // ── 시트2: 임대 건수 상세 ──
+  let s2 = '날짜,사업소,기종명,건수,전반타임,1건당정비시간(분),소계(분)\n';
+  DKEYS.forEach((dk,i) => {
+    ensureDay(dk);
+    const d = DATES[i];
+    ['본소','북부'].forEach(st => {
+      state[dk][st].entries.forEach(e => {
+        s2 += [
+          (d.getMonth()+1)+'/'+d.getDate(),
+          st,
+          '"'+e.name+'"',
+          e.qty,
+          e.half ? '반타임' : '전타임',
+          e.mins,
+          e.mins * e.qty
+        ].join(',') + '\n';
+      });
+    });
+  });
+
+  // ── 시트3: 기종별 집계 ──
+  const typeMap = {};
+  DKEYS.forEach(dk => {
+    ensureDay(dk);
+    ['본소','북부'].forEach(st => {
+      state[dk][st].entries.forEach(e => {
+        const key = e.name + '|' + (e.half?'반타임':'전타임') + '|' + st;
+        if(!typeMap[key]) typeMap[key] = {name:e.name, type:e.half?'반타임':'전타임', site:st, qty:0, totalMins:0};
+        typeMap[key].qty += e.qty;
+        typeMap[key].totalMins += e.mins * e.qty;
+      });
+    });
+  });
+  let s3 = '기종명,전반타임,사업소,총건수,총정비시간(분),총정비시간(h)\n';
+  Object.values(typeMap).sort((a,b)=>b.qty-a.qty).forEach(r => {
+    s3 += ['"'+r.name+'"', r.type, r.site, r.qty, r.totalMins, (r.totalMins/60).toFixed(1)].join(',') + '\n';
+  });
+
+  // ── 시트4: 근무자 현황 ──
+  let s4 = '날짜,사업소,임기제1(분),임기제2(분),기간제1(분),기간제2(분),가용합계(분),가용합계(h)\n';
+  const wIds = {본소:['bs1','bs2','bs3','bs4'], 북부:['nb1','nb2','nb3','nb4']};
+  DKEYS.forEach((dk,i) => {
+    ensureDay(dk);
+    const d = DATES[i];
+    ['본소','북부'].forEach(st => {
+      const w = state[dk][st].workers;
+      const ids = wIds[st];
+      const total = ids.reduce((s,id)=>s+(w[id]||0),0);
+      s4 += [
+        (d.getMonth()+1)+'/'+d.getDate(),
+        st,
+        w[ids[0]]||0, w[ids[1]]||0, w[ids[2]]||0, w[ids[3]]||0,
+        total, (total/60).toFixed(1)
+      ].join(',') + '\n';
+    });
+  });
+
+  // ── CSV 파일로 묶어서 다운로드 (시트별 개별 파일) ──
+  const today = new Date();
+  const dateStr = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
+  const files = [
+    {name: `농기계임대현황_일자별부하_${dateStr}.csv`, content: '\uFEFF'+s1},
+    {name: `농기계임대현황_임대상세_${dateStr}.csv`,   content: '\uFEFF'+s2},
+    {name: `농기계임대현황_기종별집계_${dateStr}.csv`, content: '\uFEFF'+s3},
+    {name: `농기계임대현황_근무자현황_${dateStr}.csv`, content: '\uFEFF'+s4},
+  ];
+
+  files.forEach(f => {
+    const blob = new Blob([f.content], {type:'text/csv;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = f.name;
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  setSyncUI('ok', '📊 CSV 4개 다운로드 완료!');
+}
+
 function scheduleSave(){if(saveTimer)clearTimeout(saveTimer);setSyncUI('saving','변경됨…');saveTimer=setTimeout(saveData,1000);}
 
 // ─── 계산 ───
