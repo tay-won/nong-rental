@@ -1766,6 +1766,12 @@
           "half": true,
           "qty": 1,
           "mins": 40
+        },
+        {
+          "name": "잔가지파쇄기(궤도형)",
+          "half": false,
+          "qty": 1,
+          "mins": 80
         }
       ]
     }
