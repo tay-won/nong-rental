@@ -733,6 +733,12 @@
           "half": false,
           "qty": 1,
           "mins": 90
+        },
+        {
+          "name": "배토기(175/195)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
         }
       ]
     },
