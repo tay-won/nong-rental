@@ -2146,6 +2146,12 @@
           "half": true,
           "qty": 3,
           "mins": 45
+        },
+        {
+          "name": "돌수집기 1400",
+          "half": true,
+          "qty": 1,
+          "mins": 45
         }
       ]
     }
