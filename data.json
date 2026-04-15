@@ -1978,68 +1978,7 @@
         "nb3": 420,
         "nb4": 420
       },
-      "entries": [
-        {
-          "name": "원판쟁기(8련/10련)",
-          "half": true,
-          "qty": 1,
-          "mins": 45
-        },
-        {
-          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
-          "half": true,
-          "qty": 1,
-          "mins": 45
-        },
-        {
-          "name": "굴착기(1T/2T)",
-          "half": true,
-          "qty": 1,
-          "mins": 40
-        },
-        {
-          "name": "원판쟁기(8련/10련)",
-          "half": false,
-          "qty": 1,
-          "mins": 90
-        },
-        {
-          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
-          "half": false,
-          "qty": 1,
-          "mins": 90
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        },
-        {
-          "name": "굴착기(1T/2T)",
-          "half": true,
-          "qty": 1,
-          "mins": 40
-        },
-        {
-          "name": "잔가지파쇄기(궤도형)",
-          "half": true,
-          "qty": 1,
-          "mins": 40
-        },
-        {
-          "name": "원판쟁기(8련/10련)",
-          "half": true,
-          "qty": 2,
-          "mins": 45
-        },
-        {
-          "name": "양용쟁(3련/4련)",
-          "half": true,
-          "qty": 1,
-          "mins": 40
-        }
-      ]
+      "entries": []
     }
   },
   "2026-04-28": {
