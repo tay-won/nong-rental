@@ -31,6 +31,12 @@
           "half": false,
           "qty": 1,
           "mins": 240
+        },
+        {
+          "name": "동력운반차",
+          "half": false,
+          "qty": 1,
+          "mins": 80
         }
       ]
     },
