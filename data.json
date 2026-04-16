@@ -719,6 +719,12 @@
       },
       "entries": [
         {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
           "name": "육묘적재이송기",
           "half": true,
           "qty": 1,
@@ -729,12 +735,6 @@
           "half": true,
           "qty": 3,
           "mins": 25
-        },
-        {
-          "name": "원판쟁기(8련/10련)",
-          "half": true,
-          "qty": 1,
-          "mins": 45
         },
         {
           "name": "원판쟁기(8련/10련)",
