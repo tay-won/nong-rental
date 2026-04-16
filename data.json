@@ -9,10 +9,10 @@
       },
       "entries": [
         {
-          "name": "동력운반차",
-          "half": false,
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": true,
           "qty": 1,
-          "mins": 80
+          "mins": 25
         }
       ]
     },
