@@ -253,36 +253,6 @@
       },
       "entries": [
         {
-          "name": "원판쟁기(8련/10련)",
-          "half": false,
-          "qty": 1,
-          "mins": 90
-        },
-        {
-          "name": "원판쟁기(4련/6련)",
-          "half": false,
-          "qty": 1,
-          "mins": 60
-        },
-        {
-          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
-          "half": false,
-          "qty": 1,
-          "mins": 90
-        },
-        {
-          "name": "굴착기(1T/2T)",
-          "half": false,
-          "qty": 1,
-          "mins": 80
-        },
-        {
-          "name": "잔가지파쇄기(궤도형)",
-          "half": false,
-          "qty": 1,
-          "mins": 80
-        },
-        {
           "name": "원판쟁기(4련/6련)",
           "half": false,
           "qty": 1,
