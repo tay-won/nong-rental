@@ -509,12 +509,6 @@
       },
       "entries": [
         {
-          "name": "원판쟁기(8련/10련)",
-          "half": false,
-          "qty": 2,
-          "mins": 90
-        },
-        {
           "name": "돌수집기 1400",
           "half": false,
           "qty": 1,
