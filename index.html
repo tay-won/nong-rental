@@ -777,12 +777,33 @@ function renderSelList(){
             ${curSite==='전체'?'<span class="tag tag-site">'+st+'</span>':''}
           </div>
         </div>
+        <div style="display:flex;align-items:center;gap:3px;flex-shrink:0">
+          <button class="btn-c" style="width:19px;height:19px;font-size:12px" onclick="changeEntryQty('${st}',${i},-1)">&#8722;</button>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:#fff;width:18px;text-align:center">${e.qty}</span>
+          <button class="btn-c" style="width:19px;height:19px;font-size:12px" onclick="changeEntryQty('${st}',${i},+1)">&#43;</button>
+        </div>
         <span class="sel-mins">${totalMins}분</span>
         <button class="btn-del" onclick="delEntry('${st}',${i})" title="삭제">&#10005;</button>
       </div>`;
     });
   });
   el.innerHTML=h||'<div class="empty-msg">기종을 선택 후 입력하세요</div>';
+}
+
+// ── 수량 조절 ──
+function changeEntryQty(site, idx, delta){
+  const dk = getDkeys()[curIdx];
+  const entries = state[dk][site].entries;
+  const newQty = entries[idx].qty + delta;
+  if(newQty <= 0){
+    // 0이 되면 삭제
+    entries.splice(idx, 1);
+  } else {
+    entries[idx].qty = newQty;
+  }
+  if(saveTimer) clearTimeout(saveTimer);
+  saveData();
+  renderGauge(); renderSelList(); renderDateTabs(); renderMiniTable();
 }
 
 // ── 상하 이동 ──
