@@ -151,6 +151,12 @@
           "mins": 90
         },
         {
+          "name": "비료살포기",
+          "half": false,
+          "qty": 1,
+          "mins": 60
+        },
+        {
           "name": "원판쟁기(4련/6련)",
           "half": false,
           "qty": 1,
@@ -227,12 +233,6 @@
           "half": false,
           "qty": 2,
           "mins": 240
-        },
-        {
-          "name": "비료살포기",
-          "half": false,
-          "qty": 1,
-          "mins": 60
         }
       ]
     }
