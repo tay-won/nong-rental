@@ -471,6 +471,8 @@ async function loadData(){
 }
 
 async function saveData(){
+  // 토큰 없으면 저장 안 함 (로그인 전 데이터 덮어쓰기 방지)
+  if(!GH_TOKEN) { setSyncUI('idle','로그인 필요'); return; }
   setSyncUI('saving','저장 중…');
   // 범위 제한 없이 전체 state 저장 (날짜 잘림 방지)
   const trimmed = JSON.parse(JSON.stringify(state));
@@ -607,7 +609,8 @@ function downloadReport(){
   setSyncUI('ok', '📊 CSV 4개 다운로드 완료!');
 }
 
-function scheduleSave(){if(saveTimer)clearTimeout(saveTimer);setSyncUI('saving','변경됨…');saveTimer=setTimeout(saveData,1000);}
+function scheduleSave(){
+  if(!GH_TOKEN) return;if(saveTimer)clearTimeout(saveTimer);setSyncUI('saving','변경됨…');saveTimer=setTimeout(saveData,1000);}
 
 // ─── 계산 ───
 function getAvailSite(dk,st){return Object.values(state[dk][st].workers).reduce((a,b)=>a+b,0);}
@@ -664,6 +667,7 @@ function changeQty(d){
 }
 function addEntry(){
   if(!selMachine) return;
+  if(!GH_TOKEN) return;
   const dk = getDkeys()[curIdx];
   const site = curSite==='전체' ? '본소' : curSite;
   const base = MMAP[selMachine] || 0;
