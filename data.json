@@ -2003,6 +2003,12 @@
           "half": false,
           "qty": 2,
           "mins": 240
+        },
+        {
+          "name": "육묘적재이송기",
+          "half": false,
+          "qty": 2,
+          "mins": 80
         }
       ]
     },
