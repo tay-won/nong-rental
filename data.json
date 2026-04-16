@@ -797,6 +797,12 @@
           "mins": 240
         },
         {
+          "name": "굴착기(1T/2T)",
+          "half": false,
+          "qty": 1,
+          "mins": 80
+        },
+        {
           "name": "못자리성형기 1750",
           "half": false,
           "qty": 1,
@@ -807,12 +813,6 @@
           "half": false,
           "qty": 1,
           "mins": 90
-        },
-        {
-          "name": "굴착기(1T/2T)",
-          "half": false,
-          "qty": 1,
-          "mins": 80
         },
         {
           "name": "논두렁조성기(大/中/小)",
