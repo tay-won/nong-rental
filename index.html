@@ -163,7 +163,7 @@ select:focus{border-color:var(--accent)}
 .btn-reset-all:hover{border-color:var(--red);color:var(--red)}
 
 /* 로딩 */
-.loading-overlay{position:fixed;inset:0;background:rgba(15,17,23,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;gap:14px}
+.loading-overlay{position:fixed;inset:0;background:rgba(15,17,23,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:500;gap:14px}
 .loading-overlay.hidden{display:none}
 .spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -171,7 +171,7 @@ select:focus{border-color:var(--accent)}
 @media(max-width:600px){.worker-grid{grid-template-columns:1fr 1fr}.stats-row{grid-template-columns:repeat(3,1fr)}.input-controls{gap:6px}}
 
 /* ── 토큰 설정 모달 ── */
-.token-modal{position:fixed;inset:0;background:rgba(15,17,23,.95);display:flex;align-items:center;justify-content:center;z-index:999;padding:20px}
+.token-modal{position:fixed;inset:0;background:rgba(15,17,23,.95);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
 .token-modal.hidden{display:none}
 .token-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 24px;width:100%;max-width:420px}
 .token-box h2{font-size:16px;font-weight:900;color:#fff;margin-bottom:6px}
@@ -794,6 +794,7 @@ const t=today();
 const _urlP = new URLSearchParams(window.location.search);
 if(_urlP.get('reset')==='1'){
   localStorage.removeItem('gh_auth');
+  document.getElementById('loadingOverlay').classList.add('hidden');
   window.history.replaceState({}, document.title, window.location.pathname);
 }
 
@@ -803,6 +804,8 @@ if(localStorage.getItem('gh_auth') === 'ok') {
   document.getElementById('tokenModal').classList.add('hidden');
   loadData();
 } else {
+  // 로그아웃 상태 - 로딩 오버레이 완전히 숨기고 비밀번호창 표시
+  document.getElementById('loadingOverlay').classList.add('hidden');
   document.getElementById('tokenModal').classList.remove('hidden');
   initState();
   renderAll();
