@@ -145,6 +145,12 @@
           "mins": 50
         },
         {
+          "name": "로타베이터(1550-1950)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
           "name": "원판쟁기(4련/6련)",
           "half": false,
           "qty": 1,
@@ -221,12 +227,6 @@
           "half": false,
           "qty": 2,
           "mins": 240
-        },
-        {
-          "name": "로타베이터(1550-1950)",
-          "half": false,
-          "qty": 1,
-          "mins": 90
         }
       ]
     }
