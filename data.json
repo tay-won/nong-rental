@@ -187,6 +187,12 @@
           "mins": 45
         },
         {
+          "name": "잔가지파쇄기(궤도형)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
           "name": "비료살포기",
           "half": true,
           "qty": 1,
@@ -194,12 +200,6 @@
         },
         {
           "name": "굴착기(1T/2T)",
-          "half": true,
-          "qty": 1,
-          "mins": 40
-        },
-        {
-          "name": "잔가지파쇄기(궤도형)",
           "half": true,
           "qty": 1,
           "mins": 40
