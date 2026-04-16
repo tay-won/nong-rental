@@ -863,12 +863,6 @@
       },
       "entries": [
         {
-          "name": "육묘적재이송기",
-          "half": false,
-          "qty": 1,
-          "mins": 80
-        },
-        {
           "name": "돌수집기 1400",
           "half": false,
           "qty": 1,
