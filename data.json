@@ -2183,7 +2183,14 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": []
+      "entries": [
+        {
+          "name": "돌수집기 1400",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        }
+      ]
     },
     "북부": {
       "workers": {
