@@ -761,6 +761,12 @@
           "mins": 30
         },
         {
+          "name": "육묘적재이송기",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
           "name": "피복기-인력 8자(240cm)",
           "half": true,
           "qty": 1,
@@ -771,12 +777,6 @@
           "half": true,
           "qty": 3,
           "mins": 25
-        },
-        {
-          "name": "육묘적재이송기",
-          "half": true,
-          "qty": 1,
-          "mins": 40
         },
         {
           "name": "원판쟁기(8련/10련)",
