@@ -1939,6 +1939,12 @@
           "mins": 120
         },
         {
+          "name": "양용쟁(3련/4련)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
           "name": "굴착기(1T/2T)",
           "half": true,
           "qty": 1,
@@ -1973,12 +1979,6 @@
           "half": true,
           "qty": 1,
           "mins": 30
-        },
-        {
-          "name": "양용쟁(3련/4련)",
-          "half": true,
-          "qty": 1,
-          "mins": 40
         }
       ]
     }
