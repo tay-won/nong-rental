@@ -197,12 +197,6 @@
           "half": true,
           "qty": 1,
           "mins": 45
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 2,
-          "mins": 240
         }
       ]
     }
