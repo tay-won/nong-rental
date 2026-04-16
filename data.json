@@ -1951,12 +1951,6 @@
           "mins": 40
         },
         {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 1,
-          "mins": 240
-        },
-        {
           "name": "원판쟁기(4련/6련)",
           "half": false,
           "qty": 1,
