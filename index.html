@@ -301,7 +301,14 @@ select:focus{border-color:var(--accent)}
         </div>
 
         <!-- ④ 선택 기종 목록 -->
-        <div class="card-title" style="margin-top:4px">선택 기종 요약</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px;margin-bottom:11px">
+          <div class="card-title" style="margin-bottom:0">선택 기종 요약</div>
+          <div style="display:flex;gap:5px">
+            <button onclick="sortEntries('name')" id="sortNameBtn" style="padding:3px 8px;background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--muted);font-size:10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .2s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">가나다순</button>
+            <button onclick="sortEntries('mins')" id="sortMinsBtn" style="padding:3px 8px;background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--muted);font-size:10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .2s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">시간순</button>
+            <button onclick="sortEntries('site')" id="sortSiteBtn" style="padding:3px 8px;background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--muted);font-size:10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .2s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">사업소순</button>
+          </div>
+        </div>
         <div class="sel-list" id="selList"><div class="empty-msg">기종을 선택 후 입력하세요</div></div>
         <button class="btn-reset-all" onclick="resetDay()">↺ 이 날짜 초기화</button>
       </div>
@@ -607,6 +614,57 @@ function downloadReport(){
   });
 
   setSyncUI('ok', '📊 CSV 4개 다운로드 완료!');
+}
+
+
+// ═══ 정렬 기능 ═══
+let sortMode = null;
+
+function sortEntries(mode) {
+  const dk = getDkeys()[curIdx];
+  const showSites = curSite==='전체' ? SITES : [curSite];
+
+  // 정렬 버튼 활성화 표시
+  ['name','mins','site'].forEach(m => {
+    const btn = document.getElementById('sort'+m.charAt(0).toUpperCase()+m.slice(1)+'Btn');
+    if(btn) {
+      if(m === mode && sortMode !== mode) {
+        btn.style.background = 'rgba(99,102,241,.2)';
+        btn.style.borderColor = 'var(--accent)';
+        btn.style.color = 'var(--accent)';
+      } else {
+        btn.style.background = 'transparent';
+        btn.style.borderColor = 'var(--border)';
+        btn.style.color = 'var(--muted)';
+      }
+    }
+  });
+
+  // 토글: 같은 버튼 다시 누르면 원래 순서로
+  if(sortMode === mode) {
+    sortMode = null;
+    renderSelList();
+    return;
+  }
+  sortMode = mode;
+
+  showSites.forEach(st => {
+    const entries = state[dk][st].entries;
+    if(mode === 'name') {
+      entries.sort((a,b) => a.name.localeCompare(b.name, 'ko'));
+    } else if(mode === 'mins') {
+      entries.sort((a,b) => (b.mins*b.qty) - (a.mins*a.qty));
+    } else if(mode === 'site') {
+      // 사업소순은 전체뷰에서만 의미있음 - 전타임/반타임 그룹
+      entries.sort((a,b) => {
+        if(a.half !== b.half) return a.half ? 1 : -1; // 전타임 먼저
+        return a.name.localeCompare(b.name, 'ko');
+      });
+    }
+  });
+
+  scheduleSave();
+  renderSelList();
 }
 
 function scheduleSave(){
