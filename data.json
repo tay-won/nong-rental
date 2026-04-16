@@ -1427,6 +1427,12 @@
           "half": true,
           "qty": 1,
           "mins": 45
+        },
+        {
+          "name": "원판쟁기(4련/6련)",
+          "half": true,
+          "qty": 1,
+          "mins": 30
         }
       ]
     },
