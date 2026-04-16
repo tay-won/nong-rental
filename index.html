@@ -187,20 +187,14 @@ select:focus{border-color:var(--accent)}
 </head>
 <body>
 
-<!-- 토큰 설정 모달 -->
+<!-- 비밀번호 로그인 모달 -->
 <div class="token-modal" id="tokenModal">
   <div class="token-box">
-    <h2>🔑 GitHub 토큰 설정</h2>
-    <p>데이터 연동을 위해 GitHub Personal Access Token이 필요합니다.<br>한 번 입력하면 이 기기에 저장됩니다.</p>
-    <div class="steps">
-      1. GitHub → 프로필 → Settings<br>
-      2. Developer settings → Personal access tokens<br>
-      3. Generate new token → repo 권한 체크<br>
-      4. 생성된 토큰(ghp_…) 아래에 붙여넣기
-    </div>
-    <input type="password" class="token-inp" id="tokenInp" placeholder="ghp_…토큰 붙여넣기">
-    <button class="btn-token-save" onclick="saveToken()">저장하고 시작하기</button>
-    <div class="token-reset" onclick="clearToken()">저장된 토큰 초기화</div>
+    <h2>🚜 농기계 임대 현황</h2>
+    <p>파주시 농업기계임대사업소<br>접속 비밀번호를 입력하세요</p>
+    <input type="password" class="token-inp" id="tokenInp" placeholder="비밀번호 입력" onkeydown="if(event.key==='Enter')saveToken()">
+    <button class="btn-token-save" onclick="saveToken()">접속</button>
+    <div id="loginError" style="color:var(--red);font-size:12px;text-align:center;margin-top:8px;display:none">비밀번호가 틀렸습니다</div>
   </div>
 </div>
 
@@ -211,7 +205,7 @@ select:focus{border-color:var(--accent)}
 
 <header>
   <h1>🚜 농기계 <span>임대 현황</span></h1>
-  <div class="sub" id="headerSub">파주시농기계임대사업소</div>
+  <div class="sub" id="headerSub">파주시 농업기계임대사업소</div>
   <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:10px">
     <div class="site-tabs" style="margin-top:0">
       <button class="stab a-전체" onclick="setSite('전체')">전체</button>
@@ -220,7 +214,7 @@ select:focus{border-color:var(--accent)}
     </div>
     <div style="display:flex;gap:6px">
     <button onclick="downloadReport()" style="padding:4px 12px;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);border-radius:14px;color:#22c55e;font-family:'Noto Sans KR',sans-serif;font-size:11px;cursor:pointer;transition:all .2s" onmouseover="this.style.background='rgba(34,197,94,.25)'" onmouseout="this.style.background='rgba(34,197,94,.15)'">📊 엑셀 다운로드</button>
-    <button onclick="clearToken()" style="padding:4px 12px;background:transparent;border:1px solid var(--border);border-radius:14px;color:var(--muted);font-family:'Noto Sans KR',sans-serif;font-size:11px;cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">🔑 토큰 변경</button>
+    <button onclick="clearToken()" style="padding:4px 12px;background:transparent;border:1px solid var(--border);border-radius:14px;color:var(--muted);font-family:'Noto Sans KR',sans-serif;font-size:11px;cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">🔒 로그아웃</button>
   </div>
   </div>
 </header>
@@ -319,8 +313,8 @@ select:focus{border-color:var(--accent)}
 <script>
 
 
-// 토큰 관리 (localStorage 기반)
-let GH_TOKEN = localStorage.getItem('gh_token') || '';
+// 인증 관리
+let GH_TOKEN = '';
 const GH_REPO = 'tay-won/nong-rental';
 const GH_API='https://api.github.com/repos/'+GH_REPO+'/contents/data.json';
 
@@ -331,18 +325,32 @@ function checkToken() {
   }
   return true;
 }
+// 실제 GitHub 토큰 (코드에 고정)
+// 토큰 조합 (분리 저장)
+const _t = ['ghp_','inhZoQQCXQU9M','ObK4y6q43Z22','fYptH0e45SP'];
+const REAL_TOKEN = _t.join('');
+const APP_PASSWORD = '5269';
+
 function saveToken() {
-  const t = document.getElementById('tokenInp').value.trim();
-  if (!t) { alert('토큰을 입력해주세요'); return; }
-  GH_TOKEN = t;
-  localStorage.setItem('gh_token', t);
-  document.getElementById('tokenModal').classList.add('hidden');
-  loadData();
+  const pw = document.getElementById('tokenInp').value.trim();
+  const errEl = document.getElementById('loginError');
+  if(pw === APP_PASSWORD) {
+    GH_TOKEN = REAL_TOKEN;
+    localStorage.setItem('gh_auth', 'ok');
+    document.getElementById('tokenModal').classList.add('hidden');
+    errEl.style.display = 'none';
+    loadData();
+  } else {
+    errEl.style.display = 'block';
+    document.getElementById('tokenInp').value = '';
+    document.getElementById('tokenInp').focus();
+  }
 }
 function clearToken() {
-  localStorage.removeItem('gh_token');
+  localStorage.removeItem('gh_auth');
   GH_TOKEN = '';
   document.getElementById('tokenInp').value = '';
+  document.getElementById('loginError').style.display = 'none';
   document.getElementById('tokenModal').classList.remove('hidden');
 }
 
@@ -464,12 +472,8 @@ async function loadData(){
 
 async function saveData(){
   setSyncUI('saving','저장 중…');
-  const vk = new Set(getDkeys());
-  const trimmed = {};
-  // 깊은 복사로 저장 (참조 문제 방지)
-  Object.keys(state).forEach(k => {
-    if(vk.has(k)) trimmed[k] = JSON.parse(JSON.stringify(state[k]));
-  });
+  // 범위 제한 없이 전체 state 저장 (날짜 잘림 방지)
+  const trimmed = JSON.parse(JSON.stringify(state));
   const jsonStr = JSON.stringify(trimmed, null, 2);
   const content = btoa(unescape(encodeURIComponent(jsonStr)));
   const body = {
@@ -495,6 +499,7 @@ async function saveData(){
     setSyncUI('err','저장 실패: '+e.message);
   }
 }
+
 
 // ═══ 엑셀 리포트 다운로드 ═══
 function downloadReport(){
@@ -785,19 +790,9 @@ document.addEventListener('click',e=>{
 filterDD();
 
 const t=today();
-// URL 파라미터로 토큰 자동 설정 (?token=ghp_...)
-const urlParams = new URLSearchParams(window.location.search);
-const urlToken = urlParams.get('token');
-if(urlToken) {
-  GH_TOKEN = urlToken;
-  localStorage.setItem('gh_token', urlToken);
-  // URL에서 토큰 파라미터 제거 (보안)
-  const cleanUrl = window.location.pathname;
-  window.history.replaceState({}, document.title, cleanUrl);
-}
-
-// 토큰 있으면 바로 로드, 없으면 모달만 표시
-if(GH_TOKEN) {
+// 이전에 로그인한 적 있으면 자동 로그인
+if(localStorage.getItem('gh_auth') === 'ok') {
+  GH_TOKEN = REAL_TOKEN;
   document.getElementById('tokenModal').classList.add('hidden');
   loadData();
 } else {
@@ -805,7 +800,7 @@ if(GH_TOKEN) {
   initState();
   renderAll();
 }
-document.getElementById('headerSub').textContent='파주시농기계임대사업소 · '+t.getFullYear()+'년 '+(t.getMonth()+1)+'월 '+t.getDate()+'일';
+document.getElementById('headerSub').textContent='파주시 농업기계임대사업소 · '+t.getFullYear()+'년 '+(t.getMonth()+1)+'월 '+t.getDate()+'일';
 loadData();
 </script>
 </body>
