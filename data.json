@@ -515,12 +515,6 @@
           "mins": 90
         },
         {
-          "name": "로타베이터(1550-1950)",
-          "half": false,
-          "qty": 1,
-          "mins": 90
-        },
-        {
           "name": "굴착기(1T/2T)",
           "half": false,
           "qty": 2,
