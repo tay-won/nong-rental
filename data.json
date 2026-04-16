@@ -199,12 +199,6 @@
           "mins": 45
         },
         {
-          "name": "비료살포기",
-          "half": true,
-          "qty": 1,
-          "mins": 30
-        },
-        {
           "name": "굴착기(1T/2T)",
           "half": true,
           "qty": 1,
