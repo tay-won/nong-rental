@@ -2790,7 +2790,14 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": []
+      "entries": [
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        }
+      ]
     },
     "북부": {
       "workers": {
