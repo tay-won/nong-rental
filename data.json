@@ -211,6 +211,12 @@
           "mins": 45
         },
         {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
           "name": "비료살포기",
           "half": false,
           "qty": 1,
@@ -257,12 +263,6 @@
           "half": false,
           "qty": 1,
           "mins": 40
-        },
-        {
-          "name": "원판쟁기(8련/10련)",
-          "half": true,
-          "qty": 1,
-          "mins": 45
         },
         {
           "name": "굴착기(1T/2T)",
