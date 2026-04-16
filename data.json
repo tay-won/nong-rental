@@ -9,12 +9,6 @@
       },
       "entries": [
         {
-          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
-          "half": false,
-          "qty": 7,
-          "mins": 50
-        },
-        {
           "name": "논두렁조성기(大/中/小)",
           "half": false,
           "qty": 1,
