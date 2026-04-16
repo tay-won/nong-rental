@@ -777,24 +777,6 @@
           "mins": 25
         },
         {
-          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
-          "half": true,
-          "qty": 1,
-          "mins": 45
-        },
-        {
-          "name": "원판쟁기(8련/10련)",
-          "half": true,
-          "qty": 1,
-          "mins": 45
-        },
-        {
-          "name": "퇴비살포기 900H",
-          "half": true,
-          "qty": 1,
-          "mins": 45
-        },
-        {
           "name": "육묘적재이송기",
           "half": true,
           "qty": 1,
