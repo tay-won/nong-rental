@@ -2213,6 +2213,12 @@
           "half": true,
           "qty": 1,
           "mins": 30
+        },
+        {
+          "name": "비료살포기",
+          "half": true,
+          "qty": 1,
+          "mins": 30
         }
       ]
     },
