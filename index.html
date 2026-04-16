@@ -143,7 +143,11 @@ select:focus{border-color:var(--accent)}
 /* ④ 선택 기종 목록 */
 .sel-list{display:flex;flex-direction:column;gap:5px;max-height:300px;overflow-y:auto;padding-right:2px}
 .sel-list::-webkit-scrollbar{width:3px}.sel-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-.sel-item{display:flex;align-items:center;gap:6px;padding:7px 10px;background:var(--surface);border-radius:8px}
+.sel-item{display:flex;align-items:center;gap:6px;padding:7px 10px;background:var(--surface);border-radius:8px;cursor:grab}
+.sel-item.dragging{opacity:.4;background:rgba(99,102,241,.15);cursor:grabbing}
+.sel-item.drag-over{border-top:2px solid var(--accent)}
+.move-btn{width:20px;height:20px;border-radius:4px;border:1px solid var(--border);background:var(--bg);color:var(--muted);font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0;line-height:1}
+.move-btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 .sel-item.full{border-left:3px solid var(--accent)}
 .sel-item.half{border-left:3px solid var(--yellow)}
 .sel-item-info{flex:1;min-width:0}
@@ -301,14 +305,7 @@ select:focus{border-color:var(--accent)}
         </div>
 
         <!-- ④ 선택 기종 목록 -->
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px;margin-bottom:11px">
-          <div class="card-title" style="margin-bottom:0">선택 기종 요약</div>
-          <div style="display:flex;gap:5px">
-            <button onclick="sortEntries('name')" id="sortNameBtn" style="padding:3px 8px;background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--muted);font-size:10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .2s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">가나다순</button>
-            <button onclick="sortEntries('mins')" id="sortMinsBtn" style="padding:3px 8px;background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--muted);font-size:10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .2s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">시간순</button>
-            <button onclick="sortEntries('site')" id="sortSiteBtn" style="padding:3px 8px;background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--muted);font-size:10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .2s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">사업소순</button>
-          </div>
-        </div>
+        <div class="card-title" style="margin-top:4px">선택 기종 요약</div>
         <div class="sel-list" id="selList"><div class="empty-msg">기종을 선택 후 입력하세요</div></div>
         <button class="btn-reset-all" onclick="resetDay()">↺ 이 날짜 초기화</button>
       </div>
@@ -617,56 +614,6 @@ function downloadReport(){
 }
 
 
-// ═══ 정렬 기능 ═══
-let sortMode = null;
-
-function sortEntries(mode) {
-  const dk = getDkeys()[curIdx];
-  const showSites = curSite==='전체' ? SITES : [curSite];
-
-  // 정렬 버튼 활성화 표시
-  ['name','mins','site'].forEach(m => {
-    const btn = document.getElementById('sort'+m.charAt(0).toUpperCase()+m.slice(1)+'Btn');
-    if(btn) {
-      if(m === mode && sortMode !== mode) {
-        btn.style.background = 'rgba(99,102,241,.2)';
-        btn.style.borderColor = 'var(--accent)';
-        btn.style.color = 'var(--accent)';
-      } else {
-        btn.style.background = 'transparent';
-        btn.style.borderColor = 'var(--border)';
-        btn.style.color = 'var(--muted)';
-      }
-    }
-  });
-
-  // 토글: 같은 버튼 다시 누르면 원래 순서로
-  if(sortMode === mode) {
-    sortMode = null;
-    renderSelList();
-    return;
-  }
-  sortMode = mode;
-
-  showSites.forEach(st => {
-    const entries = state[dk][st].entries;
-    if(mode === 'name') {
-      entries.sort((a,b) => a.name.localeCompare(b.name, 'ko'));
-    } else if(mode === 'mins') {
-      entries.sort((a,b) => (b.mins*b.qty) - (a.mins*a.qty));
-    } else if(mode === 'site') {
-      // 사업소순은 전체뷰에서만 의미있음 - 전타임/반타임 그룹
-      entries.sort((a,b) => {
-        if(a.half !== b.half) return a.half ? 1 : -1; // 전타임 먼저
-        return a.name.localeCompare(b.name, 'ko');
-      });
-    }
-  });
-
-  scheduleSave();
-  renderSelList();
-}
-
 function scheduleSave(){
   if(!GH_TOKEN) return;if(saveTimer)clearTimeout(saveTimer);setSyncUI('saving','변경됨…');saveTimer=setTimeout(saveData,1000);}
 
@@ -807,24 +754,84 @@ function renderSelList(){
   const dk=getDkeys()[curIdx];
   const showSites=curSite==='전체'?SITES:[curSite];
   const el=document.getElementById('selList');
-  let html='';
+  let h='';
   showSites.forEach(st=>{
-    state[dk][st].entries.forEach((e,i)=>{
+    const entries=state[dk][st].entries;
+    entries.forEach((e,i)=>{
       const totalMins=e.mins*e.qty;
-      html+='<div class="sel-item '+(e.half?'half':'full')+'">'
-        +'<div class="sel-item-info">'
-        +'<div class="sel-item-name">'+e.name+' × '+e.qty+'</div>'
-        +'<div class="sel-item-meta">'
-        +(e.half?'<span class="tag tag-half">반타임 '+e.mins+'분</span>':'<span class="tag tag-full">전타임 '+e.mins+'분</span>')
-        +(curSite==='전체'?'<span class="tag tag-site">'+st+'</span>':'')
-        +'</div></div>'
-        +'<span class="sel-mins">'+totalMins+'분</span>'
-        +'<button class="btn-del" onclick="delEntry(\''+st+'\','+i+')" title="삭제">✕</button>'
-        +'</div>';
+      const isFirst=i===0, isLast=i===entries.length-1;
+      h+=`<div class="sel-item ${e.half?'half':'full'}"
+        draggable="true" data-site="${st}" data-idx="${i}"
+        ondragstart="dragStart(event)" ondragover="dragOver(event)"
+        ondrop="dragDrop(event)" ondragend="dragEnd(event)">
+        <div style="display:flex;flex-direction:column;gap:2px;flex-shrink:0">
+          <button class="move-btn" onclick="moveEntry('${st}',${i},-1)"
+            ${isFirst?'disabled style="opacity:.25;pointer-events:none"':''}>&#9650;</button>
+          <button class="move-btn" onclick="moveEntry('${st}',${i},+1)"
+            ${isLast?'disabled style="opacity:.25;pointer-events:none"':''}>&#9660;</button>
+        </div>
+        <div class="sel-item-info">
+          <div class="sel-item-name">${e.name} &times; ${e.qty}</div>
+          <div class="sel-item-meta">
+            ${e.half?'<span class="tag tag-half">반타임 '+e.mins+'분</span>':'<span class="tag tag-full">전타임 '+e.mins+'분</span>'}
+            ${curSite==='전체'?'<span class="tag tag-site">'+st+'</span>':''}
+          </div>
+        </div>
+        <span class="sel-mins">${totalMins}분</span>
+        <button class="btn-del" onclick="delEntry('${st}',${i})" title="삭제">&#10005;</button>
+      </div>`;
     });
   });
-  el.innerHTML=html||'<div class="empty-msg">기종을 선택 후 입력하세요</div>';
+  el.innerHTML=h||'<div class="empty-msg">기종을 선택 후 입력하세요</div>';
 }
+
+// ── 상하 이동 ──
+function moveEntry(site,idx,dir){
+  const dk=getDkeys()[curIdx];
+  const entries=state[dk][site].entries;
+  const ni=idx+dir;
+  if(ni<0||ni>=entries.length) return;
+  [entries[idx],entries[ni]]=[entries[ni],entries[idx]];
+  if(saveTimer) clearTimeout(saveTimer);
+  saveData();
+  renderSelList();
+}
+
+// ── 드래그 앤 드롭 ──
+let _dSite=null,_dIdx=null;
+function dragStart(e){
+  _dSite=e.currentTarget.dataset.site;
+  _dIdx=parseInt(e.currentTarget.dataset.idx);
+  e.currentTarget.classList.add('dragging');
+  e.dataTransfer.effectAllowed='move';
+}
+function dragOver(e){
+  e.preventDefault();
+  e.dataTransfer.dropEffect='move';
+  document.querySelectorAll('.sel-item').forEach(el=>el.classList.remove('drag-over'));
+  e.currentTarget.classList.add('drag-over');
+}
+function dragDrop(e){
+  e.preventDefault();
+  const tSite=e.currentTarget.dataset.site;
+  const tIdx=parseInt(e.currentTarget.dataset.idx);
+  if(_dSite===null||_dIdx===tIdx) return;
+  const dk=getDkeys()[curIdx];
+  const entries=state[dk][_dSite].entries;
+  const moved=entries.splice(_dIdx,1)[0];
+  entries.splice(tIdx,0,moved);
+  if(saveTimer) clearTimeout(saveTimer);
+  saveData();
+  renderSelList();
+}
+function dragEnd(e){
+  document.querySelectorAll('.sel-item').forEach(el=>{
+    el.classList.remove('dragging');
+    el.classList.remove('drag-over');
+  });
+  _dSite=null; _dIdx=null;
+}
+
 
 function renderMiniTable(){
   const DATES=getDates(),DKEYS=getDkeys();
