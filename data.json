@@ -175,6 +175,12 @@
           "mins": 120
         },
         {
+          "name": "육묘적재이송기",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
           "name": "비료살포기",
           "half": true,
           "qty": 1,
@@ -182,12 +188,6 @@
         },
         {
           "name": "굴착기(1T/2T)",
-          "half": true,
-          "qty": 1,
-          "mins": 40
-        },
-        {
-          "name": "육묘적재이송기",
           "half": true,
           "qty": 1,
           "mins": 40
