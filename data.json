@@ -1047,6 +1047,12 @@
           "mins": 45
         },
         {
+          "name": "퇴비살포기 900H",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
           "name": "돌수집기 1400",
           "half": false,
           "qty": 1,
@@ -1117,12 +1123,6 @@
           "half": true,
           "qty": 1,
           "mins": 40
-        },
-        {
-          "name": "퇴비살포기 900H",
-          "half": true,
-          "qty": 1,
-          "mins": 45
         }
       ]
     }
