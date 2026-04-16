@@ -1955,6 +1955,12 @@
           "half": true,
           "qty": 1,
           "mins": 30
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 2,
+          "mins": 45
         }
       ]
     }
