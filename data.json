@@ -2848,6 +2848,12 @@
           "half": false,
           "qty": 1,
           "mins": 240
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
         }
       ]
     }
