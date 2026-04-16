@@ -915,6 +915,12 @@
           "half": false,
           "qty": 1,
           "mins": 90
+        },
+        {
+          "name": "로타베이터(1550-1950)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
         }
       ]
     },
