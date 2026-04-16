@@ -790,6 +790,13 @@ document.addEventListener('click',e=>{
 filterDD();
 
 const t=today();
+// ?reset=1 이면 로그인 초기화
+const _urlP = new URLSearchParams(window.location.search);
+if(_urlP.get('reset')==='1'){
+  localStorage.removeItem('gh_auth');
+  window.history.replaceState({}, document.title, window.location.pathname);
+}
+
 // 이전에 로그인한 적 있으면 자동 로그인
 if(localStorage.getItem('gh_auth') === 'ok') {
   GH_TOKEN = REAL_TOKEN;
