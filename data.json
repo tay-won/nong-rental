@@ -2072,4 +2072,2043 @@
       ]
     }
   }
+
+        }          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": false,
+          "qty": 1,
+          "mins": 80
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": false,
+          "qty": 2,
+          "mins": 90
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": false,
+          "qty": 1,
+          "mins": 80
+        },
+        {
+          "name": "잔가지파쇄기(궤도형)",
+          "half": false,
+          "qty": 1,
+          "mins": 80
+        },
+        {
+          "name": "원판쟁기(4련/6련)",
+          "half": false,
+          "qty": 1,
+          "mins": 60
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": false,
+          "qty": 2,
+          "mins": 90
+        },
+        {
+          "name": "동력운반차",
+          "half": false,
+          "qty": 1,
+          "mins": 80
+        }
+      ]
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 210,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": [
+        {
+          "name": "로타베이터(2150-2350)",
+          "half": true,
+          "qty": 1,
+          "mins": 60
+        },
+        {
+          "name": "퇴비살포기 900H",
+          "half": true,
+          "qty": 2,
+          "mins": 45
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 2,
+          "mins": 45
+        },
+        {
+          "name": "양용쟁(3련/4련)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "육묘적재이송기",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": false,
+          "qty": 2,
+          "mins": 90
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": false,
+          "qty": 1,
+          "mins": 50
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": false,
+          "qty": 2,
+          "mins": 50
+        },
+        {
+          "name": "원판쟁기(4련/6련)",
+          "half": false,
+          "qty": 1,
+          "mins": 60
+        },
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": true,
+          "qty": 2,
+          "mins": 120
+        },
+        {
+          "name": "비료살포기",
+          "half": true,
+          "qty": 1,
+          "mins": 30
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "육묘적재이송기",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "잔가지파쇄기(궤도형)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": true,
+          "qty": 1,
+          "mins": 25
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 2,
+          "mins": 240
+        }
+      ]
+    }
+  },
+  "2026-04-16": {
+    "본소": {
+      "workers": {
+        "bs1": 420,
+        "bs2": 210,
+        "bs3": 420,
+        "bs4": 420
+      },
+      "entries": [
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "원판쟁기(4련/6련)",
+          "half": false,
+          "qty": 1,
+          "mins": 60
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": false,
+          "qty": 1,
+          "mins": 80
+        },
+        {
+          "name": "잔가지파쇄기(궤도형)",
+          "half": false,
+          "qty": 1,
+          "mins": 80
+        },
+        {
+          "name": "원판쟁기(4련/6련)",
+          "half": false,
+          "qty": 1,
+          "mins": 60
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": false,
+          "qty": 2,
+          "mins": 90
+        },
+        {
+          "name": "비료살포기",
+          "half": false,
+          "qty": 1,
+          "mins": 60
+        },
+        {
+          "name": "못자리성형기 2150",
+          "half": false,
+          "qty": 1,
+          "mins": 110
+        },
+        {
+          "name": "로타베이터(2150-2350)",
+          "half": false,
+          "qty": 1,
+          "mins": 120
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": false,
+          "qty": 7,
+          "mins": 50
+        },
+        {
+          "name": "돌수집기 1400",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        }
+      ]
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 210,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": [
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 2,
+          "mins": 40
+        },
+        {
+          "name": "비료살포기",
+          "half": true,
+          "qty": 1,
+          "mins": 30
+        },
+        {
+          "name": "육묘적재이송기",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "잔가지파쇄기(궤도형)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": true,
+          "qty": 1,
+          "mins": 25
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "못자리성형기 2150",
+          "half": false,
+          "qty": 1,
+          "mins": 110
+        },
+        {
+          "name": "로타베이터(2150-2350)",
+          "half": false,
+          "qty": 1,
+          "mins": 120
+        },
+        {
+          "name": "고심경쟁기-5련",
+          "half": false,
+          "qty": 1,
+          "mins": 60
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "퇴비살포기 900H",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": false,
+          "qty": 2,
+          "mins": 50
+        },
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "중경제초기(1500/1800)",
+          "half": false,
+          "qty": 1,
+          "mins": 60
+        },
+        {
+          "name": "못자리성형기 1750",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "로타베이터(1550-1950)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": false,
+          "qty": 1,
+          "mins": 50
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": true,
+          "qty": 2,
+          "mins": 25
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "고심경쟁기-7련(유압식)",
+          "half": true,
+          "qty": 1,
+          "mins": 30
+        }
+      ]
+    }
+  },
+  "2026-04-17": {
+    "본소": {
+      "workers": {
+        "bs1": 420,
+        "bs2": 210,
+        "bs3": 420,
+        "bs4": 420
+      },
+      "entries": [
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": false,
+          "qty": 2,
+          "mins": 90
+        },
+        {
+          "name": "돌수집기 1400",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "로타베이터(1550-1950)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "배토기(175/195)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": false,
+          "qty": 2,
+          "mins": 80
+        },
+        {
+          "name": "원판쟁기(4련/6련)",
+          "half": false,
+          "qty": 1,
+          "mins": 60
+        },
+        {
+          "name": "육묘적재이송기",
+          "half": false,
+          "qty": 1,
+          "mins": 80
+        },
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": false,
+          "qty": 2,
+          "mins": 90
+        },
+        {
+          "name": "원판쟁기(4련/6련)",
+          "half": false,
+          "qty": 1,
+          "mins": 60
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": false,
+          "qty": 10,
+          "mins": 50
+        }
+      ]
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 210,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": [
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": true,
+          "qty": 2,
+          "mins": 25
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "고심경쟁기-7련(유압식)",
+          "half": true,
+          "qty": 1,
+          "mins": 30
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": false,
+          "qty": 4,
+          "mins": 50
+        },
+        {
+          "name": "피복기-인력 8자(240cm)",
+          "half": false,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "동력운반차",
+          "half": false,
+          "qty": 1,
+          "mins": 80
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
+        },
+        {
+          "name": "보통쟁기 3련",
+          "half": false,
+          "qty": 1,
+          "mins": 60
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "못자리성형기 1750",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "로타베이터(1550-1950)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "육묘적재이송기",
+          "half": false,
+          "qty": 1,
+          "mins": 80
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 2,
+          "mins": 40
+        },
+        {
+          "name": "돌수집기 1400",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "못자리성형기 2150",
+          "half": true,
+          "qty": 1,
+          "mins": 55
+        },
+        {
+          "name": "로타베이터(2150-2350)",
+          "half": true,
+          "qty": 1,
+          "mins": 60
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": true,
+          "qty": 1,
+          "mins": 25
+        },
+        {
+          "name": "육묘적재이송기",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "고심경쟁기-7련(유압식)",
+          "half": true,
+          "qty": 1,
+          "mins": 30
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": true,
+          "qty": 4,
+          "mins": 25
+        },
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": true,
+          "qty": 2,
+          "mins": 25
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "퇴비살포기 900H",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "육묘적재이송기",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        }
+      ]
+    }
+  },
+  "2026-04-18": {
+    "본소": {
+      "workers": {
+        "bs1": 420,
+        "bs2": 210,
+        "bs3": 420,
+        "bs4": 420
+      },
+      "entries": []
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 210,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": []
+    }
+  },
+  "2026-04-19": {
+    "본소": {
+      "workers": {
+        "bs1": 420,
+        "bs2": 210,
+        "bs3": 420,
+        "bs4": 420
+      },
+      "entries": [
+        {
+          "name": "육묘적재이송기",
+          "half": false,
+          "qty": 1,
+          "mins": 80
+        },
+        {
+          "name": "돌수집기 1400",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 2,
+          "mins": 240
+        }
+      ]
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 210,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": [
+        {
+          "name": "고심경쟁기-7련(유압식)",
+          "half": true,
+          "qty": 1,
+          "mins": 30
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "퇴비살포기 500H",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "돌수집기 1400",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
+        },
+        {
+          "name": "육묘적재이송기",
+          "half": false,
+          "qty": 1,
+          "mins": 80
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
+        },
+        {
+          "name": "피복기-인력 8자(240cm)",
+          "half": false,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "원판쟁기(4련/6련)",
+          "half": false,
+          "qty": 1,
+          "mins": 60
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": false,
+          "qty": 4,
+          "mins": 50
+        },
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        }
+      ]
+    }
+  },
+  "2026-04-20": {
+    "본소": {
+      "workers": {
+        "bs1": 420,
+        "bs2": 210,
+        "bs3": 420,
+        "bs4": 420
+      },
+      "entries": []
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 210,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": [
+        {
+          "name": "육묘적재이송기",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": false,
+          "qty": 2,
+          "mins": 50
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": false,
+          "qty": 1,
+          "mins": 80
+        },
+        {
+          "name": "로타베이터(1550-1950)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "못자리성형기 1750",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "퇴비살포기 900H",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": false,
+          "qty": 3,
+          "mins": 50
+        },
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "퇴비살포기 900H",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "양용쟁(3련/4련)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        }
+      ]
+    }
+  },
+  "2026-04-21": {
+    "본소": {
+      "workers": {
+        "bs1": 420,
+        "bs2": 210,
+        "bs3": 420,
+        "bs4": 420
+      },
+      "entries": []
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 210,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": [
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": true,
+          "qty": 2,
+          "mins": 45
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "퇴비살포기 900H",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": false,
+          "qty": 2,
+          "mins": 50
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "원판쟁기(4련/6련)",
+          "half": false,
+          "qty": 1,
+          "mins": 60
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": false,
+          "qty": 1,
+          "mins": 80
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
+        },
+        {
+          "name": "육묘적재이송기",
+          "half": false,
+          "qty": 1,
+          "mins": 80
+        },
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": false,
+          "qty": 1,
+          "mins": 50
+        },
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": true,
+          "qty": 2,
+          "mins": 45
+        },
+        {
+          "name": "고심경쟁기-7련(유압식)",
+          "half": true,
+          "qty": 1,
+          "mins": 30
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "배토기(175/195)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "로타베이터(1550-1950)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": false,
+          "qty": 1,
+          "mins": 50
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        }
+      ]
+    }
+  },
+  "2026-04-22": {
+    "본소": {
+      "workers": {
+        "bs1": 420,
+        "bs2": 210,
+        "bs3": 420,
+        "bs4": 420
+      },
+      "entries": []
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 210,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": [
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "양용쟁(3련/4련)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
+        },
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "돌수집기 1400",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": false,
+          "qty": 1,
+          "mins": 80
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": false,
+          "qty": 1,
+          "mins": 50
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "고속쟁기(평탄쟁기)",
+          "half": true,
+          "qty": 1,
+          "mins": 30
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "로타베이터(2150-2350)",
+          "half": true,
+          "qty": 1,
+          "mins": 60
+        }
+      ]
+    }
+  },
+  "2026-04-23": {
+    "본소": {
+      "workers": {
+        "bs1": 420,
+        "bs2": 210,
+        "bs3": 420,
+        "bs4": 420
+      },
+      "entries": []
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 210,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": [
+        {
+          "name": "고심경쟁기-7련(유압식)",
+          "half": true,
+          "qty": 1,
+          "mins": 30
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 2,
+          "mins": 45
+        },
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "배토기(175/195)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "로타베이터(1550-1950)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "보통쟁기 3련",
+          "half": true,
+          "qty": 1,
+          "mins": 30
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "고심경쟁기-7련(유압식)",
+          "half": false,
+          "qty": 1,
+          "mins": 60
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": false,
+          "qty": 2,
+          "mins": 50
+        },
+        {
+          "name": "로타베이터(2150-2350)",
+          "half": false,
+          "qty": 1,
+          "mins": 120
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 2,
+          "mins": 45
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
+        },
+        {
+          "name": "원판쟁기(4련/6련)",
+          "half": false,
+          "qty": 1,
+          "mins": 60
+        },
+        {
+          "name": "고심경쟁기-7련(유압식)",
+          "half": true,
+          "qty": 1,
+          "mins": 30
+        }
+      ]
+    }
+  },
+  "2026-04-24": {
+    "본소": {
+      "workers": {
+        "bs1": 420,
+        "bs2": 210,
+        "bs3": 420,
+        "bs4": 420
+      },
+      "entries": []
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 210,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": [
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "로타베이터(2150-2350)",
+          "half": true,
+          "qty": 1,
+          "mins": 60
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "양용쟁(3련/4련)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 2,
+          "mins": 40
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": false,
+          "qty": 4,
+          "mins": 50
+        },
+        {
+          "name": "육묘적재이송기",
+          "half": false,
+          "qty": 1,
+          "mins": 80
+        },
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "돌수집기 1400",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "로타베이터(1550-1950)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": true,
+          "qty": 2,
+          "mins": 25
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": false,
+          "qty": 3,
+          "mins": 50
+        }
+      ]
+    }
+  },
+  "2026-04-25": {
+    "본소": {
+      "workers": {
+        "bs1": 420,
+        "bs2": 210,
+        "bs3": 420,
+        "bs4": 420
+      },
+      "entries": []
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 210,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": []
+    }
+  },
+  "2026-04-26": {
+    "본소": {
+      "workers": {
+        "bs1": 420,
+        "bs2": 210,
+        "bs3": 420,
+        "bs4": 420
+      },
+      "entries": []
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 210,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": [
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": false,
+          "qty": 1,
+          "mins": 80
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "돌수집기 1400",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        }
+      ]
+    }
+  },
+  "2026-04-27": {
+    "본소": {
+      "workers": {
+        "bs1": 420,
+        "bs2": 210,
+        "bs3": 420,
+        "bs4": 420
+      },
+      "entries": []
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 210,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": [
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 2,
+          "mins": 45
+        },
+        {
+          "name": "원판쟁기(4련/6련)",
+          "half": false,
+          "qty": 1,
+          "mins": 60
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "잔가지파쇄기(궤도형)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "원판쟁기(4련/6련)",
+          "half": true,
+          "qty": 1,
+          "mins": 30
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 2,
+          "mins": 45
+        },
+        {
+          "name": "양용쟁(3련/4련)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": false,
+          "qty": 1,
+          "mins": 50
+        }
+      ]
+    }
+  },
+  "2026-04-28": {
+    "본소": {
+      "workers": {
+        "bs1": 420,
+        "bs2": 210,
+        "bs3": 420,
+        "bs4": 420
+      },
+      "entries": []
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 210,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": [
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "잔가지파쇄기(궤도형)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": false,
+          "qty": 1,
+          "mins": 50
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": false,
+          "qty": 2,
+          "mins": 90
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": false,
+          "qty": 1,
+          "mins": 80
+        },
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "돌수집기 1400",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "원판쟁기(4련/6련)",
+          "half": false,
+          "qty": 1,
+          "mins": 60
+        }
+      ]
+    }
+  },
+  "2026-04-29": {
+    "본소": {
+      "workers": {
+        "bs1": 420,
+        "bs2": 210,
+        "bs3": 420,
+        "bs4": 420
+      },
+      "entries": []
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 210,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": [
+        {
+          "name": "원판쟁기(8련/10련)",
+          "half": true,
+          "qty": 3,
+          "mins": 45
+        },
+        {
+          "name": "돌수집기 1400",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": false,
+          "qty": 1,
+          "mins": 90
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": false,
+          "qty": 1,
+          "mins": 80
+        },
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        }
+      ]
+    }
+  },
+  "2026-04-30": {
+    "본소": {
+      "workers": {
+        "bs1": 420,
+        "bs2": 210,
+        "bs3": 420,
+        "bs4": 420
+      },
+      "entries": []
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 420,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": [
+        {
+          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
+          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
+          "half": false,
+          "qty": 1,
+          "mins": 50
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        }
+      ]
+    }
+  },
+  "2026-05-01": {
+    "본소": {
+      "workers": {
+        "bs1": 420,
+        "bs2": 210,
+        "bs3": 420,
+        "bs4": 420
+      },
+      "entries": []
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 420,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": [
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 1,
+          "mins": 240
+        },
+        {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        }
+      ]
+    }
+  },
+  "2026-05-02": {
+    "본소": {
+      "workers": {
+        "bs1": 420,
+        "bs2": 210,
+        "bs3": 420,
+        "bs4": 420
+      },
+      "entries": []
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 420,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": []
+    }
+  },
+  "2026-05-03": {
+    "본소": {
+      "workers": {
+        "bs1": 420,
+        "bs2": 210,
+        "bs3": 420,
+        "bs4": 420
+      },
+      "entries": []
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 420,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": [
+        {
+          "name": "배송(입출고 1회)",
+          "half": true,
+          "qty": 2,
+          "mins": 120
+        }
+      ]
+    }
+  },
+  "2026-05-04": {
+    "본소": {
+      "workers": {
+        "bs1": 420,
+        "bs2": 210,
+        "bs3": 420,
+        "bs4": 420
+      },
+      "entries": []
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 420,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": []
+    }
+  },
+  "2026-05-05": {
+    "본소": {
+      "workers": {
+        "bs1": 420,
+        "bs2": 420,
+        "bs3": 420,
+        "bs4": 420
+      },
+      "entries": []
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 420,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": [
+        {
+          "name": "배송(입출고 1회)",
+          "half": true,
+          "qty": 2,
+          "mins": 120
+        }
+      ]
+    }
+  }
 }
