@@ -1569,6 +1569,12 @@
           "half": false,
           "qty": 1,
           "mins": 90
+        },
+        {
+          "name": "중경제초기(1500/1800)",
+          "half": false,
+          "qty": 1,
+          "mins": 60
         }
       ]
     }
