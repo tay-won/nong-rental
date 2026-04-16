@@ -1355,7 +1355,14 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": []
+      "entries": [
+        {
+          "name": "원판쟁기(4련/6련)",
+          "half": true,
+          "qty": 2,
+          "mins": 30
+        }
+      ]
     },
     "북부": {
       "workers": {
