@@ -743,12 +743,6 @@
           "mins": 45
         },
         {
-          "name": "고심경쟁기-5련",
-          "half": true,
-          "qty": 1,
-          "mins": 30
-        },
-        {
           "name": "배토기(175/195)",
           "half": true,
           "qty": 1,
@@ -759,6 +753,12 @@
           "half": true,
           "qty": 2,
           "mins": 45
+        },
+        {
+          "name": "고심경쟁기-5련",
+          "half": true,
+          "qty": 1,
+          "mins": 30
         },
         {
           "name": "피복기-인력 8자(240cm)",
