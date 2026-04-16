@@ -461,16 +461,16 @@
           "mins": 50
         },
         {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 2,
-          "mins": 240
-        },
-        {
           "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
           "half": false,
           "qty": 1,
           "mins": 90
+        },
+        {
+          "name": "배송(입출고 1회)",
+          "half": false,
+          "qty": 2,
+          "mins": 240
         },
         {
           "name": "굴착기(1T/2T)",
