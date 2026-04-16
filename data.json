@@ -863,16 +863,10 @@
       },
       "entries": [
         {
-          "name": "돌수집기 1400",
-          "half": false,
+          "name": "육묘적재이송기",
+          "half": true,
           "qty": 1,
-          "mins": 90
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": false,
-          "qty": 2,
-          "mins": 240
+          "mins": 40
         }
       ]
     },
