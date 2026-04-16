@@ -717,6 +717,12 @@
           "mins": 40
         },
         {
+          "name": "돌수집기 1400",
+          "half": true,
+          "qty": 1,
+          "mins": 45
+        },
+        {
           "name": "육묘적재이송기",
           "half": true,
           "qty": 1,
@@ -724,12 +730,6 @@
         },
         {
           "name": "원판쟁기(8련/10련)",
-          "half": true,
-          "qty": 1,
-          "mins": 45
-        },
-        {
-          "name": "돌수집기 1400",
           "half": true,
           "qty": 1,
           "mins": 45
