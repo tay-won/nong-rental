@@ -909,6 +909,12 @@
           "half": false,
           "qty": 2,
           "mins": 240
+        },
+        {
+          "name": "못자리성형기 1750",
+          "half": false,
+          "qty": 1,
+          "mins": 90
         }
       ]
     },
