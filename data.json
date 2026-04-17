@@ -2308,6 +2308,12 @@
           "mins": 40
         },
         {
+          "name": "잔가지파쇄기(궤도형)",
+          "half": false,
+          "qty": 1,
+          "mins": 80
+        },
+        {
           "name": "배송(입출고 1회)",
           "half": false,
           "qty": 1,
@@ -2360,12 +2366,6 @@
           "half": false,
           "qty": 1,
           "mins": 60
-        },
-        {
-          "name": "잔가지파쇄기(궤도형)",
-          "half": false,
-          "qty": 1,
-          "mins": 80
         }
       ]
     }
