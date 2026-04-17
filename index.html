@@ -195,7 +195,7 @@ select:focus{border-color:var(--accent)}
 <div class="token-modal" id="tokenModal">
   <div class="token-box">
     <h2>🚜 농기계 임대 현황</h2>
-    <p>파주시 농업기계임대사업소<br>접속 비밀번호를 입력하세요</p>
+    <p>파주시농기계임대사업소<br>접속 비밀번호를 입력하세요</p>
     <input type="password" class="token-inp" id="tokenInp" placeholder="비밀번호 입력" onkeydown="if(event.key==='Enter')saveToken()">
     <button class="btn-token-save" onclick="saveToken()">접속</button>
     <div id="loginError" style="color:var(--red);font-size:12px;text-align:center;margin-top:8px;display:none">비밀번호가 틀렸습니다</div>
@@ -209,7 +209,7 @@ select:focus{border-color:var(--accent)}
 
 <header>
   <h1>🚜 농기계 <span>임대 현황</span></h1>
-  <div class="sub" id="headerSub">파주시 농업기계임대사업소</div>
+  <div class="sub" id="headerSub">파주시농기계임대사업소</div>
   <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:10px">
     <div class="site-tabs" style="margin-top:0">
       <button class="stab a-전체" onclick="setSite('전체')">전체</button>
@@ -900,7 +900,7 @@ if(localStorage.getItem('gh_auth') === 'ok') {
   initState();
   renderAll();
 }
-document.getElementById('headerSub').textContent='파주시 농업기계임대사업소 · '+t.getFullYear()+'년 '+(t.getMonth()+1)+'월 '+t.getDate()+'일';
+document.getElementById('headerSub').textContent='파주시농기계임대사업소 · '+t.getFullYear()+'년 '+(t.getMonth()+1)+'월 '+t.getDate()+'일';
 loadData();
 </script>
 </body>
