@@ -2613,6 +2613,12 @@
       },
       "entries": [
         {
+          "name": "로타베이터(2150-2350)",
+          "half": true,
+          "qty": 1,
+          "mins": 60
+        },
+        {
           "name": "굴착기(1T/2T)",
           "half": true,
           "qty": 1,
@@ -2653,12 +2659,6 @@
           "half": true,
           "qty": 1,
           "mins": 25
-        },
-        {
-          "name": "로타베이터(2150-2350)",
-          "half": true,
-          "qty": 1,
-          "mins": 60
         }
       ]
     }
