@@ -2715,6 +2715,12 @@
       },
       "entries": [
         {
+          "name": "굴착기(1T/2T)",
+          "half": true,
+          "qty": 1,
+          "mins": 40
+        },
+        {
           "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
           "half": true,
           "qty": 1,
@@ -2731,12 +2737,6 @@
           "half": true,
           "qty": 1,
           "mins": 120
-        },
-        {
-          "name": "굴착기(1T/2T)",
-          "half": true,
-          "qty": 1,
-          "mins": 40
         }
       ]
     }
