@@ -2064,12 +2064,6 @@
           "half": true,
           "qty": 1,
           "mins": 45
-        },
-        {
-          "name": "굴착기(1T/2T)",
-          "half": false,
-          "qty": 1,
-          "mins": 80
         }
       ]
     }
