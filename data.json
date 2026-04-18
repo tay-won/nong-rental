@@ -2564,14 +2564,7 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": [
-        {
-          "name": "잔가지파쇄기(궤도형)",
-          "half": false,
-          "qty": 1,
-          "mins": 80
-        }
-      ]
+      "entries": []
     },
     "북부": {
       "workers": {
