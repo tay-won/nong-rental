@@ -587,74 +587,7 @@
         "bs3": 210,
         "bs4": 420
       },
-      "entries": [
-        {
-          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
-          "half": true,
-          "qty": 1,
-          "mins": 45
-        },
-        {
-          "name": "원판쟁기(4련/6련)",
-          "half": true,
-          "qty": 1,
-          "mins": 30
-        },
-        {
-          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
-          "half": false,
-          "qty": 5,
-          "mins": 50
-        },
-        {
-          "name": "돌수집기 1400",
-          "half": false,
-          "qty": 1,
-          "mins": 90
-        },
-        {
-          "name": "굴착기(1T/2T)",
-          "half": false,
-          "qty": 1,
-          "mins": 80
-        },
-        {
-          "name": "원판쟁기(4련/6련)",
-          "half": true,
-          "qty": 2,
-          "mins": 30
-        },
-        {
-          "name": "보행관리기(전기종/덩굴파쇄기 포함)",
-          "half": true,
-          "qty": 3,
-          "mins": 25
-        },
-        {
-          "name": "굴착기(1T/2T)",
-          "half": true,
-          "qty": 1,
-          "mins": 40
-        },
-        {
-          "name": "소형트랙터 25HP+(로터베이터 1150/쟁기2련)",
-          "half": true,
-          "qty": 1,
-          "mins": 45
-        },
-        {
-          "name": "배송(입출고 1회)",
-          "half": true,
-          "qty": 1,
-          "mins": 120
-        },
-        {
-          "name": "원판쟁기(8련/10련)",
-          "half": true,
-          "qty": 2,
-          "mins": 45
-        }
-      ]
+      "entries": []
     },
     "북부": {
       "workers": {
