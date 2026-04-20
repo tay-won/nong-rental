@@ -307,20 +307,7 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": [
-        {
-          "id": 1776672414316.93,
-          "equipName": "관리기-구굴기中-02",
-          "equipSpec": "AMC-1000SM / 구굴기(中)",
-          "personName": "홍길동",
-          "days": 1,
-          "startDate": "2026-05-04",
-          "outDone": true,
-          "inDone": true,
-          "site": "본소",
-          "baseMins": 50
-        }
-      ]
+      "entries": []
     },
     "북부": {
       "workers": {
