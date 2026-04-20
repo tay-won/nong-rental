@@ -489,6 +489,7 @@ function saveToken() {
     localStorage.setItem('gh_auth', 'ok');
     localStorage.setItem('gh_real_token', tk);
     document.getElementById('tokenModal').classList.add('hidden');
+    document.getElementById('loadingOverlay').classList.remove('hidden');
     errEl.style.display = 'none';
     loadData();
   } else if(pw === APP_PASSWORD && !tk) {
