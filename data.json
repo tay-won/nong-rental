@@ -971,6 +971,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776728774600.2507,
+            "equipName": "피복기-인력-02",
+            "equipSpec": "BG-777B/8자",
+            "personName": "이현숙",
+            "days": 1,
+            "startDate": "2026-04-24",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 40,
+            "delivery": false
           }
         ],
         "delivery": false
