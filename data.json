@@ -139,6 +139,18 @@
           "inDone": false,
           "site": "본소",
           "baseMins": 90
+        },
+        {
+          "id": 1776683441174.4832,
+          "equipName": "채소이식기(반자동)-01",
+          "equipSpec": "PH1A / 반자동",
+          "personName": "문수영택",
+          "days": 2,
+          "startDate": "2026-04-25",
+          "outDone": false,
+          "inDone": false,
+          "site": "본소",
+          "baseMins": 60
         }
       ]
     },
