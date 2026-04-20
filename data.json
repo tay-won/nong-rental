@@ -1062,6 +1062,19 @@
             "site": "본소",
             "baseMins": 60,
             "delivery": false
+          },
+          {
+            "id": 1776728892402.12,
+            "equipName": "비료살포기-01",
+            "equipSpec": "JHT-320H/300kg",
+            "personName": "이상흠",
+            "days": 2,
+            "startDate": "2026-04-24",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
