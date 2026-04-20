@@ -140,7 +140,20 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": []
+      "entries": [
+        {
+          "id": 1776675131783.4595,
+          "equipName": "관리기-구굴기小-01",
+          "equipSpec": "ASC-640 / 구굴기(小)",
+          "personName": "이민호",
+          "days": 2,
+          "startDate": "2026-04-25",
+          "outDone": false,
+          "inDone": false,
+          "site": "본소",
+          "baseMins": 50
+        }
+      ]
     },
     "북부": {
       "workers": {
