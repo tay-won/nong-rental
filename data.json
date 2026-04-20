@@ -1609,6 +1609,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776729509346.6086,
+            "equipName": "소형트랙터25HP-01",
+            "equipSpec": "CK250V/25HP",
+            "personName": "김은수",
+            "days": 2,
+            "startDate": "2026-04-28",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 290,
+            "delivery": true
           }
         ],
         "delivery": false
