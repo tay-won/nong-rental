@@ -107,20 +107,7 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": [
-        {
-          "id": 1776683673083.392,
-          "equipName": "파종기-인력(일반)-01",
-          "equipSpec": "HG10A / 일반",
-          "personName": "강하늘",
-          "days": 2,
-          "startDate": "2026-04-24",
-          "outDone": false,
-          "inDone": false,
-          "site": "본소",
-          "baseMins": 80
-        }
-      ]
+      "entries": []
     },
     "북부": {
       "workers": {
