@@ -837,6 +837,25 @@ function setSite(s){
 }
 function setIdx(i){curIdx=i;renderAll();}
 
+function renderDateTabs(){
+  const DATES=getDates(), DKEYS=getDkeys();
+  const holidays = getHolidays();
+  document.getElementById('dateTabs').innerHTML = DATES.map((d,i) => {
+    const dk = DKEYS[i];
+    const pct = getPct(dk, curSite);
+    const st = getStatus(pct);
+    const isHol = holidays.includes(dk);
+    return '<div class="dtab'+(i===curIdx?' active':'')+(isHol?' holiday':'')+'" onclick="setIdx('+i+')">'
+      +(isToday(d)?'<div class="tl">TODAY</div>':'')
+      +'<div class="day">'+d.getDate()+'</div>'
+      +'<div class="dow">'+DOW[d.getDay()]+'</div>'
+      +(isHol
+        ? '<div class="holiday-badge">휴무</div>'
+        : '<div class="chip chip-'+st+'">'+pct+'%</div>')
+      +'</div>';
+  }).join('');
+}
+
 function renderAll(){
   const DATES=getDates(),DKEYS=getDkeys();
   DKEYS.forEach(dk=>ensureDay(dk));
@@ -852,13 +871,7 @@ function renderAll(){
   renderWorkers();renderGauge();renderSelList();renderMiniTable();
 }
 
-function renderDateTabs(){
-  const DATES=getDates(),DKEYS=getDkeys();
-  document.getElementById('dateTabs').innerHTML=DATES.map((d,i)=>{
-    const pct=getPct(DKEYS[i],curSite),st=getStatus(pct);
-    return '<div class="dtab'+(i===curIdx?' active':'')+'" onclick="setIdx('+i+')">'+(isToday(d)?'<div class="tl">TODAY</div>':'')+'<div class="day">'+d.getDate()+'</div><div class="dow">'+DOW[d.getDay()]+'</div><div class="chip chip-'+st+'">'+pct+'%</div></div>';
-  }).join('');
-}
+
 
 function renderWorkers(){
   const dk=getDkeys()[curIdx];
