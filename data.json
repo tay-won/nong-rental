@@ -31,18 +31,6 @@
           "inDone": true,
           "site": "본소",
           "baseMins": 50
-        },
-        {
-          "id": 1776682798326.272,
-          "equipName": "돌수집기-03",
-          "equipSpec": "SH-L1400B / 1400",
-          "personName": "홍길동",
-          "days": 2,
-          "startDate": "2026-04-19",
-          "outDone": true,
-          "inDone": false,
-          "site": "본소",
-          "baseMins": 60
         }
       ]
     },
