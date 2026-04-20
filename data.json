@@ -740,6 +740,19 @@
             "site": "본소",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776728509033.7834,
+            "equipName": "논두렁조성기(중)-02",
+            "equipSpec": "WJLF750/(중)",
+            "personName": "이병문",
+            "days": 1,
+            "startDate": "2026-04-23",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
