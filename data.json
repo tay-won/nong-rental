@@ -766,6 +766,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776728546036.7249,
+            "equipName": "관리기-휴립피복기-02",
+            "equipSpec": "AMC-1000SM/휴립피복기(중)",
+            "personName": "한태석",
+            "days": 1,
+            "startDate": "2026-04-23",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
