@@ -177,6 +177,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776727456154.8323,
+            "equipName": "굴착기(1톤)-02",
+            "equipSpec": "U-10-3/1TON",
+            "personName": "유영수",
+            "days": 2,
+            "startDate": "2026-04-20",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
