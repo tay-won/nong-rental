@@ -382,6 +382,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776727801282.7727,
+            "equipName": "관리기-휴립피복기-02",
+            "equipSpec": "AMC-1000SM/휴립피복기(중)",
+            "personName": "이우주",
+            "days": 1,
+            "startDate": "2026-04-21",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
