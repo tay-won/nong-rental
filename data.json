@@ -8,7 +8,21 @@
           "bs3": 420,
           "bs4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1776724545802.0183,
+            "equipName": "고구마수확기-02",
+            "equipSpec": "DRK-650/1조",
+            "personName": "00",
+            "days": 3,
+            "startDate": "2026-04-20",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 290,
+            "delivery": true
+          }
+        ],
         "delivery": false
       },
       "북부": {
