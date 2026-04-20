@@ -1394,6 +1394,19 @@
             "site": "본소",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776729294509.9944,
+            "equipName": "관리기-로터리-05",
+            "equipSpec": "AMC-1000SM/로타리(중)",
+            "personName": "배승례",
+            "days": 3,
+            "startDate": "2026-04-26",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
