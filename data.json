@@ -1508,6 +1508,19 @@
             "site": "본소",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1776729413349.3306,
+            "equipName": "굴착기(1톤)-02",
+            "equipSpec": "U-10-3/1TON",
+            "personName": "정회순",
+            "days": 2,
+            "startDate": "2026-04-27",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
