@@ -289,7 +289,20 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": []
+      "entries": [
+        {
+          "id": 1776686521856.1335,
+          "equipName": "로터베이터1150-01",
+          "equipSpec": "DWR115GM / 1150",
+          "personName": "000",
+          "days": 1,
+          "startDate": "2026-04-30",
+          "outDone": false,
+          "inDone": false,
+          "site": "본소",
+          "baseMins": 90
+        }
+      ]
     },
     "북부": {
       "workers": {
