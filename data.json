@@ -1456,6 +1456,19 @@
             "site": "본소",
             "baseMins": 290,
             "delivery": true
+          },
+          {
+            "id": 1776729349992.6023,
+            "equipName": "논두렁조성기(중)-02",
+            "equipSpec": "WJLF750/(중)",
+            "personName": "심완섭",
+            "days": 1,
+            "startDate": "2026-04-27",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
