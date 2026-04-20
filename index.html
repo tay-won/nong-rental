@@ -143,9 +143,19 @@ select:focus{border-color:var(--accent)}
 /* ④ 선택 기종 목록 */
 .sel-list{display:flex;flex-direction:column;gap:5px;max-height:300px;overflow-y:auto;padding-right:2px}
 .sel-list::-webkit-scrollbar{width:3px}.sel-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-.sel-item{display:flex;align-items:center;gap:6px;padding:7px 10px;background:var(--surface);border-radius:8px;cursor:grab}
+.sel-item{display:flex;align-items:center;gap:5px;padding:5px 8px;background:var(--surface);border-radius:7px;cursor:grab;flex-wrap:nowrap}
+.sel-item.done{opacity:.55}
 .sel-item.dragging{opacity:.4;background:rgba(99,102,241,.15);cursor:grabbing}
 .sel-item.drag-over{border-top:2px solid var(--accent)}
+.sel-equip{font-size:12px;font-weight:600;color:var(--text);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sel-person{font-size:11px;color:var(--dim);white-space:nowrap;flex-shrink:0}
+.sel-days{font-size:10px;color:var(--muted);white-space:nowrap;flex-shrink:0;min-width:22px}
+.sel-chk{display:flex;align-items:center;gap:2px;cursor:pointer;flex-shrink:0}
+.sel-chk input{display:none}
+.sel-cb{font-size:10px;padding:2px 6px;border-radius:4px;border:1px solid var(--border);color:var(--muted);background:var(--bg);transition:all .15s;white-space:nowrap}
+.sel-chk.out-chk input:checked~.sel-cb{background:var(--blue);border-color:var(--blue);color:#fff}
+.sel-chk.in-chk input:checked~.sel-cb{background:var(--green);border-color:var(--green);color:#fff}
+.sel-mins{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--muted);white-space:nowrap;flex-shrink:0;min-width:30px;text-align:right}
 .move-btn{width:20px;height:20px;border-radius:4px;border:1px solid var(--border);background:var(--bg);color:var(--muted);font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0;line-height:1}
 .move-btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 .sel-item.full{border-left:3px solid var(--accent)}
@@ -216,9 +226,10 @@ select:focus{border-color:var(--accent)}
 .half-info.show{display:block}
 
 /* 휴무일 뱃지 */
-.dtab.holiday{border-color:rgba(239,68,68,.4)!important;background:rgba(239,68,68,.08)!important}
+.dtab.holiday{border-color:var(--red)!important;background:rgba(239,68,68,.15)!important;box-shadow:0 0 8px rgba(239,68,68,.3)}
 .dtab.holiday .day{color:var(--red)!important}
 .dtab.holiday .dow{color:var(--red)!important}
+.dtab.holiday .chip{opacity:.4}
 .holiday-badge{font-size:8px;color:var(--red);font-weight:700;margin-top:1px}
 
 /* sel-item 업데이트 */
@@ -280,7 +291,7 @@ select:focus{border-color:var(--accent)}
       </div>
     </div>
     <div class="popup-body">
-      <div class="popup-cols" id="popupCols"></div>
+      <div id="popupCols" style="overflow-x:auto"></div>
     </div>
   </div>
 </div>
@@ -312,7 +323,6 @@ select:focus{border-color:var(--accent)}
       <button class="stab" onclick="setSite('북부')">북부</button>
     </div>
     <div style="display:flex;gap:6px">
-    <button onclick="openInoutPopup()" style="padding:4px 12px;background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.3);border-radius:14px;color:var(--blue);font-family:'Noto Sans KR',sans-serif;font-size:11px;cursor:pointer;transition:all .2s" onmouseover="this.style.background='rgba(96,165,250,.25)'" onmouseout="this.style.background='rgba(96,165,250,.15)'">📋 입출고 목록</button>
     <button onclick="downloadReport()" style="padding:4px 12px;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);border-radius:14px;color:#22c55e;font-family:'Noto Sans KR',sans-serif;font-size:11px;cursor:pointer;transition:all .2s" onmouseover="this.style.background='rgba(34,197,94,.25)'" onmouseout="this.style.background='rgba(34,197,94,.15)'">📊 엑셀 다운로드</button>
     <button onclick="clearToken()" style="padding:4px 12px;background:transparent;border:1px solid var(--border);border-radius:14px;color:var(--muted);font-family:'Noto Sans KR',sans-serif;font-size:11px;cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">🔒 로그아웃</button>
   </div>
@@ -321,7 +331,10 @@ select:focus{border-color:var(--accent)}
 
 <div class="sync-bar">
   <div class="sync-left"><div class="sdot idle" id="sdot"></div><span class="stxt" id="stxt">불러오는 중…</span></div>
-  <button class="btn-sync" onclick="loadData()">🔄 새로고침</button>
+  <div style="display:flex;gap:6px">
+    <button onclick="openInoutPopup()" style="padding:3px 10px;background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.3);border-radius:6px;color:var(--blue);font-size:11px;cursor:pointer;font-family:'Noto Sans KR',sans-serif">📋 입출고</button>
+    <button class="btn-sync" onclick="loadData()">🔄 새로고침</button>
+  </div>
 </div>
 
 <div class="date-scroll"><div class="date-tabs" id="dateTabs"></div></div>
@@ -369,7 +382,13 @@ select:focus{border-color:var(--accent)}
     <!-- 오른쪽 -->
     <div class="col-right">
       <div class="card">
-        <div class="card-title" id="inputPanelTitle">임대 기종별 건수 입력</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:11px">
+          <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;display:flex;align-items:center;gap:5px" id="inputPanelTitle">
+            <span style="display:inline-block;width:3px;height:11px;background:var(--accent);border-radius:2px"></span>
+            임대 기종별 건수 입력
+          </div>
+          <button onclick="openInoutPopup()" style="padding:4px 10px;background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.3);border-radius:8px;color:var(--blue);font-family:'Noto Sans KR',sans-serif;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s" onmouseover="this.style.background='rgba(96,165,250,.25)'" onmouseout="this.style.background='rgba(96,165,250,.15)'">📋 입출고 목록</button>
+        </div>
 
         <!-- ② 장비 검색 드롭다운 -->
         <div class="search-wrap" id="searchWrap">
@@ -407,21 +426,13 @@ select:focus{border-color:var(--accent)}
               </div>
             </div>
 
-            <!-- 출고/입고 -->
+            <!-- 출고/입고: 입력 시 공란, 목록에서 체크 -->
+            <div class="field-group" style="display:none">
+              <input type="checkbox" id="outChk">
+              <input type="checkbox" id="inChk">
+            </div>
             <div class="field-group">
-              <label class="field-label">출고/입고</label>
-              <div class="inout-ctrl">
-                <label class="chk-label" id="outLabel">
-                  <input type="checkbox" id="outChk" onchange="updateInOutLabel()">
-                  <span class="chk-box"></span>
-                  <span>출고</span>
-                </label>
-                <label class="chk-label" id="inLabel">
-                  <input type="checkbox" id="inChk" onchange="updateInOutLabel()">
-                  <span class="chk-box"></span>
-                  <span>입고</span>
-                </label>
-              </div>
+              <label class="field-label" style="color:var(--muted);font-size:10px">※ 출고/입고는 목록에서 체크하세요</label>
             </div>
 
             <!-- 반타임 안내 -->
@@ -876,33 +887,29 @@ function renderSelList(){
     const entries = state[dk][st].entries;
     entries.forEach((e, i) => {
       const totalMins = calcMinsForDate(e, dk);
-      if (totalMins === 0 && e.startDate !== dk) return; // 이 날짜 무관
-      const isFirst = i === 0, isLast = i === entries.length - 1;
-      const dayLabel = e.days > 1 ? `${Math.round((new Date(dk)-new Date(e.startDate))/86400000)+1}/${e.days}일차` : '1일';
-      const halfLabel = e.days > 1 ? '반타임 '+(e.baseMins/2)+'분' : '전타임 '+e.baseMins+'분';
-      h += `<div class="sel-item ${e.days>1?'half':'full'}"
+      const isFirst = i===0, isLast = i===entries.length-1;
+      const daysLabel = e.days + '일';
+      h += `<div class="sel-item ${e.outDone&&e.inDone?'done':''}"
         draggable="true" data-site="${st}" data-idx="${i}"
         ondragstart="dragStart(event)" ondragover="dragOver(event)"
         ondrop="dragDrop(event)" ondragend="dragEnd(event)">
-        <div style="display:flex;flex-direction:column;gap:2px;flex-shrink:0">
+        <div style="display:flex;flex-direction:column;gap:1px;flex-shrink:0">
           <button class="move-btn" onclick="moveEntry('${st}',${i},-1)"
             ${isFirst?'disabled style="opacity:.25;pointer-events:none"':''}>&#9650;</button>
           <button class="move-btn" onclick="moveEntry('${st}',${i},+1)"
             ${isLast?'disabled style="opacity:.25;pointer-events:none"':''}>&#9660;</button>
         </div>
-        <div class="sel-item-info" style="flex:1;min-width:0">
-          <div class="sel-item-name">${e.equipName}</div>
-          <div class="sel-item-person">👤 ${e.personName}</div>
-          <div class="sel-item-meta">
-            <span class="tag ${e.days>1?'tag-half':'tag-full'}">${halfLabel}</span>
-            <span class="tag tag-site">${dayLabel}</span>
-            ${curSite==='전체'?'<span class="tag tag-site">'+st+'</span>':''}
-          </div>
-          <div class="inout-badges">
-            <span class="badge-out ${e.outDone?'done':'badge-pending'}">출고${e.outDone?'✓':'?'}</span>
-            <span class="badge-in  ${e.inDone ?'done':'badge-pending'}">입고${e.inDone ?'✓':'?'}</span>
-          </div>
-        </div>
+        <span class="sel-equip">${e.equipName}</span>
+        <span class="sel-person">👤 ${e.personName}</span>
+        <span class="sel-days">${daysLabel}</span>
+        <label class="sel-chk out-chk" title="출고완료">
+          <input type="checkbox" ${e.outDone?'checked':''} onchange="toggleEntryCheckInline('${st}',${i},'out',this.checked)">
+          <span class="sel-cb">출고</span>
+        </label>
+        <label class="sel-chk in-chk" title="입고완료">
+          <input type="checkbox" ${e.inDone?'checked':''} onchange="toggleEntryCheckInline('${st}',${i},'in',this.checked)">
+          <span class="sel-cb">입고</span>
+        </label>
         <span class="sel-mins">${totalMins}분</span>
         <button class="btn-del" onclick="delEntry('${st}',${i})" title="삭제">&#10005;</button>
       </div>`;
@@ -910,6 +917,21 @@ function renderSelList(){
   });
   el.innerHTML = h || '<div class="empty-msg">장비를 선택 후 입력하세요</div>';
 }
+
+function toggleEntryCheckInline(site, idx, type, val) {
+  const dk = getDkeys()[curIdx];
+  const entry = state[dk][site].entries[idx];
+  if (!entry) return;
+  if (type === 'out') entry.outDone = val;
+  else entry.inDone = val;
+  if(saveTimer) clearTimeout(saveTimer);
+  saveData();
+  renderSelList();
+  renderGauge();
+  renderDateTabs();
+  renderMiniTable();
+}
+
 
 // ── 상하 이동 ──
 function moveEntry(site,idx,dir){
@@ -1042,27 +1064,30 @@ function openDD() {
 }
 
 function filterDD() {
-  const q = (document.getElementById('ddFilter').value || '').toLowerCase();
+  const q = (document.getElementById('ddFilter').value || '').toLowerCase().trim();
   const site = curSite === '전체' ? null : curSite;
   let list = [];
   if (!site) {
-    ['본소','북부'].forEach(st => {
-      EQUIP_LIST[st].forEach(e => list.push({...e, site: st}));
-    });
+    ['본소','북부'].forEach(st => EQUIP_LIST[st].forEach(e => list.push({...e, site:st})));
   } else {
     EQUIP_LIST[site].forEach(e => list.push({...e, site}));
   }
-  const filtered = q ? list.filter(e =>
-    e.n.toLowerCase().includes(q) || e.s.toLowerCase().includes(q)
-  ) : list;
+
+  // 공백/하이픈으로 단어 분리해서 모두 포함된 것만
+  const terms = q ? q.split(/[\s\-]+/).filter(Boolean) : [];
+  const filtered = terms.length === 0 ? list : list.filter(e => {
+    const target = (e.n + ' ' + e.s).toLowerCase();
+    return terms.every(t => target.includes(t));
+  });
 
   document.getElementById('ddList').innerHTML = filtered.map(e =>
-    `<div class="dd-item" onclick="selectEquip(${JSON.stringify(e).replace(/"/g,'&quot;')})">
+    `<div class="dd-item" onclick='selectEquip(${JSON.stringify(e)})'>
       <span class="dd-name">${e.n}</span>
       <span class="dd-mins" style="font-size:10px;color:var(--muted)">${e.s}</span>
     </div>`
   ).join('') || '<div style="padding:12px;text-align:center;color:var(--muted);font-size:12px">검색 결과 없음</div>';
 }
+
 
 function selectEquip(e) {
   selEquip = e;
@@ -1126,8 +1151,8 @@ function addEntry() {
   const dk = getDkeys()[curIdx];
   const startDate = dk;
   const site = inputSite || (curSite === '전체' ? '본소' : curSite);
-  const outDone = document.getElementById('outChk').checked;
-  const inDone  = document.getElementById('inChk').checked;
+  const outDone = false;
+  const inDone  = false;
 
   const entry = {
     id: Date.now() + Math.random(),
@@ -1207,66 +1232,181 @@ function openInoutPopup() {
   const holidays = getHolidays();
   const DOW2 = ['일','월','화','수','목','금','토'];
 
-  // 전날, 오늘, 내일
+  // 전날(-1), 오늘(0), 내일(+1)
   const cols = [-1, 0, 1].map(offset => {
     const i = idx + offset;
-    if (i < 0 || i >= DKEYS.length) return null;
+    if(i < 0 || i >= DKEYS.length) return null;
     return { dk: DKEYS[i], d: DATES[i], offset };
   }).filter(Boolean);
 
+  const todayD = DATES[idx];
   document.getElementById('popupDateLabel').textContent =
-    DATES[idx].getFullYear() + '년 ' + (DATES[idx].getMonth()+1) + '월 ' + DATES[idx].getDate() + '일 기준';
+    todayD.getFullYear() + '년 ' + (todayD.getMonth()+1) + '월 ' + todayD.getDate() + '일 기준';
 
-  const colsHtml = cols.map(col => {
-    const { dk, d, offset } = col;
-    const isToday2 = offset === 0;
-    const label = (d.getMonth()+1)+'/'+d.getDate()+' ('+DOW2[d.getDay()]+')' + (isToday2?' — 오늘':'');
-    const isHol = holidays.includes(dk);
+  // 전체 관련 entries 수집 (3일 범위)
+  const allEntries = [];
+  const rowMap = {}; // equipName+personName+startDate → row
 
-    // 이 날짜에 해당하는 입출고 건 수집
-    const entries = collectInoutForDate(dk);
+  cols.forEach(col => {
+    const items = collectInoutForDate(col.dk);
+    items.forEach(item => {
+      const key = item.entry.equipName + '|' + item.entry.personName + '|' + item.entry.startDate;
+      if(!rowMap[key]) {
+        rowMap[key] = {
+          entry: item.entry,
+          outCol: null,  // 출고가 어느 col에 있는지
+          inCol: null,   // 입고가 어느 col에 있는지
+        };
+        allEntries.push(rowMap[key]);
+      }
+      if(item.type === 'out') rowMap[key].outCol = col.offset;
+      if(item.type === 'in')  rowMap[key].inCol  = col.offset;
+    });
+  });
 
-    // 미완결 건만
-    const pending = entries.filter(e => {
-      if (e.type === 'out') return !e.entry.outDone;
-      if (e.type === 'in')  return !e.entry.inDone;
-      return true;
+  // 컬럼 헤더 생성
+  const colHeaders = cols.map(col => {
+    const d = col.d;
+    const isToday2 = col.offset === 0;
+    const isHol = holidays.includes(col.dk);
+    const dateStr = (d.getMonth()+1) + '/' + d.getDate();
+    const dowStr = DOW2[d.getDay()];
+
+    // 이 날짜의 출고/입고 건수
+    const items = collectInoutForDate(col.dk);
+    const outCnt = items.filter(i => i.type === 'out').length;
+    const inCnt  = items.filter(i => i.type === 'in').length;
+
+    let subLabel = '';
+    if(col.offset === -1) subLabel = `입고(${inCnt}건)`;
+    else if(col.offset === 0) subLabel = `출고(${outCnt}건) 입고(${inCnt}건)`;
+    else if(col.offset === 1) subLabel = `출고(${outCnt}건)`;
+
+    return {col, dateStr, dowStr, isToday2, isHol, subLabel, outCnt, inCnt};
+  });
+
+  // 오늘 총 출고/입고
+  const todayItems = collectInoutForDate(DKEYS[idx]);
+  const totalOut = todayItems.filter(i => i.type==='out').length;
+  const totalIn  = todayItems.filter(i => i.type==='in').length;
+
+  // 팝업 HTML 생성
+  const colW = ['25%','35%','25%','15%'];
+
+  let tableHtml = `
+  <div style="margin-bottom:12px;text-align:center">
+    <span style="font-size:14px;font-weight:900;color:#fff">
+      ${(todayD.getMonth()+1)}월 ${todayD.getDate()}일 입출고 목록
+    </span>
+    <span style="font-size:12px;color:var(--blue);margin-left:10px">출고 ${totalOut}건</span>
+    <span style="font-size:12px;color:var(--green);margin-left:6px">입고 ${totalIn}건</span>
+  </div>
+  <table style="width:100%;border-collapse:collapse;font-size:12px">
+    <thead>
+      <tr style="background:var(--bg)">
+        <th style="padding:8px 10px;border:1px solid var(--border);color:var(--muted);font-weight:700;min-width:120px">장비명</th>
+        <th style="padding:8px 10px;border:1px solid var(--border);color:var(--muted);font-weight:700;min-width:70px">성명</th>`;
+
+  colHeaders.forEach(h => {
+    const color = h.isToday2 ? 'var(--accent)' : (h.isHol ? 'var(--red)' : 'var(--muted)');
+    tableHtml += `<th style="padding:6px 8px;border:1px solid var(--border);color:${color};font-weight:700;text-align:center;min-width:90px">
+        ${h.dateStr} (${h.dowStr})${h.isHol?' 🔴':''}<br>
+        <span style="font-size:10px;font-weight:400;color:var(--muted)">${h.subLabel}</span>
+      </th>`;
+  });
+
+  tableHtml += `<th style="padding:8px 10px;border:1px solid var(--border);color:var(--muted);font-weight:700">비고</th></tr>
+    </thead>
+    <tbody>`;
+
+  // 행 정렬: 출고일 기준
+  allEntries.sort((a, b) => {
+    const aOut = a.outCol !== null ? a.outCol : 99;
+    const bOut = b.outCol !== null ? b.outCol : 99;
+    if(aOut !== bOut) return aOut - bOut;
+    return a.entry.equipName.localeCompare(b.entry.equipName, 'ko');
+  });
+
+  allEntries.forEach((row, ri) => {
+    const e = row.entry;
+    const bg = ri%2===0 ? 'var(--surface)' : 'var(--card)';
+
+    tableHtml += `<tr style="background:${bg}">
+      <td style="padding:7px 10px;border:1px solid var(--border);color:var(--text);font-weight:600">${e.equipName}</td>
+      <td style="padding:7px 10px;border:1px solid var(--border);color:var(--dim)">${e.personName}</td>`;
+
+    cols.forEach(col => {
+      const isOut = row.outCol === col.offset;
+      const isIn  = row.inCol  === col.offset;
+      const isMid = (row.outCol !== null && row.inCol !== null &&
+                     col.offset > row.outCol && col.offset < row.inCol);
+      const isMidOut = (row.outCol !== null && row.inCol === null &&
+                        col.offset > row.outCol); // 출고됐는데 아직 입고 안됨
+      const isMidIn  = (row.inCol !== null && row.outCol === null &&
+                        col.offset < row.inCol);  // 입고 예정
+
+      let cellContent = '';
+      let cellStyle = 'padding:7px 8px;border:1px solid var(--border);text-align:center;position:relative';
+
+      if(isOut && isIn) {
+        // 1일 임대 (당일 출입고)
+        cellContent = `<label style="display:inline-flex;align-items:center;gap:3px;cursor:pointer;margin-right:4px">
+          <input type="checkbox" ${e.outDone?'checked':''} onchange="toggleEntryCheckPopup('${e.startDate}','${e.site}','${e.id}','out',this.checked)" style="cursor:pointer">
+          <span style="font-size:10px;color:var(--blue)">출고</span>
+        </label>
+        <label style="display:inline-flex;align-items:center;gap:3px;cursor:pointer">
+          <input type="checkbox" ${e.inDone?'checked':''} onchange="toggleEntryCheckPopup('${e.startDate}','${e.site}','${e.id}','in',this.checked)" style="cursor:pointer">
+          <span style="font-size:10px;color:var(--green)">입고</span>
+        </label>`;
+      } else if(isOut) {
+        cellContent = `<label style="display:inline-flex;align-items:center;gap:3px;cursor:pointer">
+          <input type="checkbox" ${e.outDone?'checked':''} onchange="toggleEntryCheckPopup('${e.startDate}','${e.site}','${e.id}','out',this.checked)" style="cursor:pointer">
+          <span style="font-size:11px;color:var(--blue)">출고 →</span>
+        </label>`;
+      } else if(isIn) {
+        cellContent = `<label style="display:inline-flex;align-items:center;gap:3px;cursor:pointer">
+          <input type="checkbox" ${e.inDone?'checked':''} onchange="toggleEntryCheckPopup('${e.startDate}','${e.site}','${e.id}','in',this.checked)" style="cursor:pointer">
+          <span style="font-size:11px;color:var(--green)">← 입고</span>
+        </label>`;
+      } else if(isMid) {
+        cellContent = `<span style="color:var(--muted);font-size:18px">↔</span>`;
+        cellStyle += ';background:rgba(99,102,241,.05)';
+      } else if(isMidOut) {
+        cellContent = `<span style="color:var(--blue);font-size:18px">→</span>`;
+        cellStyle += ';background:rgba(96,165,250,.05)';
+      } else if(isMidIn) {
+        cellContent = `<span style="color:var(--green);font-size:18px">←</span>`;
+        cellStyle += ';background:rgba(52,211,153,.05)';
+      }
+
+      tableHtml += `<td style="${cellStyle}">${cellContent}</td>`;
     });
 
-    const entriesHtml = pending.length === 0
-      ? '<div style="padding:12px;text-align:center;color:var(--muted);font-size:11px">작업 없음</div>'
-      : pending.map(item => {
-          const e = item.entry;
-          const uid = e.id + '_' + item.type;
-          const isOut = item.type === 'out';
-          const checked = isOut ? e.outDone : e.inDone;
-          const dayLabel = e.days > 1 ? `${item.dayNum}/${e.days}일차` : '1일';
-          return `<div class="popup-entry">
-            <div class="popup-entry-name">${e.equipName}</div>
-            <div class="popup-entry-person">👤 ${e.personName}</div>
-            <div class="popup-entry-days">${dayLabel} · ${isOut?'출고':'입고'}</div>
-            <div class="popup-chks">
-              <label class="popup-chk ${isOut?'out-chk':'in-chk'}">
-                <input type="checkbox" ${checked?'checked':''} onchange="toggleEntryCheck('${e.startDate}','${e.site}','${e.id}','${item.type}',this.checked)">
-                <span class="cb">✓</span>
-                <span>${isOut?'출고완료':'입고완료'}</span>
-              </label>
-            </div>
-          </div>`;
-        }).join('');
+    tableHtml += `<td style="padding:7px 10px;border:1px solid var(--border);color:var(--muted);font-size:10px">${e.days}일</td></tr>`;
+  });
 
-    return `<div class="popup-col">
-      <div class="popup-col-hdr ${isToday2?'today':''}">
-        <span>${label}${isHol?' 🔴':''}</span>
-        <span class="cnt">${pending.length}건</span>
-      </div>
-      ${entriesHtml}
-    </div>`;
-  }).join('');
+  if(allEntries.length === 0) {
+    tableHtml += `<tr><td colspan="${cols.length+3}" style="padding:20px;text-align:center;color:var(--muted);border:1px solid var(--border)">작업 없음</td></tr>`;
+  }
 
-  document.getElementById('popupCols').innerHTML = colsHtml;
+  tableHtml += '</tbody></table>';
+
+  document.getElementById('popupCols').innerHTML = tableHtml;
   document.getElementById('inoutPopup').classList.remove('hidden');
 }
+
+function toggleEntryCheckPopup(startDk, site, entryId, type, val) {
+  if(!state[startDk] || !state[startDk][site]) return;
+  const entry = state[startDk][site].entries.find(e => String(e.id) === String(entryId));
+  if(!entry) return;
+  if(type === 'out') entry.outDone = val;
+  else entry.inDone = val;
+  if(saveTimer) clearTimeout(saveTimer);
+  saveData();
+  renderAll();
+  openInoutPopup();
+}
+
 
 function collectInoutForDate(dk) {
   const results = [];
