@@ -16,7 +16,7 @@
           "days": 3,
           "startDate": "2026-04-19",
           "outDone": true,
-          "inDone": true,
+          "inDone": false,
           "site": "본소",
           "baseMins": 60
         }
