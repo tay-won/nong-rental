@@ -10,17 +10,17 @@
         },
         "entries": [
           {
-            "id": 1776724559119.417,
-            "equipName": "관리기-로터리-04",
-            "equipSpec": "AMC-1000SM/로타리(중)",
-            "personName": "88",
+            "id": 1776727183971.1704,
+            "equipName": "논두렁조성기(소)-05",
+            "equipSpec": "WJLF380/(소)",
+            "personName": "강봉희",
             "days": 1,
             "startDate": "2026-04-20",
             "outDone": false,
             "inDone": false,
             "site": "본소",
-            "baseMins": 290,
-            "delivery": true
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
