@@ -290,10 +290,10 @@ select:focus{border-color:var(--accent)}
   <div class="token-box">
     <h2>🚜 농기계 임대 현황</h2>
     <p>파주시 농업기계임대사업소</p>
-    <input type="password" class="token-inp" id="tokenInp" placeholder="비밀번호 입력" style="margin-bottom:8px" onkeydown="if(event.key==='Enter')saveToken()">
-    <input type="password" class="token-inp" id="ghTokenInp" placeholder="GitHub 토큰 (ghp_...)" style="margin-bottom:8px;font-family:monospace;font-size:11px" onkeydown="if(event.key==='Enter')saveToken()">
-    <button class="btn-token-save" onclick="saveToken()">접속</button>
-    <div id="loginError" style="color:var(--red);font-size:12px;text-align:center;margin-top:8px;display:none">비밀번호 또는 토큰이 잘못되었습니다</div>
+    <input type="password" class="token-inp" id="tokenInp" placeholder="비밀번호 입력" style="margin-bottom:8px">
+    <input type="password" class="token-inp" id="ghTokenInp" placeholder="GitHub 토큰 (ghp_...)" style="margin-bottom:8px;font-size:11px">
+    <button class="btn-token-save" id="loginBtn">접속</button>
+    <div id="loginError" style="color:#ef4444;font-size:12px;text-align:center;margin-top:8px;display:none">오류</div>
   </div>
 </div>
 
@@ -481,17 +481,20 @@ const REAL_TOKEN = localStorage.getItem('gh_real_token') || '';
 const APP_PASSWORD = '5269';
 
 function saveToken() {
-  const pw = document.getElementById('tokenInp').value.trim();
-  const tk = document.getElementById('ghTokenInp').value.trim();
+  var pw = document.getElementById('tokenInp').value.trim();
+  var tk = document.getElementById('ghTokenInp').value.trim();
+  var err = document.getElementById('loginError');
   
   if(pw !== '5269') {
-    alert('비밀번호가 틀렸습니다');
+    err.textContent = '비밀번호가 틀렸습니다';
+    err.style.display = 'block';
     return;
   }
   
-  const token = tk || localStorage.getItem('gh_real_token') || '';
+  var token = tk || localStorage.getItem('gh_real_token') || '';
   if(!token) {
-    alert('GitHub 토큰을 입력해주세요');
+    err.textContent = 'GitHub 토큰을 입력해주세요';
+    err.style.display = 'block';
     return;
   }
   
@@ -820,12 +823,11 @@ function renderAll(){
   const d=DATES[curIdx],dk=DKEYS[curIdx];
   const _dkCur = getDkeys()[curIdx];
   const _isHolCur = getHolidays().includes(_dkCur);
+  const _holBtnStyle = 'margin-left:8px;padding:2px 8px;background:transparent;border:1px solid ' + (_isHolCur ? '#ef4444' : '#2e3350') + ';border-radius:8px;color:' + (_isHolCur ? '#ef4444' : '#64748b') + ';font-size:10px;cursor:pointer';
   document.getElementById('dateBar').innerHTML =
-    '📅 '+d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일 ('+DOW[d.getDay()]+'요일)'+(isToday(d)?' — 오늘':'')
-    +(_isHolCur?' <span style="color:var(--red);font-size:11px">🔴 휴무일</span>':'')
-    +' <button onclick="toggleHoliday(''+_dkCur+'')" style="margin-left:8px;padding:2px 8px;background:transparent;border:1px solid '+(_isHolCur?'var(--red)':'var(--border)')+';border-radius:8px;color:'+(_isHolCur?'var(--red)':'var(--muted)')+';font-size:10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif">'+(_isHolCur?'휴무 해제':'휴무 지정')+'</button>';
-  // dummy to avoid reassignment error
-+d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일 ('+DOW[d.getDay()]+'요일)'+(isToday(d)?' — 오늘':'');
+    '📅 ' + d.getFullYear() + '년 ' + (d.getMonth()+1) + '월 ' + d.getDate() + '일 (' + DOW[d.getDay()] + '요일)' + (isToday(d) ? ' — 오늘' : '')
+    + (_isHolCur ? ' <span style="color:#ef4444;font-size:11px">🔴 휴무일</span>' : '')
+    + ' <button onclick="toggleHoliday(\'' + _dkCur + '\')" style="' + _holBtnStyle + '">' + (_isHolCur ? '휴무 해제' : '휴무 지정') + '</button>';
   renderWorkers();renderGauge();renderSelList();renderMiniTable();
 }
 
@@ -1313,6 +1315,17 @@ document.addEventListener('click', e => {
   if (!popup.classList.contains('hidden') && e.target === popup) closePopup();
 });
 
+
+// 로그인 버튼 이벤트
+document.addEventListener('DOMContentLoaded', function() {
+  var btn = document.getElementById('loginBtn');
+  if(btn) btn.addEventListener('click', saveToken);
+  
+  var inp1 = document.getElementById('tokenInp');
+  var inp2 = document.getElementById('ghTokenInp');
+  if(inp1) inp1.addEventListener('keydown', function(e){ if(e.key==='Enter') saveToken(); });
+  if(inp2) inp2.addEventListener('keydown', function(e){ if(e.key==='Enter') saveToken(); });
+});
 </script>
 </body>
 </html>
