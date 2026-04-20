@@ -7,20 +7,7 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": [
-        {
-          "id": 1776675066336.843,
-          "equipName": "고추세척기-01",
-          "equipSpec": "SHC-1000N / 고추",
-          "personName": "홍길동",
-          "days": 3,
-          "startDate": "2026-04-19",
-          "outDone": false,
-          "inDone": false,
-          "site": "본소",
-          "baseMins": 60
-        }
-      ]
+      "entries": []
     },
     "북부": {
       "workers": {
