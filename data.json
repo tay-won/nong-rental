@@ -421,6 +421,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776727859845.3123,
+            "equipName": "잔가지파쇄기(대)-01",
+            "equipSpec": "DLK210E/2000kg/h",
+            "personName": "황지용",
+            "days": 1,
+            "startDate": "2026-04-21",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 80,
+            "delivery": false
           }
         ],
         "delivery": false
