@@ -148,7 +148,7 @@
           "personName": "원유태",
           "days": 1,
           "startDate": "2026-04-25",
-          "outDone": false,
+          "outDone": true,
           "inDone": false,
           "site": "본소",
           "baseMins": 90
@@ -160,7 +160,7 @@
           "personName": "문수영택",
           "days": 2,
           "startDate": "2026-04-25",
-          "outDone": false,
+          "outDone": true,
           "inDone": false,
           "site": "본소",
           "baseMins": 60
