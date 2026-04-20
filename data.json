@@ -15,7 +15,7 @@
           "personName": "원유태",
           "days": 3,
           "startDate": "2026-04-19",
-          "outDone": true,
+          "outDone": false,
           "inDone": false,
           "site": "본소",
           "baseMins": 60
