@@ -304,7 +304,21 @@
           "bs3": 420,
           "bs4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1776727685311.768,
+            "equipName": "관리기-로터리-02",
+            "equipSpec": "AMC-1000SM/로타리(중)",
+            "personName": "강병두",
+            "days": 1,
+            "startDate": "2026-04-21",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
+          }
+        ],
         "delivery": false
       },
       "북부": {
