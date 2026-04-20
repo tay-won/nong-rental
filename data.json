@@ -127,56 +127,7 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": [
-        {
-          "id": 1776683441174.4832,
-          "equipName": "채소이식기(반자동)-01",
-          "equipSpec": "PH1A / 반자동",
-          "personName": "문수영택",
-          "days": 2,
-          "startDate": "2026-04-25",
-          "outDone": false,
-          "inDone": false,
-          "site": "본소",
-          "baseMins": 60
-        },
-        {
-          "id": 1776683450422.4897,
-          "equipName": "퇴비살포기(小)-01",
-          "equipSpec": "GW-500H / 500KG-퇴비",
-          "personName": "이성우",
-          "days": 3,
-          "startDate": "2026-04-25",
-          "outDone": false,
-          "inDone": false,
-          "site": "본소",
-          "baseMins": 90
-        },
-        {
-          "id": 1776684080081.1514,
-          "equipName": "관리기-로터리-03",
-          "equipSpec": "AMC-1000SM / 로타리(中)",
-          "personName": "원유태",
-          "days": 1,
-          "startDate": "2026-04-25",
-          "outDone": true,
-          "inDone": false,
-          "site": "본소",
-          "baseMins": 90
-        },
-        {
-          "id": 1776690228924.22,
-          "equipName": "관리기-구굴기(중)-02",
-          "equipSpec": "AMC-1000SM/구굴기(중)",
-          "personName": "00",
-          "days": 1,
-          "startDate": "2026-04-25",
-          "outDone": false,
-          "inDone": false,
-          "site": "본소",
-          "baseMins": 50
-        }
-      ]
+      "entries": []
     },
     "북부": {
       "workers": {
@@ -276,20 +227,7 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": [
-        {
-          "id": 1776686521856.1335,
-          "equipName": "로터베이터1150-01",
-          "equipSpec": "DWR115GM / 1150",
-          "personName": "000",
-          "days": 1,
-          "startDate": "2026-04-30",
-          "outDone": false,
-          "inDone": false,
-          "site": "본소",
-          "baseMins": 90
-        }
-      ]
+      "entries": []
     },
     "북부": {
       "workers": {
