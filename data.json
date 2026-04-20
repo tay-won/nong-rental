@@ -1189,6 +1189,19 @@
             "site": "본소",
             "baseMins": 60,
             "delivery": false
+          },
+          {
+            "id": 1776729038364.714,
+            "equipName": "배토기1950-01",
+            "equipSpec": "DOA-220/1950(2조)",
+            "personName": "서재윤",
+            "days": 2,
+            "startDate": "2026-04-25",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
