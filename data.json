@@ -100,6 +100,18 @@
           "inDone": false,
           "site": "본소",
           "baseMins": 90
+        },
+        {
+          "id": 1776682921447.9275,
+          "equipName": "고구마수확기-02",
+          "equipSpec": "DRK-650 / 1조",
+          "personName": "정재호",
+          "days": 2,
+          "startDate": "2026-04-20",
+          "outDone": false,
+          "inDone": false,
+          "site": "본소",
+          "baseMins": 50
         }
       ]
     },
