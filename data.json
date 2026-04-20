@@ -15,7 +15,7 @@
           "personName": "원유태",
           "days": 3,
           "startDate": "2026-04-19",
-          "outDone": true,
+          "outDone": false,
           "inDone": false,
           "site": "본소",
           "baseMins": 60
@@ -64,7 +64,20 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": []
+      "entries": [
+        {
+          "id": 1776682867851.924,
+          "equipName": "논두렁조성기小-02",
+          "equipSpec": "WJLF380 / 小",
+          "personName": "원유태",
+          "days": 1,
+          "startDate": "2026-04-20",
+          "outDone": false,
+          "inDone": false,
+          "site": "본소",
+          "baseMins": 90
+        }
+      ]
     },
     "북부": {
       "workers": {
