@@ -76,6 +76,18 @@
           "inDone": false,
           "site": "본소",
           "baseMins": 90
+        },
+        {
+          "id": 1776682885825.7522,
+          "equipName": "못자리성형기1750-01",
+          "equipSpec": "DS-B003 / 1750-못자리",
+          "personName": "문수영택",
+          "days": 2,
+          "startDate": "2026-04-20",
+          "outDone": false,
+          "inDone": false,
+          "site": "본소",
+          "baseMins": 60
         }
       ]
     },
