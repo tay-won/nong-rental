@@ -1251,6 +1251,19 @@
             "site": "본소",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1776729091218.9229,
+            "equipName": "소형트랙터25HP-03",
+            "equipSpec": "CK250V/25HP",
+            "personName": "안옥분",
+            "days": 1,
+            "startDate": "2026-04-26",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 290,
+            "delivery": true
           }
         ],
         "delivery": false
