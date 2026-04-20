@@ -880,6 +880,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776728663036.287,
+            "equipName": "관리기-구굴기(소)-02",
+            "equipSpec": "ASC-640/구굴기(소)",
+            "personName": "방화숙",
+            "days": 1,
+            "startDate": "2026-04-24",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 290,
+            "delivery": true
           }
         ],
         "delivery": false
