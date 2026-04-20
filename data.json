@@ -7,20 +7,7 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": [
-        {
-          "id": 1776682769381.7102,
-          "equipName": "관리기-휴립기-03",
-          "equipSpec": "AMC-1000SM / 휴립기(中)",
-          "personName": "김길순",
-          "days": 1,
-          "startDate": "2026-04-19",
-          "outDone": true,
-          "inDone": true,
-          "site": "본소",
-          "baseMins": 50
-        }
-      ]
+      "entries": []
     },
     "북부": {
       "workers": {
@@ -61,18 +48,6 @@
         "bs4": 420
       },
       "entries": [
-        {
-          "id": 1776682999347.3145,
-          "equipName": "동력파종기1750-01",
-          "equipSpec": "HG600A / 1750 (3조)",
-          "personName": "원유태",
-          "days": 1,
-          "startDate": "2026-04-21",
-          "outDone": false,
-          "inDone": false,
-          "site": "본소",
-          "baseMins": 80
-        },
         {
           "id": 1776683011613.8289,
           "equipName": "탈곡기(모터)-01",
