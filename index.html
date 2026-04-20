@@ -187,15 +187,109 @@ select:focus{border-color:var(--accent)}
 .btn-token-save:hover{background:#5254d4}
 .token-reset{font-size:10px;color:var(--muted);text-align:center;margin-top:8px;cursor:pointer;text-decoration:underline}
 .token-reset:hover{color:var(--dim)}
+
+/* ── 입력 필드 ── */
+.input-fields{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.field-group{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.field-label{font-size:11px;color:var(--muted);min-width:60px;flex-shrink:0}
+.person-inp{flex:1;min-width:120px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'Noto Sans KR',sans-serif;font-size:13px;padding:6px 10px;outline:none;transition:border-color .2s}
+.person-inp:focus{border-color:var(--accent)}
+
+/* 기간 버튼 */
+.days-ctrl{display:flex;gap:5px}
+.day-btn{padding:5px 14px;background:var(--bg);border:1px solid var(--border);border-radius:7px;color:var(--muted);font-family:'Noto Sans KR',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s}
+.day-btn:hover{border-color:var(--accent);color:var(--accent)}
+.day-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* 출고/입고 체크 */
+.inout-ctrl{display:flex;gap:10px}
+.chk-label{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;font-size:12px;color:var(--text)}
+.chk-label input[type=checkbox]{display:none}
+.chk-box{width:16px;height:16px;border:1px solid var(--border);border-radius:4px;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.chk-box::after{content:'✓';font-size:11px;font-weight:900;color:transparent;transition:color .15s}
+.chk-label input:checked ~ .chk-box{background:var(--green);border-color:var(--green)}
+.chk-label input:checked ~ .chk-box::after{color:#fff}
+.chk-label input:checked ~ span{color:var(--green)}
+
+/* 반타임 안내 */
+.half-info{font-size:11px;color:var(--yellow);padding:5px 8px;background:rgba(245,158,11,.08);border-radius:6px;display:none}
+.half-info.show{display:block}
+
+/* 휴무일 뱃지 */
+.dtab.holiday{border-color:rgba(239,68,68,.4)!important;background:rgba(239,68,68,.08)!important}
+.dtab.holiday .day{color:var(--red)!important}
+.dtab.holiday .dow{color:var(--red)!important}
+.holiday-badge{font-size:8px;color:var(--red);font-weight:700;margin-top:1px}
+
+/* sel-item 업데이트 */
+.sel-item-days{font-size:10px;color:var(--muted)}
+.sel-item-person{font-size:11px;color:var(--dim);font-weight:500}
+.inout-badges{display:flex;gap:3px;margin-top:2px}
+.badge-out{font-size:9px;padding:1px 5px;border-radius:4px;background:rgba(96,165,250,.15);color:var(--blue);font-weight:700}
+.badge-in {font-size:9px;padding:1px 5px;border-radius:4px;background:rgba(52,211,153,.15);color:var(--green);font-weight:700}
+.badge-out.done{background:rgba(96,165,250,.4);color:#fff}
+.badge-in.done {background:rgba(52,211,153,.4);color:#fff}
+.badge-pending{opacity:.5}
+
+/* 입출고 팝업 */
+.popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:500;display:flex;align-items:center;justify-content:center;padding:16px}
+.popup-overlay.hidden{display:none}
+.popup-box{background:var(--card);border:1px solid var(--border);border-radius:14px;width:100%;max-width:900px;max-height:85vh;display:flex;flex-direction:column}
+.popup-header{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.popup-header h2{font-size:14px;font-weight:700;color:#fff}
+.popup-body{overflow-y:auto;padding:14px;flex:1}
+.popup-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.popup-col{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.popup-col-hdr{padding:8px 12px;font-size:11px;font-weight:700;background:var(--bg);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.popup-col-hdr.today{color:var(--accent);background:rgba(99,102,241,.08)}
+.popup-col-hdr .cnt{font-family:'JetBrains Mono',monospace;font-size:10px}
+.popup-entry{padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px}
+.popup-entry:last-child{border-bottom:none}
+.popup-entry-name{font-weight:700;color:var(--text);margin-bottom:2px}
+.popup-entry-person{color:var(--dim);font-size:10px;margin-bottom:4px}
+.popup-entry-days{font-size:10px;color:var(--muted);margin-bottom:4px}
+.popup-chks{display:flex;gap:6px}
+.popup-chk{display:flex;align-items:center;gap:4px;cursor:pointer;font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);transition:all .2s}
+.popup-chk:hover{border-color:var(--accent)}
+.popup-chk input{display:none}
+.popup-chk .cb{width:13px;height:13px;border:1px solid var(--border);border-radius:3px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:9px;color:transparent;transition:all .15s}
+.popup-chk input:checked ~ .cb{background:var(--green);border-color:var(--green);color:#fff}
+.popup-chk.out-chk input:checked ~ .cb{background:var(--blue);border-color:var(--blue)}
+.popup-chk.out-chk input:checked ~ span{color:var(--blue)}
+.popup-chk.in-chk input:checked ~ .cb{background:var(--green);border-color:var(--green)}
+.popup-chk.in-chk input:checked ~ span{color:var(--green)}
+.btn-print{padding:6px 14px;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--muted);font-size:12px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .2s}
+.btn-print:hover{border-color:var(--blue);color:var(--blue)}
+.btn-close-popup{width:28px;height:28px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.btn-close-popup:hover{background:var(--red);border-color:var(--red);color:#fff}
+@media print{.popup-overlay{position:static;background:white;padding:0}.popup-box{max-height:none;border:none}.popup-header .btn-print,.popup-header .btn-close-popup{display:none}}
+@media(max-width:600px){.popup-cols{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+
+<!-- 입출고 목록 팝업 -->
+<div class="popup-overlay hidden" id="inoutPopup">
+  <div class="popup-box">
+    <div class="popup-header">
+      <h2>📋 입출고 작업 목록</h2>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span id="popupDateLabel" style="font-size:12px;color:var(--muted)"></span>
+        <button class="btn-print" onclick="window.print()">🖨️ 인쇄</button>
+        <button class="btn-close-popup" onclick="closePopup()">✕</button>
+      </div>
+    </div>
+    <div class="popup-body">
+      <div class="popup-cols" id="popupCols"></div>
+    </div>
+  </div>
+</div>
 
 <!-- 비밀번호 로그인 모달 -->
 <div class="token-modal" id="tokenModal">
   <div class="token-box">
     <h2>🚜 농기계 임대 현황</h2>
-    <p>파주시농기계임대사업소<br>접속 비밀번호를 입력하세요</p>
+    <p>파주시 농업기계임대사업소<br>접속 비밀번호를 입력하세요</p>
     <input type="password" class="token-inp" id="tokenInp" placeholder="비밀번호 입력" onkeydown="if(event.key==='Enter')saveToken()">
     <button class="btn-token-save" onclick="saveToken()">접속</button>
     <div id="loginError" style="color:var(--red);font-size:12px;text-align:center;margin-top:8px;display:none">비밀번호가 틀렸습니다</div>
@@ -209,7 +303,7 @@ select:focus{border-color:var(--accent)}
 
 <header>
   <h1>🚜 농기계 <span>임대 현황</span></h1>
-  <div class="sub" id="headerSub">파주시농기계임대사업소</div>
+  <div class="sub" id="headerSub">파주시 농업기계임대사업소</div>
   <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:10px">
     <div class="site-tabs" style="margin-top:0">
       <button class="stab a-전체" onclick="setSite('전체')">전체</button>
@@ -217,6 +311,7 @@ select:focus{border-color:var(--accent)}
       <button class="stab" onclick="setSite('북부')">북부</button>
     </div>
     <div style="display:flex;gap:6px">
+    <button onclick="openInoutPopup()" style="padding:4px 12px;background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.3);border-radius:14px;color:var(--blue);font-family:'Noto Sans KR',sans-serif;font-size:11px;cursor:pointer;transition:all .2s" onmouseover="this.style.background='rgba(96,165,250,.25)'" onmouseout="this.style.background='rgba(96,165,250,.15)'">📋 입출고 목록</button>
     <button onclick="downloadReport()" style="padding:4px 12px;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);border-radius:14px;color:#22c55e;font-family:'Noto Sans KR',sans-serif;font-size:11px;cursor:pointer;transition:all .2s" onmouseover="this.style.background='rgba(34,197,94,.25)'" onmouseout="this.style.background='rgba(34,197,94,.15)'">📊 엑셀 다운로드</button>
     <button onclick="clearToken()" style="padding:4px 12px;background:transparent;border:1px solid var(--border);border-radius:14px;color:var(--muted);font-family:'Noto Sans KR',sans-serif;font-size:11px;cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">🔒 로그아웃</button>
   </div>
@@ -273,43 +368,77 @@ select:focus{border-color:var(--accent)}
     <!-- 오른쪽 -->
     <div class="col-right">
       <div class="card">
-        <div class="card-title">임대 기종별 건수 입력</div>
+        <div class="card-title" id="inputPanelTitle">임대 기종별 건수 입력</div>
 
-        <!-- ② 검색 드롭다운 -->
+        <!-- ② 장비 검색 드롭다운 -->
         <div class="search-wrap" id="searchWrap">
-          <input type="text" class="search-inp" id="searchInp" placeholder="● 기종명 검색…" readonly onclick="openDD()" autocomplete="off">
+          <input type="text" class="search-inp" id="searchInp"
+            placeholder="● 장비명 검색…" readonly onclick="openDD()" autocomplete="off">
           <span class="search-arrow">▼</span>
           <div class="dropdown" id="dropdown">
-            <div class="dd-filter"><input type="text" id="ddFilter" placeholder="검색…" oninput="filterDD()" onclick="event.stopPropagation()"></div>
+            <div class="dd-filter">
+              <input type="text" id="ddFilter" placeholder="검색…"
+                oninput="filterDD()" onclick="event.stopPropagation()">
+            </div>
             <div id="ddList"></div>
           </div>
         </div>
 
         <!-- ③ 입력 행 -->
         <div class="input-row" id="inputRow">
-          <div class="input-row-name" id="inputRowName">기종명</div>
-          <div class="input-controls">
-            <div class="half-toggle" id="halfToggle" onclick="toggleHalf()">
-              <input type="checkbox" id="halfCheck">
-              <span class="half-toggle-box">½</span>
-              <span class="half-toggle-txt">반타임</span>
+          <div class="input-row-name" id="inputRowName">장비명</div>
+          <div class="input-fields">
+
+            <!-- 성명 -->
+            <div class="field-group">
+              <label class="field-label">성명</label>
+              <input type="text" id="personNameInp" class="person-inp"
+                placeholder="성명 입력" autocomplete="off">
             </div>
-            <span class="half-mins" id="halfMinsLabel">– 분</span>
-            <div class="cnt-ctrl">
-              <button class="btn-c" onclick="changeQty(-1)">−</button>
-              <span class="cnt-val" id="qtyVal">1</span>
-              <button class="btn-c" onclick="changeQty(+1)">+</button>
+
+            <!-- 임대기간 -->
+            <div class="field-group">
+              <label class="field-label">임대기간</label>
+              <div class="days-ctrl">
+                <button class="day-btn" onclick="setDays(1)" id="dayBtn1">1일</button>
+                <button class="day-btn" onclick="setDays(2)" id="dayBtn2">2일</button>
+                <button class="day-btn" onclick="setDays(3)" id="dayBtn3">3일</button>
+              </div>
             </div>
-            <button class="btn-add" onclick="addEntry()">입력</button>
+
+            <!-- 출고/입고 -->
+            <div class="field-group">
+              <label class="field-label">출고/입고</label>
+              <div class="inout-ctrl">
+                <label class="chk-label" id="outLabel">
+                  <input type="checkbox" id="outChk" onchange="updateInOutLabel()">
+                  <span class="chk-box"></span>
+                  <span>출고</span>
+                </label>
+                <label class="chk-label" id="inLabel">
+                  <input type="checkbox" id="inChk" onchange="updateInOutLabel()">
+                  <span class="chk-box"></span>
+                  <span>입고</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- 반타임 안내 -->
+            <div class="half-info" id="halfInfo"></div>
+
           </div>
+          <button class="btn-add" onclick="addEntry()">입력</button>
         </div>
 
-        <!-- ④ 선택 기종 목록 -->
+        <!-- 선택 기종 요약 -->
         <div class="card-title" style="margin-top:4px">선택 기종 요약</div>
-        <div class="sel-list" id="selList"><div class="empty-msg">기종을 선택 후 입력하세요</div></div>
+        <div class="sel-list" id="selList">
+          <div class="empty-msg">장비를 선택 후 입력하세요</div>
+        </div>
         <button class="btn-reset-all" onclick="resetDay()">↺ 이 날짜 초기화</button>
       </div>
     </div>
+
 
   </div>
 </div>
@@ -392,6 +521,7 @@ const WDEF={
   '본소':[{id:'bs1',name:'임기제 1',type:'임기제'},{id:'bs2',name:'임기제 2',type:'임기제'},{id:'bs3',name:'기간제 1',type:'기간제'},{id:'bs4',name:'기간제 2',type:'기간제'}],
   '북부':[{id:'nb1',name:'임기제 1',type:'임기제'},{id:'nb2',name:'임기제 2',type:'임기제'},{id:'nb3',name:'기간제 1',type:'기간제'},{id:'nb4',name:'기간제 2',type:'기간제'}],
 };
+const EQUIP_LIST = {"본소": [{"n": "고구마수확기-01", "s": "DRK-650 / 1조", "m": 50}, {"n": "고구마수확기-02", "s": "DRK-650 / 1조", "m": 50}, {"n": "고구마수확기-03", "s": "DRK-650 / 1조", "m": 50}, {"n": "고추세척기-01", "s": "SHC-1000N / 고추", "m": 60}, {"n": "고추세척기-02", "s": "SHC-1000N / 고추", "m": 60}, {"n": "관리기-구굴기小-01", "s": "ASC-640 / 구굴기(小)", "m": 50}, {"n": "관리기-구굴기小-02", "s": "ASC-640 / 구굴기(小)", "m": 50}, {"n": "관리기-구굴기小-03", "s": "ASC-640 / 구굴기(小)", "m": 50}, {"n": "관리기-구굴기中-02", "s": "AMC-1000SM / 구굴기(中)", "m": 50}, {"n": "관리기-구굴기中-03", "s": "AMC-900SM / 구굴기(中)", "m": 50}, {"n": "관리기-구굴기中-04", "s": "AMC-900SM / 구굴기(中)", "m": 50}, {"n": "관리기-구굴기中-05", "s": "AMC-1000SM / 구굴기(中)", "m": 50}, {"n": "관리기-로터리-01", "s": "AMC-1000SM / 로타리(中)", "m": 90}, {"n": "관리기-로터리-02", "s": "AMC-1000SM / 로타리(中)", "m": 90}, {"n": "관리기-로터리-03", "s": "AMC-1000SM / 로타리(中)", "m": 90}, {"n": "관리기-로터리-04", "s": "AMC-1000SM / 로타리(中)", "m": 90}, {"n": "관리기-로터리-05", "s": "AMC-1000SM / 로타리(中)", "m": 90}, {"n": "관리기-로터리-06", "s": "AMC-1000SM / 로타리(中)", "m": 90}, {"n": "관리기-쟁기-01", "s": "AMC-900SM / 쟁기(中)", "m": 50}, {"n": "관리기-쟁기-02", "s": "AMC-900SM / 쟁기(中)", "m": 50}, {"n": "관리기-피복기-01", "s": "AMC-900SM / 피복기(中)", "m": 50}, {"n": "관리기-피복기-02", "s": "AMC-900SM / 피복기(中)", "m": 50}, {"n": "관리기-피복기-03", "s": "AMC-1000SM / 피복기(中)", "m": 50}, {"n": "관리기-휴립기-01", "s": "AMC-1000SM / 휴립기(中)", "m": 50}, {"n": "관리기-휴립기-02", "s": "AMC-1000SM / 휴립기(中)", "m": 50}, {"n": "관리기-휴립기-03", "s": "AMC-1000SM / 휴립기(中)", "m": 50}, {"n": "관리기-휴립기-04", "s": "AMC-1000SM / 휴립기(中)", "m": 50}, {"n": "관리기-휴립피복기-01", "s": "AMC-1000SM / 휴립피복기(中)", "m": 50}, {"n": "관리기-휴립피복기-02", "s": "AMC-1000SM / 휴립피복기(中)", "m": 50}, {"n": "관리기-휴립피복기-03", "s": "AMC-1000SM / 휴립피복기(中)", "m": 50}, {"n": "굴착기-01", "s": "DX17Z-5 / 2TON", "m": 80}, {"n": "굴착기-02", "s": "DX17Z-5 / 2TON", "m": 80}, {"n": "논두렁조성기大-01", "s": "TANTAN-K5 / 大", "m": 90}, {"n": "논두렁조성기小-01", "s": "WJLF380 / 小", "m": 90}, {"n": "논두렁조성기小-02", "s": "WJLF380 / 小", "m": 90}, {"n": "논두렁조성기小-03", "s": "WJLF380 / 小", "m": 90}, {"n": "논두렁조성기小-04", "s": "WJLF380 / 小", "m": 90}, {"n": "논두렁조성기小-05", "s": "WJLF380 / 小", "m": 90}, {"n": "논두렁조성기中-01", "s": "WJLF750 / 中", "m": 90}, {"n": "논두렁조성기中-02", "s": "WJLF750 / 中", "m": 90}, {"n": "논두렁조성기中-03", "s": "WJLF750 / 中", "m": 90}, {"n": "농용굴착기-04", "s": "U-10-5 / 1TON", "m": 80}, {"n": "농용굴착기-05", "s": "U-10-5 / 1TON", "m": 80}, {"n": "덩굴파쇄기(보행)-01", "s": "HRT802 / 보행형", "m": 60}, {"n": "덩굴파쇄기(보행)-02", "s": "HRT802 / 보행형", "m": 60}, {"n": "덩굴파쇄기(보행)-03", "s": "HRT802 / 보행형", "m": 60}, {"n": "돌수집기-03", "s": "SH-L1400B / 1400", "m": 60}, {"n": "돌수집기-04", "s": "SH-L1400B / 1400", "m": 60}, {"n": "동력경운기-01", "s": "DT100N / 10HP", "m": 60}, {"n": "동력경운기-02", "s": "DT100N / 10HP", "m": 60}, {"n": "동력경운기-03", "s": "DT100N / 10HP", "m": 60}, {"n": "동력운반차-01", "s": "TKT-600B / 궤도", "m": 60}, {"n": "동력파종기1750-01", "s": "HG600A / 1750 (3조)", "m": 80}, {"n": "동력파종기1950-01", "s": "HG600A / 1950 (3조)", "m": 80}, {"n": "동력파종기2150-01", "s": "HG600A / 2150 (3조)", "m": 80}, {"n": "땅속작물수확기1000(진동식)-01", "s": "HD-C1000G / 1000-진동식", "m": 50}, {"n": "땅속작물수확기1000(체인식)-01", "s": "SH-900S / 1000-체인식", "m": 50}, {"n": "땅속작물수확기1400(진동식)-01", "s": "HD-C1400G / 1400-진동식", "m": 50}, {"n": "땅속작물수확기1500(체인식)-01", "s": "SH-1500BN / 1500-체인식", "m": 50}, {"n": "땅속작물수확기1600(진동식)-01", "s": "HD-D1600G / 1600-진동식", "m": 50}, {"n": "로터베이터1150-01", "s": "DWR115GM / 1150", "m": 90}, {"n": "로터베이터1150-02", "s": "DWR115GM / 1150", "m": 90}, {"n": "로터베이터1150-03", "s": "DWR115GM / 1150", "m": 90}, {"n": "로터베이터1550-01", "s": "WR1550MV / 1550", "m": 90}, {"n": "로터베이터1750-01", "s": "WJ175A / 1750", "m": 90}, {"n": "로터베이터1750-02", "s": "WR1750DGW / 1750", "m": 90}, {"n": "로터베이터1750-03", "s": "WR1750DGW / 1750", "m": 90}, {"n": "로터베이터1750-04", "s": "WCR1750MV / 1750", "m": 90}, {"n": "로터베이터1950-01", "s": "WJ195B / 1950", "m": 90}, {"n": "로터베이터1950-02", "s": "WJ195B / 1950", "m": 90}, {"n": "로터베이터2150-01", "s": "WR2150DGWJ / 2150", "m": 90}, {"n": "로터베이터2150-02", "s": "WR2150DGWJ / 2150", "m": 90}, {"n": "못자리성형기1750-01", "s": "DS-B003 / 1750-못자리", "m": 60}, {"n": "못자리성형기2150-01", "s": "DS-B003 / 2150-못자리", "m": 60}, {"n": "무논정지기2200-02", "s": "WJS220 / 2200", "m": 60}, {"n": "배토기1750-01", "s": "DOA-220 / 1750 (2조)", "m": 60}, {"n": "배토기1950-01", "s": "DOA-220 / 1950 (2조)", "m": 60}, {"n": "분무기-배낭식(살)-01", "s": "BY-HP2625 / 살충제", "m": 60}, {"n": "분무기-배낭식(제)-01", "s": "BY-HP2625 / 제초제", "m": 60}, {"n": "분무기-엔진식(살)-01", "s": "HS-70AD / 밀차 살충제", "m": 60}, {"n": "분무기-엔진식(살)-02", "s": "BCETA-80A / 밀차 살충제", "m": 60}, {"n": "분무기-엔진식(제)-01", "s": "WPS-80A / 밀차 제초제", "m": 60}, {"n": "비닐수거기-01", "s": "DH-T3000 / 1조", "m": 60}, {"n": "비료동력살포기-01", "s": "SG-6030D / 입제", "m": 40}, {"n": "비료동력살포기-02", "s": "MD-7030 / 입제", "m": 40}, {"n": "비료동력살포기-03", "s": "MD-7030 / 입제", "m": 40}, {"n": "비료살포기-01", "s": "JHT-320H / 300kg", "m": 40}, {"n": "비료살포기-02", "s": "JHT-320H / 300kg", "m": 40}, {"n": "비료살포기-03", "s": "JHT-550 / 500kg", "m": 40}, {"n": "비료살포기-04", "s": "JHT-550 / 500kg", "m": 40}, {"n": "석회살포기-01", "s": "IOD-750A / 500KG-석회", "m": 40}, {"n": "소형트랙터 18HP-01", "s": "XQ1018 / 18HP", "m": 90}, {"n": "소형트랙터 18HP-02", "s": "XQ1018 / 18HP", "m": 90}, {"n": "소형트랙터 25HP-01", "s": "CK250V / 25HP", "m": 90}, {"n": "소형트랙터 25HP-02", "s": "CK250V / 25HP", "m": 90}, {"n": "소형트랙터 25HP-03", "s": "CK250V / 25HP", "m": 90}, {"n": "소형트랙터 25HP-04", "s": "LK2805 / 25HP", "m": 90}, {"n": "원판쟁기10련-01", "s": "W300-DP / 원판-10련", "m": 60}, {"n": "원판쟁기10련-02", "s": "W300-DP / 원판-10련", "m": 60}, {"n": "원판쟁기10련-03", "s": "W300-DP / 원판-10련", "m": 60}, {"n": "원판쟁기4련-01", "s": "W42-DP / 원판-4련", "m": 60}, {"n": "원판쟁기6련-01", "s": "W62-DP / 원판-6련", "m": 60}, {"n": "원판쟁기6련-02", "s": "W62-DP / 원판-6련", "m": 60}, {"n": "원판쟁기6련-03", "s": "W62-DP / 원판-6련", "m": 60}, {"n": "원판쟁기8련-01", "s": "W82-DP / 원판-8련", "m": 60}, {"n": "원판쟁기8련-02", "s": "W82-DP / 원판-8련", "m": 60}, {"n": "원판쟁기8련-03", "s": "W82-DP / 원판-8련", "m": 60}, {"n": "원판쟁기8련-04", "s": "W82-DP / 원판-8련", "m": 60}, {"n": "육묘상자 정렬기-01", "s": "MDD 300 / 600~1500", "m": 60}, {"n": "육묘적재이송기-01", "s": "MDJI 1400 / 400~1,500", "m": 60}, {"n": "육묘적재이송기-02", "s": "MDJI 1400 / 400~1,500", "m": 60}, {"n": "이랑쟁기6련-01", "s": "DWS210 / 이랑-6련", "m": 60}, {"n": "잔가지파쇄기大-01", "s": "DLK210E / 2000kg/h", "m": 60}, {"n": "잔가지파쇄기大-02", "s": "DLK210E / 2000kg/h", "m": 60}, {"n": "잔가지파쇄기大-03", "s": "DLK210TRC / 2000kg/h", "m": 60}, {"n": "잡곡정선기-01", "s": "SB-200GI / 900", "m": 60}, {"n": "잡곡탈곡기-02", "s": "HSM BTH / 깨", "m": 90}, {"n": "잡곡탈곡기-04", "s": "HSM BTH2 / 깨", "m": 90}, {"n": "잡곡탈곡기-05", "s": "HSM BTH2 / 깨", "m": 90}, {"n": "잡곡탈곡기-06", "s": "HSM BTH2 / 깨", "m": 90}, {"n": "잡곡탈곡기-07", "s": "HSM BTH2 / 깨", "m": 90}, {"n": "잡곡탈곡기-08", "s": "HSM BTH2 / 깨", "m": 90}, {"n": "쟁기(2련)-01", "s": "SW-PN602 / 소형-2련", "m": 60}, {"n": "적심기-01", "s": "IPV-1200 / 1조", "m": 60}, {"n": "적심기-02", "s": "IPV-1200 / 1조", "m": 60}, {"n": "중경제초기1500-01", "s": "GM1500-L400A / 1500", "m": 60}, {"n": "중경제초기1800-01", "s": "GM1800-L550A / 1800", "m": 60}, {"n": "채소이식기(반자동)-01", "s": "PH1A / 반자동", "m": 60}, {"n": "채소이식기(반자동)-02", "s": "PH1A / 반자동", "m": 60}, {"n": "채소이식기(자동)-01", "s": "SKP-100-KR / 자동", "m": 60}, {"n": "콩선별기-01", "s": "BHB-2007 / 설치형", "m": 60}, {"n": "콩정선기-01", "s": "BH-30 / 900", "m": 60}, {"n": "콩정선기-02", "s": "BH-30 / 900", "m": 60}, {"n": "콩정선기-03", "s": "BH-30 / 900", "m": 60}, {"n": "콩정선기-04", "s": "BH-30 / 900", "m": 60}, {"n": "탈곡기(궤도)-01", "s": "ESP-R10 / 궤도", "m": 90}, {"n": "탈곡기(궤도)-02", "s": "ESP-R10 / 궤도", "m": 90}, {"n": "탈곡기(궤도)-03", "s": "DBT600H / 궤도", "m": 90}, {"n": "탈곡기(궤도)-04", "s": "DBT600H / 궤도", "m": 90}, {"n": "탈곡기(궤도)-05", "s": "PBTA1200 / 궤도", "m": 90}, {"n": "탈곡기(궤도)-06", "s": "DBT650H / 궤도", "m": 90}, {"n": "탈곡기(모터)-01", "s": "ESP-2 / 전기", "m": 90}, {"n": "탈곡기(모터)-02", "s": "ESP-2 / 전기", "m": 90}, {"n": "탈곡기(모터)-03", "s": "ESP-2 / 전기", "m": 90}, {"n": "탈곡기(모터)-04", "s": "JO-19621125 / 전기", "m": 90}, {"n": "탈곡기小-02", "s": "ESP-1 / 小", "m": 90}, {"n": "탈곡기小-05", "s": "ESP-1 / 小", "m": 90}, {"n": "탈곡기中-01", "s": "SBK-14000T / 中", "m": 90}, {"n": "탈곡기中-02", "s": "ESP-100P / 中", "m": 90}, {"n": "탈곡기中-03", "s": "ESP-100P / 中", "m": 90}, {"n": "탈곡기中-04", "s": "ESP-100P / 中", "m": 90}, {"n": "탈곡기中-05", "s": "ESP-100P / 中", "m": 90}, {"n": "탈곡기中-07", "s": "ESP-100P / 中", "m": 90}, {"n": "탈곡기中-08", "s": "ESP-100P / 中", "m": 90}, {"n": "탈곡기中-09", "s": "ESP-100P / 中", "m": 90}, {"n": "탈곡기中-10", "s": "SBK-14000T / 中", "m": 90}, {"n": "퇴비살포기(小)-01", "s": "GW-500H / 500KG-퇴비", "m": 90}, {"n": "퇴비살포기(小)-02", "s": "GW-900H / 900KG-퇴비", "m": 90}, {"n": "파종기-인력(비닐)-01", "s": "HG10A / 비닐", "m": 80}, {"n": "파종기-인력(비닐)-02", "s": "HG10A / 비닐", "m": 80}, {"n": "파종기-인력(비닐)-03", "s": "HG10A / 비닐", "m": 80}, {"n": "파종기-인력(일반)-01", "s": "HG10A / 일반", "m": 80}, {"n": "파종기-인력(일반)-02", "s": "HG10A / 일반", "m": 80}, {"n": "파종기-인력(일반)-03", "s": "HG10A / 일반", "m": 80}, {"n": "파종기-인력(일반)-04", "s": "HG10A / 일반", "m": 80}, {"n": "파종기-인력(일반)-05", "s": "HG10A / 일반", "m": 80}, {"n": "피복기-인력-01", "s": "BG-777B / 8자", "m": 60}, {"n": "피복기-인력-02", "s": "BG-777B / 8자", "m": 60}, {"n": "피복기-인력-03", "s": "BG-777B / 8자", "m": 60}, {"n": "피복기-인력-04", "s": "BG-777B / 8자", "m": 60}, {"n": "피복기-인력-05", "s": "BG-777B / 8자", "m": 60}, {"n": "휴립복토파종기(2조)-01", "s": "BG-800BCT / 휴립복토 (2조)", "m": 80}, {"n": "휴립복토파종기(2조)-03", "s": "BG-1580BC / 휴립복토 (2조)", "m": 80}, {"n": "휴립피복기2조-01", "s": "WJCM-2000 / 휴립피복 (2조)", "m": 60}, {"n": "휴립피복기2조-02", "s": "WJCM-2000 / 휴립피복 (2조)", "m": 60}], "북부": [{"n": "감자파종기-01", "s": "KG-PH9000 / 감자파종 (2조)", "m": 80}, {"n": "감자파종기-04", "s": "DRP-2000R / 감자파종 (2조)", "m": 80}, {"n": "감자파종기-06", "s": "DRP-2000R / 감자파종 (2조)", "m": 80}, {"n": "고구마수확기-01", "s": "DRK-650 / 경운기용", "m": 50}, {"n": "고구마수확기-02", "s": "DRK-650 / 경운기용", "m": 50}, {"n": "고구마수확기-03", "s": "DRK-650 / 경운기용", "m": 50}, {"n": "고구마수확기-04", "s": "DRK-650 / 경운기용", "m": 50}, {"n": "고추세척기-01", "s": "SHC-1000N / 고추", "m": 60}, {"n": "고추세척기-02", "s": "SHC-1000N / 고추", "m": 60}, {"n": "관리기-구굴기小-02", "s": "ASC-640 / 구굴기(小)", "m": 50}, {"n": "관리기-구굴기小-03", "s": "ASC-640 / 구굴기(小)", "m": 50}, {"n": "관리기-구굴기小-04", "s": "ASC-640 / 구굴기(小)", "m": 50}, {"n": "관리기-구굴기小-05", "s": "ASC-640 / 구굴기(小)", "m": 50}, {"n": "관리기-구굴기中-01", "s": "AMC-1000SM / 구굴기(中)", "m": 50}, {"n": "관리기-구굴기中-03", "s": "AMC-1000SM / 구굴기(中)", "m": 50}, {"n": "관리기-로터리-01", "s": "AMC-1000SM / 로타리(中)", "m": 90}, {"n": "관리기-로터리-03", "s": "AMC-1000SM / 로타리(中)", "m": 90}, {"n": "관리기-로터리-04", "s": "AMC-1000SM / 로타리(中)", "m": 90}, {"n": "관리기-로터리-05", "s": "AMC-1000SM / 로타리(中)", "m": 90}, {"n": "관리기-로터리-06", "s": "AMC-1000SM / 로타리(中)", "m": 90}, {"n": "관리기-로터리-07", "s": "AMC-1000SM / 로타리(中)", "m": 90}, {"n": "관리기-로터리-08", "s": "AMC-1000SM / 로타리(中)", "m": 90}, {"n": "관리기-쟁기-01", "s": "AMC-900SM / 쟁기(中)", "m": 50}, {"n": "관리기-피복기-01", "s": "AMC-900SM / 피복기(中)", "m": 50}, {"n": "관리기-피복기-02", "s": "AMC-900SM / 피복기(中)", "m": 50}, {"n": "관리기-휴립기-01", "s": "AMC-900SM / 휴립기(中)", "m": 50}, {"n": "관리기-휴립기-02", "s": "AMC-1000SM / 휴립기(中)", "m": 50}, {"n": "관리기-휴립기-03", "s": "AMC-1000SM / 휴립기(中)", "m": 50}, {"n": "관리기-휴립피복기-01", "s": "AMC-900SM / 휴립피복기(中)", "m": 50}, {"n": "관리기-휴립피복기-02", "s": "AMC-1000SM / 휴립피복기(中)", "m": 50}, {"n": "관리기-휴립피복기-03", "s": "AMC-1000SM / 휴립피복기(中)", "m": 50}, {"n": "구굴기 30 -01", "s": "OM312 / 30", "m": 60}, {"n": "굴착기-01", "s": "DX17Z-5 / 2TON", "m": 80}, {"n": "굴착기-02", "s": "DX17Z-5 / 2TON", "m": 80}, {"n": "논두렁조성기大-01", "s": "TANTAN-K5 / 大", "m": 90}, {"n": "논두렁조성기大-02", "s": "TANTAN-K5 / 大", "m": 90}, {"n": "논두렁조성기大-03", "s": "TANTAN-K5 / 大", "m": 90}, {"n": "논두렁조성기小-01", "s": "WJLF380 / 小", "m": 90}, {"n": "논두렁조성기小-02", "s": "WJLF380 / 小", "m": 90}, {"n": "논두렁조성기小-04", "s": "WJLF380 / 小", "m": 90}, {"n": "논두렁조성기小-05", "s": "WJLF380 / 小", "m": 90}, {"n": "논두렁조성기中-01", "s": "WJLF750 / 中", "m": 90}, {"n": "논두렁조성기中-02", "s": "WJLF750 / 中", "m": 90}, {"n": "논두렁조성기中-03", "s": "WJLF750 / 中", "m": 90}, {"n": "논두렁조성기中-04", "s": "WJLF750 / 中", "m": 90}, {"n": "농산물선별기-01", "s": "JK-GS4M / 900", "m": 60}, {"n": "농용굴착기-01", "s": "U-10-3 / 1TON", "m": 80}, {"n": "농용굴착기-02", "s": "U-10-3S / 1TON", "m": 80}, {"n": "농용굴착기-03", "s": "U-10-3S / 1TON", "m": 80}, {"n": "농용굴착기-04", "s": "U-10-5 / 1TON", "m": 80}, {"n": "농용굴착기-05", "s": "U-10-5 / 1TON", "m": 80}, {"n": "다목적파종기-01", "s": "GDS-10DMS / 10조", "m": 80}, {"n": "덩굴파쇄기(보행)-01", "s": "HRT802 / 보행형", "m": 60}, {"n": "덩굴파쇄기(보행)-02", "s": "HRT802 / 보행형", "m": 60}, {"n": "덩굴파쇄기(보행)-03", "s": "HRT802 / 보행형", "m": 60}, {"n": "덩굴파쇄기(보행)-04", "s": "HRT802 / 보행형", "m": 60}, {"n": "돌수집기-03", "s": "SH-L1400B / 1400", "m": 60}, {"n": "돌수집기-04", "s": "SH-L1400B / 1400", "m": 60}, {"n": "돌파쇄기-01", "s": "JYSC-1000 / 100cm", "m": 60}, {"n": "동력경운기-01", "s": "DT100N / 10HP", "m": 60}, {"n": "동력경운기-02", "s": "DT100N / 10HP", "m": 60}, {"n": "동력경운기-03", "s": "DT100N / 10HP", "m": 60}, {"n": "동력살분무기(살)-03", "s": "L3EDA / 액제", "m": 40}, {"n": "동력운반차-01", "s": "TKT-600B / 궤도", "m": 60}, {"n": "동력제초기(보행)-01", "s": "SGM71B / 보행형", "m": 60}, {"n": "동력파종기1750-01", "s": "HG600A / 1750 (3조)", "m": 80}, {"n": "동력파종기1950-01", "s": "HG600A / 1950 (3조)", "m": 80}, {"n": "동력파종기2150-01", "s": "HG600A / 2150 (3조)", "m": 80}, {"n": "동력파종기2350-01", "s": "HG500A / 2350 (4조)", "m": 80}, {"n": "동력파종기2350-02", "s": "HG500A / 2350 (4조)", "m": 80}, {"n": "땅속작물수확기(장기)-06", "s": "SH-T1400 / 1400-체인식", "m": 50}, {"n": "땅속작물수확기1000(진동식)-01", "s": "HD-C1000G / 1000-진동식", "m": 50}, {"n": "땅속작물수확기1000(체인식)-01", "s": "HD-DSH1000G / 1000-체인식", "m": 50}, {"n": "땅속작물수확기1000(체인식)-02", "s": "HD-DSH1000G / 1000-체인식", "m": 50}, {"n": "땅속작물수확기1000(체인식)-03", "s": "SH-900S / 1000-체인식", "m": 50}, {"n": "땅속작물수확기1300(체인식)-01", "s": "HADA-MH1300D / 1300-체인식", "m": 50}, {"n": "땅속작물수확기1400(진동식)-01", "s": "HD-C1400G / 1400-진동식", "m": 50}, {"n": "땅속작물수확기1400(진동식)-02", "s": "HD-C1400G / 1400-진동식", "m": 50}, {"n": "땅속작물수확기1400(체인식)-01", "s": "HD-DSH1400G / 1400-체인식", "m": 50}, {"n": "땅속작물수확기1400(체인식)-02", "s": "HD-DSH1400G / 1400-체인식", "m": 50}, {"n": "땅속작물수확기1400(체인식)-03", "s": "HD-DSH1400G / 1400-체인식", "m": 50}, {"n": "땅속작물수확기1500(체인식)-01", "s": "SH-1500BN / 1500-체인식", "m": 50}, {"n": "땅속작물수확기1600(진동식)-01", "s": "HD-D1600G / 1600-진동식", "m": 50}, {"n": "땅속작물수확기1600(진동식)-02", "s": "HD-D1600G / 1600-진동식", "m": 50}, {"n": "로터베이터1150-01", "s": "DWR115GM / 1150", "m": 90}, {"n": "로터베이터1150-02", "s": "DWR115GM / 1150", "m": 90}, {"n": "로터베이터1150-03", "s": "DWR115GM / 1150", "m": 90}, {"n": "로터베이터1550-01", "s": "WR1550MV / 1550", "m": 90}, {"n": "로터베이터1750-01", "s": "WJ175A / 1750", "m": 90}, {"n": "로터베이터1750-02", "s": "WR1750DGW / 1750", "m": 90}, {"n": "로터베이터1750-03", "s": "WR1750DGW / 1750", "m": 90}, {"n": "로터베이터1750-04", "s": "DW175GM / 1750", "m": 90}, {"n": "로터베이터1950-01", "s": "WJ195B / 1950", "m": 90}, {"n": "로터베이터1950-02", "s": "WR1950DGWJ / 1950", "m": 90}, {"n": "로터베이터1950-03", "s": "DWR 195GLJ / 1950", "m": 90}, {"n": "로터베이터1950-04", "s": "WR195DGW / 1950", "m": 90}, {"n": "로터베이터2150-01", "s": "WR2150DGWJ / 2150", "m": 90}, {"n": "로터베이터2150-02", "s": "WR2150DGWJ / 2150", "m": 90}, {"n": "로터베이터2150-03", "s": "WR2150DGW / 2150", "m": 90}, {"n": "로터베이터2350-01", "s": "AR5240SC / 2350", "m": 90}, {"n": "로터베이터2350-02", "s": "AR5240SC / 2350", "m": 90}, {"n": "마늘수확기-경운기-01", "s": "BKG-950 / 경운기용", "m": 50}, {"n": "마늘파종기-01", "s": "CH-06 / 6조", "m": 80}, {"n": "마늘파종기-트랙터-01", "s": "HADA-GPS9T / 마늘파종 (9조)", "m": 90}, {"n": "못자리성형기1750-01", "s": "DS-B003 / 1750-못자리", "m": 60}, {"n": "못자리성형기2150-01", "s": "DS-B003 / 2150-못자리", "m": 60}, {"n": "못자리성형기2150-02", "s": "DS-B003 / 2150-못자리", "m": 60}, {"n": "무논정지기2200-01", "s": "WJS220 / 2200", "m": 60}, {"n": "무논정지기2400-01", "s": "WJS240 / 2400", "m": 60}, {"n": "발근기-01", "s": "MT-G1800 / 1800", "m": 60}, {"n": "발근기-02", "s": "MT-G1800 / 1800", "m": 60}, {"n": "배토기1750-01", "s": "DOA-220 / 1750 (2조)", "m": 60}, {"n": "배토기1950-01", "s": "DOA-220 / 1950 (2조)", "m": 60}, {"n": "보통쟁기(3련)-01", "s": "KP300A / 보통-3련", "m": 60}, {"n": "분무기-배낭식(살)-01", "s": "BY-HP2625 / 베낭식-살충제", "m": 60}, {"n": "분무기-배낭식(제)-01", "s": "BY-HP2625 / 배낭식-제초제", "m": 60}, {"n": "분무기-엔진식(살)-01", "s": "GX200T2 / 살충제", "m": 60}, {"n": "분무기-엔진식(살)-02", "s": "BCEAT-80A / 살충제", "m": 60}, {"n": "분무기-엔진식(제)-01", "s": "HS-70AD / 제초제", "m": 60}, {"n": "붐스프레이어-01", "s": "BS-2000 / 600ℓ", "m": 60}, {"n": "붐스프레이어-02", "s": "BS-2000 / 600ℓ", "m": 60}, {"n": "비닐수거기-01", "s": "DH-T3000 / 1조", "m": 60}, {"n": "비닐수거기-02", "s": "DH-T3000 / 1조", "m": 60}, {"n": "비료동력살포기-01", "s": "SG-6030D / 입제", "m": 40}, {"n": "비료동력살포기-03", "s": "MD-7030 / 입제", "m": 40}, {"n": "비료동력살포기-04", "s": "SG-8030 / 입제", "m": 40}, {"n": "비료살포기-01", "s": "JHT-320H / 300kg", "m": 40}, {"n": "비료살포기-02", "s": "JHT-320H / 300kg", "m": 40}, {"n": "비료살포기-03", "s": "DP-2500H1 / 500kg", "m": 40}, {"n": "비료살포기-04", "s": "JHT-550H / 500kg", "m": 40}, {"n": "비료살포기-05", "s": "JHT-550 / 500kg", "m": 40}, {"n": "석회살포기-01", "s": "IOD-750A / 500KG-석회", "m": 40}, {"n": "소형트랙터 18HP-01", "s": "XQ1018 / 18HP", "m": 90}, {"n": "소형트랙터 18HP-02", "s": "XQ1018 / 18HP", "m": 90}, {"n": "소형트랙터 25HP-01", "s": "CK250V / 25HP", "m": 90}, {"n": "소형트랙터 25HP-02", "s": "CK250V / 25HP", "m": 90}, {"n": "소형트랙터 25HP-03", "s": "CK250V / 25HP", "m": 90}, {"n": "소형트랙터 25HP-04", "s": "LK2805 / 25HP", "m": 90}, {"n": "승용관리기 20HP-01", "s": "CFM-2000 / 20HP", "m": 50}, {"n": "승용관리기 20HP-02", "s": "CFM-2000 / 20HP", "m": 50}, {"n": "심경쟁기(5련)-01", "s": "WHDP500 / 심경-5련", "m": 60}, {"n": "심경쟁기(5련)-02", "s": "WHDP500 / 심경-5련", "m": 60}, {"n": "심경쟁기(5련)-03", "s": "DSS5 / 심경-5련(유압)", "m": 60}, {"n": "심경쟁기(7련)-01", "s": "SDS-P7 / 심경-7련(유압)", "m": 60}, {"n": "심토파쇄기1456-01", "s": "BBK1456L / 비반가1456", "m": 60}, {"n": "심토파쇄기1456-02", "s": "BBK1456L / 비반가1456", "m": 60}, {"n": "심토파쇄기1606-01", "s": "RDK1606S / 비반가1606", "m": 60}, {"n": "심토파쇄기1606-02", "s": "BBK1606 / 비반가1606", "m": 60}, {"n": "심토파쇄기1808-01", "s": "BBK1808 / 비반가1808", "m": 60}, {"n": "심토파쇄기2008-01", "s": "BBK2008 / 비반가2008", "m": 60}, {"n": "심토파쇄기2210-01", "s": "RDK2210 / 비반가2210", "m": 60}, {"n": "심토파쇄기2210-02", "s": "RDK2210 / 비반가2210", "m": 60}, {"n": "양용쟁기(3련)-01", "s": "KP3300W / 양용-3련", "m": 60}, {"n": "양용쟁기(3련)-02", "s": "KP3300W / 양용-3련", "m": 60}, {"n": "양용쟁기(4련)-01", "s": "KP4400W / 양용-4련", "m": 60}, {"n": "양용쟁기(4련)-02", "s": "KP4500W / 양용-4련", "m": 60}, {"n": "옥수수파종기-01", "s": "PLANTER3 / 4조", "m": 80}, {"n": "원판쟁기10련-01", "s": "W300-DP / 원판-10련", "m": 60}, {"n": "원판쟁기10련-02", "s": "W300-DP / 원판-10련", "m": 60}, {"n": "원판쟁기10련-03", "s": "W300-DP / 원판-10련", "m": 60}, {"n": "원판쟁기10련-04", "s": "W300-DP / 원판-10련", "m": 60}, {"n": "원판쟁기10련-05", "s": "W300-DP / 원판-10련", "m": 60}, {"n": "원판쟁기4련-01", "s": "W42-DP / 원판-4련", "m": 60}, {"n": "원판쟁기6련-01", "s": "W62-DP / 원판-6련", "m": 60}, {"n": "원판쟁기6련-02", "s": "W62-DP / 원판-6련", "m": 60}, {"n": "원판쟁기6련-03", "s": "W62-DP / 원판-6련", "m": 60}, {"n": "원판쟁기8련-01", "s": "W82-DP / 원판-8련", "m": 60}, {"n": "원판쟁기8련-02", "s": "W82-DP / 원판-8련", "m": 60}, {"n": "원판쟁기8련-03", "s": "W82-DP / 원판-8련", "m": 60}, {"n": "원판쟁기8련-04", "s": "W82-DP / 원판-8련", "m": 60}, {"n": "육묘상자 정렬기-01", "s": "MDD 300 / 600~1500", "m": 60}, {"n": "육묘적재이송기-01", "s": "MDJI 1400 / 400~1,500", "m": 60}, {"n": "육묘적재이송기-02", "s": "MDJI 1400 / 400~1,500", "m": 60}, {"n": "육묘적재이송기-03", "s": "MDJI 1400 / 400~1,500", "m": 60}, {"n": "이동형 열풍 방상팬-12", "s": "/ 이동형", "m": 60}, {"n": "이랑쟁기6련-01", "s": "DWS210 / 이랑-6련", "m": 60}, {"n": "이랑쟁기6련-02", "s": "DWS210 / 이랑-6련", "m": 60}, {"n": "이랑쟁기9련-01", "s": "DWS260 / 이랑-9련", "m": 60}, {"n": "잔가지파쇄기大-01", "s": "DLK210E / 2000kg/h", "m": 60}, {"n": "잔가지파쇄기大-02", "s": "DLK210E / 2000kg/h", "m": 60}, {"n": "잔가지파쇄기大-03", "s": "DLK210E / 2000kg/h", "m": 60}, {"n": "잔가지파쇄기小-02", "s": "DLK15TRC-H / 1300kg/h", "m": 60}, {"n": "잡곡예취기-01", "s": "HSM-BE224 / 2조식", "m": 60}, {"n": "잡곡예취기-02", "s": "HSM-BE224 / 2조식", "m": 60}, {"n": "잡곡정선기-01", "s": "SB-200GI / 900", "m": 60}, {"n": "잡곡탈곡기-01", "s": "HSM BTH / 깨", "m": 90}, {"n": "잡곡탈곡기-02", "s": "HSM BTH / 깨", "m": 90}, {"n": "잡곡탈곡기-03", "s": "HSM BTH / 깨", "m": 90}, {"n": "잡곡탈곡기-04", "s": "HSM BTH / 깨", "m": 90}, {"n": "잡곡탈곡기-05", "s": "HSM BTH2 / 깨", "m": 90}, {"n": "잡곡탈곡기-06", "s": "HSM BTH2 / 깨", "m": 90}, {"n": "잡곡탈곡기-07", "s": "HSM BTH2 / 깨", "m": 90}, {"n": "잡곡탈곡기-08", "s": "HSM BTH2 / 깨", "m": 90}, {"n": "쟁기(2련)-01", "s": "SW-PN602 / 소형-2련", "m": 60}, {"n": "적심기-01", "s": "IPV-1200 / 1조", "m": 60}, {"n": "적심기-02", "s": "IPV-1200 / 1조", "m": 60}, {"n": "적심기-03", "s": "IPV-1200 / 1조", "m": 60}, {"n": "적심기-04", "s": "IPV-1200 / 1조", "m": 60}, {"n": "줄기절단기-01", "s": "SH-1500MC / 150", "m": 60}, {"n": "줄기절단기-02", "s": "HADA-STD1400 / 150", "m": 60}, {"n": "중경제초기1500-01", "s": "GM1500-L400A / 1500", "m": 60}, {"n": "중경제초기1500-02", "s": "GM1500-L400A / 1500", "m": 60}, {"n": "중경제초기1800-01", "s": "GM1800-L550A / 1800", "m": 60}, {"n": "중경제초기1800-02", "s": "GM1800-L550A / 1800", "m": 60}, {"n": "채소이식기(반자동)-01", "s": "PH1A / 반자동", "m": 60}, {"n": "채소이식기(반자동)-02", "s": "PH1A / 반자동", "m": 60}, {"n": "콩예취기-01", "s": "M1-GS / 보행형", "m": 60}, {"n": "콩예취기-02", "s": "M1-GS / 보행형", "m": 60}, {"n": "콩예취기-03", "s": "ABH-100H / 보행형", "m": 60}, {"n": "콩정선기-01", "s": "BH-30 / 900", "m": 60}, {"n": "콩정선기-02", "s": "BH-30 / 900", "m": 60}, {"n": "콩정선기-03", "s": "BH-30 / 900", "m": 60}, {"n": "콩정선기-04", "s": "BH-30 / 900", "m": 60}, {"n": "탈곡기(궤도)-01", "s": "ESP-R10 / 궤도", "m": 90}, {"n": "탈곡기(궤도)-02", "s": "ESP-R10 / 궤도", "m": 90}, {"n": "탈곡기(궤도)-04", "s": "DBT600H / 궤도", "m": 90}, {"n": "탈곡기(궤도)-05", "s": "DBT650H / 궤도", "m": 90}, {"n": "탈곡기(궤도)-06", "s": "PBTA1200 / 궤도", "m": 90}, {"n": "탈곡기(모터)-01", "s": "ESP-2 / 전기", "m": 90}, {"n": "탈곡기(모터)-02", "s": "ESP-2 / 전기", "m": 90}, {"n": "탈곡기(모터)-03", "s": "ESP-2 / 전기", "m": 90}, {"n": "탈곡기(모터)-04", "s": "JO-19621125 / 전기", "m": 90}, {"n": "탈곡기小-01", "s": "ESP-1 / 小", "m": 90}, {"n": "탈곡기小-02", "s": "ESP-1 / 小", "m": 90}, {"n": "탈곡기小-03", "s": "ESP-1 / 小", "m": 90}, {"n": "탈곡기中-01", "s": "SBK-14000T / 中", "m": 90}, {"n": "탈곡기中-04", "s": "ESP-100P / 中", "m": 90}, {"n": "탈곡기中-05", "s": "ESP-100P / 中", "m": 90}, {"n": "탈곡기中-06", "s": "ESP-100P / 中", "m": 90}, {"n": "탈곡기中-07", "s": "ESP-100P / 中", "m": 90}, {"n": "탈곡기中-08", "s": "ESP-100P / 中", "m": 90}, {"n": "탈곡기中-09", "s": "ESP-100P / 中", "m": 90}, {"n": "탈곡기中-10", "s": "SBK-14000T / 中", "m": 90}, {"n": "퇴비살포기(大)-01", "s": "TS-45H / 4.5TON-퇴비", "m": 90}, {"n": "퇴비살포기(大)-02", "s": "TS-45H / 4.5TON-퇴비", "m": 90}, {"n": "퇴비살포기(小)-01", "s": "GW-500H / 500KG-퇴비", "m": 90}, {"n": "퇴비살포기(小)-02", "s": "GW-500H / 500KG-퇴비", "m": 90}, {"n": "퇴비살포기(小)-03", "s": "GW-900H / 900KG-퇴비", "m": 90}, {"n": "퇴비살포기(小)-04", "s": "GW-900H / 900KG-퇴비", "m": 90}, {"n": "퇴비살포기(小)-05", "s": "GW-900H / 900KG-퇴비", "m": 90}, {"n": "퇴비살포기(승용)-01", "s": "HSC-1500W / 자주형 1000kg", "m": 90}, {"n": "퇴비살포기(승용)-02", "s": "HSC-1500W / 자주형 1000kg", "m": 90}, {"n": "퇴비살포기(中)-01", "s": "HM-3000 / 3.5TON-퇴비", "m": 90}, {"n": "퇴비살포기(中)-02", "s": "HM-3000 / 3.5TON-퇴비", "m": 90}, {"n": "파종기-인력(비닐)-01", "s": "HG10A / 비닐", "m": 80}, {"n": "파종기-인력(비닐)-02", "s": "HG10A / 비닐", "m": 80}, {"n": "파종기-인력(일반)-01", "s": "HG10A / 일반", "m": 80}, {"n": "파종기-인력(일반)-02", "s": "HG10A / 일반", "m": 80}, {"n": "파종기-인력(일반)-03", "s": "HG10A / 일반", "m": 80}, {"n": "파종기-인력(일반)-04", "s": "HG10A / 일반", "m": 80}, {"n": "파종기-인력(일반)-05", "s": "HG10A / 일반", "m": 80}, {"n": "평탄쟁기-01", "s": "FDS-R6 / 평탄-6련", "m": 60}, {"n": "평탄쟁기-02", "s": "FDS-R6 / 평탄-6련", "m": 60}, {"n": "피복기-인력-01", "s": "BG-777B / 8자", "m": 60}, {"n": "피복기-인력-03", "s": "BG-777B / 8자", "m": 60}, {"n": "피복기-인력-04", "s": "BG-777B / 8자", "m": 60}, {"n": "피복기-인력-05", "s": "BG-777B / 8자", "m": 60}, {"n": "피복기-인력-06", "s": "BG-777B / 8자", "m": 60}, {"n": "휴립복토기-01", "s": "WJ2-300 / 휴립복토 (1조)", "m": 60}, {"n": "휴립복토파종기(2조)-01", "s": "BG-800BCT / 휴립복토 (2조)", "m": 80}, {"n": "휴립복토파종기(2조)-02", "s": "BG-800BCT / 휴립복토 (2조)", "m": 80}, {"n": "휴립복토파종기(2조1두둑)-01", "s": "BG-1260BC / 휴립복토 (2조1두둑)", "m": 80}, {"n": "휴립복토파종기(2조2두둑)-01", "s": "BG-1580BC / 휴립복토(2조2두둑)", "m": 80}, {"n": "휴립복토파종기(2조2두둑)-02", "s": "BG-1580BC / 휴립복토(2조2두둑)", "m": 80}, {"n": "휴립복토파종기(4조2두둑)-01", "s": "BG-2400BC / 휴립복토 (4조2두둑)", "m": 80}, {"n": "휴립피복기1조-01", "s": "BG-600B / 휴립피복 (1조)", "m": 60}, {"n": "휴립피복기2조-01", "s": "WJCM-2000 / 휴립피복 (2조)", "m": 60}, {"n": "휴립피복기2조-02", "s": "WJCM-2000 / 휴립피복 (2조)", "m": 60}, {"n": "휴립피복기2조-03", "s": "WJCM-2000 / 휴립피복 (2조)", "m": 60}]};
 const SCHED=[{label:'정상근무 (7h)',value:420},{label:'반일 오전 (3.5h)',value:210},{label:'반일 오후 (3.5h)',value:210},{label:'휴가 / 결근 (0h)',value:0}];
 const DOW=['일','월','화','수','목','금','토'];
 
@@ -620,37 +750,11 @@ function scheduleSave(){
 // ─── 계산 ───
 function getAvailSite(dk,st){return Object.values(state[dk][st].workers).reduce((a,b)=>a+b,0);}
 function getAvail(dk,st){if(st==='전체')return SITES.reduce((s,x)=>s+getAvailSite(dk,x),0);return getAvailSite(dk,st);}
-function getUsedSite(dk,st){return state[dk][st].entries.reduce((s,e)=>s+e.mins*e.qty,0);}
 function getUsed(dk,st){if(st==='전체')return SITES.reduce((s,x)=>s+getUsedSite(dk,x),0);return getUsedSite(dk,st);}
 function getPct(dk,st){const a=getAvail(dk,st);return a?Math.round(getUsed(dk,st)/a*100):0;}
 function getStatus(p){return p>=100?'마감':p>=80?'주의':'정상';}
 
 // ─── 드롭다운 ───
-function openDD(){
-  document.getElementById('dropdown').classList.toggle('open');
-  if(document.getElementById('dropdown').classList.contains('open')){
-    document.getElementById('ddFilter').value='';
-    filterDD();
-    setTimeout(()=>document.getElementById('ddFilter').focus(),50);
-  }
-}
-function filterDD(){
-  const q=document.getElementById('ddFilter').value.toLowerCase();
-  document.getElementById('ddList').innerHTML=MACHINES.filter(m=>m.n.toLowerCase().includes(q)).map(m=>
-    '<div class="dd-item" onclick="selectMachine(\''+m.n+'\')"><span class="dd-name">'+m.n+'</span><span class="dd-mins">'+m.m+'분</span></div>'
-  ).join('');
-}
-function selectMachine(name){
-  selMachine=name; selHalf=false; selQty=1;
-  document.getElementById('searchInp').value=name;
-  document.getElementById('dropdown').classList.remove('open');
-  document.getElementById('inputRow').classList.add('visible');
-  document.getElementById('inputRowName').textContent=name;
-  document.getElementById('halfToggle').classList.remove('on');
-  document.getElementById('halfCheck').checked=false;
-  document.getElementById('qtyVal').textContent='1';
-  updateHalfLabel();
-}
 function toggleHalf(){
   selHalf=!selHalf;
   const tog=document.getElementById('halfToggle');
@@ -669,25 +773,6 @@ function updateHalfLabel(){
 function changeQty(d){
   selQty=Math.max(1,selQty+d);
   document.getElementById('qtyVal').textContent=selQty;
-}
-function addEntry(){
-  if(!selMachine) return;
-  if(!GH_TOKEN) return;
-  const dk = getDkeys()[curIdx];
-  const site = curSite==='전체' ? '본소' : curSite;
-  const base = MMAP[selMachine] || 0;
-  const mins = selHalf ? base/2 : base;
-  state[dk][site].entries.push({name:selMachine, half:selHalf, qty:selQty, mins});
-  // 즉시 저장 (딜레이 없이)
-  if(saveTimer) clearTimeout(saveTimer);
-  saveData();
-  // 입력창 초기화
-  selQty=1; selHalf=false;
-  document.getElementById('qtyVal').textContent='1';
-  document.getElementById('halfToggle').classList.remove('on');
-  document.getElementById('halfCheck').checked=false;
-  updateHalfLabel();
-  renderGauge(); renderSelList(); renderDateTabs(); renderMiniTable();
 }
 
 function delEntry(site,idx){
@@ -710,7 +795,14 @@ function renderAll(){
   DKEYS.forEach(dk=>ensureDay(dk));
   renderDateTabs();
   const d=DATES[curIdx],dk=DKEYS[curIdx];
-  document.getElementById('dateBar').textContent='📅 '+d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일 ('+DOW[d.getDay()]+'요일)'+(isToday(d)?' — 오늘':'');
+  const _dkCur = getDkeys()[curIdx];
+  const _isHolCur = getHolidays().includes(_dkCur);
+  document.getElementById('dateBar').innerHTML =
+    '📅 '+d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일 ('+DOW[d.getDay()]+'요일)'+(isToday(d)?' — 오늘':'')
+    +(_isHolCur?' <span style="color:var(--red);font-size:11px">🔴 휴무일</span>':'')
+    +' <button onclick="toggleHoliday(''+_dkCur+'')" style="margin-left:8px;padding:2px 8px;background:transparent;border:1px solid '+(_isHolCur?'var(--red)':'var(--border)')+';border-radius:8px;color:'+(_isHolCur?'var(--red)':'var(--muted)')+';font-size:10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif">'+(_isHolCur?'휴무 해제':'휴무 지정')+'</button>';
+  // dummy to avoid reassignment error
++d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일 ('+DOW[d.getDay()]+'요일)'+(isToday(d)?' — 오늘':'');
   renderWorkers();renderGauge();renderSelList();renderMiniTable();
 }
 
@@ -751,16 +843,19 @@ function renderGauge(){
 }
 
 function renderSelList(){
-  const dk=getDkeys()[curIdx];
-  const showSites=curSite==='전체'?SITES:[curSite];
-  const el=document.getElementById('selList');
-  let h='';
-  showSites.forEach(st=>{
-    const entries=state[dk][st].entries;
-    entries.forEach((e,i)=>{
-      const totalMins=e.mins*e.qty;
-      const isFirst=i===0, isLast=i===entries.length-1;
-      h+=`<div class="sel-item ${e.half?'half':'full'}"
+  const dk = getDkeys()[curIdx];
+  const showSites = curSite==='전체' ? SITES : [curSite];
+  const el = document.getElementById('selList');
+  let h = '';
+  showSites.forEach(st => {
+    const entries = state[dk][st].entries;
+    entries.forEach((e, i) => {
+      const totalMins = calcMinsForDate(e, dk);
+      if (totalMins === 0 && e.startDate !== dk) return; // 이 날짜 무관
+      const isFirst = i === 0, isLast = i === entries.length - 1;
+      const dayLabel = e.days > 1 ? `${Math.round((new Date(dk)-new Date(e.startDate))/86400000)+1}/${e.days}일차` : '1일';
+      const halfLabel = e.days > 1 ? '반타임 '+(e.baseMins/2)+'분' : '전타임 '+e.baseMins+'분';
+      h += `<div class="sel-item ${e.days>1?'half':'full'}"
         draggable="true" data-site="${st}" data-idx="${i}"
         ondragstart="dragStart(event)" ondragover="dragOver(event)"
         ondrop="dragDrop(event)" ondragend="dragEnd(event)">
@@ -770,40 +865,25 @@ function renderSelList(){
           <button class="move-btn" onclick="moveEntry('${st}',${i},+1)"
             ${isLast?'disabled style="opacity:.25;pointer-events:none"':''}>&#9660;</button>
         </div>
-        <div class="sel-item-info">
-          <div class="sel-item-name">${e.name} &times; ${e.qty}</div>
+        <div class="sel-item-info" style="flex:1;min-width:0">
+          <div class="sel-item-name">${e.equipName}</div>
+          <div class="sel-item-person">👤 ${e.personName}</div>
           <div class="sel-item-meta">
-            ${e.half?'<span class="tag tag-half">반타임 '+e.mins+'분</span>':'<span class="tag tag-full">전타임 '+e.mins+'분</span>'}
+            <span class="tag ${e.days>1?'tag-half':'tag-full'}">${halfLabel}</span>
+            <span class="tag tag-site">${dayLabel}</span>
             ${curSite==='전체'?'<span class="tag tag-site">'+st+'</span>':''}
           </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:3px;flex-shrink:0">
-          <button class="btn-c" style="width:19px;height:19px;font-size:12px" onclick="changeEntryQty('${st}',${i},-1)">&#8722;</button>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:#fff;width:18px;text-align:center">${e.qty}</span>
-          <button class="btn-c" style="width:19px;height:19px;font-size:12px" onclick="changeEntryQty('${st}',${i},+1)">&#43;</button>
+          <div class="inout-badges">
+            <span class="badge-out ${e.outDone?'done':'badge-pending'}">출고${e.outDone?'✓':'?'}</span>
+            <span class="badge-in  ${e.inDone ?'done':'badge-pending'}">입고${e.inDone ?'✓':'?'}</span>
+          </div>
         </div>
         <span class="sel-mins">${totalMins}분</span>
         <button class="btn-del" onclick="delEntry('${st}',${i})" title="삭제">&#10005;</button>
       </div>`;
     });
   });
-  el.innerHTML=h||'<div class="empty-msg">기종을 선택 후 입력하세요</div>';
-}
-
-// ── 수량 조절 ──
-function changeEntryQty(site, idx, delta){
-  const dk = getDkeys()[curIdx];
-  const entries = state[dk][site].entries;
-  const newQty = entries[idx].qty + delta;
-  if(newQty <= 0){
-    // 0이 되면 삭제
-    entries.splice(idx, 1);
-  } else {
-    entries[idx].qty = newQty;
-  }
-  if(saveTimer) clearTimeout(saveTimer);
-  saveData();
-  renderGauge(); renderSelList(); renderDateTabs(); renderMiniTable();
+  el.innerHTML = h || '<div class="empty-msg">장비를 선택 후 입력하세요</div>';
 }
 
 // ── 상하 이동 ──
@@ -900,8 +980,326 @@ if(localStorage.getItem('gh_auth') === 'ok') {
   initState();
   renderAll();
 }
-document.getElementById('headerSub').textContent='파주시농기계임대사업소 · '+t.getFullYear()+'년 '+(t.getMonth()+1)+'월 '+t.getDate()+'일';
+document.getElementById('headerSub').textContent='파주시 농업기계임대사업소 · '+t.getFullYear()+'년 '+(t.getMonth()+1)+'월 '+t.getDate()+'일';
 loadData();
+
+
+// ══════════════════════════════════════════════
+// 새 입력 시스템
+// ══════════════════════════════════════════════
+
+// 입력 상태
+let selEquip = null;   // {n, s, m}
+let selDays  = 1;
+let inputSite = null;  // 현재 입력 사업소
+
+// 입력 패널 타이틀 업데이트
+function updateInputTitle() {
+  const s = curSite === '전체' ? '전체' : curSite;
+  document.getElementById('inputPanelTitle').textContent =
+    '임대 기종별 건수 입력' + (curSite !== '전체' ? ' — ' + curSite : '');
+}
+
+// ── 드롭다운 ──
+function openDD() {
+  document.getElementById('dropdown').classList.toggle('open');
+  if (document.getElementById('dropdown').classList.contains('open')) {
+    document.getElementById('ddFilter').value = '';
+    filterDD();
+    setTimeout(() => document.getElementById('ddFilter').focus(), 50);
+  }
+}
+
+function filterDD() {
+  const q = (document.getElementById('ddFilter').value || '').toLowerCase();
+  const site = curSite === '전체' ? null : curSite;
+  let list = [];
+  if (!site) {
+    ['본소','북부'].forEach(st => {
+      EQUIP_LIST[st].forEach(e => list.push({...e, site: st}));
+    });
+  } else {
+    EQUIP_LIST[site].forEach(e => list.push({...e, site}));
+  }
+  const filtered = q ? list.filter(e =>
+    e.n.toLowerCase().includes(q) || e.s.toLowerCase().includes(q)
+  ) : list;
+
+  document.getElementById('ddList').innerHTML = filtered.map(e =>
+    `<div class="dd-item" onclick="selectEquip(${JSON.stringify(e).replace(/"/g,'&quot;')})">
+      <span class="dd-name">${e.n}</span>
+      <span class="dd-mins" style="font-size:10px;color:var(--muted)">${e.s}</span>
+    </div>`
+  ).join('') || '<div style="padding:12px;text-align:center;color:var(--muted);font-size:12px">검색 결과 없음</div>';
+}
+
+function selectEquip(e) {
+  selEquip = e;
+  inputSite = e.site;
+  document.getElementById('searchInp').value = e.n + ' / ' + e.s;
+  document.getElementById('dropdown').classList.remove('open');
+  document.getElementById('inputRow').classList.add('visible');
+  document.getElementById('inputRowName').textContent = e.n;
+  document.getElementById('personNameInp').value = '';
+  setDays(1);
+  updateHalfInfo();
+  setTimeout(() => document.getElementById('personNameInp').focus(), 50);
+}
+
+// ── 기간 선택 ──
+function setDays(d) {
+  selDays = d;
+  [1,2,3].forEach(n => {
+    document.getElementById('dayBtn'+n).classList.toggle('active', n === d);
+  });
+  // 출고/입고 체크박스 자동 설정
+  const dk = getDkeys()[curIdx];
+  document.getElementById('outChk').checked = true;
+  document.getElementById('inChk').checked = (d === 1); // 1일만 당일 입고
+  updateHalfInfo();
+}
+
+function updateInOutLabel() { updateHalfInfo(); }
+
+function updateHalfInfo() {
+  if (!selEquip) return;
+  const dk = getDkeys()[curIdx];
+  const isHoliday = getHolidays().includes(dk);
+  const outChk = document.getElementById('outChk').checked;
+  const inChk  = document.getElementById('inChk').checked;
+  const info   = document.getElementById('halfInfo');
+  const base   = selEquip.m;
+
+  let msgs = [];
+  if (selDays === 1) {
+    msgs.push('전타임 ' + base + '분 (출입고 당일)');
+  } else {
+    msgs.push('출고일: 반타임 ' + (base/2) + '분');
+    msgs.push('입고일: 반타임 ' + (base/2) + '분');
+  }
+  info.textContent = msgs.join(' / ');
+  info.classList.add('show');
+}
+
+// ── 입력 추가 ──
+function addEntry() {
+  if (!selEquip) return;
+  const person = document.getElementById('personNameInp').value.trim();
+  if (!person) {
+    document.getElementById('personNameInp').style.borderColor = 'var(--red)';
+    document.getElementById('personNameInp').focus();
+    return;
+  }
+  document.getElementById('personNameInp').style.borderColor = '';
+
+  const dk = getDkeys()[curIdx];
+  const startDate = dk;
+  const site = inputSite || (curSite === '전체' ? '본소' : curSite);
+  const outDone = document.getElementById('outChk').checked;
+  const inDone  = document.getElementById('inChk').checked;
+
+  const entry = {
+    id: Date.now() + Math.random(),
+    equipName: selEquip.n,
+    equipSpec: selEquip.s,
+    personName: person,
+    days: selDays,
+    startDate: startDate,
+    outDone: outDone,
+    inDone: inDone,
+    site: site,
+    baseMins: selEquip.m,
+  };
+
+  ensureDay(dk);
+  state[dk][site].entries.push(entry);
+
+  // 기간에 걸친 날짜들도 ensure
+  for (let i = 1; i < selDays; i++) {
+    const d = new Date(startDate);
+    d.setDate(d.getDate() + i);
+    const dki = d.toISOString().slice(0,10);
+    ensureDay(dki);
+  }
+
+  if (saveTimer) clearTimeout(saveTimer);
+  saveData();
+
+  // 입력창 초기화
+  selEquip = null; selDays = 1;
+  document.getElementById('searchInp').value = '';
+  document.getElementById('inputRow').classList.remove('visible');
+  document.getElementById('halfInfo').classList.remove('show');
+  [1,2,3].forEach(n => document.getElementById('dayBtn'+n).classList.remove('active'));
+
+  renderAll();
+}
+
+// ── 정비시간 계산 재정의 ──
+function getUsedSite(dk, site) {
+  if (!state[dk] || !state[dk][site]) return 0;
+  let total = 0;
+  // 모든 날짜 entry 중 이 날짜(dk)에 해당하는 정비시간 합산
+  Object.keys(state).forEach(startDk => {
+    if (!state[startDk] || !state[startDk][site]) return;
+    state[startDk][site].entries.forEach(e => {
+      const mins = calcMinsForDate(e, dk);
+      total += mins;
+    });
+  });
+  return total;
+}
+
+function calcMinsForDate(entry, targetDk) {
+  const start = new Date(entry.startDate);
+  const target = new Date(targetDk);
+  const diff = Math.round((target - start) / 86400000);
+
+  if (entry.days === 1) {
+    // 1일 임대: 시작일에만 전타임
+    if (diff === 0) return entry.baseMins;
+    return 0;
+  } else {
+    // 2~3일 임대: 시작일 반타임, 마지막날 반타임
+    const lastDay = entry.days - 1;
+    if (diff === 0) return entry.baseMins / 2;      // 출고일 반타임
+    if (diff === lastDay) return entry.baseMins / 2; // 입고일 반타임
+    return 0;
+  }
+}
+
+// ── 휴무일 관리 ──
+function getHolidays() {
+  return JSON.parse(localStorage.getItem('holidays_' + GH_REPO) || '[]');
+}
+function saveHolidays(arr) {
+  localStorage.setItem('holidays_' + GH_REPO, JSON.stringify(arr));
+}
+function toggleHoliday(dk) {
+  const holidays = getHolidays();
+  const idx = holidays.indexOf(dk);
+  if (idx === -1) holidays.push(dk);
+  else holidays.splice(idx, 1);
+  saveHolidays(holidays);
+  renderAll();
+}
+
+// ── 입출고 팝업 ──
+function openInoutPopup() {
+  const DATES = getDates();
+  const DKEYS = getDkeys();
+  const idx = curIdx;
+  const holidays = getHolidays();
+  const DOW2 = ['일','월','화','수','목','금','토'];
+
+  // 전날, 오늘, 내일
+  const cols = [-1, 0, 1].map(offset => {
+    const i = idx + offset;
+    if (i < 0 || i >= DKEYS.length) return null;
+    return { dk: DKEYS[i], d: DATES[i], offset };
+  }).filter(Boolean);
+
+  document.getElementById('popupDateLabel').textContent =
+    DATES[idx].getFullYear() + '년 ' + (DATES[idx].getMonth()+1) + '월 ' + DATES[idx].getDate() + '일 기준';
+
+  const colsHtml = cols.map(col => {
+    const { dk, d, offset } = col;
+    const isToday2 = offset === 0;
+    const label = (d.getMonth()+1)+'/'+d.getDate()+' ('+DOW2[d.getDay()]+')' + (isToday2?' — 오늘':'');
+    const isHol = holidays.includes(dk);
+
+    // 이 날짜에 해당하는 입출고 건 수집
+    const entries = collectInoutForDate(dk);
+
+    // 미완결 건만
+    const pending = entries.filter(e => {
+      if (e.type === 'out') return !e.entry.outDone;
+      if (e.type === 'in')  return !e.entry.inDone;
+      return true;
+    });
+
+    const entriesHtml = pending.length === 0
+      ? '<div style="padding:12px;text-align:center;color:var(--muted);font-size:11px">작업 없음</div>'
+      : pending.map(item => {
+          const e = item.entry;
+          const uid = e.id + '_' + item.type;
+          const isOut = item.type === 'out';
+          const checked = isOut ? e.outDone : e.inDone;
+          const dayLabel = e.days > 1 ? `${item.dayNum}/${e.days}일차` : '1일';
+          return `<div class="popup-entry">
+            <div class="popup-entry-name">${e.equipName}</div>
+            <div class="popup-entry-person">👤 ${e.personName}</div>
+            <div class="popup-entry-days">${dayLabel} · ${isOut?'출고':'입고'}</div>
+            <div class="popup-chks">
+              <label class="popup-chk ${isOut?'out-chk':'in-chk'}">
+                <input type="checkbox" ${checked?'checked':''} onchange="toggleEntryCheck('${e.startDate}','${e.site}','${e.id}','${item.type}',this.checked)">
+                <span class="cb">✓</span>
+                <span>${isOut?'출고완료':'입고완료'}</span>
+              </label>
+            </div>
+          </div>`;
+        }).join('');
+
+    return `<div class="popup-col">
+      <div class="popup-col-hdr ${isToday2?'today':''}">
+        <span>${label}${isHol?' 🔴':''}</span>
+        <span class="cnt">${pending.length}건</span>
+      </div>
+      ${entriesHtml}
+    </div>`;
+  }).join('');
+
+  document.getElementById('popupCols').innerHTML = colsHtml;
+  document.getElementById('inoutPopup').classList.remove('hidden');
+}
+
+function collectInoutForDate(dk) {
+  const results = [];
+  const target = new Date(dk);
+  Object.keys(state).forEach(startDk => {
+    ['본소','북부'].forEach(site => {
+      if (!state[startDk] || !state[startDk][site]) return;
+      state[startDk][site].entries.forEach(e => {
+        const start = new Date(e.startDate);
+        const diff = Math.round((target - start) / 86400000);
+        // 출고일
+        if (diff === 0) {
+          results.push({ entry: e, type: 'out', dayNum: 1 });
+          if (e.days === 1) results.push({ entry: e, type: 'in', dayNum: 1 });
+        }
+        // 입고일 (2~3일 임대)
+        if (e.days > 1 && diff === e.days - 1) {
+          results.push({ entry: e, type: 'in', dayNum: e.days });
+        }
+      });
+    });
+  });
+  return results;
+}
+
+function toggleEntryCheck(startDk, site, entryId, type, val) {
+  if (!state[startDk] || !state[startDk][site]) return;
+  const entry = state[startDk][site].entries.find(e => String(e.id) === String(entryId));
+  if (!entry) return;
+  if (type === 'out') entry.outDone = val;
+  else entry.inDone = val;
+  if (saveTimer) clearTimeout(saveTimer);
+  saveData();
+  renderAll();
+  // 팝업 갱신
+  openInoutPopup();
+}
+
+function closePopup() {
+  document.getElementById('inoutPopup').classList.add('hidden');
+}
+
+// 팝업 외부 클릭 닫기
+document.addEventListener('click', e => {
+  const popup = document.getElementById('inoutPopup');
+  if (!popup.classList.contains('hidden') && e.target === popup) closePopup();
+});
+
 </script>
 </body>
 </html>
