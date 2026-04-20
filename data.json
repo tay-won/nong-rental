@@ -10,19 +10,6 @@
         },
         "entries": [
           {
-            "id": 1776724545802.0183,
-            "equipName": "고구마수확기-02",
-            "equipSpec": "DRK-650/1조",
-            "personName": "00",
-            "days": 3,
-            "startDate": "2026-04-20",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 290,
-            "delivery": true
-          },
-          {
             "id": 1776724559119.417,
             "equipName": "관리기-로터리-04",
             "equipSpec": "AMC-1000SM/로타리(중)",
