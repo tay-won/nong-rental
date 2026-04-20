@@ -1244,14 +1244,12 @@ function addEntry() {
 
 // ── 정비시간 계산 재정의 ──
 function getUsedSite(dk, site) {
-  if (!state[dk] || !state[dk][site]) return 0;
+  // 부하율: calcMinsForLoad (effective 날짜 기준, 휴무일 반영)
   let total = 0;
-  // 모든 날짜 entry 중 이 날짜(dk)에 해당하는 정비시간 합산
   Object.keys(state).forEach(startDk => {
-    if (!state[startDk] || !state[startDk][site]) return;
+    if(!state[startDk] || !state[startDk][site]) return;
     state[startDk][site].entries.forEach(e => {
-      const mins = calcMinsForDate(e, dk);
-      total += mins;
+      total += calcMinsForLoad(e, dk);
     });
   });
   return total;
@@ -1276,14 +1274,8 @@ function getEffectiveInDate(entry, holidays) {
   return d.toISOString().slice(0,10);
 }
 
+// 목록 소요시간 표시용 (원래 날짜 기준)
 function calcMinsForDate(entry, targetDk) {
-  const holidays = getHolidays();
-
-  // ── 부하율 반영용: effective 날짜 기준 ──
-  const effectiveOut = getEffectiveOutDate(entry, holidays);
-  const effectiveIn  = getEffectiveInDate(entry, holidays);
-
-  // ── 목록 표시용: 원래 날짜 기준 소요시간 (표시 목적) ──
   const start = new Date(entry.startDate);
   const target = new Date(targetDk);
   const diff = Math.round((target - start) / 86400000);
@@ -1291,28 +1283,19 @@ function calcMinsForDate(entry, targetDk) {
 
   const isOriginalOut = diff === 0;
   const isOriginalIn  = (entry.days === 1 && diff === 0) || (entry.days > 1 && diff === lastDay);
-  const isEffectiveOut = effectiveOut === targetDk;
-  const isEffectiveIn  = effectiveIn  === targetDk;
-
-  let mins = 0;
 
   if(entry.days === 1) {
-    // 1일 임대: 전타임
-    if(isEffectiveOut) mins += entry.baseMins;
-    // 원래 날짜(휴무일)에도 표시용으로 반환
-    else if(isOriginalOut && !isEffectiveOut) mins += entry.baseMins;
+    if(isOriginalOut) return entry.baseMins;
   } else {
-    // 2~3일: 출고 반타임 + 입고 반타임
-    if(isEffectiveOut) mins += entry.baseMins / 2;
-    else if(isOriginalOut && !isEffectiveOut) mins += entry.baseMins / 2; // 표시용
-    if(isEffectiveIn) mins += entry.baseMins / 2;
-    else if(isOriginalIn && !isEffectiveIn) mins += entry.baseMins / 2; // 표시용
+    let mins = 0;
+    if(isOriginalOut) mins += entry.baseMins / 2;
+    if(isOriginalIn)  mins += entry.baseMins / 2;
+    return mins;
   }
-
-  return mins;
+  return 0;
 }
 
-// 부하율 전용 계산 (휴무일 반영, effective 날짜만)
+// 부하율 전용 (effective 날짜 기준, 휴무일 반영)
 function calcMinsForLoad(entry, targetDk) {
   const holidays = getHolidays();
   const effectiveOut = getEffectiveOutDate(entry, holidays);
@@ -1328,258 +1311,26 @@ function calcMinsForLoad(entry, targetDk) {
   return mins;
 }
 
-function getUsedSite(dk, site) {
-  if (!state[dk] || !state[dk][site]) return 0;
-  let total = 0;
-  // 모든 날짜 entry 중 이 날짜(dk)에 해당하는 정비시간 합산
-  Object.keys(state).forEach(startDk => {
-    if (!state[startDk] || !state[startDk][site]) return;
-    state[startDk][site].entries.forEach(e => {
-      const mins = calcMinsForDate(e, dk);
-      total += mins;
-    });
-  });
-  return total;
-}
-
-function getEffectiveOutDate(entry, holidays) {
-  // 출고일(시작일)이 휴무면 전날 근무일로
-  let d = new Date(entry.startDate);
-  while(holidays.includes(d.toISOString().slice(0,10))) {
-    d.setDate(d.getDate() - 1);
-  }
-  return d.toISOString().slice(0,10);
-}
-
-function getEffectiveInDate(entry, holidays) {
-  // 입고일 = 시작일 + (days-1)
-  let d = new Date(entry.startDate);
-  d.setDate(d.getDate() + entry.days - 1);
-  // 입고일이 휴무면 다음 근무일로
-  while(holidays.includes(d.toISOString().slice(0,10))) {
-    d.setDate(d.getDate() + 1);
-  }
-  return d.toISOString().slice(0,10);
-}
-
-function calcMinsForDate(entry, targetDk) {
-  const holidays = getHolidays();
-  const outDate = getEffectiveOutDate(entry, holidays);
-  const inDate  = getEffectiveInDate(entry, holidays);
-
-  if(entry.days === 1) {
-    // 1일 임대: 출고일=입고일 → 전타임
-    if(outDate === targetDk) return entry.baseMins;
-    return 0;
-  } else {
-    // 2~3일: 출고일 반타임 + 입고일 반타임
-    let mins = 0;
-    if(outDate === targetDk) mins += entry.baseMins / 2;
-    if(inDate  === targetDk) mins += entry.baseMins / 2;
-    return mins;
-  }
-}
-
-// ── 입출고 팝업 ──
-function openInoutPopup() {
-  const DATES = getDates();
-  const DKEYS = getDkeys();
-  const idx = curIdx;
-  const holidays = getHolidays();
-  const DOW2 = ['일','월','화','수','목','금','토'];
-
-  // 전날(-1), 오늘(0), 내일(+1)
-  const cols = [-1, 0, 1].map(offset => {
-    const i = idx + offset;
-    if(i < 0 || i >= DKEYS.length) return null;
-    return { dk: DKEYS[i], d: DATES[i], offset };
-  }).filter(Boolean);
-
-  const todayD = DATES[idx];
-  document.getElementById('popupDateLabel').textContent =
-    todayD.getFullYear() + '년 ' + (todayD.getMonth()+1) + '월 ' + todayD.getDate() + '일 기준';
-
-  // 전체 관련 entries 수집 (3일 범위)
-  const allEntries = [];
-  const rowMap = {}; // equipName+personName+startDate → row
-
-  cols.forEach(col => {
-    const items = collectInoutForDate(col.dk);
-    items.forEach(item => {
-      const key = item.entry.equipName + '|' + item.entry.personName + '|' + item.entry.startDate;
-      if(!rowMap[key]) {
-        rowMap[key] = {
-          entry: item.entry,
-          outCol: null,  // 출고가 어느 col에 있는지
-          inCol: null,   // 입고가 어느 col에 있는지
-        };
-        allEntries.push(rowMap[key]);
-      }
-      if(item.type === 'out') rowMap[key].outCol = col.offset;
-      if(item.type === 'in')  rowMap[key].inCol  = col.offset;
-    });
-  });
-
-  // 컬럼 헤더 생성
-  const colHeaders = cols.map(col => {
-    const d = col.d;
-    const isToday2 = col.offset === 0;
-    const isHol = holidays.includes(col.dk);
-    const dateStr = (d.getMonth()+1) + '/' + d.getDate();
-    const dowStr = DOW2[d.getDay()];
-
-    // 이 날짜의 출고/입고 건수
-    const items = collectInoutForDate(col.dk);
-    const outCnt = items.filter(i => i.type === 'out').length;
-    const inCnt  = items.filter(i => i.type === 'in').length;
-
-    let subLabel = '';
-    if(col.offset === -1) subLabel = `입고(${inCnt}건)`;
-    else if(col.offset === 0) subLabel = `출고(${outCnt}건) 입고(${inCnt}건)`;
-    else if(col.offset === 1) subLabel = `출고(${outCnt}건)`;
-
-    return {col, dateStr, dowStr, isToday2, isHol, subLabel, outCnt, inCnt};
-  });
-
-  // 오늘 총 출고/입고
-  const todayItems = collectInoutForDate(DKEYS[idx]);
-  const totalOut = todayItems.filter(i => i.type==='out').length;
-  const totalIn  = todayItems.filter(i => i.type==='in').length;
-
-  // 팝업 HTML 생성
-  const colW = ['25%','35%','25%','15%'];
-
-  let tableHtml = `
-  <div style="margin-bottom:12px;text-align:center">
-    <span style="font-size:14px;font-weight:900;color:#fff">
-      ${(todayD.getMonth()+1)}월 ${todayD.getDate()}일 입출고 목록
-    </span>
-    <span style="font-size:12px;color:var(--blue);margin-left:10px">출고 ${totalOut}건</span>
-    <span style="font-size:12px;color:var(--green);margin-left:6px">입고 ${totalIn}건</span>
-  </div>
-  <table style="width:100%;border-collapse:collapse;font-size:12px">
-    <thead>
-      <tr style="background:var(--bg)">
-        <th style="padding:8px 10px;border:1px solid var(--border);color:var(--muted);font-weight:700;min-width:120px">장비명</th>
-        <th style="padding:8px 10px;border:1px solid var(--border);color:var(--muted);font-weight:700;min-width:70px">성명</th>`;
-
-  colHeaders.forEach(h => {
-    const color = h.isToday2 ? 'var(--accent)' : (h.isHol ? 'var(--red)' : 'var(--muted)');
-    tableHtml += `<th style="padding:6px 8px;border:1px solid var(--border);color:${color};font-weight:700;text-align:center;min-width:90px">
-        ${h.dateStr} (${h.dowStr})${h.isHol?' 🔴':''}<br>
-        <span style="font-size:10px;font-weight:400;color:var(--muted)">${h.subLabel}</span>
-      </th>`;
-  });
-
-  tableHtml += `<th style="padding:8px 10px;border:1px solid var(--border);color:var(--muted);font-weight:700">비고</th></tr>
-    </thead>
-    <tbody>`;
-
-  // 행 정렬: 출고일 기준
-  allEntries.sort((a, b) => {
-    const aOut = a.outCol !== null ? a.outCol : 99;
-    const bOut = b.outCol !== null ? b.outCol : 99;
-    if(aOut !== bOut) return aOut - bOut;
-    return a.entry.equipName.localeCompare(b.entry.equipName, 'ko');
-  });
-
-  allEntries.forEach((row, ri) => {
-    const e = row.entry;
-    const bg = ri%2===0 ? 'var(--surface)' : 'var(--card)';
-
-    tableHtml += `<tr style="background:${bg}">
-      <td style="padding:7px 10px;border:1px solid var(--border);color:var(--text);font-weight:600">${e.equipName}</td>
-      <td style="padding:7px 10px;border:1px solid var(--border);color:var(--dim)">${e.personName}</td>`;
-
-    cols.forEach(col => {
-      const isOut = row.outCol === col.offset;
-      const isIn  = row.inCol  === col.offset;
-      const isMid = (row.outCol !== null && row.inCol !== null &&
-                     col.offset > row.outCol && col.offset < row.inCol);
-      const isMidOut = (row.outCol !== null && row.inCol === null &&
-                        col.offset > row.outCol); // 출고됐는데 아직 입고 안됨
-      const isMidIn  = (row.inCol !== null && row.outCol === null &&
-                        col.offset < row.inCol);  // 입고 예정
-
-      let cellContent = '';
-      let cellStyle = 'padding:7px 8px;border:1px solid var(--border);text-align:center;position:relative';
-
-      if(isOut && isIn) {
-        // 1일 임대 (당일 출입고)
-        cellContent = `<label style="display:inline-flex;align-items:center;gap:3px;cursor:pointer;margin-right:4px">
-          <input type="checkbox" ${e.outDone?'checked':''} onchange="toggleEntryCheckPopup('${e.startDate}','${e.site}','${e.id}','out',this.checked)" style="cursor:pointer">
-          <span style="font-size:10px;color:var(--blue)">출고</span>
-        </label>
-        <label style="display:inline-flex;align-items:center;gap:3px;cursor:pointer">
-          <input type="checkbox" ${e.inDone?'checked':''} onchange="toggleEntryCheckPopup('${e.startDate}','${e.site}','${e.id}','in',this.checked)" style="cursor:pointer">
-          <span style="font-size:10px;color:var(--green)">입고</span>
-        </label>`;
-      } else if(isOut) {
-        cellContent = `<label style="display:inline-flex;align-items:center;gap:3px;cursor:pointer">
-          <input type="checkbox" ${e.outDone?'checked':''} onchange="toggleEntryCheckPopup('${e.startDate}','${e.site}','${e.id}','out',this.checked)" style="cursor:pointer">
-          <span style="font-size:11px;color:var(--blue)">출고 →</span>
-        </label>`;
-      } else if(isIn) {
-        cellContent = `<label style="display:inline-flex;align-items:center;gap:3px;cursor:pointer">
-          <input type="checkbox" ${e.inDone?'checked':''} onchange="toggleEntryCheckPopup('${e.startDate}','${e.site}','${e.id}','in',this.checked)" style="cursor:pointer">
-          <span style="font-size:11px;color:var(--green)">← 입고</span>
-        </label>`;
-      } else if(isMid) {
-        cellContent = `<span style="color:var(--muted);font-size:18px">↔</span>`;
-        cellStyle += ';background:rgba(99,102,241,.05)';
-      } else if(isMidOut) {
-        cellContent = `<span style="color:var(--blue);font-size:18px">→</span>`;
-        cellStyle += ';background:rgba(96,165,250,.05)';
-      } else if(isMidIn) {
-        cellContent = `<span style="color:var(--green);font-size:18px">←</span>`;
-        cellStyle += ';background:rgba(52,211,153,.05)';
-      }
-
-      tableHtml += `<td style="${cellStyle}">${cellContent}</td>`;
-    });
-
-    tableHtml += `<td style="padding:7px 10px;border:1px solid var(--border);color:var(--muted);font-size:10px">${e.days}일</td></tr>`;
-  });
-
-  if(allEntries.length === 0) {
-    tableHtml += `<tr><td colspan="${cols.length+3}" style="padding:20px;text-align:center;color:var(--muted);border:1px solid var(--border)">작업 없음</td></tr>`;
-  }
-
-  tableHtml += '</tbody></table>';
-
-  document.getElementById('popupCols').innerHTML = tableHtml;
-  document.getElementById('inoutPopup').classList.remove('hidden');
-}
-
-function toggleEntryCheckPopup(startDk, site, entryId, type, val) {
-  if(!state[startDk] || !state[startDk][site]) return;
-  const entry = state[startDk][site].entries.find(e => String(e.id) === String(entryId));
-  if(!entry) return;
-  if(type === 'out') entry.outDone = val;
-  else entry.inDone = val;
-  if(saveTimer) clearTimeout(saveTimer);
-  saveData();
-  renderAll();
-  openInoutPopup();
-}
-
-
 function collectInoutForDate(dk) {
   const results = [];
-  const target = new Date(dk);
   Object.keys(state).forEach(startDk => {
     ['본소','북부'].forEach(site => {
-      if (!state[startDk] || !state[startDk][site]) return;
+      if(!state[startDk] || !state[startDk][site]) return;
       state[startDk][site].entries.forEach(e => {
         const start = new Date(e.startDate);
+        const target = new Date(dk);
         const diff = Math.round((target - start) / 86400000);
-        // 출고일
-        if (diff === 0) {
+        const lastDay = e.days - 1;
+        // 출고일 (원래 날짜 기준)
+        if(diff === 0 && !e.outDone) {
           results.push({ entry: e, type: 'out', dayNum: 1 });
-          if (e.days === 1) results.push({ entry: e, type: 'in', dayNum: 1 });
         }
-        // 입고일 (2~3일 임대)
-        if (e.days > 1 && diff === e.days - 1) {
+        // 1일 임대 입고 (출고 완료 후 입고 미완)
+        if(e.days === 1 && diff === 0 && e.outDone && !e.inDone) {
+          results.push({ entry: e, type: 'in', dayNum: 1 });
+        }
+        // 다일 임대 입고일
+        if(e.days > 1 && diff === lastDay && !e.inDone) {
           results.push({ entry: e, type: 'in', dayNum: e.days });
         }
       });
@@ -1588,18 +1339,6 @@ function collectInoutForDate(dk) {
   return results;
 }
 
-function toggleEntryCheck(startDk, site, entryId, type, val) {
-  if (!state[startDk] || !state[startDk][site]) return;
-  const entry = state[startDk][site].entries.find(e => String(e.id) === String(entryId));
-  if (!entry) return;
-  if (type === 'out') entry.outDone = val;
-  else entry.inDone = val;
-  if (saveTimer) clearTimeout(saveTimer);
-  saveData();
-  renderAll();
-  // 팝업 갱신
-  openInoutPopup();
-}
 
 function closePopup() {
   document.getElementById('inoutPopup').classList.add('hidden');
