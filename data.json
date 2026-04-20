@@ -88,6 +88,18 @@
           "inDone": false,
           "site": "본소",
           "baseMins": 60
+        },
+        {
+          "id": 1776682905582.078,
+          "equipName": "로터베이터1750-01",
+          "equipSpec": "WJ175A / 1750",
+          "personName": "이민호",
+          "days": 3,
+          "startDate": "2026-04-20",
+          "outDone": false,
+          "inDone": false,
+          "site": "본소",
+          "baseMins": 90
         }
       ]
     },
