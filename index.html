@@ -822,13 +822,15 @@ function changeQty(d){
   document.getElementById('qtyVal').textContent=selQty;
 }
 
-function delEntry(site,idx){
-  const dk = getDkeys()[curIdx];
-  state[dk][site].entries.splice(idx,1);
+function delEntry(site, idx, startDk) {
+  const dk2 = startDk || getDkeys()[curIdx];
+  if(!state[dk2] || !state[dk2][site]) return;
+  state[dk2][site].entries.splice(idx, 1);
   if(saveTimer) clearTimeout(saveTimer);
   saveData();
   renderAll();
 }
+
 
 function setSite(s){
   curSite=s;
@@ -906,61 +908,72 @@ function renderSelList(){
   const showSites = curSite==='전체' ? SITES : [curSite];
   const el = document.getElementById('selList');
   let h = '';
+
   showSites.forEach(st => {
-    const entries = state[dk][st].entries;
-    entries.forEach((e, i) => {
-      const totalMins = calcMinsForDate(e, dk);
-      const isFirst = i===0, isLast = i===entries.length-1;
+    // 이 날짜에 관련된 모든 entries 수집
+    // (이 날짜가 시작일이거나, 이 날짜가 입고일인 entries)
+    const relEntries = [];
+    Object.keys(state).forEach(startDk => {
+      if(!state[startDk] || !state[startDk][st]) return;
+      state[startDk][st].entries.forEach((e, i) => {
+        const startDate = new Date(e.startDate);
+        const targetDate = new Date(dk);
+        const diff = Math.round((targetDate - startDate) / 86400000);
+        const lastDay = e.days - 1;
+
+        // 출고일 (시작일)
+        const canOut = diff === 0;
+        // 입고일
+        const canIn = (e.days === 1 && diff === 0) || (e.days > 1 && diff === lastDay);
+
+        if(canOut || canIn) {
+          relEntries.push({ e, startDk, idx: i, canOut, canIn });
+        }
+      });
+    });
+
+    relEntries.forEach(({e, startDk, idx, canOut, canIn}) => {
+      const entries = state[startDk][st].entries;
+      const isFirst = idx===0, isLast = idx===entries.length-1;
       const daysLabel = e.days + '일';
-
-      // 이 날짜에서 출고/입고 가능 여부 판단
-      const startDate = new Date(e.startDate);
-      const targetDate = new Date(dk);
-      const diff = Math.round((targetDate - startDate) / 86400000);
-      const lastDay = e.days - 1;
-
-      // 출고: 시작일에만
-      const canOut = diff === 0;
-      // 입고: 1일임대면 시작일, 2~3일이면 마지막날
-      const canIn = (e.days === 1 && diff === 0) || (e.days > 1 && diff === lastDay);
-
-      if(!canOut && !canIn) return; // 이 날짜와 무관한 항목은 표시 안 함
+      const totalMins = calcMinsForDate(e, dk);
 
       h += `<div class="sel-item ${e.outDone&&e.inDone?'done':''}"
-        draggable="true" data-site="${st}" data-idx="${i}"
+        draggable="true" data-site="${st}" data-startdk="${startDk}" data-idx="${idx}"
         ondragstart="dragStart(event)" ondragover="dragOver(event)"
         ondrop="dragDrop(event)" ondragend="dragEnd(event)">
         <div style="display:flex;flex-direction:column;gap:1px;flex-shrink:0">
-          <button class="move-btn" onclick="moveEntry('${st}',${i},-1)"
+          <button class="move-btn" onclick="moveEntry('${st}',${idx},-1,'${startDk}')"
             ${isFirst?'disabled style="opacity:.25;pointer-events:none"':''}>&#9650;</button>
-          <button class="move-btn" onclick="moveEntry('${st}',${i},+1)"
+          <button class="move-btn" onclick="moveEntry('${st}',${idx},+1,'${startDk}')"
             ${isLast?'disabled style="opacity:.25;pointer-events:none"':''}>&#9660;</button>
         </div>
         <span class="sel-equip">${e.equipName}</span>
         <span class="sel-person">👤 ${e.personName}</span>
         <span class="sel-days">${daysLabel}</span>
-        ${canOut ? `<label class="sel-chk out-chk" title="출고완료">
-          <input type="checkbox" ${e.outDone?'checked':''} onchange="toggleEntryCheckInline('${st}',${i},'out',this.checked)">
+        ${canOut ? `<label class="sel-chk out-chk">
+          <input type="checkbox" ${e.outDone?'checked':''} onchange="toggleEntryCheckInline('${startDk}','${st}',${idx},'out',this.checked)">
           <span class="sel-cb">출고</span>
-        </label>` : '<span style="width:36px"></span>'}
-        ${canIn ? `<label class="sel-chk in-chk" title="입고완료">
-          <input type="checkbox" ${e.inDone?'checked':''} onchange="toggleEntryCheckInline('${st}',${i},'in',this.checked)">
+        </label>` : `<span style="min-width:38px"></span>`}
+        ${canIn ? `<label class="sel-chk in-chk">
+          <input type="checkbox" ${e.inDone?'checked':''} onchange="toggleEntryCheckInline('${startDk}','${st}',${idx},'in',this.checked)">
           <span class="sel-cb">입고</span>
-        </label>` : '<span style="width:36px"></span>'}
+        </label>` : `<span style="min-width:38px"></span>`}
         <span class="sel-mins">${totalMins}분</span>
-        <button class="btn-del" onclick="delEntry('${st}',${i})" title="삭제">&#10005;</button>
+        <button class="btn-del" onclick="delEntry('${st}',${idx},'${startDk}')" title="삭제">&#10005;</button>
       </div>`;
     });
   });
+
   el.innerHTML = h || '<div class="empty-msg">장비를 선택 후 입력하세요</div>';
 }
 
 
-function toggleEntryCheckInline(site, idx, type, val) {
-  const dk = getDkeys()[curIdx];
-  const entry = state[dk][site].entries[idx];
-  if (!entry) return;
-  if (type === 'out') entry.outDone = val;
+function toggleEntryCheckInline(startDk, site, idx, type, val) {
+  if(!state[startDk] || !state[startDk][site]) return;
+  const entry = state[startDk][site].entries[idx];
+  if(!entry) return;
+  if(type === 'out') entry.outDone = val;
   else entry.inDone = val;
   if(saveTimer) clearTimeout(saveTimer);
   saveData();
@@ -972,16 +985,18 @@ function toggleEntryCheckInline(site, idx, type, val) {
 
 
 // ── 상하 이동 ──
-function moveEntry(site,idx,dir){
-  const dk=getDkeys()[curIdx];
-  const entries=state[dk][site].entries;
-  const ni=idx+dir;
-  if(ni<0||ni>=entries.length) return;
-  [entries[idx],entries[ni]]=[entries[ni],entries[idx]];
+function moveEntry(site, idx, dir, startDk) {
+  const dk2 = startDk || getDkeys()[curIdx];
+  if(!state[dk2] || !state[dk2][site]) return;
+  const entries = state[dk2][site].entries;
+  const ni = idx + dir;
+  if(ni < 0 || ni >= entries.length) return;
+  [entries[idx], entries[ni]] = [entries[ni], entries[idx]];
   if(saveTimer) clearTimeout(saveTimer);
   saveData();
   renderSelList();
 }
+
 
 // ── 드래그 앤 드롭 ──
 let _dSite=null,_dIdx=null;
