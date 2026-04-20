@@ -386,6 +386,12 @@
           "half": false,
           "qty": 1,
           "mins": 90
+        },
+        {
+          "name": "퇴비살포기 500H",
+          "half": false,
+          "qty": 1,
+          "mins": 90
         }
       ]
     }
