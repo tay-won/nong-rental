@@ -1049,6 +1049,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776728881037.3093,
+            "equipName": "원판쟁기4련-01",
+            "equipSpec": "W42-DP/원판-4련",
+            "personName": "이상흠",
+            "days": 2,
+            "startDate": "2026-04-24",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
