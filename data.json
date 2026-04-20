@@ -47,32 +47,7 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": [
-        {
-          "id": 1776683011613.8289,
-          "equipName": "탈곡기(모터)-01",
-          "equipSpec": "ESP-2 / 전기",
-          "personName": "문수영택",
-          "days": 2,
-          "startDate": "2026-04-21",
-          "outDone": true,
-          "inDone": false,
-          "site": "본소",
-          "baseMins": 90
-        },
-        {
-          "id": 1776683036096.1558,
-          "equipName": "탈곡기中-01",
-          "equipSpec": "SBK-14000T / 中",
-          "personName": "윤보경",
-          "days": 3,
-          "startDate": "2026-04-21",
-          "outDone": false,
-          "inDone": false,
-          "site": "본소",
-          "baseMins": 90
-        }
-      ]
+      "entries": []
     },
     "북부": {
       "workers": {
@@ -152,7 +127,20 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": []
+      "entries": [
+        {
+          "id": 1776683426914.1309,
+          "equipName": "탈곡기中-02",
+          "equipSpec": "ESP-100P / 中",
+          "personName": "원유태",
+          "days": 1,
+          "startDate": "2026-04-25",
+          "outDone": false,
+          "inDone": false,
+          "site": "본소",
+          "baseMins": 90
+        }
+      ]
     },
     "북부": {
       "workers": {
