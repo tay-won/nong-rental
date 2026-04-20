@@ -285,6 +285,27 @@ select:focus{border-color:var(--accent)}
   #popupCols input[type=checkbox]{display:inline!important}
 }
 @media(max-width:600px){.popup-cols{grid-template-columns:1fr}}
+
+/* ── 배송 체크박스 ── */
+.delivery-bar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-bottom:8px;cursor:pointer;transition:all .2s;user-select:none}
+.delivery-bar:hover{border-color:var(--yellow)}
+.delivery-bar.on{border-color:var(--yellow);background:rgba(245,158,11,.08)}
+.delivery-bar input[type=checkbox]{display:none}
+.delivery-chk-box{width:18px;height:18px;border:2px solid var(--border);border-radius:4px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:transparent;transition:all .2s;flex-shrink:0}
+.delivery-bar.on .delivery-chk-box{background:var(--yellow);border-color:var(--yellow);color:#000}
+.delivery-label{font-size:13px;font-weight:700;color:var(--dim);flex:1;transition:color .2s}
+.delivery-bar.on .delivery-label{color:var(--yellow)}
+.delivery-mins{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);transition:color .2s}
+.delivery-bar.on .delivery-mins{color:var(--yellow)}
+
+/* 배송 체크박스 */
+.delivery-toggle{display:flex;align-items:center;gap:4px;cursor:pointer;user-select:none;padding:5px 10px;border:1px solid var(--border);border-radius:7px;background:var(--bg);transition:all .2s;margin-left:6px}
+.delivery-toggle:hover{border-color:var(--yellow)}
+.delivery-toggle.on{border-color:var(--yellow);background:rgba(245,158,11,.1)}
+.delivery-toggle input{display:none}
+.delivery-box{font-size:13px;transition:all .2s}
+.delivery-txt{font-size:11px;color:var(--muted);transition:color .2s;white-space:nowrap}
+.delivery-toggle.on .delivery-txt{color:var(--yellow);font-weight:700}
 </style>
 </head>
 <body>
@@ -400,6 +421,14 @@ select:focus{border-color:var(--accent)}
           <button onclick="openInoutPopup()" style="padding:4px 10px;background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.3);border-radius:8px;color:var(--blue);font-family:'Noto Sans KR',sans-serif;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s" onmouseover="this.style.background='rgba(96,165,250,.25)'" onmouseout="this.style.background='rgba(96,165,250,.15)'">📋 입출고 목록</button>
         </div>
 
+        <!-- 배송 체크바 -->
+        <div class="delivery-bar" id="deliveryBar" onclick="toggleDelivery()">
+          <input type="checkbox" id="deliveryChk">
+          <span class="delivery-chk-box" id="deliveryChkBox">✓</span>
+          <span class="delivery-label">🚚 배송 (입출고)</span>
+          <span class="delivery-mins" id="deliveryMins">240분</span>
+        </div>
+
         <!-- ② 장비 검색 드롭다운 -->
         <div class="search-wrap" id="searchWrap">
           <input type="text" class="search-inp" id="searchInp"
@@ -426,7 +455,7 @@ select:focus{border-color:var(--accent)}
                 placeholder="성명 입력" autocomplete="off">
             </div>
 
-            <!-- 임대기간 -->
+            <!-- 임대기간 + 배송 -->
             <div class="field-group">
               <label class="field-label">임대기간</label>
               <div class="days-ctrl">
@@ -434,6 +463,11 @@ select:focus{border-color:var(--accent)}
                 <button class="day-btn" onclick="setDays(2)" id="dayBtn2">2일</button>
                 <button class="day-btn" onclick="setDays(3)" id="dayBtn3">3일</button>
               </div>
+              <label class="delivery-toggle" id="deliveryToggle" onclick="toggleDelivery()" title="배송 포함 시 240분(1일) 또는 120분×2(2~3일) 가산">
+                <input type="checkbox" id="deliveryChk">
+                <span class="delivery-box">🚚</span>
+                <span class="delivery-txt">배송</span>
+              </label>
             </div>
 
             <!-- 출고/입고: 입력 시 공란, 목록에서 체크 -->
@@ -587,7 +621,7 @@ function fmtDate(d){return (d.getMonth()+1)+'/'+d.getDate();}
 function emptyDay(){
   const s={};
   SITES.forEach(st=>{
-    s[st]={workers:{},entries:[]};
+    s[st]={workers:{},entries:[],delivery:false};
     WDEF[st].forEach(w=>s[st].workers[w.id]=420);
   });
   return s;
@@ -646,6 +680,10 @@ async function loadData(){
           // entries 복원
           if(Array.isArray(src.entries)){
             state[dk][st].entries = src.entries;
+          }
+          // delivery 복원
+          if(src.delivery !== undefined){
+            state[dk][st].delivery = src.delivery;
           }
         });
       });
@@ -854,6 +892,37 @@ function setSite(s){
 }
 function setIdx(i){curIdx=i;renderAll();}
 
+
+// ── 배송 체크 ──
+function toggleDelivery() {
+  const dk = getDkeys()[curIdx];
+  const site = curSite === '전체' ? '본소' : curSite;
+  ensureDay(dk);
+  state[dk][site].delivery = !state[dk][site].delivery;
+  updateDeliveryUI();
+  if(saveTimer) clearTimeout(saveTimer);
+  saveData();
+  renderGauge();
+  renderDateTabs();
+  renderMiniTable();
+}
+
+function updateDeliveryUI() {
+  const dk = getDkeys()[curIdx];
+  const site = curSite === '전체' ? '본소' : curSite;
+  ensureDay(dk);
+  const on = state[dk][site].delivery || false;
+  const bar = document.getElementById('deliveryBar');
+  const box = document.getElementById('deliveryChkBox');
+  const mins = document.getElementById('deliveryMins');
+  if(!bar) return;
+  bar.classList.toggle('on', on);
+  box.style.color = on ? '#000' : 'transparent';
+  box.style.background = on ? 'var(--yellow)' : 'var(--bg)';
+  box.style.borderColor = on ? 'var(--yellow)' : 'var(--border)';
+  mins.textContent = '240분';
+}
+
 function renderDateTabs(){
   const DATES=getDates(), DKEYS=getDkeys();
   const holidays = getHolidays();
@@ -885,7 +954,7 @@ function renderAll(){
     '📅 ' + d.getFullYear() + '년 ' + (d.getMonth()+1) + '월 ' + d.getDate() + '일 (' + DOW[d.getDay()] + '요일)' + (isToday(d) ? ' — 오늘' : '')
     + (_isHolCur ? ' <span style="color:#ef4444;font-size:11px">🔴 휴무일</span>' : '')
     + ' <button onclick="toggleHoliday(\'' + _dkCur + '\')" style="' + _holBtnStyle + '">' + (_isHolCur ? '휴무 해제' : '휴무 지정') + '</button>';
-  renderWorkers();renderGauge();renderSelList();renderMiniTable();
+  renderWorkers();renderGauge();renderSelList();renderMiniTable();updateDeliveryUI();
 }
 
 
@@ -1110,6 +1179,7 @@ loadData();
 // 입력 상태
 let selEquip = null;   // {n, s, m}
 let selDays  = 1;
+let selDelivery = false;
 let inputSite = null;  // 현재 입력 사업소
 
 // 입력 패널 타이틀 업데이트
@@ -1181,23 +1251,31 @@ function setDays(d) {
   updateHalfInfo();
 }
 
+function toggleDelivery() {
+  selDelivery = !selDelivery;
+  const tog = document.getElementById('deliveryToggle');
+  tog.classList.toggle('on', selDelivery);
+  document.getElementById('deliveryChk').checked = selDelivery;
+  updateHalfInfo();
+}
+
 function updateInOutLabel() { updateHalfInfo(); }
 
 function updateHalfInfo() {
   if (!selEquip) return;
-  const dk = getDkeys()[curIdx];
-  const isHoliday = getHolidays().includes(dk);
-  const outChk = document.getElementById('outChk').checked;
-  const inChk  = document.getElementById('inChk').checked;
-  const info   = document.getElementById('halfInfo');
-  const base   = selEquip.m;
+  const info = document.getElementById('halfInfo');
+  const base = selEquip.m;
+  const delivery = selDelivery ? 240 : 0;
 
   let msgs = [];
   if (selDays === 1) {
-    msgs.push('전타임 ' + base + '분 (출입고 당일)');
+    const total = base + delivery;
+    msgs.push('전타임 ' + base + '분' + (selDelivery ? ' + 배송 240분 = ' + total + '분' : ''));
   } else {
-    msgs.push('출고일: 반타임 ' + (base/2) + '분');
-    msgs.push('입고일: 반타임 ' + (base/2) + '분');
+    const outMins = (base/2) + (selDelivery ? 120 : 0);
+    const inMins  = (base/2) + (selDelivery ? 120 : 0);
+    msgs.push('출고일: ' + outMins + '분' + (selDelivery ? ' (반타임+'+'배송120)' : ''));
+    msgs.push('입고일: ' + inMins  + '분' + (selDelivery ? ' (반타임+'+'배송120)' : ''));
   }
   info.textContent = msgs.join(' / ');
   info.classList.add('show');
@@ -1220,6 +1298,10 @@ function addEntry() {
   const outDone = false;
   const inDone  = false;
 
+  // 배송 포함 시 baseMins에 가산
+  const deliveryMins = selDelivery ? 240 : 0;
+  const totalBaseMins = selEquip.m + deliveryMins;
+
   const entry = {
     id: Date.now() + Math.random(),
     equipName: selEquip.n,
@@ -1230,7 +1312,8 @@ function addEntry() {
     outDone: outDone,
     inDone: inDone,
     site: site,
-    baseMins: selEquip.m,
+    baseMins: totalBaseMins,
+    delivery: selDelivery,
   };
 
   ensureDay(dk);
@@ -1248,11 +1331,13 @@ function addEntry() {
   saveData();
 
   // 입력창 초기화
-  selEquip = null; selDays = 1;
+  selEquip = null; selDays = 1; selDelivery = false;
   document.getElementById('searchInp').value = '';
   document.getElementById('inputRow').classList.remove('visible');
   document.getElementById('halfInfo').classList.remove('show');
   [1,2,3].forEach(n => document.getElementById('dayBtn'+n).classList.remove('active'));
+  document.getElementById('deliveryToggle').classList.remove('on');
+  document.getElementById('deliveryChk').checked = false;
 
   renderAll();
 }
@@ -1266,6 +1351,27 @@ function getUsedSite(dk, site) {
     state[startDk][site].entries.forEach(e => {
       total += calcMinsForLoad(e, dk);
     });
+    // 배송 소요시간
+    if(state[startDk][site].delivery) {
+      const holidays = getHolidays();
+      const isHol = holidays.includes(startDk);
+      if(isHol) {
+        // 휴무일 배송: 전날 120분 + 다음날 120분
+        let prevDay = new Date(startDk);
+        prevDay.setDate(prevDay.getDate() - 1);
+        while(holidays.includes(prevDay.toISOString().slice(0,10)))
+          prevDay.setDate(prevDay.getDate() - 1);
+        let nextDay = new Date(startDk);
+        nextDay.setDate(nextDay.getDate() + 1);
+        while(holidays.includes(nextDay.toISOString().slice(0,10)))
+          nextDay.setDate(nextDay.getDate() + 1);
+        if(prevDay.toISOString().slice(0,10) === dk) total += 120;
+        if(nextDay.toISOString().slice(0,10) === dk) total += 120;
+      } else {
+        // 일반 배송: 해당일 240분
+        if(startDk === dk) total += 240;
+      }
+    }
   });
   return total;
 }
