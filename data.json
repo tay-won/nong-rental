@@ -60,6 +60,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776727262167.5132,
+            "equipName": "관리기-휴립기-02",
+            "equipSpec": "AMC-1000SM/휴립기(중)",
+            "personName": "신동규",
+            "days": 1,
+            "startDate": "2026-04-20",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
