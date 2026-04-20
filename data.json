@@ -160,7 +160,7 @@
           "personName": "문수영택",
           "days": 2,
           "startDate": "2026-04-25",
-          "outDone": true,
+          "outDone": false,
           "inDone": false,
           "site": "본소",
           "baseMins": 60
@@ -172,7 +172,7 @@
           "personName": "이성우",
           "days": 3,
           "startDate": "2026-04-25",
-          "outDone": true,
+          "outDone": false,
           "inDone": false,
           "site": "본소",
           "baseMins": 90
