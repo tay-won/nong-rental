@@ -907,24 +907,20 @@ function renderSelList(){
   const dk = getDkeys()[curIdx];
   const showSites = curSite==='전체' ? SITES : [curSite];
   const el = document.getElementById('selList');
+  const holidays = getHolidays();
   let h = '';
 
   showSites.forEach(st => {
-    // 이 날짜에 관련된 모든 entries 수집
-    // (이 날짜가 시작일이거나, 이 날짜가 입고일인 entries)
     const relEntries = [];
     Object.keys(state).forEach(startDk => {
       if(!state[startDk] || !state[startDk][st]) return;
       state[startDk][st].entries.forEach((e, i) => {
-        const startDate = new Date(e.startDate);
-        const targetDate = new Date(dk);
-        const diff = Math.round((targetDate - startDate) / 86400000);
-        const lastDay = e.days - 1;
+        // 실제 출고/입고 근무일 계산
+        const effectiveOut = getEffectiveOutDate(e, holidays);
+        const effectiveIn  = getEffectiveInDate(e, holidays);
 
-        // 출고일 (시작일)
-        const canOut = diff === 0;
-        // 입고일
-        const canIn = (e.days === 1 && diff === 0) || (e.days > 1 && diff === lastDay);
+        const canOut = effectiveOut === dk;
+        const canIn  = effectiveIn  === dk;
 
         if(canOut || canIn) {
           relEntries.push({ e, startDk, idx: i, canOut, canIn });
@@ -1259,21 +1255,41 @@ function getUsedSite(dk, site) {
   return total;
 }
 
-function calcMinsForDate(entry, targetDk) {
-  const start = new Date(entry.startDate);
-  const target = new Date(targetDk);
-  const diff = Math.round((target - start) / 86400000);
+function getEffectiveOutDate(entry, holidays) {
+  // 출고일(시작일)이 휴무면 전날 근무일로
+  let d = new Date(entry.startDate);
+  while(holidays.includes(d.toISOString().slice(0,10))) {
+    d.setDate(d.getDate() - 1);
+  }
+  return d.toISOString().slice(0,10);
+}
 
-  if (entry.days === 1) {
-    // 1일 임대: 시작일에만 전타임
-    if (diff === 0) return entry.baseMins;
+function getEffectiveInDate(entry, holidays) {
+  // 입고일 = 시작일 + (days-1)
+  let d = new Date(entry.startDate);
+  d.setDate(d.getDate() + entry.days - 1);
+  // 입고일이 휴무면 다음 근무일로
+  while(holidays.includes(d.toISOString().slice(0,10))) {
+    d.setDate(d.getDate() + 1);
+  }
+  return d.toISOString().slice(0,10);
+}
+
+function calcMinsForDate(entry, targetDk) {
+  const holidays = getHolidays();
+  const outDate = getEffectiveOutDate(entry, holidays);
+  const inDate  = getEffectiveInDate(entry, holidays);
+
+  if(entry.days === 1) {
+    // 1일 임대: 출고일=입고일 → 전타임
+    if(outDate === targetDk) return entry.baseMins;
     return 0;
   } else {
-    // 2~3일 임대: 시작일 반타임, 마지막날 반타임
-    const lastDay = entry.days - 1;
-    if (diff === 0) return entry.baseMins / 2;      // 출고일 반타임
-    if (diff === lastDay) return entry.baseMins / 2; // 입고일 반타임
-    return 0;
+    // 2~3일: 출고일 반타임 + 입고일 반타임
+    let mins = 0;
+    if(outDate === targetDk) mins += entry.baseMins / 2;
+    if(inDate  === targetDk) mins += entry.baseMins / 2;
+    return mins;
   }
 }
 
