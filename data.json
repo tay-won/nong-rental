@@ -460,6 +460,19 @@
             "site": "본소",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776727915788.558,
+            "equipName": "원판쟁기6련-01",
+            "equipSpec": "W62-DP/원판-6련",
+            "personName": "홍순선",
+            "days": 2,
+            "startDate": "2026-04-21",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
