@@ -1064,6 +1064,12 @@
           "half": false,
           "qty": 1,
           "mins": 150
+        },
+        {
+          "name": "논두렁조성기(大/中/小)",
+          "half": true,
+          "qty": 1,
+          "mins": 45
         }
       ]
     }
