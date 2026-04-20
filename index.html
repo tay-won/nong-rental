@@ -273,7 +273,17 @@ select:focus{border-color:var(--accent)}
 .btn-print:hover{border-color:var(--blue);color:var(--blue)}
 .btn-close-popup{width:28px;height:28px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .btn-close-popup:hover{background:var(--red);border-color:var(--red);color:#fff}
-@media print{.popup-overlay{position:static;background:white;padding:0}.popup-box{max-height:none;border:none}.popup-header .btn-print,.popup-header .btn-close-popup{display:none}}
+@media print{
+  body > *:not(.popup-overlay){display:none!important}
+  .popup-overlay{position:static!important;background:white!important;padding:0!important;display:block!important}
+  .popup-box{max-height:none!important;border:none!important;box-shadow:none!important;background:white!important}
+  .popup-header{border-bottom:2px solid #333!important}
+  .popup-header h2{color:#000!important;font-size:16px!important}
+  .popup-header .btn-print,.popup-header .btn-close-popup{display:none!important}
+  #popupCols table{border-collapse:collapse!important}
+  #popupCols td,#popupCols th{border:1px solid #999!important;color:#000!important;background:white!important;font-size:11px!important}
+  #popupCols input[type=checkbox]{display:inline!important}
+}
 @media(max-width:600px){.popup-cols{grid-template-columns:1fr}}
 </style>
 </head>
@@ -889,6 +899,20 @@ function renderSelList(){
       const totalMins = calcMinsForDate(e, dk);
       const isFirst = i===0, isLast = i===entries.length-1;
       const daysLabel = e.days + '일';
+
+      // 이 날짜에서 출고/입고 가능 여부 판단
+      const startDate = new Date(e.startDate);
+      const targetDate = new Date(dk);
+      const diff = Math.round((targetDate - startDate) / 86400000);
+      const lastDay = e.days - 1;
+
+      // 출고: 시작일에만
+      const canOut = diff === 0;
+      // 입고: 1일임대면 시작일, 2~3일이면 마지막날
+      const canIn = (e.days === 1 && diff === 0) || (e.days > 1 && diff === lastDay);
+
+      if(!canOut && !canIn) return; // 이 날짜와 무관한 항목은 표시 안 함
+
       h += `<div class="sel-item ${e.outDone&&e.inDone?'done':''}"
         draggable="true" data-site="${st}" data-idx="${i}"
         ondragstart="dragStart(event)" ondragover="dragOver(event)"
@@ -902,14 +926,14 @@ function renderSelList(){
         <span class="sel-equip">${e.equipName}</span>
         <span class="sel-person">👤 ${e.personName}</span>
         <span class="sel-days">${daysLabel}</span>
-        <label class="sel-chk out-chk" title="출고완료">
+        ${canOut ? `<label class="sel-chk out-chk" title="출고완료">
           <input type="checkbox" ${e.outDone?'checked':''} onchange="toggleEntryCheckInline('${st}',${i},'out',this.checked)">
           <span class="sel-cb">출고</span>
-        </label>
-        <label class="sel-chk in-chk" title="입고완료">
+        </label>` : '<span style="width:36px"></span>'}
+        ${canIn ? `<label class="sel-chk in-chk" title="입고완료">
           <input type="checkbox" ${e.inDone?'checked':''} onchange="toggleEntryCheckInline('${st}',${i},'in',this.checked)">
           <span class="sel-cb">입고</span>
-        </label>
+        </label>` : '<span style="width:36px"></span>'}
         <span class="sel-mins">${totalMins}분</span>
         <button class="btn-del" onclick="delEntry('${st}',${i})" title="삭제">&#10005;</button>
       </div>`;
@@ -917,6 +941,7 @@ function renderSelList(){
   });
   el.innerHTML = h || '<div class="empty-msg">장비를 선택 후 입력하세요</div>';
 }
+
 
 function toggleEntryCheckInline(site, idx, type, val) {
   const dk = getDkeys()[curIdx];
