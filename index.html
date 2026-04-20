@@ -483,33 +483,24 @@ const APP_PASSWORD = '5269';
 function saveToken() {
   const pw = document.getElementById('tokenInp').value.trim();
   const tk = document.getElementById('ghTokenInp').value.trim();
-  const errEl = document.getElementById('loginError');
-  if(pw === APP_PASSWORD && tk.startsWith('ghp_')) {
-    GH_TOKEN = tk;
-    localStorage.setItem('gh_auth', 'ok');
-    localStorage.setItem('gh_real_token', tk);
-    document.getElementById('tokenModal').classList.add('hidden');
-    document.getElementById('loadingOverlay').classList.remove('hidden');
-    errEl.style.display = 'none';
-    loadData();
-  } else if(pw === APP_PASSWORD && !tk) {
-    // 토큰 없이 비번만 맞으면 저장된 토큰 사용
-    const saved = localStorage.getItem('gh_real_token');
-    if(saved) {
-      GH_TOKEN = saved;
-      localStorage.setItem('gh_auth', 'ok');
-      document.getElementById('tokenModal').classList.add('hidden');
-      errEl.style.display = 'none';
-      loadData();
-    } else {
-      errEl.textContent = 'GitHub 토큰을 입력해주세요';
-      errEl.style.display = 'block';
-    }
-  } else {
-    errEl.textContent = '비밀번호 또는 토큰이 잘못되었습니다';
-    errEl.style.display = 'block';
-    document.getElementById('tokenInp').value = '';
+  
+  if(pw !== '5269') {
+    alert('비밀번호가 틀렸습니다');
+    return;
   }
+  
+  const token = tk || localStorage.getItem('gh_real_token') || '';
+  if(!token) {
+    alert('GitHub 토큰을 입력해주세요');
+    return;
+  }
+  
+  GH_TOKEN = token;
+  localStorage.setItem('gh_auth', 'ok');
+  localStorage.setItem('gh_real_token', token);
+  document.getElementById('tokenModal').classList.add('hidden');
+  document.getElementById('loadingOverlay').classList.remove('hidden');
+  loadData();
 }
 function clearToken() {
   localStorage.removeItem('gh_auth');
