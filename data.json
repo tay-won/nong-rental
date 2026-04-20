@@ -7,20 +7,7 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": [
-        {
-          "id": 1776690890892.4111,
-          "equipName": "관리기-로터리-01",
-          "equipSpec": "AMC-900SM/로타리(중)",
-          "personName": "원유태",
-          "days": 3,
-          "startDate": "2026-04-19",
-          "outDone": false,
-          "inDone": false,
-          "site": "본소",
-          "baseMins": 50
-        }
-      ]
+      "entries": []
     },
     "북부": {
       "workers": {
