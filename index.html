@@ -620,7 +620,16 @@ async function loadData(){
       ghSha = json.sha;
       // base64 디코딩
       const jsonStr = decodeURIComponent(escape(atob(json.content.replace(/\n/g,''))));
-      const decoded = JSON.parse(jsonStr);
+      const raw = JSON.parse(jsonStr);
+      // 새 포맷(state+holidays) vs 구 포맷 호환
+      const decoded = raw.state || raw;
+      const savedHolidays = raw.holidays || [];
+
+      // 휴무일 복원 (localStorage에도 저장)
+      if(savedHolidays.length > 0) {
+        saveHolidays(savedHolidays);
+      }
+
       // 빈 상태로 초기화 후 복원
       initState();
       Object.keys(decoded).forEach(dk => {
@@ -655,9 +664,13 @@ async function saveData(){
   // 토큰 없으면 저장 안 함 (로그인 전 데이터 덮어쓰기 방지)
   if(!GH_TOKEN) { setSyncUI('idle','로그인 필요'); return; }
   setSyncUI('saving','저장 중…');
-  // 범위 제한 없이 전체 state 저장 (날짜 잘림 방지)
+  // 범위 제한 없이 전체 state 저장 + 휴무일 포함
   const trimmed = JSON.parse(JSON.stringify(state));
-  const jsonStr = JSON.stringify(trimmed, null, 2);
+  const savePayload = {
+    state: trimmed,
+    holidays: getHolidays()
+  };
+  const jsonStr = JSON.stringify(savePayload, null, 2);
   const content = btoa(unescape(encodeURIComponent(jsonStr)));
   const body = {
     message: 'update '+new Date().toISOString(),
@@ -710,20 +723,22 @@ function downloadReport(){
   });
 
   // ── 시트2: 임대 건수 상세 ──
-  let s2 = '날짜,사업소,기종명,건수,전반타임,1건당정비시간(분),소계(분)\n';
-  DKEYS.forEach((dk,i) => {
-    ensureDay(dk);
-    const d = DATES[i];
+  let s2 = '날짜,사업소,장비명,성명,임대기간(일),시작일,소요시간(분),출고완료,입고완료\n';
+  Object.keys(state).sort().forEach(startDk => {
     ['본소','북부'].forEach(st => {
-      state[dk][st].entries.forEach(e => {
+      if(!state[startDk] || !state[startDk][st]) return;
+      const d2 = new Date(startDk);
+      state[startDk][st].entries.forEach(e => {
         s2 += [
-          (d.getMonth()+1)+'/'+d.getDate(),
+          (d2.getMonth()+1)+'/'+d2.getDate(),
           st,
-          '"'+e.name+'"',
-          e.qty,
-          e.half ? '반타임' : '전타임',
-          e.mins,
-          e.mins * e.qty
+          '"'+(e.equipName||'')+ '"',
+          e.personName||'',
+          e.days||1,
+          e.startDate||startDk,
+          e.baseMins||0,
+          e.outDone?'완료':'미완',
+          e.inDone?'완료':'미완'
         ].join(',') + '\n';
       });
     });
@@ -731,20 +746,20 @@ function downloadReport(){
 
   // ── 시트3: 기종별 집계 ──
   const typeMap = {};
-  DKEYS.forEach(dk => {
-    ensureDay(dk);
+  Object.keys(state).forEach(startDk => {
     ['본소','북부'].forEach(st => {
-      state[dk][st].entries.forEach(e => {
-        const key = e.name + '|' + (e.half?'반타임':'전타임') + '|' + st;
-        if(!typeMap[key]) typeMap[key] = {name:e.name, type:e.half?'반타임':'전타임', site:st, qty:0, totalMins:0};
-        typeMap[key].qty += e.qty;
-        typeMap[key].totalMins += e.mins * e.qty;
+      if(!state[startDk] || !state[startDk][st]) return;
+      state[startDk][st].entries.forEach(e => {
+        const key = (e.equipName||'') + '|' + st;
+        if(!typeMap[key]) typeMap[key] = {name:e.equipName||'', site:st, cnt:0, totalMins:0};
+        typeMap[key].cnt += 1;
+        typeMap[key].totalMins += e.baseMins||0;
       });
     });
   });
-  let s3 = '기종명,전반타임,사업소,총건수,총정비시간(분),총정비시간(h)\n';
-  Object.values(typeMap).sort((a,b)=>b.qty-a.qty).forEach(r => {
-    s3 += ['"'+r.name+'"', r.type, r.site, r.qty, r.totalMins, (r.totalMins/60).toFixed(1)].join(',') + '\n';
+  let s3 = '기종명,사업소,총건수,총정비시간(분),총정비시간(h)\n';
+  Object.values(typeMap).sort((a,b)=>b.cnt-a.cnt).forEach(r => {
+    s3 += ['"'+r.name+'"', r.site, r.cnt, r.totalMins, (r.totalMins/60).toFixed(1)].join(',') + '\n';
   });
 
   // ── 시트4: 근무자 현황 ──
