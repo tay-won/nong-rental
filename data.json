@@ -176,6 +176,18 @@
           "inDone": false,
           "site": "본소",
           "baseMins": 90
+        },
+        {
+          "id": 1776684080081.1514,
+          "equipName": "관리기-로터리-03",
+          "equipSpec": "AMC-1000SM / 로타리(中)",
+          "personName": "원유태",
+          "days": 1,
+          "startDate": "2026-04-25",
+          "outDone": false,
+          "inDone": false,
+          "site": "본소",
+          "baseMins": 90
         }
       ]
     },
