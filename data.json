@@ -919,6 +919,19 @@
             "site": "본소",
             "baseMins": 80,
             "delivery": false
+          },
+          {
+            "id": 1776728715411.1663,
+            "equipName": "육묘적재이송기-02",
+            "equipSpec": "MDJI1400/400~1,500",
+            "personName": "서성권",
+            "days": 1,
+            "startDate": "2026-04-24",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 80,
+            "delivery": false
           }
         ],
         "delivery": false
