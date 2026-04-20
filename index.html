@@ -907,7 +907,6 @@ function renderSelList(){
   const dk = getDkeys()[curIdx];
   const showSites = curSite==='전체' ? SITES : [curSite];
   const el = document.getElementById('selList');
-  const holidays = getHolidays();
   let h = '';
 
   showSites.forEach(st => {
@@ -915,12 +914,15 @@ function renderSelList(){
     Object.keys(state).forEach(startDk => {
       if(!state[startDk] || !state[startDk][st]) return;
       state[startDk][st].entries.forEach((e, i) => {
-        // 실제 출고/입고 근무일 계산
-        const effectiveOut = getEffectiveOutDate(e, holidays);
-        const effectiveIn  = getEffectiveInDate(e, holidays);
+        const start = new Date(e.startDate);
+        const target = new Date(dk);
+        const diff = Math.round((target - start) / 86400000);
+        const lastDay = e.days - 1;
 
-        const canOut = effectiveOut === dk;
-        const canIn  = effectiveIn  === dk;
+        // 출고 표시: 원래 시작일
+        const canOut = diff === 0;
+        // 입고 표시: 원래 입고일 (1일=시작일, 2~3일=마지막날)
+        const canIn = (e.days === 1 && diff === 0) || (e.days > 1 && diff === lastDay);
 
         if(canOut || canIn) {
           relEntries.push({ e, startDk, idx: i, canOut, canIn });
