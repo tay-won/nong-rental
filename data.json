@@ -574,6 +574,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776728288587.6873,
+            "equipName": "관리기-로터리-06",
+            "equipSpec": "AMC-1000SM/로타리(중)",
+            "personName": "금촌2동",
+            "days": 2,
+            "startDate": "2026-04-22",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
