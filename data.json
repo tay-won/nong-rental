@@ -86,6 +86,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776727298164.832,
+            "equipName": "관리기-로터리-04",
+            "equipSpec": "AMC-1000SM/로타리(중)",
+            "personName": "임현식",
+            "days": 1,
+            "startDate": "2026-04-20",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
