@@ -169,6 +169,18 @@
           "inDone": false,
           "site": "본소",
           "baseMins": 80
+        },
+        {
+          "id": 1776683011613.8289,
+          "equipName": "탈곡기(모터)-01",
+          "equipSpec": "ESP-2 / 전기",
+          "personName": "문수영택",
+          "days": 2,
+          "startDate": "2026-04-21",
+          "outDone": false,
+          "inDone": false,
+          "site": "본소",
+          "baseMins": 90
         }
       ]
     },
