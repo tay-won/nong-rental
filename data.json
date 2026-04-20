@@ -1176,6 +1176,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776729022693.131,
+            "equipName": "로터베이터1950-02",
+            "equipSpec": "WJ195B/1950",
+            "personName": "서재윤",
+            "days": 2,
+            "startDate": "2026-04-25",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
