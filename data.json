@@ -805,6 +805,19 @@
             "site": "본소",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1776728589149.3948,
+            "equipName": "원판쟁기8련-03",
+            "equipSpec": "W82-DP/원판-8련",
+            "personName": "이주완",
+            "days": 2,
+            "startDate": "2026-04-23",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
