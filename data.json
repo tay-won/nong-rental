@@ -181,6 +181,18 @@
           "inDone": false,
           "site": "본소",
           "baseMins": 90
+        },
+        {
+          "id": 1776683036096.1558,
+          "equipName": "탈곡기中-01",
+          "equipSpec": "SBK-14000T / 中",
+          "personName": "윤보경",
+          "days": 3,
+          "startDate": "2026-04-21",
+          "outDone": false,
+          "inDone": false,
+          "site": "본소",
+          "baseMins": 90
         }
       ]
     },
