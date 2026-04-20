@@ -1298,18 +1298,39 @@ function calcMinsForDate(entry, targetDk) {
 // 부하율 전용 (effective 날짜 기준, 휴무일 반영)
 function calcMinsForLoad(entry, targetDk) {
   const holidays = getHolidays();
+  const startDk = entry.startDate;
+  const isStartHoliday = holidays.includes(startDk);
+
+  // 마지막날 계산 (입고일)
+  let lastDate = new Date(startDk);
+  lastDate.setDate(lastDate.getDate() + entry.days - 1);
+  const lastDk = lastDate.toISOString().slice(0,10);
+  const isLastHoliday = holidays.includes(lastDk);
+
+  // 출고 effective 날짜 (시작일이 휴무면 전날)
   const effectiveOut = getEffectiveOutDate(entry, holidays);
+  // 입고 effective 날짜 (입고일이 휴무면 다음날)
   const effectiveIn  = getEffectiveInDate(entry, holidays);
 
   let mins = 0;
+
   if(entry.days === 1) {
-    if(effectiveOut === targetDk) mins += entry.baseMins;
+    if(isStartHoliday) {
+      // 1일 임대인데 휴무일 → 출고는 전날(반타임), 입고는 다음날(반타임)
+      if(effectiveOut === targetDk) mins += entry.baseMins / 2;
+      if(effectiveIn  === targetDk) mins += entry.baseMins / 2;
+    } else {
+      // 일반 1일 임대 → 당일 전타임
+      if(effectiveOut === targetDk) mins += entry.baseMins;
+    }
   } else {
+    // 2~3일 임대
     if(effectiveOut === targetDk) mins += entry.baseMins / 2;
     if(effectiveIn  === targetDk) mins += entry.baseMins / 2;
   }
   return mins;
 }
+
 
 function collectInoutForDate(dk) {
   const results = [];
@@ -1321,15 +1342,12 @@ function collectInoutForDate(dk) {
         const target = new Date(dk);
         const diff = Math.round((target - start) / 86400000);
         const lastDay = e.days - 1;
-        // 출고일 (원래 날짜 기준)
         if(diff === 0 && !e.outDone) {
           results.push({ entry: e, type: 'out', dayNum: 1 });
         }
-        // 1일 임대 입고 (출고 완료 후 입고 미완)
         if(e.days === 1 && diff === 0 && e.outDone && !e.inDone) {
           results.push({ entry: e, type: 'in', dayNum: 1 });
         }
-        // 다일 임대 입고일
         if(e.days > 1 && diff === lastDay && !e.inDone) {
           results.push({ entry: e, type: 'in', dayNum: e.days });
         }
@@ -1338,7 +1356,6 @@ function collectInoutForDate(dk) {
   });
   return results;
 }
-
 
 function closePopup() {
   document.getElementById('inoutPopup').classList.add('hidden');
