@@ -263,7 +263,7 @@
             "personName": "송양호",
             "days": 3,
             "startDate": "2026-04-20",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 90,
