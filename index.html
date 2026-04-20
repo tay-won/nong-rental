@@ -1357,6 +1357,160 @@ function collectInoutForDate(dk) {
   return results;
 }
 
+function openInoutPopup() {
+  const DATES = getDates();
+  const DKEYS = getDkeys();
+  const idx = curIdx;
+  const holidays = getHolidays();
+  const DOW2 = ['일','월','화','수','목','금','토'];
+
+  const cols = [-1, 0, 1].map(offset => {
+    const i = idx + offset;
+    if(i < 0 || i >= DKEYS.length) return null;
+    return { dk: DKEYS[i], d: DATES[i], offset };
+  }).filter(Boolean);
+
+  const todayD = DATES[idx];
+  document.getElementById('popupDateLabel').textContent =
+    todayD.getFullYear() + '년 ' + (todayD.getMonth()+1) + '월 ' + todayD.getDate() + '일 기준';
+
+  const allEntries = [];
+  const rowMap = {};
+
+  cols.forEach(col => {
+    const items = collectInoutForDate(col.dk);
+    items.forEach(item => {
+      const key = item.entry.equipName + '|' + item.entry.personName + '|' + item.entry.startDate;
+      if(!rowMap[key]) {
+        rowMap[key] = { entry: item.entry, outCol: null, inCol: null };
+        allEntries.push(rowMap[key]);
+      }
+      if(item.type === 'out') rowMap[key].outCol = col.offset;
+      if(item.type === 'in')  rowMap[key].inCol  = col.offset;
+    });
+  });
+
+  const colHeaders = cols.map(col => {
+    const d = col.d;
+    const isToday2 = col.offset === 0;
+    const isHol = holidays.includes(col.dk);
+    const dateStr = (d.getMonth()+1) + '/' + d.getDate();
+    const dowStr = DOW2[d.getDay()];
+    const items = collectInoutForDate(col.dk);
+    const outCnt = items.filter(i => i.type === 'out').length;
+    const inCnt  = items.filter(i => i.type === 'in').length;
+    let subLabel = '';
+    if(col.offset === -1) subLabel = `입고(${inCnt}건)`;
+    else if(col.offset === 0) subLabel = `출고(${outCnt}건) 입고(${inCnt}건)`;
+    else if(col.offset === 1) subLabel = `출고(${outCnt}건)`;
+    return {col, dateStr, dowStr, isToday2, isHol, subLabel, outCnt, inCnt};
+  });
+
+  const todayItems = collectInoutForDate(DKEYS[idx]);
+  const totalOut = todayItems.filter(i => i.type==='out').length;
+  const totalIn  = todayItems.filter(i => i.type==='in').length;
+
+  let tableHtml = `
+  <div style="margin-bottom:12px;text-align:center">
+    <span style="font-size:14px;font-weight:900;color:#fff">
+      ${(todayD.getMonth()+1)}월 ${todayD.getDate()}일 입출고 목록
+    </span>
+    <span style="font-size:12px;color:var(--blue);margin-left:10px">출고 ${totalOut}건</span>
+    <span style="font-size:12px;color:var(--green);margin-left:6px">입고 ${totalIn}건</span>
+  </div>
+  <table style="width:100%;border-collapse:collapse;font-size:12px">
+    <thead>
+      <tr style="background:var(--bg)">
+        <th style="padding:8px 10px;border:1px solid var(--border);color:var(--muted);font-weight:700;min-width:130px">장비명</th>
+        <th style="padding:8px 10px;border:1px solid var(--border);color:var(--muted);font-weight:700;min-width:70px">성명</th>`;
+
+  colHeaders.forEach(h => {
+    const color = h.isToday2 ? 'var(--accent)' : (h.isHol ? 'var(--red)' : 'var(--muted)');
+    tableHtml += `<th style="padding:6px 8px;border:1px solid var(--border);color:${color};font-weight:700;text-align:center;min-width:100px">
+        ${h.dateStr} (${h.dowStr})${h.isHol?' 🔴':''}<br>
+        <span style="font-size:10px;font-weight:400;color:var(--muted)">${h.subLabel}</span>
+      </th>`;
+  });
+
+  tableHtml += `<th style="padding:8px 10px;border:1px solid var(--border);color:var(--muted);font-weight:700">비고</th></tr>
+    </thead><tbody>`;
+
+  allEntries.sort((a, b) => {
+    const aOut = a.outCol !== null ? a.outCol : 99;
+    const bOut = b.outCol !== null ? b.outCol : 99;
+    if(aOut !== bOut) return aOut - bOut;
+    return a.entry.equipName.localeCompare(b.entry.equipName, 'ko');
+  });
+
+  allEntries.forEach((row, ri) => {
+    const e = row.entry;
+    const bg = ri%2===0 ? 'var(--surface)' : 'var(--card)';
+    tableHtml += `<tr style="background:${bg}">
+      <td style="padding:7px 10px;border:1px solid var(--border);color:var(--text);font-weight:600">${e.equipName}</td>
+      <td style="padding:7px 10px;border:1px solid var(--border);color:var(--dim)">${e.personName}</td>`;
+
+    cols.forEach(col => {
+      const isOut = row.outCol === col.offset;
+      const isIn  = row.inCol  === col.offset;
+      const isMid = row.outCol !== null && row.inCol !== null && col.offset > row.outCol && col.offset < row.inCol;
+      const isMidOut = row.outCol !== null && row.inCol === null && col.offset > row.outCol;
+      const isMidIn  = row.inCol  !== null && row.outCol === null && col.offset < row.inCol;
+      let cellContent = '';
+      let cellStyle = 'padding:7px 8px;border:1px solid var(--border);text-align:center';
+
+      if(isOut && isIn) {
+        cellContent = `<label style="display:inline-flex;align-items:center;gap:3px;cursor:pointer;margin-right:4px">
+          <input type="checkbox" ${e.outDone?'checked':''} onchange="toggleEntryCheckPopup('${e.startDate}','${e.site}','${e.id}','out',this.checked)" style="cursor:pointer">
+          <span style="font-size:10px;color:var(--blue)">출고</span></label>
+          <label style="display:inline-flex;align-items:center;gap:3px;cursor:pointer">
+          <input type="checkbox" ${e.inDone?'checked':''} onchange="toggleEntryCheckPopup('${e.startDate}','${e.site}','${e.id}','in',this.checked)" style="cursor:pointer">
+          <span style="font-size:10px;color:var(--green)">입고</span></label>`;
+      } else if(isOut) {
+        cellContent = `<label style="display:inline-flex;align-items:center;gap:3px;cursor:pointer">
+          <input type="checkbox" ${e.outDone?'checked':''} onchange="toggleEntryCheckPopup('${e.startDate}','${e.site}','${e.id}','out',this.checked)" style="cursor:pointer">
+          <span style="font-size:11px;color:var(--blue)">출고 →</span></label>`;
+      } else if(isIn) {
+        cellContent = `<label style="display:inline-flex;align-items:center;gap:3px;cursor:pointer">
+          <input type="checkbox" ${e.inDone?'checked':''} onchange="toggleEntryCheckPopup('${e.startDate}','${e.site}','${e.id}','in',this.checked)" style="cursor:pointer">
+          <span style="font-size:11px;color:var(--green)">← 입고</span></label>`;
+      } else if(isMid) {
+        cellContent = `<span style="color:var(--muted);font-size:18px">↔</span>`;
+        cellStyle += ';background:rgba(99,102,241,.05)';
+      } else if(isMidOut) {
+        cellContent = `<span style="color:var(--blue);font-size:18px">→</span>`;
+        cellStyle += ';background:rgba(96,165,250,.05)';
+      } else if(isMidIn) {
+        cellContent = `<span style="color:var(--green);font-size:18px">←</span>`;
+        cellStyle += ';background:rgba(52,211,153,.05)';
+      }
+      tableHtml += `<td style="${cellStyle}">${cellContent}</td>`;
+    });
+
+    tableHtml += `<td style="padding:7px 10px;border:1px solid var(--border);color:var(--muted);font-size:10px">${e.days}일</td></tr>`;
+  });
+
+  if(allEntries.length === 0) {
+    tableHtml += `<tr><td colspan="${cols.length+3}" style="padding:20px;text-align:center;color:var(--muted);border:1px solid var(--border)">작업 없음</td></tr>`;
+  }
+  tableHtml += '</tbody></table>';
+
+  document.getElementById('popupCols').innerHTML = tableHtml;
+  document.getElementById('inoutPopup').classList.remove('hidden');
+}
+
+function toggleEntryCheckPopup(startDk, site, entryId, type, val) {
+  if(!state[startDk] || !state[startDk][site]) return;
+  const entry = state[startDk][site].entries.find(e => String(e.id) === String(entryId));
+  if(!entry) return;
+  if(type === 'out') entry.outDone = val;
+  else entry.inDone = val;
+  if(saveTimer) clearTimeout(saveTimer);
+  saveData();
+  renderAll();
+  openInoutPopup();
+}
+
+
 function closePopup() {
   document.getElementById('inoutPopup').classList.add('hidden');
 }
