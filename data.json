@@ -124,6 +124,18 @@
           "inDone": false,
           "site": "본소",
           "baseMins": 50
+        },
+        {
+          "id": 1776682977816.7246,
+          "equipName": "덩굴파쇄기(보행)-01",
+          "equipSpec": "HRT802 / 보행형",
+          "personName": "이성우",
+          "days": 1,
+          "startDate": "2026-04-20",
+          "outDone": false,
+          "inDone": false,
+          "site": "본소",
+          "baseMins": 60
         }
       ]
     },
