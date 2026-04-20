@@ -21,6 +21,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776724046914.1802,
+            "equipName": "감자비닐피복파종기-01",
+            "equipSpec": "RDK-SP11/감자비닐피복(1조)",
+            "personName": "원유태",
+            "days": 3,
+            "startDate": "2026-04-20",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 290,
+            "delivery": true
           }
         ],
         "delivery": false
