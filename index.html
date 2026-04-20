@@ -459,12 +459,11 @@ select:focus{border-color:var(--accent)}
                   <button class="day-btn" onclick="setDays(2)" id="dayBtn2">2일</button>
                   <button class="day-btn" onclick="setDays(3)" id="dayBtn3">3일</button>
                 </div>
-                <label class="delivery-toggle" id="deliveryToggle" onclick="toggleDelivery()" title="배송 포함 시 240분(1일) 또는 120분×2(2~3일) 가산">
-                  <input type="checkbox" id="deliveryChk">
+                <div class="delivery-toggle" id="deliveryToggle" onclick="toggleDelivery()" title="배송 포함 시 240분(1일) 또는 120분×2(2~3일) 가산">
                   <span class="delivery-chk-sq" id="deliveryChkSq"></span>
                   <span class="delivery-box">🚚</span>
                   <span class="delivery-txt">배송</span>
-                </label>
+                </div>
               </div>
             </div>
 
@@ -893,17 +892,15 @@ function setIdx(i){curIdx=i;renderAll();}
 
 // ── 배송 체크 ──
 function toggleDelivery() {
-  const dk = getDkeys()[curIdx];
-  const site = curSite === '전체' ? '본소' : curSite;
-  ensureDay(dk);
-  state[dk][site].delivery = !state[dk][site].delivery;
-  updateDeliveryUI();
-  if(saveTimer) clearTimeout(saveTimer);
-  saveData();
-  renderGauge();
-  renderDateTabs();
-  renderMiniTable();
+  selDelivery = !selDelivery;
+  const tog = document.getElementById('deliveryToggle');
+  const sq  = document.getElementById('deliveryChkSq');
+  const chk = document.getElementById('deliveryChk');
+  tog.classList.toggle('on', selDelivery);
+  chk.checked = selDelivery;
+  updateHalfInfo();
 }
+
 
 function updateDeliveryUI() {
   const dk = getDkeys()[curIdx];
@@ -1335,7 +1332,6 @@ function addEntry() {
   document.getElementById('halfInfo').classList.remove('show');
   [1,2,3].forEach(n => document.getElementById('dayBtn'+n).classList.remove('active'));
   document.getElementById('deliveryToggle').classList.remove('on');
-  document.getElementById('deliveryChk').checked = false;
 
   renderAll();
 }
