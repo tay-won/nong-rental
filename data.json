@@ -434,6 +434,19 @@
             "site": "본소",
             "baseMins": 80,
             "delivery": false
+          },
+          {
+            "id": 1776727878708.8171,
+            "equipName": "돌수집기-04",
+            "equipSpec": "SH-L1400B/1400",
+            "personName": "권혁빈",
+            "days": 2,
+            "startDate": "2026-04-21",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
