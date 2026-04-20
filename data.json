@@ -157,7 +157,20 @@
         "bs3": 420,
         "bs4": 420
       },
-      "entries": []
+      "entries": [
+        {
+          "id": 1776682999347.3145,
+          "equipName": "동력파종기1750-01",
+          "equipSpec": "HG600A / 1750 (3조)",
+          "personName": "원유태",
+          "days": 1,
+          "startDate": "2026-04-21",
+          "outDone": false,
+          "inDone": false,
+          "site": "본소",
+          "baseMins": 80
+        }
+      ]
     },
     "북부": {
       "workers": {
