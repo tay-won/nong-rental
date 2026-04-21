@@ -1807,6 +1807,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776731161969.3079,
+            "equipName": "관리기-구굴기(소)-04",
+            "equipSpec": "ASC-640/구굴기(소)",
+            "personName": "안병천",
+            "days": 1,
+            "startDate": "2026-04-23",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
