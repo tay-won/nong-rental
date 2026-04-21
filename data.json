@@ -292,7 +292,21 @@
           "nb3": 420,
           "nb4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1776729950914.334,
+            "equipName": "원판쟁기10련-05",
+            "equipSpec": "W300-DP/원판-10련",
+            "personName": "강의석",
+            "days": 1,
+            "startDate": "2026-04-20",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
+          }
+        ],
         "delivery": false
       }
     },
