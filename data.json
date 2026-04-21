@@ -2221,6 +2221,19 @@
             "site": "북부",
             "baseMins": 80,
             "delivery": false
+          },
+          {
+            "id": 1776731330886.7747,
+            "equipName": "관리기-휴립피복기-03",
+            "equipSpec": "AMC-1000SM/휴립피복기(중)",
+            "personName": "김복청",
+            "days": 1,
+            "startDate": "2026-04-24",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
