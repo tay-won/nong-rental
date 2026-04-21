@@ -461,6 +461,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776730187636.3096,
+            "equipName": "못자리성형기2150-02",
+            "equipSpec": "DS-B003/2150-못자리",
+            "personName": "최연우",
+            "days": 1,
+            "startDate": "2026-04-20",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 110,
+            "delivery": false
           }
         ],
         "delivery": false
