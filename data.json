@@ -3320,6 +3320,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776734080270.044,
+            "equipName": "논두렁조성기(소)-05",
+            "equipSpec": "WJLF380/(소)",
+            "personName": "조남용",
+            "days": 1,
+            "startDate": "2026-04-27",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
