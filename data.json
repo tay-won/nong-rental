@@ -1033,19 +1033,6 @@
             "delivery": false
           },
           {
-            "id": 1776730608551.9565,
-            "equipName": "육묘적재이송기-03",
-            "equipSpec": "MDJI1400/400~1,500",
-            "personName": "조성진",
-            "days": 1,
-            "startDate": "2026-04-21",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 80,
-            "delivery": false
-          },
-          {
             "id": 1776730639555.3804,
             "equipName": "관리기-구굴기(소)-05",
             "equipSpec": "ASC-640/구굴기(소)",
