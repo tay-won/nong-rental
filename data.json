@@ -2728,6 +2728,19 @@
             "delivery": false
           },
           {
+            "id": 1776757721782.6614,
+            "equipName": "로터베이터1500-01",
+            "equipSpec": "AR-150/1500",
+            "personName": "강연희",
+            "days": 2,
+            "startDate": "2026-04-25",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
+          },
+          {
             "id": 1776732908177.4067,
             "equipName": "굴착기(1톤)-02",
             "equipSpec": "U-10-3S/1TON",
@@ -2764,19 +2777,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1776757721782.6614,
-            "equipName": "로터베이터1500-01",
-            "equipSpec": "AR-150/1500",
-            "personName": "강연희",
-            "days": 2,
-            "startDate": "2026-04-25",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 60,
             "delivery": false
           }
         ],
