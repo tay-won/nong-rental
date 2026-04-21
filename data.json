@@ -55,7 +55,7 @@
             "personName": "백대현",
             "days": 1,
             "startDate": "2026-04-20",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
@@ -69,7 +69,7 @@
             "days": 1,
             "startDate": "2026-04-20",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "본소",
             "baseMins": 50,
             "delivery": false
