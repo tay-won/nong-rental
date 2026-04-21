@@ -4299,6 +4299,28 @@
         "delivery": false
       }
     },
+    "2026-05-12": {
+      "본소": {
+        "workers": {
+          "bs1": 420,
+          "bs2": 420,
+          "bs3": 420,
+          "bs4": 420
+        },
+        "entries": [],
+        "delivery": false
+      },
+      "북부": {
+        "workers": {
+          "nb1": 420,
+          "nb2": 420,
+          "nb3": 420,
+          "nb4": 420
+        },
+        "entries": [],
+        "delivery": false
+      }
+    },
     "2026-04-20": {
       "본소": {
         "workers": {
@@ -4316,7 +4338,7 @@
             "days": 1,
             "startDate": "2026-04-20",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "본소",
             "baseMins": 90,
             "delivery": false
@@ -4909,6 +4931,116 @@
       }
     },
     "2026-04-19": {
+      "본소": {
+        "workers": {
+          "bs1": 420,
+          "bs2": 420,
+          "bs3": 420,
+          "bs4": 420
+        },
+        "entries": [],
+        "delivery": false
+      },
+      "북부": {
+        "workers": {
+          "nb1": 420,
+          "nb2": 420,
+          "nb3": 420,
+          "nb4": 420
+        },
+        "entries": [],
+        "delivery": false
+      }
+    },
+    "2026-04-14": {
+      "본소": {
+        "workers": {
+          "bs1": 420,
+          "bs2": 420,
+          "bs3": 420,
+          "bs4": 420
+        },
+        "entries": [],
+        "delivery": false
+      },
+      "북부": {
+        "workers": {
+          "nb1": 420,
+          "nb2": 420,
+          "nb3": 420,
+          "nb4": 420
+        },
+        "entries": [],
+        "delivery": false
+      }
+    },
+    "2026-04-15": {
+      "본소": {
+        "workers": {
+          "bs1": 420,
+          "bs2": 420,
+          "bs3": 420,
+          "bs4": 420
+        },
+        "entries": [],
+        "delivery": false
+      },
+      "북부": {
+        "workers": {
+          "nb1": 420,
+          "nb2": 420,
+          "nb3": 420,
+          "nb4": 420
+        },
+        "entries": [],
+        "delivery": false
+      }
+    },
+    "2026-04-16": {
+      "본소": {
+        "workers": {
+          "bs1": 420,
+          "bs2": 420,
+          "bs3": 420,
+          "bs4": 420
+        },
+        "entries": [],
+        "delivery": false
+      },
+      "북부": {
+        "workers": {
+          "nb1": 420,
+          "nb2": 420,
+          "nb3": 420,
+          "nb4": 420
+        },
+        "entries": [],
+        "delivery": false
+      }
+    },
+    "2026-04-17": {
+      "본소": {
+        "workers": {
+          "bs1": 420,
+          "bs2": 420,
+          "bs3": 420,
+          "bs4": 420
+        },
+        "entries": [],
+        "delivery": false
+      },
+      "북부": {
+        "workers": {
+          "nb1": 420,
+          "nb2": 420,
+          "nb3": 420,
+          "nb4": 420
+        },
+        "entries": [],
+        "delivery": false
+      }
+    },
+    "2026-04-18": {
       "본소": {
         "workers": {
           "bs1": 420,
