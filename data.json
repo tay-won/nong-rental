@@ -4020,19 +4020,6 @@
             "delivery": false
           },
           {
-            "id": 1776734546594.3389,
-            "equipName": "관리기-휴립피복기-02",
-            "equipSpec": "AMC-1000SM/휴립피복기(중)",
-            "personName": "정지석",
-            "days": 2,
-            "startDate": "2026-04-29",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1776734566979.9434,
             "equipName": "소형트랙터25HP-04",
             "equipSpec": "LK2805/25HP",
