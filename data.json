@@ -883,7 +883,7 @@
             "personName": "남궁석환",
             "days": 1,
             "startDate": "2026-04-21",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 40,
