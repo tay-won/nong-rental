@@ -1859,6 +1859,19 @@
             "site": "북부",
             "baseMins": 60,
             "delivery": false
+          },
+          {
+            "id": 1776731223236.3357,
+            "equipName": "붐스프레이어-02",
+            "equipSpec": "BS-2000/600ℓ",
+            "personName": "정영",
+            "days": 1,
+            "startDate": "2026-04-23",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 150,
+            "delivery": false
           }
         ],
         "delivery": false
