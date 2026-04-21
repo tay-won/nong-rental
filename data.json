@@ -4534,19 +4534,6 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
-          },
-          {
-            "id": 1776737194601.1128,
-            "equipName": "관리기-쟁기-02",
-            "equipSpec": "AMC-900SM/쟁기(중)",
-            "personName": "00",
-            "days": 1,
-            "startDate": "2026-05-06",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 290,
-            "delivery": true
           }
         ],
         "delivery": false
