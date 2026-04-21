@@ -898,7 +898,7 @@ function openDatePicker() {
   const picker = document.getElementById('returnDatePicker');
   // 최소 날짜: 시작일 + 4일 (4일 이상만)
   const minDate = new Date(dk);
-  minDate.setDate(minDate.getDate() + 3);
+  minDate.setDate(minDate.getDate() + 1);
   picker.min = minDate.toISOString().slice(0,10);
   // 최대 날짜: 시작일 + 30일
   const maxDate = new Date(dk);
@@ -915,7 +915,7 @@ function setDaysByDate(returnDate) {
   const dk = getDkeys()[curIdx];
   const start = new Date(dk);
   const end = new Date(returnDate);
-  const diff = Math.round((end - start) / 86400000) + 1;
+  const diff = Math.round((end - start) / 86400000);
   if(diff < 1) return;
   selDays = diff;
   // 모든 버튼 비활성화 후 직접 버튼 활성화
@@ -1288,7 +1288,7 @@ function openDatePicker() {
   const picker = document.getElementById('returnDatePicker');
   // 최소 날짜: 시작일 + 4일 (4일 이상만)
   const minDate = new Date(dk);
-  minDate.setDate(minDate.getDate() + 3);
+  minDate.setDate(minDate.getDate() + 1);
   picker.min = minDate.toISOString().slice(0,10);
   // 최대 날짜: 시작일 + 30일
   const maxDate = new Date(dk);
@@ -1305,7 +1305,7 @@ function setDaysByDate(returnDate) {
   const dk = getDkeys()[curIdx];
   const start = new Date(dk);
   const end = new Date(returnDate);
-  const diff = Math.round((end - start) / 86400000) + 1;
+  const diff = Math.round((end - start) / 86400000);
   if(diff < 1) return;
   selDays = diff;
   // 모든 버튼 비활성화 후 직접 버튼 활성화
@@ -1550,10 +1550,11 @@ function collectInoutForDate(dk) {
 function openInoutPopup() {
   const DATES = getDates();
   const DKEYS = getDkeys();
-  const idx = curIdx;
+  const idx   = curIdx;
   const holidays = getHolidays();
-  const DOW2 = ['일','월','화','수','목','금','토'];
+  const DOW2  = ['일','월','화','수','목','금','토'];
 
+  // 전날(-1), 오늘(0), 다음날(+1)
   const cols = [-1, 0, 1].map(offset => {
     const i = idx + offset;
     if(i < 0 || i >= DKEYS.length) return null;
@@ -1561,49 +1562,140 @@ function openInoutPopup() {
   }).filter(Boolean);
 
   const todayD = DATES[idx];
+  const colDks = cols.map(c => c.dk); // 3일 범위 날짜
+
   document.getElementById('popupDateLabel').textContent =
     todayD.getFullYear() + '년 ' + (todayD.getMonth()+1) + '월 ' + todayD.getDate() + '일 기준';
 
-  const allEntries = [];
-  const rowMap = {};
+  // ── 3일 범위 내 미완결 작업 수집 ──
+  // entry별로 이 3일 범위에서 해야 할 일 정리
+  const taskMap = {}; // key → {entry, site, startDk, outDk, inDk}
 
-  cols.forEach(col => {
-    const items = collectInoutForDate(col.dk);
-    items.forEach(item => {
-      const key = item.entry.equipName + '|' + item.entry.personName + '|' + item.entry.startDate;
-      if(!rowMap[key]) {
-        rowMap[key] = { entry: item.entry, outCol: null, inCol: null };
-        allEntries.push(rowMap[key]);
-      }
-      if(item.type === 'out') rowMap[key].outCol = col.offset;
-      if(item.type === 'in')  rowMap[key].inCol  = col.offset;
+  Object.keys(state).forEach(startDk => {
+    ['본소','북부'].forEach(site => {
+      if(!state[startDk]||!state[startDk][site]) return;
+      state[startDk][site].entries.forEach(e => {
+        const start   = new Date(e.startDate);
+        const outDk   = e.startDate; // 출고일 = 시작일
+        const inDate  = new Date(e.startDate);
+        inDate.setDate(inDate.getDate() + e.days - 1);
+        const inDk    = inDate.toISOString().slice(0,10); // 입고일
+
+        // 이 entry가 3일 범위와 관련 있는지 판단
+        const outInRange = colDks.includes(outDk);
+        const inInRange  = colDks.includes(inDk);
+
+        // 할 일이 있는지 (미완결)
+        const needOut = outInRange && !e.outDone;
+        const needIn  = inInRange  && !e.inDone;
+
+        // 1일 임대 특수처리: 출고 완료됐는데 입고 미완 → 입고만
+        const needInOnly = (e.days === 1 && e.outDone && !e.inDone && inInRange);
+
+        if(!needOut && !needIn && !needInOnly) return;
+
+        const key = e.id;
+        taskMap[key] = {
+          entry: e, site, startDk, outDk, inDk,
+          showOut: needOut,
+          showIn:  needIn || needInOnly,
+        };
+      });
     });
   });
 
-  const colHeaders = cols.map(col => {
-    const d = col.d;
+  const tasks = Object.values(taskMap);
+
+  // 총 건수 계산
+  const totalOut = tasks.filter(t => t.showOut).length;
+  const totalIn  = tasks.filter(t => t.showIn).length;
+
+  // ── 컬럼 헤더 ──
+  let colHeaderHtml = '';
+  cols.forEach(col => {
     const isToday2 = col.offset === 0;
     const isHol = holidays.includes(col.dk);
-    const dateStr = (d.getMonth()+1) + '/' + d.getDate();
-    const dowStr = DOW2[d.getDay()];
-    const items = collectInoutForDate(col.dk);
-    const outCnt = items.filter(i => i.type === 'out').length;
-    const inCnt  = items.filter(i => i.type === 'in').length;
-    let subLabel = '';
-    if(col.offset === -1) subLabel = `입고(${inCnt}건)`;
-    else if(col.offset === 0) subLabel = `출고(${outCnt}건) 입고(${inCnt}건)`;
-    else if(col.offset === 1) subLabel = `출고(${outCnt}건)`;
-    return {col, dateStr, dowStr, isToday2, isHol, subLabel, outCnt, inCnt};
+    const color = isToday2 ? 'var(--accent)' : (isHol ? 'var(--red)' : 'var(--muted)');
+    const dateStr = (col.d.getMonth()+1)+'/'+col.d.getDate()+'('+DOW2[col.d.getDay()]+')';
+    // 이 날짜의 미완결 건수
+    const colOut = tasks.filter(t => t.showOut && t.outDk === col.dk).length;
+    const colIn  = tasks.filter(t => t.showIn  && t.inDk  === col.dk).length;
+    let sub = '';
+    if(col.offset === -1) sub = colIn  ? `입고(${colIn}건)` : '없음';
+    else if(col.offset === 0) sub = [colOut?`출고(${colOut}건)`:'', colIn?`입고(${colIn}건)`:''].filter(Boolean).join(' ') || '없음';
+    else if(col.offset === 1) sub = colOut ? `출고(${colOut}건)` : '없음';
+    colHeaderHtml += `<th style="padding:6px 8px;border:1px solid var(--border);color:${color};font-weight:700;text-align:center;min-width:100px">
+      ${dateStr}${isHol?' 🔴':''}<br>
+      <span style="font-size:10px;font-weight:400;color:var(--muted)">${sub}</span>
+    </th>`;
   });
 
-  const todayItems = collectInoutForDate(DKEYS[idx]);
-  const totalOut = todayItems.filter(i => i.type==='out').length;
-  const totalIn  = todayItems.filter(i => i.type==='in').length;
+  // ── 행 정렬: 출고일 → 입고일 순 ──
+  tasks.sort((a,b) => {
+    const aDate = a.showOut ? a.outDk : a.inDk;
+    const bDate = b.showOut ? b.outDk : b.inDk;
+    if(aDate !== bDate) return aDate < bDate ? -1 : 1;
+    return a.entry.equipName.localeCompare(b.entry.equipName, 'ko');
+  });
 
-  let tableHtml = `
+  // ── 행 생성 ──
+  let rowsHtml = '';
+  if(tasks.length === 0) {
+    rowsHtml = `<tr><td colspan="${cols.length+3}" style="padding:20px;text-align:center;color:var(--muted);border:1px solid var(--border)">미완결 작업 없음 ✅</td></tr>`;
+  } else {
+    tasks.forEach((t, ri) => {
+      const e = t.entry;
+      const bg = ri%2===0 ? 'var(--surface)' : 'var(--card)';
+
+      let colCells = '';
+      cols.forEach(col => {
+        let cell = '';
+        let cellStyle = `padding:7px 8px;border:1px solid var(--border);text-align:center`;
+
+        // 출고 표시
+        if(t.showOut && t.outDk === col.dk) {
+          cell += `<label style="display:inline-flex;align-items:center;gap:3px;cursor:pointer;margin:2px">
+            <input type="checkbox" ${e.outDone?'checked':''} 
+              onchange="toggleEntryCheckPopup('${e.startDate}','${t.site}','${e.id}','out',this.checked)" style="cursor:pointer">
+            <span style="font-size:11px;color:var(--blue)">출고 →</span>
+          </label>`;
+        }
+        // 입고 표시
+        if(t.showIn && t.inDk === col.dk) {
+          cell += `<label style="display:inline-flex;align-items:center;gap:3px;cursor:pointer;margin:2px">
+            <input type="checkbox" ${e.inDone?'checked':''}
+              onchange="toggleEntryCheckPopup('${e.startDate}','${t.site}','${e.id}','in',this.checked)" style="cursor:pointer">
+            <span style="font-size:11px;color:var(--green)">← 입고</span>
+          </label>`;
+        }
+        // 임대 중간 기간 표시 (출고됐고 아직 입고 안 된 기간)
+        if(!cell && e.outDone && !e.inDone) {
+          const colDate = new Date(col.dk);
+          const outDate = new Date(t.outDk);
+          const inDate  = new Date(t.inDk);
+          if(colDate > outDate && colDate <= inDate) {
+            cell = `<span style="color:var(--blue);font-size:14px">→</span>`;
+            cellStyle += ';background:rgba(96,165,250,.05)';
+          }
+        }
+
+        colCells += `<td style="${cellStyle}">${cell}</td>`;
+      });
+
+      const daysLabel = e.days + '일';
+      rowsHtml += `<tr style="background:${bg}">
+        <td style="padding:7px 10px;border:1px solid var(--border);color:var(--text);font-weight:600">${e.equipName}</td>
+        <td style="padding:7px 10px;border:1px solid var(--border);color:var(--dim)">${e.personName}</td>
+        ${colCells}
+        <td style="padding:7px 10px;border:1px solid var(--border);color:var(--muted);font-size:10px">${daysLabel}</td>
+      </tr>`;
+    });
+  }
+
+  const tableHtml = `
   <div style="margin-bottom:12px;text-align:center">
     <span style="font-size:14px;font-weight:900;color:#fff">
-      ${(todayD.getMonth()+1)}월 ${todayD.getDate()}일 입출고 목록
+      ${(todayD.getMonth()+1)}월 ${todayD.getDate()}일 입출고 작업 목록
     </span>
     <span style="font-size:12px;color:var(--blue);margin-left:10px">출고 ${totalOut}건</span>
     <span style="font-size:12px;color:var(--green);margin-left:6px">입고 ${totalIn}건</span>
@@ -1612,81 +1704,18 @@ function openInoutPopup() {
     <thead>
       <tr style="background:var(--bg)">
         <th style="padding:8px 10px;border:1px solid var(--border);color:var(--muted);font-weight:700;min-width:130px">장비명</th>
-        <th style="padding:8px 10px;border:1px solid var(--border);color:var(--muted);font-weight:700;min-width:70px">성명</th>`;
-
-  colHeaders.forEach(h => {
-    const color = h.isToday2 ? 'var(--accent)' : (h.isHol ? 'var(--red)' : 'var(--muted)');
-    tableHtml += `<th style="padding:6px 8px;border:1px solid var(--border);color:${color};font-weight:700;text-align:center;min-width:100px">
-        ${h.dateStr} (${h.dowStr})${h.isHol?' 🔴':''}<br>
-        <span style="font-size:10px;font-weight:400;color:var(--muted)">${h.subLabel}</span>
-      </th>`;
-  });
-
-  tableHtml += `<th style="padding:8px 10px;border:1px solid var(--border);color:var(--muted);font-weight:700">비고</th></tr>
-    </thead><tbody>`;
-
-  allEntries.sort((a, b) => {
-    const aOut = a.outCol !== null ? a.outCol : 99;
-    const bOut = b.outCol !== null ? b.outCol : 99;
-    if(aOut !== bOut) return aOut - bOut;
-    return a.entry.equipName.localeCompare(b.entry.equipName, 'ko');
-  });
-
-  allEntries.forEach((row, ri) => {
-    const e = row.entry;
-    const bg = ri%2===0 ? 'var(--surface)' : 'var(--card)';
-    tableHtml += `<tr style="background:${bg}">
-      <td style="padding:7px 10px;border:1px solid var(--border);color:var(--text);font-weight:600">${e.equipName}</td>
-      <td style="padding:7px 10px;border:1px solid var(--border);color:var(--dim)">${e.personName}</td>`;
-
-    cols.forEach(col => {
-      const isOut = row.outCol === col.offset;
-      const isIn  = row.inCol  === col.offset;
-      const isMid = row.outCol !== null && row.inCol !== null && col.offset > row.outCol && col.offset < row.inCol;
-      const isMidOut = row.outCol !== null && row.inCol === null && col.offset > row.outCol;
-      const isMidIn  = row.inCol  !== null && row.outCol === null && col.offset < row.inCol;
-      let cellContent = '';
-      let cellStyle = 'padding:7px 8px;border:1px solid var(--border);text-align:center';
-
-      if(isOut && isIn) {
-        cellContent = `<label style="display:inline-flex;align-items:center;gap:3px;cursor:pointer;margin-right:4px">
-          <input type="checkbox" ${e.outDone?'checked':''} onchange="toggleEntryCheckPopup('${e.startDate}','${e.site}','${e.id}','out',this.checked)" style="cursor:pointer">
-          <span style="font-size:10px;color:var(--blue)">출고</span></label>
-          <label style="display:inline-flex;align-items:center;gap:3px;cursor:pointer">
-          <input type="checkbox" ${e.inDone?'checked':''} onchange="toggleEntryCheckPopup('${e.startDate}','${e.site}','${e.id}','in',this.checked)" style="cursor:pointer">
-          <span style="font-size:10px;color:var(--green)">입고</span></label>`;
-      } else if(isOut) {
-        cellContent = `<label style="display:inline-flex;align-items:center;gap:3px;cursor:pointer">
-          <input type="checkbox" ${e.outDone?'checked':''} onchange="toggleEntryCheckPopup('${e.startDate}','${e.site}','${e.id}','out',this.checked)" style="cursor:pointer">
-          <span style="font-size:11px;color:var(--blue)">출고 →</span></label>`;
-      } else if(isIn) {
-        cellContent = `<label style="display:inline-flex;align-items:center;gap:3px;cursor:pointer">
-          <input type="checkbox" ${e.inDone?'checked':''} onchange="toggleEntryCheckPopup('${e.startDate}','${e.site}','${e.id}','in',this.checked)" style="cursor:pointer">
-          <span style="font-size:11px;color:var(--green)">← 입고</span></label>`;
-      } else if(isMid) {
-        cellContent = `<span style="color:var(--muted);font-size:18px">↔</span>`;
-        cellStyle += ';background:rgba(99,102,241,.05)';
-      } else if(isMidOut) {
-        cellContent = `<span style="color:var(--blue);font-size:18px">→</span>`;
-        cellStyle += ';background:rgba(96,165,250,.05)';
-      } else if(isMidIn) {
-        cellContent = `<span style="color:var(--green);font-size:18px">←</span>`;
-        cellStyle += ';background:rgba(52,211,153,.05)';
-      }
-      tableHtml += `<td style="${cellStyle}">${cellContent}</td>`;
-    });
-
-    tableHtml += `<td style="padding:7px 10px;border:1px solid var(--border);color:var(--muted);font-size:10px">${e.days}일</td></tr>`;
-  });
-
-  if(allEntries.length === 0) {
-    tableHtml += `<tr><td colspan="${cols.length+3}" style="padding:20px;text-align:center;color:var(--muted);border:1px solid var(--border)">작업 없음</td></tr>`;
-  }
-  tableHtml += '</tbody></table>';
+        <th style="padding:8px 10px;border:1px solid var(--border);color:var(--muted);font-weight:700;min-width:70px">성명</th>
+        ${colHeaderHtml}
+        <th style="padding:8px 10px;border:1px solid var(--border);color:var(--muted);font-weight:700">기간</th>
+      </tr>
+    </thead>
+    <tbody>${rowsHtml}</tbody>
+  </table>`;
 
   document.getElementById('popupCols').innerHTML = tableHtml;
   document.getElementById('inoutPopup').classList.remove('hidden');
 }
+
 
 function toggleEntryCheckPopup(startDk, site, entryId, type, val) {
   if(!state[startDk] || !state[startDk][site]) return;
