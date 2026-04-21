@@ -3552,7 +3552,21 @@
           "nb3": 420,
           "nb4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1776734229806.9534,
+            "equipName": "관리기-휴립피복기-01",
+            "equipSpec": "AMC-900SM/휴립피복기(중)",
+            "personName": "김미숙",
+            "days": 1,
+            "startDate": "2026-04-28",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
+          }
+        ],
         "delivery": false
       }
     },
