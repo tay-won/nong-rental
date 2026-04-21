@@ -2468,6 +2468,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776732301236.9998,
+            "equipName": "관리기-구굴기(중)-03",
+            "equipSpec": "AMC-1000SM/구굴기(중)",
+            "personName": "한연순",
+            "days": 2,
+            "startDate": "2026-04-24",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
