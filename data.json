@@ -955,19 +955,6 @@
             "delivery": false
           },
           {
-            "id": 1776730556105.412,
-            "equipName": "굴착기(1.7톤)-02",
-            "equipSpec": "DX17Z-5/2TON",
-            "personName": "장상열",
-            "days": 1,
-            "startDate": "2026-04-21",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 80,
-            "delivery": false
-          },
-          {
             "id": 1776730536163.8286,
             "equipName": "중경제초기1800-02",
             "equipSpec": "GM1800-L550A/1800",
@@ -978,6 +965,19 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 60,
+            "delivery": false
+          },
+          {
+            "id": 1776730556105.412,
+            "equipName": "굴착기(1.7톤)-02",
+            "equipSpec": "DX17Z-5/2TON",
+            "personName": "장상열",
+            "days": 1,
+            "startDate": "2026-04-21",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 80,
             "delivery": false
           },
           {
