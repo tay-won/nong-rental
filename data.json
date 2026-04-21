@@ -4118,7 +4118,21 @@
           "nb3": 420,
           "nb4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1776734670355.5364,
+            "equipName": "원판쟁기8련-01",
+            "equipSpec": "W82-DP/원판-8련",
+            "personName": "이이석",
+            "days": 1,
+            "startDate": "2026-05-01",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
+          }
+        ],
         "delivery": false
       }
     },
