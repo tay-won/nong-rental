@@ -1834,6 +1834,19 @@
             "site": "본소",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1776729696422.2424,
+            "equipName": "관리기-로터리-03",
+            "equipSpec": "AMC-1000SM/로타리(중)",
+            "personName": "김평진",
+            "days": 1,
+            "startDate": "2026-05-01",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
