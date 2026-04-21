@@ -437,19 +437,6 @@
             "delivery": false
           },
           {
-            "id": 1776730117203.2993,
-            "equipName": "구굴기30-01",
-            "equipSpec": "OM312/30",
-            "personName": "정준",
-            "days": 1,
-            "startDate": "2026-04-20",
-            "outDone": true,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1776730153650.614,
             "equipName": "관리기-로터리-01",
             "equipSpec": "AMC-1000SM/로타리(중)",
