@@ -1091,7 +1091,7 @@
             "personName": "김용구",
             "days": 2,
             "startDate": "2026-04-21",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
