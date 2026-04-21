@@ -1083,6 +1083,19 @@
             "site": "북부",
             "baseMins": 60,
             "delivery": false
+          },
+          {
+            "id": 1776762136550.9624,
+            "equipName": "원판쟁기10련-04",
+            "equipSpec": "W300-DP/원판-10련",
+            "personName": "김용구",
+            "days": 2,
+            "startDate": "2026-04-21",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
