@@ -2804,19 +2804,6 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
-          },
-          {
-            "id": 1776746706805.706,
-            "equipName": "감자비닐피복파종기-01",
-            "equipSpec": "RDK-SP11/감자비닐피복(1조)",
-            "personName": "00",
-            "days": 1,
-            "startDate": "2026-04-25",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
           }
         ],
         "delivery": false
