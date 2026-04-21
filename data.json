@@ -3810,6 +3810,19 @@
             "site": "북부",
             "baseMins": 290,
             "delivery": true
+          },
+          {
+            "id": 1776734494055.688,
+            "equipName": "소형트랙터25HP-01",
+            "equipSpec": "CK250V/25HP",
+            "personName": "송영수",
+            "days": 1,
+            "startDate": "2026-04-29",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
