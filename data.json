@@ -2765,6 +2765,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776757721782.6614,
+            "equipName": "로터베이터1500-01",
+            "equipSpec": "AR-150/1500",
+            "personName": "강연희",
+            "days": 2,
+            "startDate": "2026-04-25",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
