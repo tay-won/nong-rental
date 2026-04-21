@@ -192,19 +192,6 @@
             "delivery": false
           },
           {
-            "id": 1776727506000.4736,
-            "equipName": "로터베이터1150-02",
-            "equipSpec": "DWR115GM/1150",
-            "personName": "이미자",
-            "days": 2,
-            "startDate": "2026-04-20",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 40,
-            "delivery": false
-          },
-          {
             "id": 1776727530526.8765,
             "equipName": "원판쟁기8련-04",
             "equipSpec": "W82-DP/원판-8련",
