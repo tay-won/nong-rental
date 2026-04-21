@@ -2624,19 +2624,6 @@
             "site": "본소",
             "baseMins": 90,
             "delivery": false
-          },
-          {
-            "id": 1776736646900.486,
-            "equipName": "관리기-구굴기(소)-02",
-            "equipSpec": "ASC-640/구굴기(소)",
-            "personName": "정재호",
-            "days": 3,
-            "startDate": "2026-04-25",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
           }
         ],
         "delivery": false
