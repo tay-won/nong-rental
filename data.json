@@ -3812,6 +3812,19 @@
             "site": "북부",
             "baseMins": 60,
             "delivery": false
+          },
+          {
+            "id": 1776756997171.7295,
+            "equipName": "관리기-휴립기-03",
+            "equipSpec": "AMC-1000SM/휴립기(중)",
+            "personName": "장주열",
+            "days": 1,
+            "startDate": "2026-04-28",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
