@@ -3207,6 +3207,19 @@
             "delivery": false
           },
           {
+            "id": 1776737917290.9714,
+            "equipName": "로터베이터1150-03",
+            "equipSpec": "DWR115GM/1150",
+            "personName": "유재철",
+            "days": 1,
+            "startDate": "2026-04-27",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 40,
+            "delivery": false
+          },
+          {
             "id": 1776729382496.445,
             "equipName": "소형트랙터25HP-02",
             "equipSpec": "CK250V/25HP",
@@ -3243,19 +3256,6 @@
             "inDone": false,
             "site": "본소",
             "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1776737917290.9714,
-            "equipName": "로터베이터1150-03",
-            "equipSpec": "DWR115GM/1150",
-            "personName": "유재철",
-            "days": 1,
-            "startDate": "2026-04-27",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 40,
             "delivery": false
           }
         ],
