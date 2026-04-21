@@ -4285,7 +4285,21 @@
           "bs3": 420,
           "bs4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1776815713128.9856,
+            "equipName": "관리기-로터리-06",
+            "equipSpec": "AMC-1000SM/로타리(중)",
+            "personName": "김연서",
+            "days": 1,
+            "startDate": "2026-05-11",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 290,
+            "delivery": true
+          }
+        ],
         "delivery": false
       },
       "북부": {
