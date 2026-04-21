@@ -1924,6 +1924,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776731294203.6987,
+            "equipName": "원판쟁기10련-01",
+            "equipSpec": "W300-DP/원판-10련",
+            "personName": "이형일",
+            "days": 3,
+            "startDate": "2026-04-23",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
