@@ -277,7 +277,7 @@
             "days": 1,
             "startDate": "2026-04-20",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "본소",
             "baseMins": 50,
             "delivery": false
@@ -1277,6 +1277,19 @@
             "inDone": false,
             "site": "본소",
             "baseMins": 60,
+            "delivery": false
+          },
+          {
+            "id": 1776758445026.2454,
+            "equipName": "소형트랙터25HP-01",
+            "equipSpec": "CK250V/25HP",
+            "personName": "김진웅",
+            "days": 1,
+            "startDate": "2026-04-22",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
             "delivery": false
           }
         ],
