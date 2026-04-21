@@ -2234,6 +2234,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776731344906.3145,
+            "equipName": "육묘적재이송기-01",
+            "equipSpec": "MDJI1400/400~1,500",
+            "personName": "김진제",
+            "days": 1,
+            "startDate": "2026-04-24",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 80,
+            "delivery": false
           }
         ],
         "delivery": false
