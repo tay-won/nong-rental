@@ -3385,6 +3385,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776734187052.3098,
+            "equipName": "양용쟁기(4련)-02",
+            "equipSpec": "KP4500W/양용-4련",
+            "personName": "이상무",
+            "days": 3,
+            "startDate": "2026-04-27",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 80,
+            "delivery": false
           }
         ],
         "delivery": false
