@@ -409,6 +409,19 @@
             "site": "북부",
             "baseMins": 80,
             "delivery": false
+          },
+          {
+            "id": 1776730117203.2993,
+            "equipName": "구굴기30-01",
+            "equipSpec": "OM312/30",
+            "personName": "정준",
+            "days": 1,
+            "startDate": "2026-04-20",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
