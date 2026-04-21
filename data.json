@@ -2260,6 +2260,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776731370256.204,
+            "equipName": "관리기-로터리-08",
+            "equipSpec": "AMC-1000SM/로타리(중)",
+            "personName": "성기주",
+            "days": 1,
+            "startDate": "2026-04-24",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
