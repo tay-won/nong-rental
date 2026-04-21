@@ -4033,6 +4033,19 @@
             "delivery": false
           },
           {
+            "id": 1776757438481.5637,
+            "equipName": "굴착기(1톤)-05",
+            "equipSpec": "U-10-5/1TON",
+            "personName": "황지용",
+            "days": 1,
+            "startDate": "2026-04-29",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
+          },
+          {
             "id": 1776734566979.9434,
             "equipName": "소형트랙터25HP-04",
             "equipSpec": "LK2805/25HP",
@@ -4064,19 +4077,6 @@
             "equipSpec": "AR5240SC/2350",
             "personName": "유재원",
             "days": 3,
-            "startDate": "2026-04-29",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1776757438481.5637,
-            "equipName": "굴착기(1톤)-05",
-            "equipSpec": "U-10-5/1TON",
-            "personName": "황지용",
-            "days": 1,
             "startDate": "2026-04-29",
             "outDone": false,
             "inDone": false,
