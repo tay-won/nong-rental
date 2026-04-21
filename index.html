@@ -1609,14 +1609,17 @@ function openInoutPopup() {
   const holidays = getHolidays();
   const DOW2  = ['일','월','화','수','목','금','토'];
 
-  // 전날(-1), 오늘(0), 다음날(+1)
+  // 선택된 날짜 기준 전날/오늘/다음날 (날짜 탭 범위와 무관하게 계산)
+  const selDk = DKEYS[idx];
+  const selD  = DATES[idx];
   const cols = [-1, 0, 1].map(offset => {
-    const i = idx + offset;
-    if(i < 0 || i >= DKEYS.length) return null;
-    return { dk: DKEYS[i], d: DATES[i], offset };
-  }).filter(Boolean);
+    const d = new Date(selD);
+    d.setDate(d.getDate() + offset);
+    const dk = d.toISOString().slice(0,10);
+    return { dk, d: new Date(d), offset };
+  });
 
-  const todayD = DATES[idx];
+  const todayD = selD;
   const colDks = cols.map(c => c.dk); // 3일 범위 날짜
 
   document.getElementById('popupDateLabel').textContent =
