@@ -82,7 +82,7 @@
             "days": 1,
             "startDate": "2026-04-20",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "본소",
             "baseMins": 50,
             "delivery": false
@@ -190,19 +190,6 @@
             "site": "본소",
             "baseMins": 90,
             "delivery": false
-          },
-          {
-            "id": 1776727482983.5295,
-            "equipName": "소형트랙터25HP-02",
-            "equipSpec": "CK250V/25HP",
-            "personName": "이미자",
-            "days": 2,
-            "startDate": "2026-04-20",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 290,
-            "delivery": true
           },
           {
             "id": 1776727506000.4736,
