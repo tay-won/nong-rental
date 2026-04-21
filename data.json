@@ -2299,6 +2299,19 @@
             "site": "북부",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1776731412721.0337,
+            "equipName": "원판쟁기4련-01",
+            "equipSpec": "W42-DP/원판-4련",
+            "personName": "이채학",
+            "days": 1,
+            "startDate": "2026-04-24",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
