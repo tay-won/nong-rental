@@ -4281,7 +4281,21 @@
           "nb3": 420,
           "nb4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1776734771168.459,
+            "equipName": "로터베이터1750-02",
+            "equipSpec": "WR1750DGW/1750",
+            "personName": "유재원",
+            "days": 1,
+            "startDate": "2026-05-03",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
+          }
+        ],
         "delivery": false
       }
     },
