@@ -1289,6 +1289,19 @@
             "site": "북부",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1776730768852.2654,
+            "equipName": "퇴비살포기(중)-02",
+            "equipSpec": "HM-3000/3.5TON-퇴비",
+            "personName": "김영환",
+            "days": 1,
+            "startDate": "2026-04-22",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 150,
+            "delivery": false
           }
         ],
         "delivery": false
