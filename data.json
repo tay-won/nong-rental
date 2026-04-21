@@ -3682,6 +3682,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776734425847.8928,
+            "equipName": "굴착기(1.7톤)-01",
+            "equipSpec": "DX17Z-5/2TON",
+            "personName": "전환식",
+            "days": 2,
+            "startDate": "2026-04-28",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 80,
+            "delivery": false
           }
         ],
         "delivery": false
