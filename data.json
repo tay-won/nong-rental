@@ -3257,6 +3257,19 @@
             "site": "본소",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776759196230.4675,
+            "equipName": "관리기-구굴기(중)-05",
+            "equipSpec": "AMC-1000SM/구굴기(중)",
+            "personName": "표상규",
+            "days": 1,
+            "startDate": "2026-04-27",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
