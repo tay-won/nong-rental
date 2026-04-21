@@ -794,7 +794,7 @@
             "personName": "김진웅",
             "days": 1,
             "startDate": "2026-04-21",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
