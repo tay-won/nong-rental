@@ -1044,6 +1044,19 @@
             "site": "북부",
             "baseMins": 80,
             "delivery": false
+          },
+          {
+            "id": 1776730686188.1606,
+            "equipName": "원판쟁기8련-03",
+            "equipSpec": "W82-DP/원판-8련",
+            "personName": "김준기",
+            "days": 3,
+            "startDate": "2026-04-21",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
