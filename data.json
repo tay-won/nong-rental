@@ -1781,6 +1781,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776731132339.2253,
+            "equipName": "평탄쟁기-01",
+            "equipSpec": "FDS-R6/평탄-6련",
+            "personName": "문광배",
+            "days": 1,
+            "startDate": "2026-04-23",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
