@@ -3775,6 +3775,19 @@
             "delivery": false
           },
           {
+            "id": 1776756997171.7295,
+            "equipName": "관리기-휴립기-03",
+            "equipSpec": "AMC-1000SM/휴립기(중)",
+            "personName": "장주열",
+            "days": 1,
+            "startDate": "2026-04-28",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
+          },
+          {
             "id": 1776734387585.3894,
             "equipName": "굴착기(1톤)-01",
             "equipSpec": "U-10-3/1TON",
@@ -3837,19 +3850,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 60,
-            "delivery": false
-          },
-          {
-            "id": 1776756997171.7295,
-            "equipName": "관리기-휴립기-03",
-            "equipSpec": "AMC-1000SM/휴립기(중)",
-            "personName": "장주열",
-            "days": 1,
-            "startDate": "2026-04-28",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
             "delivery": false
           },
           {
