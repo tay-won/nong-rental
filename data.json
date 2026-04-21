@@ -3229,6 +3229,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776733983004.199,
+            "equipName": "로터베이터1950-04",
+            "equipSpec": "WR195DGW/1950",
+            "personName": "윤종찬",
+            "days": 1,
+            "startDate": "2026-04-27",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
