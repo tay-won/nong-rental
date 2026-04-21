@@ -1031,6 +1031,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776730675077.7283,
+            "equipName": "이랑쟁기9련-01",
+            "equipSpec": "DWS260/이랑-9련",
+            "personName": "김신기",
+            "days": 3,
+            "startDate": "2026-04-21",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 80,
+            "delivery": false
           }
         ],
         "delivery": false
