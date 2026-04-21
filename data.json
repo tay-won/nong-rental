@@ -263,7 +263,7 @@
             "personName": "이미자",
             "days": 1,
             "startDate": "2026-04-20",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 290,
