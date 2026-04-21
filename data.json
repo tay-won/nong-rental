@@ -1109,6 +1109,19 @@
             "site": "북부",
             "baseMins": 60,
             "delivery": false
+          },
+          {
+            "id": 1776749486095.3677,
+            "equipName": "적심기-01",
+            "equipSpec": "IPV-1200/1조",
+            "personName": "남궁석환",
+            "days": 1,
+            "startDate": "2026-04-21",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 40,
+            "delivery": false
           }
         ],
         "delivery": false
