@@ -2598,19 +2598,6 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
-          },
-          {
-            "id": 1776737287239.3018,
-            "equipName": "관리기-제초기-03",
-            "equipSpec": "AMC-900SM/제초기(중)",
-            "personName": "00",
-            "days": 1,
-            "startDate": "2026-04-25",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
           }
         ],
         "delivery": false
