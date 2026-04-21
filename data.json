@@ -3255,6 +3255,19 @@
             "site": "북부",
             "baseMins": 60,
             "delivery": false
+          },
+          {
+            "id": 1776734013880.9597,
+            "equipName": "소형트랙터25HP-02",
+            "equipSpec": "CK250V/25HP",
+            "personName": "이치선",
+            "days": 1,
+            "startDate": "2026-04-27",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
