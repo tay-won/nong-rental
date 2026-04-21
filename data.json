@@ -4294,6 +4294,19 @@
             "site": "북부",
             "baseMins": 60,
             "delivery": false
+          },
+          {
+            "id": 1776734785187.3188,
+            "equipName": "동력파종기1750-01",
+            "equipSpec": "HG600A/1750(3조)",
+            "personName": "유재원",
+            "days": 1,
+            "startDate": "2026-05-03",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 80,
+            "delivery": false
           }
         ],
         "delivery": false
