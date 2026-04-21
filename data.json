@@ -1406,6 +1406,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776730889421.074,
+            "equipName": "돌수집기-03",
+            "equipSpec": "SH-L1400B/1400",
+            "personName": "우관제",
+            "days": 1,
+            "startDate": "2026-04-22",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
