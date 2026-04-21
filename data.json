@@ -4390,7 +4390,7 @@
             "days": 1,
             "startDate": "2026-04-20",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "본소",
             "baseMins": 50,
             "delivery": false
@@ -4416,7 +4416,7 @@
             "days": 1,
             "startDate": "2026-04-20",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "본소",
             "baseMins": 50,
             "delivery": false
