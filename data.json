@@ -2251,19 +2251,6 @@
             "delivery": false
           },
           {
-            "id": 1776728848687.1448,
-            "equipName": "관리기-휴립피복기-01",
-            "equipSpec": "AMC-1000SM/휴립피복기(중)",
-            "personName": "안선미",
-            "days": 2,
-            "startDate": "2026-04-24",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1776728892402.12,
             "equipName": "비료살포기-01",
             "equipSpec": "JHT-320H/300kg",
