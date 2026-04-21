@@ -313,10 +313,23 @@
             "personName": "김정호",
             "days": 1,
             "startDate": "2026-04-20",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1776729976368.7974,
+            "equipName": "로터베이터1500-01",
+            "equipSpec": "AR-150/1500",
+            "personName": "김정호",
+            "days": 1,
+            "startDate": "2026-04-20",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
             "delivery": false
           }
         ],
