@@ -372,7 +372,11 @@ select:focus{border-color:var(--accent)}
   </div>
 </div>
 
-<div class="date-scroll"><div class="date-tabs" id="dateTabs"></div></div>
+<div style="display:flex;align-items:stretch;background:var(--surface);border-bottom:1px solid var(--border)">
+  <button onclick="shiftDates(-7)" style="padding:0 12px;background:transparent;border:none;border-right:1px solid var(--border);color:var(--muted);font-size:16px;cursor:pointer;transition:all .2s;flex-shrink:0" onmouseover="this.style.background='rgba(99,102,241,.1)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--muted)'" title="7일 이전">◀</button>
+  <div class="date-scroll" style="flex:1;border-bottom:none"><div class="date-tabs" id="dateTabs"></div></div>
+  <button onclick="shiftDates(7)" style="padding:0 12px;background:transparent;border:none;border-left:1px solid var(--border);color:var(--muted);font-size:16px;cursor:pointer;transition:all .2s;flex-shrink:0" onmouseover="this.style.background='rgba(99,102,241,.1)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--muted)'" title="7일 이후">▶</button>
+</div>
 
 <div class="body">
   <div class="date-bar" id="dateBar">오늘</div>
@@ -613,7 +617,7 @@ let curIdx=0, curSite='전체', ghSha=null, saveTimer=null, state={};
 let selMachine=null, selHalf=false, selQty=1;
 
 function today(){const d=new Date();d.setHours(0,0,0,0);return d;}
-function getDates(){return Array.from({length:21},(_,i)=>{const d=new Date(today());d.setDate(today().getDate()+i);return d;});}
+function getDates(){return Array.from({length:22},(_,i)=>{const d=new Date(today());d.setDate(today().getDate()+dateOffset+i);return d;});}
 function getDkeys(){return getDates().map(d=>d.toISOString().slice(0,10));}
 function isToday(d){return d.toISOString().slice(0,10)===today().toISOString().slice(0,10);}
 function fmtDate(d){return (d.getMonth()+1)+'/'+d.getDate();}
@@ -956,6 +960,26 @@ function updateDeliveryUI() {
   mins.textContent = '240분';
 }
 
+
+function shiftDates(delta) {
+  dateOffset += delta;
+  // 오늘이 항상 보이도록 제한 (너무 많이 이동 방지)
+  // 최소: 30일 전, 최대: 30일 후
+  dateOffset = Math.max(-30, Math.min(30, dateOffset));
+  // curIdx 재조정: 오늘이 범위 내에 있으면 오늘로, 아니면 0
+  const dkeys = getDkeys();
+  const todayDk = today().toISOString().slice(0,10);
+  const todayIdx = dkeys.indexOf(todayDk);
+  curIdx = todayIdx >= 0 ? todayIdx : 0;
+  renderAll();
+}
+
+function resetDates() {
+  dateOffset = 0;
+  curIdx = 0;
+  renderAll();
+}
+
 function renderDateTabs(){
   const DATES=getDates(), DKEYS=getDkeys();
   const holidays = getHolidays();
@@ -964,8 +988,9 @@ function renderDateTabs(){
     const pct = getPct(dk, curSite);
     const st = getStatus(pct);
     const isHol = holidays.includes(dk);
+    const isYesterday = dk === new Date(today().getTime()-86400000).toISOString().slice(0,10);
     return '<div class="dtab'+(i===curIdx?' active':'')+(isHol?' holiday':'')+'" onclick="setIdx('+i+')">'
-      +(isToday(d)?'<div class="tl">TODAY</div>':'')
+      +(isToday(d)?'<div class="tl">TODAY</div>':isYesterday?'<div class="tl" style="color:var(--muted)">어제</div>':'')
       +'<div class="day">'+d.getDate()+'</div>'
       +'<div class="dow">'+DOW[d.getDay()]+'</div>'
       +(isHol
@@ -984,9 +1009,10 @@ function renderAll(){
   const _isHolCur = getHolidays().includes(_dkCur);
   const _holBtnStyle = 'margin-left:8px;padding:2px 8px;background:transparent;border:1px solid ' + (_isHolCur ? '#ef4444' : '#2e3350') + ';border-radius:8px;color:' + (_isHolCur ? '#ef4444' : '#64748b') + ';font-size:10px;cursor:pointer';
   document.getElementById('dateBar').innerHTML =
-    '📅 ' + d.getFullYear() + '년 ' + (d.getMonth()+1) + '월 ' + d.getDate() + '일 (' + DOW[d.getDay()] + '요일)' + (isToday(d) ? ' — 오늘' : '')
+    '📅 ' + d.getFullYear() + '년 ' + (d.getMonth()+1) + '월 ' + d.getDate() + '일 (' + DOW[d.getDay()] + '요일)' + (isToday(d) ? ' — 오늘' : (dk === new Date(today().getTime()-86400000).toISOString().slice(0,10) ? ' — 어제' : ''))
     + (_isHolCur ? ' <span style="color:#ef4444;font-size:11px">🔴 휴무일</span>' : '')
-    + ' <button onclick="toggleHoliday(\'' + _dkCur + '\')" style="' + _holBtnStyle + '">' + (_isHolCur ? '휴무 해제' : '휴무 지정') + '</button>';
+    + ' <button onclick="toggleHoliday(\'' + _dkCur + '\')" style="' + _holBtnStyle + '">' + (_isHolCur ? '휴무 해제' : '휴무 지정') + '</button>'
+    + (dateOffset !== 0 ? ' <button onclick="resetDates()" style="margin-left:6px;padding:2px 8px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);border-radius:8px;color:var(--accent);font-size:10px;cursor:pointer">오늘로</button>' : '');
   renderWorkers();renderGauge();renderSelList();renderMiniTable();updateDeliveryUI();
 }
 
@@ -1786,11 +1812,11 @@ function openInoutPopup() {
 }
 
 
-function toggleEntryCheckPopup(startDk, site, entryId, type, val) {
+function toggleEntryCheckPopup(startDk, site, entryId, 입력, val) {
   if(!state[startDk] || !state[startDk][site]) return;
   const entry = state[startDk][site].entries.find(e => String(e.id) === String(entryId));
   if(!entry) return;
-  if(type === 'out') entry.outDone = val;
+  if(입력 === 'out') entry.outDone = val;
   else entry.inDone = val;
   if(saveTimer) clearTimeout(saveTimer);
   saveData();
