@@ -825,19 +825,6 @@
             "delivery": false
           },
           {
-            "id": 1776730426510.219,
-            "equipName": "원판쟁기10련-04",
-            "equipSpec": "W300-DP/원판-10련",
-            "personName": "김용구",
-            "days": 1,
-            "startDate": "2026-04-21",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
             "id": 1776730441173.2576,
             "equipName": "소형트랙터25HP-03",
             "equipSpec": "CK250V/25HP",
