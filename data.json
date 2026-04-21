@@ -3836,6 +3836,19 @@
             "site": "북부",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1776734517812.0166,
+            "equipName": "소형트랙터25HP-04",
+            "equipSpec": "LK2805/25HP",
+            "personName": "유치삼",
+            "days": 1,
+            "startDate": "2026-04-29",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
