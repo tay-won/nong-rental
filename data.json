@@ -591,6 +591,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776730363243.6125,
+            "equipName": "양용쟁기(4련)-02",
+            "equipSpec": "KP4500W/양용-4련",
+            "personName": "최준호",
+            "days": 3,
+            "startDate": "2026-04-20",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 80,
+            "delivery": false
           }
         ],
         "delivery": false
