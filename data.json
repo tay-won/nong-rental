@@ -849,6 +849,19 @@
             "site": "북부",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1776730467343.384,
+            "equipName": "원판쟁기6련-02",
+            "equipSpec": "W62-DP/원판-6련",
+            "personName": "안병천",
+            "days": 1,
+            "startDate": "2026-04-21",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
