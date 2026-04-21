@@ -332,7 +332,7 @@ select:focus{border-color:var(--accent)}
 </div>
 
 <!-- 비밀번호 로그인 모달 -->
-<div class="token-modal" id="tokenModal">
+<div class="token-modal hidden" id="tokenModal">
   <div class="token-box">
     <h2>🚜 농기계 임대 현황</h2>
     <p>파주시 농업기계임대사업소</p>
@@ -535,28 +535,30 @@ const REAL_TOKEN = localStorage.getItem('gh_real_token') || '';
 const APP_PASSWORD = '5269';
 
 function saveToken() {
-  var pw = document.getElementById('tokenInp').value.trim();
-  var tk = document.getElementById('ghTokenInp').value.trim();
+  var pw  = document.getElementById('tokenInp').value.trim();
+  var tk  = document.getElementById('ghTokenInp').value.trim();
   var err = document.getElementById('loginError');
-  
+
   if(pw !== '5269') {
     err.textContent = '비밀번호가 틀렸습니다';
     err.style.display = 'block';
     return;
   }
-  
+
+  // 새 토큰 입력했으면 갱신, 없으면 저장된 토큰 사용
   var token = tk || localStorage.getItem('gh_real_token') || '';
   if(!token) {
-    err.textContent = 'GitHub 토큰을 입력해주세요';
+    err.textContent = 'GitHub 토큰을 입력해주세요 (최초 1회)';
     err.style.display = 'block';
     return;
   }
-  
+
   GH_TOKEN = token;
   localStorage.setItem('gh_auth', 'ok');
   localStorage.setItem('gh_real_token', token);
   document.getElementById('tokenModal').classList.add('hidden');
   document.getElementById('loadingOverlay').classList.remove('hidden');
+  err.style.display = 'none';
   loadData();
 }
 function clearToken() {
@@ -1182,23 +1184,24 @@ if(_urlP.get('reset')==='1'){
 }
 
 // 이전에 로그인한 적 있으면 자동 로그인
-if(localStorage.getItem('gh_auth') === 'ok') {
-  GH_TOKEN = localStorage.getItem('gh_real_token') || '';
-  if(GH_TOKEN) {
-    document.getElementById('tokenModal').classList.add('hidden');
-    loadData();
-  } else {
-    document.getElementById('loadingOverlay').classList.add('hidden');
-    document.getElementById('tokenModal').classList.remove('hidden');
-    initState(); renderAll();
-  }
+const _savedToken = localStorage.getItem('gh_real_token') || '';
+const _savedAuth  = localStorage.getItem('gh_auth') === 'ok';
+
+if(_savedAuth && _savedToken) {
+  GH_TOKEN = _savedToken;
+  document.getElementById('tokenModal').classList.add('hidden');
+  loadData();
 } else {
-  // 로그아웃 상태 - 로딩 오버레이 완전히 숨기고 비밀번호창 표시
+  // 토큰은 있지만 auth 만료된 경우 - 비밀번호만 입력하면 됨
+  if(_savedToken) {
+    // 토큰 입력칸에 저장된 토큰 표시 안 함 (보안) - 안내 문구만
+    document.getElementById('ghTokenInp').placeholder = '저장된 토큰 사용 (비워두면 자동)';
+  }
   document.getElementById('loadingOverlay').classList.add('hidden');
   document.getElementById('tokenModal').classList.remove('hidden');
-  initState();
-  renderAll();
+  initState(); renderAll();
 }
+
 document.getElementById('headerSub').textContent='파주시 농업기계임대사업소 · '+t.getFullYear()+'년 '+(t.getMonth()+1)+'월 '+t.getDate()+'일';
 loadData();
 
