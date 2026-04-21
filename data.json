@@ -1820,6 +1820,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776731184156.005,
+            "equipName": "양용쟁기(3련)-01",
+            "equipSpec": "KP3300W/양용-3련",
+            "personName": "윤충성",
+            "days": 1,
+            "startDate": "2026-04-23",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 80,
+            "delivery": false
           }
         ],
         "delivery": false
