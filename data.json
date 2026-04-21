@@ -2225,10 +2225,10 @@
             "delivery": false
           },
           {
-            "id": 1776728848687.1448,
-            "equipName": "관리기-휴립피복기-01",
-            "equipSpec": "AMC-1000SM/휴립피복기(중)",
-            "personName": "안선미",
+            "id": 1776728869256.9187,
+            "equipName": "관리기-휴립기-01",
+            "equipSpec": "AMC-1000SM/휴립기(중)",
+            "personName": "이미자",
             "days": 2,
             "startDate": "2026-04-24",
             "outDone": false,
@@ -2238,10 +2238,10 @@
             "delivery": false
           },
           {
-            "id": 1776728869256.9187,
-            "equipName": "관리기-휴립기-01",
-            "equipSpec": "AMC-1000SM/휴립기(중)",
-            "personName": "이미자",
+            "id": 1776728848687.1448,
+            "equipName": "관리기-휴립피복기-01",
+            "equipSpec": "AMC-1000SM/휴립피복기(중)",
+            "personName": "안선미",
             "days": 2,
             "startDate": "2026-04-24",
             "outDone": false,
