@@ -335,7 +335,7 @@ select:focus{border-color:var(--accent)}
 <div class="token-modal hidden" id="tokenModal">
   <div class="token-box">
     <h2>🚜 농기계 임대 현황</h2>
-    <p>파주시농기계임대사업소</p>
+    <p>파주시 농업기계임대사업소</p>
     <input type="password" class="token-inp" id="tokenInp" placeholder="비밀번호 입력" style="margin-bottom:8px">
     <input type="password" class="token-inp" id="ghTokenInp" placeholder="GitHub 토큰 (ghp_...)" style="margin-bottom:8px;font-size:11px">
     <button class="btn-token-save" id="loginBtn">접속</button>
@@ -350,7 +350,7 @@ select:focus{border-color:var(--accent)}
 
 <header>
   <h1>🚜 농기계 <span>임대 현황</span></h1>
-  <div class="sub" id="headerSub">파주시농기계임대사업소</div>
+  <div class="sub" id="headerSub">파주시 농업기계임대사업소</div>
   <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:10px">
     <div class="site-tabs" style="margin-top:0">
       <button class="stab a-전체" onclick="setSite('전체')">전체</button>
@@ -1202,7 +1202,7 @@ if(_savedAuth && _savedToken) {
   initState(); renderAll();
 }
 
-document.getElementById('headerSub').textContent='파주시농기계임대사업소 · '+t.getFullYear()+'년 '+(t.getMonth()+1)+'월 '+t.getDate()+'일';
+document.getElementById('headerSub').textContent='파주시 농업기계임대사업소 · '+t.getFullYear()+'년 '+(t.getMonth()+1)+'월 '+t.getDate()+'일';
 loadData();
 
 
@@ -1528,7 +1528,9 @@ function calcMinsForLoad(entry, targetDk) {
 function collectInoutForDate(dk) {
   const results = [];
   Object.keys(state).forEach(startDk => {
-    ['본소','북부'].forEach(site => {
+    // 현재 선택된 사업소만 필터
+    const targetSites = curSite === '전체' ? ['본소','북부'] : [curSite];
+    targetSites.forEach(site => {
       if(!state[startDk] || !state[startDk][site]) return;
       state[startDk][site].entries.forEach(e => {
         const start = new Date(e.startDate);
@@ -1550,6 +1552,30 @@ function collectInoutForDate(dk) {
   return results;
 }
 
+function openInoutPopupSite(site) {
+  // 팝업 탭 활성화
+  ['전체','본소','북부'].forEach(s => {
+    const map = {'전체':'popupTabAll','본소':'popupTabBonso','북부':'popupTabBukbu'};
+    const btn = document.getElementById(map[s]);
+    if(!btn) return;
+    if(s === site) {
+      btn.style.background = 'var(--accent)';
+      btn.style.borderColor = 'var(--accent)';
+      btn.style.color = '#fff';
+    } else {
+      btn.style.background = 'transparent';
+      btn.style.borderColor = 'var(--border)';
+      btn.style.color = 'var(--muted)';
+    }
+  });
+  // curSite 임시 변경 후 팝업 갱신
+  const prevSite = curSite;
+  curSite = site;
+  openInoutPopup();
+  curSite = prevSite;
+}
+
+
 function openInoutPopup() {
   const DATES = getDates();
   const DKEYS = getDkeys();
@@ -1568,14 +1594,17 @@ function openInoutPopup() {
   const colDks = cols.map(c => c.dk); // 3일 범위 날짜
 
   document.getElementById('popupDateLabel').textContent =
-    todayD.getFullYear() + '년 ' + (todayD.getMonth()+1) + '월 ' + todayD.getDate() + '일 기준';
+    todayD.getFullYear() + '년 ' + (todayD.getMonth()+1) + '월 ' + todayD.getDate() + '일 기준'
+    + (curSite !== '전체' ? ' [' + curSite + ']' : ' [전체]');
 
   // ── 3일 범위 내 미완결 작업 수집 ──
   // entry별로 이 3일 범위에서 해야 할 일 정리
   const taskMap = {}; // key → {entry, site, startDk, outDk, inDk}
 
   Object.keys(state).forEach(startDk => {
-    ['본소','북부'].forEach(site => {
+    // 현재 선택된 사업소만 필터
+    const targetSites = curSite === '전체' ? ['본소','북부'] : [curSite];
+    targetSites.forEach(site => {
       if(!state[startDk]||!state[startDk][site]) return;
       state[startDk][site].entries.forEach(e => {
         const start   = new Date(e.startDate);
@@ -1698,7 +1727,7 @@ function openInoutPopup() {
   const tableHtml = `
   <div style="margin-bottom:12px;text-align:center">
     <span style="font-size:14px;font-weight:900;color:#fff">
-      ${(todayD.getMonth()+1)}월 ${todayD.getDate()}일 입출고 작업 목록
+      ${(todayD.getMonth()+1)}월 ${todayD.getDate()}일 입출고 작업 목록 (${curSite === '전체' ? '전체' : curSite})
     </span>
     <span style="font-size:12px;color:var(--blue);margin-left:10px">출고 ${totalOut}건</span>
     <span style="font-size:12px;color:var(--green);margin-left:6px">입고 ${totalIn}건</span>
@@ -1717,6 +1746,8 @@ function openInoutPopup() {
 
   document.getElementById('popupCols').innerHTML = tableHtml;
   document.getElementById('inoutPopup').classList.remove('hidden');
+  // 현재 탭 활성화
+  openInoutPopupSite(curSite);
 }
 
 
