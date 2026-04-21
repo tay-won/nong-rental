@@ -1020,19 +1020,6 @@
             "delivery": false
           },
           {
-            "id": 1776730608551.9565,
-            "equipName": "육묘적재이송기-03",
-            "equipSpec": "MDJI1400/400~1,500",
-            "personName": "조성진",
-            "days": 1,
-            "startDate": "2026-04-21",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 80,
-            "delivery": false
-          },
-          {
             "id": 1776730624460.8845,
             "equipName": "논두렁조성기(소)-01",
             "equipSpec": "WJLF380/(소)",
@@ -1043,6 +1030,19 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
+            "delivery": false
+          },
+          {
+            "id": 1776730608551.9565,
+            "equipName": "육묘적재이송기-03",
+            "equipSpec": "MDJI1400/400~1,500",
+            "personName": "조성진",
+            "days": 1,
+            "startDate": "2026-04-21",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 80,
             "delivery": false
           },
           {
