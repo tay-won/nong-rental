@@ -2208,7 +2208,21 @@
           "nb3": 420,
           "nb4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1776731312108.4197,
+            "equipName": "이랑쟁기9련-01",
+            "equipSpec": "DWS260/이랑-9련",
+            "personName": "구명회",
+            "days": 1,
+            "startDate": "2026-04-24",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 80,
+            "delivery": false
+          }
+        ],
         "delivery": false
       }
     },
