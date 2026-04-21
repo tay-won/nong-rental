@@ -2442,6 +2442,19 @@
             "site": "북부",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1776732233840.7192,
+            "equipName": "로터베이터1950-03",
+            "equipSpec": "DWR195GLJ/1950",
+            "personName": "윤태오",
+            "days": 2,
+            "startDate": "2026-04-24",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
