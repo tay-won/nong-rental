@@ -458,6 +458,8 @@ select:focus{border-color:var(--accent)}
                   <button class="day-btn" onclick="setDays(1)" id="dayBtn1">1일</button>
                   <button class="day-btn" onclick="setDays(2)" id="dayBtn2">2일</button>
                   <button class="day-btn" onclick="setDays(3)" id="dayBtn3">3일</button>
+                  <button class="day-btn" onclick="openDatePicker()" id="dayBtnX">📅 직접</button>
+                  <input type="date" id="returnDatePicker" style="display:none" onchange="setDaysByDate(this.value)">
                 </div>
                 <div class="delivery-toggle" id="deliveryToggle" onclick="toggleDelivery()" title="배송 포함 시 240분(1일) 또는 120분×2(2~3일) 가산">
                   <span class="delivery-chk-sq" id="deliveryChkSq"></span>
@@ -891,6 +893,40 @@ function setIdx(i){curIdx=i;renderAll();}
 
 
 // ── 배송 체크 ──
+function openDatePicker() {
+  const dk = getDkeys()[curIdx];
+  const picker = document.getElementById('returnDatePicker');
+  // 최소 날짜: 시작일 + 4일 (4일 이상만)
+  const minDate = new Date(dk);
+  minDate.setDate(minDate.getDate() + 3);
+  picker.min = minDate.toISOString().slice(0,10);
+  // 최대 날짜: 시작일 + 30일
+  const maxDate = new Date(dk);
+  maxDate.setDate(maxDate.getDate() + 30);
+  picker.max = maxDate.toISOString().slice(0,10);
+  picker.value = '';
+  picker.style.display = 'block';
+  picker.focus();
+  picker.click();
+}
+
+function setDaysByDate(returnDate) {
+  if(!returnDate) return;
+  const dk = getDkeys()[curIdx];
+  const start = new Date(dk);
+  const end = new Date(returnDate);
+  const diff = Math.round((end - start) / 86400000) + 1;
+  if(diff < 1) return;
+  selDays = diff;
+  // 모든 버튼 비활성화 후 직접 버튼 활성화
+  [1,2,3].forEach(n => document.getElementById('dayBtn'+n).classList.remove('active'));
+  const btnX = document.getElementById('dayBtnX');
+  btnX.classList.add('active');
+  btnX.textContent = diff + '일';
+  document.getElementById('returnDatePicker').style.display = 'none';
+  updateHalfInfo();
+}
+
 function toggleDelivery() {
   selDelivery = !selDelivery;
   const tog = document.getElementById('deliveryToggle');
@@ -1239,10 +1275,45 @@ function setDays(d) {
   [1,2,3].forEach(n => {
     document.getElementById('dayBtn'+n).classList.toggle('active', n === d);
   });
-  // 출고/입고 체크박스 자동 설정
+  // 직접 버튼 초기화
+  const btnX = document.getElementById('dayBtnX');
+  if(btnX) { btnX.classList.remove('active'); btnX.textContent = '📅 직접'; }
+  const picker = document.getElementById('returnDatePicker');
+  if(picker) picker.style.display = 'none';
+  updateHalfInfo();
+}
+
+function openDatePicker() {
   const dk = getDkeys()[curIdx];
-  document.getElementById('outChk').checked = true;
-  document.getElementById('inChk').checked = (d === 1); // 1일만 당일 입고
+  const picker = document.getElementById('returnDatePicker');
+  // 최소 날짜: 시작일 + 4일 (4일 이상만)
+  const minDate = new Date(dk);
+  minDate.setDate(minDate.getDate() + 3);
+  picker.min = minDate.toISOString().slice(0,10);
+  // 최대 날짜: 시작일 + 30일
+  const maxDate = new Date(dk);
+  maxDate.setDate(maxDate.getDate() + 30);
+  picker.max = maxDate.toISOString().slice(0,10);
+  picker.value = '';
+  picker.style.display = 'block';
+  picker.focus();
+  picker.click();
+}
+
+function setDaysByDate(returnDate) {
+  if(!returnDate) return;
+  const dk = getDkeys()[curIdx];
+  const start = new Date(dk);
+  const end = new Date(returnDate);
+  const diff = Math.round((end - start) / 86400000) + 1;
+  if(diff < 1) return;
+  selDays = diff;
+  // 모든 버튼 비활성화 후 직접 버튼 활성화
+  [1,2,3].forEach(n => document.getElementById('dayBtn'+n).classList.remove('active'));
+  const btnX = document.getElementById('dayBtnX');
+  btnX.classList.add('active');
+  btnX.textContent = diff + '일';
+  document.getElementById('returnDatePicker').style.display = 'none';
   updateHalfInfo();
 }
 
@@ -1331,6 +1402,10 @@ function addEntry() {
   document.getElementById('inputRow').classList.remove('visible');
   document.getElementById('halfInfo').classList.remove('show');
   [1,2,3].forEach(n => document.getElementById('dayBtn'+n).classList.remove('active'));
+  const btnXr = document.getElementById('dayBtnX');
+  if(btnXr) { btnXr.classList.remove('active'); btnXr.textContent = '📅 직접'; }
+  const pickerR = document.getElementById('returnDatePicker');
+  if(pickerR) pickerR.style.display = 'none';
   document.getElementById('deliveryToggle').classList.remove('on');
 
   renderAll();
