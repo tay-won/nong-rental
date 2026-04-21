@@ -929,6 +929,19 @@
             "delivery": false
           },
           {
+            "id": 1776730556105.412,
+            "equipName": "굴착기(1.7톤)-02",
+            "equipSpec": "DX17Z-5/2TON",
+            "personName": "장상열",
+            "days": 1,
+            "startDate": "2026-04-21",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 80,
+            "delivery": false
+          },
+          {
             "id": 1776730522483.7356,
             "equipName": "원판쟁기10련-04",
             "equipSpec": "W300-DP/원판-10련",
@@ -952,19 +965,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 60,
-            "delivery": false
-          },
-          {
-            "id": 1776730556105.412,
-            "equipName": "굴착기(1.7톤)-02",
-            "equipSpec": "DX17Z-5/2TON",
-            "personName": "장상열",
-            "days": 1,
-            "startDate": "2026-04-21",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 80,
             "delivery": false
           },
           {
