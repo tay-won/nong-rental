@@ -1662,11 +1662,17 @@ function openInoutPopup() {
     </th>`;
   });
 
-  // ── 행 정렬: 출고일 → 입고일 순 ──
+  // ── 행 정렬: 날짜 → 같은 날짜 내 성명 그룹 → 장비명 ──
   tasks.sort((a,b) => {
     const aDate = a.showOut ? a.outDk : a.inDk;
     const bDate = b.showOut ? b.outDk : b.inDk;
+    // 1순위: 날짜
     if(aDate !== bDate) return aDate < bDate ? -1 : 1;
+    // 2순위: 같은 날짜 내 성명 그룹 (같은 사람끼리 모음)
+    const aName = a.entry.personName || '';
+    const bName = b.entry.personName || '';
+    if(aName !== bName) return aName.localeCompare(bName, 'ko');
+    // 3순위: 같은 사람 내 장비명
     return a.entry.equipName.localeCompare(b.entry.equipName, 'ko');
   });
 
@@ -1715,9 +1721,20 @@ function openInoutPopup() {
       });
 
       const daysLabel = e.days + '일';
+      // 같은 날짜+성명이 이전 행과 같으면 성명 흐리게 표시
+      const prevTask = ri > 0 ? tasks[ri-1] : null;
+      const prevDate = prevTask ? (prevTask.showOut ? prevTask.outDk : prevTask.inDk) : '';
+      const curDate  = t.showOut ? t.outDk : t.inDk;
+      const samePerson = prevTask &&
+        prevDate === curDate &&
+        prevTask.entry.personName === e.personName;
+      const nameStyle = samePerson
+        ? 'padding:7px 10px;border:1px solid var(--border);color:var(--muted);font-size:11px'
+        : 'padding:7px 10px;border:1px solid var(--border);color:var(--dim);font-weight:600';
+      const nameDisplay = samePerson ? '〃' : e.personName;
       rowsHtml += `<tr style="background:${bg}">
         <td style="padding:7px 10px;border:1px solid var(--border);color:var(--text);font-weight:600">${e.equipName}</td>
-        <td style="padding:7px 10px;border:1px solid var(--border);color:var(--dim)">${e.personName}</td>
+        <td style="${nameStyle}">${nameDisplay}</td>
         ${colCells}
         <td style="padding:7px 10px;border:1px solid var(--border);color:var(--muted);font-size:10px">${daysLabel}</td>
       </tr>`;
