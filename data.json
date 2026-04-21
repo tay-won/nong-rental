@@ -4519,7 +4519,21 @@
           "nb3": 420,
           "nb4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1776734933574.5542,
+            "equipName": "잔가지파쇄기(대)-03",
+            "equipSpec": "DLK210E/2000kg/h",
+            "personName": "강두순",
+            "days": 1,
+            "startDate": "2026-05-06",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 320,
+            "delivery": true
+          }
+        ],
         "delivery": false
       }
     },
