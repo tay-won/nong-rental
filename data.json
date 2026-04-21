@@ -2702,19 +2702,6 @@
             "delivery": false
           },
           {
-            "id": 1776732852112.7224,
-            "equipName": "관리기-구굴기(소)-01",
-            "equipSpec": "ASC-640/구굴기(소)",
-            "personName": "최승달",
-            "days": 1,
-            "startDate": "2026-04-25",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1776732878716.1584,
             "equipName": "소형트랙터25HP-01",
             "equipSpec": "CK250V/25HP",
