@@ -1354,6 +1354,19 @@
             "site": "북부",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1776730833579.7056,
+            "equipName": "논두렁조성기(대)-03",
+            "equipSpec": "TANTAN-K5/(대)",
+            "personName": "문광배",
+            "days": 1,
+            "startDate": "2026-04-22",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
