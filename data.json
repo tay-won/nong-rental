@@ -3103,19 +3103,6 @@
             "delivery": false
           },
           {
-            "id": 1776733913632.782,
-            "equipName": "퇴비살포기(승용)-02",
-            "equipSpec": "HSC-1500W/자주형1000kg",
-            "personName": "기술보급과",
-            "days": 4,
-            "startDate": "2026-04-26",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 140,
-            "delivery": false
-          },
-          {
             "id": 1776746167134.5764,
             "equipName": "원판쟁기6련-02",
             "equipSpec": "W62-DP/원판-6련",
