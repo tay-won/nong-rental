@@ -424,19 +424,6 @@
             "delivery": false
           },
           {
-            "id": 1776730117203.2993,
-            "equipName": "구굴기30-01",
-            "equipSpec": "OM312/30",
-            "personName": "정준",
-            "days": 1,
-            "startDate": "2026-04-20",
-            "outDone": true,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1776730135597.827,
             "equipName": "퇴비살포기(소)-01",
             "equipSpec": "GW-500H/500KG-퇴비",
@@ -447,6 +434,19 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
+            "delivery": false
+          },
+          {
+            "id": 1776730117203.2993,
+            "equipName": "구굴기30-01",
+            "equipSpec": "OM312/30",
+            "personName": "정준",
+            "days": 1,
+            "startDate": "2026-04-20",
+            "outDone": true,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
             "delivery": false
           },
           {
