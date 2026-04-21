@@ -1510,6 +1510,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776731035454.3455,
+            "equipName": "로터베이터2350-01",
+            "equipSpec": "AR5240SC/2350",
+            "personName": "박수형",
+            "days": 3,
+            "startDate": "2026-04-22",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
