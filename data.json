@@ -1872,6 +1872,19 @@
             "site": "북부",
             "baseMins": 150,
             "delivery": false
+          },
+          {
+            "id": 1776731240754.9148,
+            "equipName": "양용쟁기(4련)-01",
+            "equipSpec": "KP4400W/양용-4련",
+            "personName": "오세현",
+            "days": 2,
+            "startDate": "2026-04-23",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 80,
+            "delivery": false
           }
         ],
         "delivery": false
