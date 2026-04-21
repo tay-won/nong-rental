@@ -1989,6 +1989,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776748660791.697,
+            "equipName": "로터베이터2150-03",
+            "equipSpec": "WR2150DGW/2150",
+            "personName": "임계자",
+            "days": 1,
+            "startDate": "2026-04-23",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
