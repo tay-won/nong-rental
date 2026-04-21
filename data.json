@@ -3630,6 +3630,19 @@
             "site": "북부",
             "baseMins": 60,
             "delivery": false
+          },
+          {
+            "id": 1776734370764.8145,
+            "equipName": "원판쟁기10련-05",
+            "equipSpec": "W300-DP/원판-10련",
+            "personName": "장석호",
+            "days": 1,
+            "startDate": "2026-04-28",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
