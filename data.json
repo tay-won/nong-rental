@@ -404,8 +404,8 @@
             "personName": "오영희",
             "days": 1,
             "startDate": "2026-04-20",
-            "outDone": false,
-            "inDone": false,
+            "outDone": true,
+            "inDone": true,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
