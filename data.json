@@ -3645,19 +3645,6 @@
             "site": "본소",
             "baseMins": 90,
             "delivery": false
-          },
-          {
-            "id": 1776756787052.5635,
-            "equipName": "관리기-휴립피복기-01",
-            "equipSpec": "AMC-1000SM/휴립피복기(중)",
-            "personName": "김미숙",
-            "days": 1,
-            "startDate": "2026-04-28",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
           }
         ],
         "delivery": false
