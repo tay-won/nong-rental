@@ -4148,6 +4148,19 @@
             "delivery": false
           },
           {
+            "id": 1776757517740.6782,
+            "equipName": "굴착기(1톤)-02",
+            "equipSpec": "U-10-3S/1TON",
+            "personName": "이재권",
+            "days": 1,
+            "startDate": "2026-04-30",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
+          },
+          {
             "id": 1776734637229.988,
             "equipName": "원판쟁기10련-05",
             "equipSpec": "W300-DP/원판-10련",
@@ -4166,19 +4179,6 @@
             "equipSpec": "U-10-5/1TON",
             "personName": "조국현",
             "days": 2,
-            "startDate": "2026-04-30",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1776757517740.6782,
-            "equipName": "굴착기(1톤)-02",
-            "equipSpec": "U-10-3S/1TON",
-            "personName": "이재권",
-            "days": 1,
             "startDate": "2026-04-30",
             "outDone": false,
             "inDone": false,
