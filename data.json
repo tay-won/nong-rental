@@ -1898,6 +1898,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776731265776.5432,
+            "equipName": "논두렁조성기(중)-02",
+            "equipSpec": "WJLF750/(중)",
+            "personName": "윤태영",
+            "days": 2,
+            "startDate": "2026-04-23",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
