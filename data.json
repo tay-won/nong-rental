@@ -1458,6 +1458,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776730940475.2268,
+            "equipName": "보통쟁기(3련)-01",
+            "equipSpec": "KP300A/보통-3련",
+            "personName": "유호진",
+            "days": 2,
+            "startDate": "2026-04-22",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
