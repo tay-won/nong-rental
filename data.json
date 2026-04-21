@@ -2596,7 +2596,21 @@
           "nb3": 420,
           "nb4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1776732731198.2747,
+            "equipName": "관리기-구굴기(중)-01",
+            "equipSpec": "AMC-1000SM/구굴기(중)",
+            "personName": "김준섭",
+            "days": 1,
+            "startDate": "2026-04-25",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
+          }
+        ],
         "delivery": false
       }
     },
