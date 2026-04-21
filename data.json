@@ -1523,6 +1523,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776731043924.1028,
+            "equipName": "원판쟁기10련-02",
+            "equipSpec": "W300-DP/원판-10련",
+            "personName": "정창시",
+            "days": 3,
+            "startDate": "2026-04-22",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
