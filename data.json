@@ -1484,6 +1484,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776731002406.3323,
+            "equipName": "쟁기(2련)-01",
+            "equipSpec": "SW-PN602/소형-2련",
+            "personName": "정경모",
+            "days": 2,
+            "startDate": "2026-04-22",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 40,
+            "delivery": false
           }
         ],
         "delivery": false
