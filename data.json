@@ -2160,19 +2160,6 @@
             "delivery": false
           },
           {
-            "id": 1776728715411.1663,
-            "equipName": "육묘적재이송기-02",
-            "equipSpec": "MDJI1400/400~1,500",
-            "personName": "서성권",
-            "days": 1,
-            "startDate": "2026-04-24",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 80,
-            "delivery": false
-          },
-          {
             "id": 1776728774600.2507,
             "equipName": "피복기-인력-02",
             "equipSpec": "BG-777B/8자",
@@ -2183,6 +2170,19 @@
             "inDone": false,
             "site": "본소",
             "baseMins": 40,
+            "delivery": false
+          },
+          {
+            "id": 1776728715411.1663,
+            "equipName": "육묘적재이송기-02",
+            "equipSpec": "MDJI1400/400~1,500",
+            "personName": "서성권",
+            "days": 1,
+            "startDate": "2026-04-24",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 80,
             "delivery": false
           },
           {
