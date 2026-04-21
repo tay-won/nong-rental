@@ -3801,6 +3801,19 @@
             "delivery": false
           },
           {
+            "id": 1776757056843.7139,
+            "equipName": "원판쟁기6련-03",
+            "equipSpec": "W62-DP/원판-6련",
+            "personName": "김주년",
+            "days": 2,
+            "startDate": "2026-04-28",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
+          },
+          {
             "id": 1776734404649.4277,
             "equipName": "원판쟁기8련-02",
             "equipSpec": "W82-DP/원판-8련",
@@ -3845,19 +3858,6 @@
             "equipSpec": "W62-DP/원판-6련",
             "personName": "조재천",
             "days": 3,
-            "startDate": "2026-04-28",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 60,
-            "delivery": false
-          },
-          {
-            "id": 1776757056843.7139,
-            "equipName": "원판쟁기6련-03",
-            "equipSpec": "W62-DP/원판-6련",
-            "personName": "김주년",
-            "days": 2,
             "startDate": "2026-04-28",
             "outDone": false,
             "inDone": false,
