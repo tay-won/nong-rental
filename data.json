@@ -404,7 +404,7 @@
             "personName": "이영학",
             "days": 1,
             "startDate": "2026-04-20",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 80,
