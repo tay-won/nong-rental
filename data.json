@@ -2364,6 +2364,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776732110706.4595,
+            "equipName": "돌수집기-03",
+            "equipSpec": "SH-L1400B/1400",
+            "personName": "조재춘",
+            "days": 1,
+            "startDate": "2026-04-24",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
