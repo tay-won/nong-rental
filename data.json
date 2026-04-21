@@ -3203,7 +3203,21 @@
           "nb3": 420,
           "nb4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1776733958222.66,
+            "equipName": "관리기-로터리-08",
+            "equipSpec": "AMC-1000SM/로타리(중)",
+            "personName": "김종덕",
+            "days": 1,
+            "startDate": "2026-04-27",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
+          }
+        ],
         "delivery": false
       }
     },
