@@ -2247,6 +2247,19 @@
             "site": "북부",
             "baseMins": 80,
             "delivery": false
+          },
+          {
+            "id": 1776731357728.2163,
+            "equipName": "논두렁조성기(소)-02",
+            "equipSpec": "WJLF380/(소)",
+            "personName": "노영수",
+            "days": 1,
+            "startDate": "2026-04-24",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
