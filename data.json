@@ -2648,19 +2648,6 @@
             "site": "북부",
             "baseMins": 60,
             "delivery": false
-          },
-          {
-            "id": 1776732799754.923,
-            "equipName": "원판쟁기4련-01",
-            "equipSpec": "W42-DP/원판-4련",
-            "personName": "정찬엽",
-            "days": 1,
-            "startDate": "2026-04-25",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 60,
-            "delivery": false
           }
         ],
         "delivery": false
