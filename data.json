@@ -4532,6 +4532,19 @@
             "site": "북부",
             "baseMins": 320,
             "delivery": true
+          },
+          {
+            "id": 1776734952627.3994,
+            "equipName": "소형트랙터25HP-04",
+            "equipSpec": "LK2805/25HP",
+            "personName": "이혁용",
+            "days": 1,
+            "startDate": "2026-05-06",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 290,
+            "delivery": true
           }
         ],
         "delivery": false
