@@ -1575,6 +1575,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776757990247.8774,
+            "equipName": "이랑쟁기6련-02",
+            "equipSpec": "DWS210/이랑-6련",
+            "personName": "윤태웅",
+            "days": 2,
+            "startDate": "2026-04-22",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
