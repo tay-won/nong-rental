@@ -4307,6 +4307,19 @@
             "site": "북부",
             "baseMins": 80,
             "delivery": false
+          },
+          {
+            "id": 1776734801091.211,
+            "equipName": "못자리성형기1750-01",
+            "equipSpec": "DS-B003/1750-못자리",
+            "personName": "유재원",
+            "days": 1,
+            "startDate": "2026-05-03",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
