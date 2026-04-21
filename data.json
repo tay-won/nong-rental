@@ -3023,6 +3023,19 @@
             "site": "북부",
             "baseMins": 320,
             "delivery": true
+          },
+          {
+            "id": 1776733017534.2537,
+            "equipName": "로터베이터1750-04",
+            "equipSpec": "DW175GM/1750",
+            "personName": "한만학",
+            "days": 1,
+            "startDate": "2026-04-26",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
