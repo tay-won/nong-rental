@@ -326,10 +326,23 @@
             "personName": "김정호",
             "days": 1,
             "startDate": "2026-04-20",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 60,
+            "delivery": false
+          },
+          {
+            "id": 1776729997223.3557,
+            "equipName": "관리기-로터리-02",
+            "equipSpec": "AMC-900SM/로타리(중)",
+            "personName": "김종인",
+            "days": 1,
+            "startDate": "2026-04-20",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
             "delivery": false
           }
         ],
