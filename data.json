@@ -3671,6 +3671,19 @@
             "site": "본소",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776759247205.4534,
+            "equipName": "관리기-휴립기-01",
+            "equipSpec": "AMC-1000SM/휴립기(중)",
+            "personName": "김진웅",
+            "days": 1,
+            "startDate": "2026-04-28",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
