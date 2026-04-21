@@ -2015,6 +2015,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776758673933.668,
+            "equipName": "퇴비살포기(소)-04",
+            "equipSpec": "GW-900H/900KG-퇴비",
+            "personName": "이병인",
+            "days": 1,
+            "startDate": "2026-04-23",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
