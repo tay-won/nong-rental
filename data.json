@@ -2622,6 +2622,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776732769344.8193,
+            "equipName": "관리기-로터리-06",
+            "equipSpec": "AMC-1000SM/로타리(중)",
+            "personName": "기홍식",
+            "days": 1,
+            "startDate": "2026-04-25",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
