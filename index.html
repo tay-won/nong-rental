@@ -1450,18 +1450,13 @@ if(_urlP.get('reset')==='1'){
 }
 
 // 이전에 로그인한 적 있으면 자동 로그인
-const _savedAuth  = localStorage.getItem('gh_auth') === 'ok';
+const _savedAuth = localStorage.getItem('gh_auth') === 'ok';
 
 if(_savedAuth) {
   GH_TOKEN = REAL_TOKEN;
   document.getElementById('tokenModal').classList.add('hidden');
   loadData();
 } else {
-  // 토큰은 있지만 auth 만료된 경우 - 비밀번호만 입력하면 됨
-  if(_savedToken) {
-    // 토큰 입력칸에 저장된 토큰 표시 안 함 (보안) - 안내 문구만
-    document.getElementById('ghTokenInp').placeholder = '저장된 토큰 사용 (비워두면 자동)';
-  }
   document.getElementById('loadingOverlay').classList.add('hidden');
   document.getElementById('tokenModal').classList.remove('hidden');
   initState(); renderAll();
