@@ -3229,6 +3229,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776842735646.4358,
+            "equipName": "보통쟁기(3련)-01",
+            "equipSpec": "KP300A/보통-3련",
+            "personName": "홍천희",
+            "days": 1,
+            "startDate": "2026-04-28",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
