@@ -310,9 +310,61 @@ select:focus{border-color:var(--accent)}
 .delivery-box{font-size:13px}
 .delivery-txt{font-size:11px;color:var(--muted);transition:color .2s;white-space:nowrap}
 .delivery-toggle.on .delivery-txt{color:var(--yellow);font-weight:700}
+
+.btn-edit{width:22px;height:22px;border-radius:5px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
+.btn-edit:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 </style>
 </head>
 <body>
+
+<!-- 임대 내역 수정 모달 -->
+<div class="token-modal hidden" id="editModal">
+  <div class="token-box" style="max-width:520px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <h2 style="font-size:15px;font-weight:900;color:#fff">✏️ 임대 내역 수정</h2>
+      <button onclick="closeEditModal()" style="width:28px;height:28px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:16px;cursor:pointer">✕</button>
+    </div>
+    <!-- 장비명 검색 -->
+    <div style="margin-bottom:10px">
+      <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px">장비명</label>
+      <div class="search-wrap" id="editSearchWrap">
+        <input type="text" class="search-inp" id="editSearchInp" placeholder="검색…" readonly onclick="openEditDD()" autocomplete="off" style="margin-bottom:0">
+        <span class="search-arrow">▼</span>
+        <div class="dropdown" id="editDropdown">
+          <div class="dd-filter"><input type="text" id="editDdFilter" placeholder="검색…" oninput="filterEditDD()" onclick="event.stopPropagation()"></div>
+          <div id="editDdList"></div>
+        </div>
+      </div>
+    </div>
+    <!-- 성명 -->
+    <div style="margin-bottom:10px">
+      <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px">성명</label>
+      <input type="text" id="editPersonInp" class="person-inp" placeholder="성명 입력" style="width:100%">
+    </div>
+    <!-- 임대기간 -->
+    <div style="margin-bottom:10px">
+      <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px">임대기간</label>
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:nowrap">
+        <div class="days-ctrl">
+          <button class="day-btn" onclick="setEditDays(1)" id="editDayBtn1">1일</button>
+          <button class="day-btn" onclick="setEditDays(2)" id="editDayBtn2">2일</button>
+          <button class="day-btn" onclick="setEditDays(3)" id="editDayBtn3">3일</button>
+          <button class="day-btn" onclick="openEditDatePicker()" id="editDayBtnX">📅 직접</button>
+          <input type="date" id="editReturnDatePicker" style="display:none" onchange="setEditDaysByDate(this.value)">
+        </div>
+        <div class="delivery-toggle" id="editDeliveryToggle" onclick="toggleEditDelivery()">
+          <span class="delivery-chk-sq" id="editDeliveryChkSq"></span>
+          <span class="delivery-box">🚚</span>
+          <span class="delivery-txt">배송</span>
+        </div>
+      </div>
+    </div>
+    <!-- 소요시간 안내 -->
+    <div class="half-info show" id="editHalfInfo" style="margin-bottom:14px">–</div>
+    <!-- 저장 버튼 -->
+    <button onclick="saveEdit()" style="width:100%;padding:11px;background:var(--accent);border:none;border-radius:8px;color:#fff;font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:700;cursor:pointer">저장</button>
+  </div>
+</div>
 
 <!-- 입출고 목록 팝업 -->
 <div class="popup-overlay hidden" id="inoutPopup">
@@ -1101,6 +1153,7 @@ function renderSelList(){
           <span class="sel-cb">입고</span>
         </label>` : `<span style="min-width:38px"></span>`}
         <span class="sel-mins">${totalMins}분</span>
+        <button class="btn-edit" onclick="openEditModal('${startDk}','${st}',${idx})" title="수정">✏️</button>
         <button class="btn-del" onclick="delEntry('${st}',${idx},'${startDk}')" title="삭제">&#10005;</button>
       </div>`;
     });
@@ -1780,7 +1833,7 @@ function openInoutPopup() {
         : 'padding:7px 10px;border:1px solid var(--border);color:var(--dim);font-weight:600';
       const nameDisplay = samePerson ? '〃' : e.personName;
       rowsHtml += `<tr style="background:${bg}">
-        <td style="padding:7px 10px;border:1px solid var(--border);color:var(--text);font-weight:600">${e.equipName}</td>
+        <td style="padding:7px 10px;border:1px solid var(--border);color:var(--text);font-weight:600">${e.equipName}${e.delivery?"<span style=\"margin-left:5px;font-size:10px;color:var(--yellow)\">🚚</span>":""}</td>
         <td style="${nameStyle}">${nameDisplay}</td>
         ${colCells}
         <td style="padding:7px 10px;border:1px solid var(--border);color:var(--muted);font-size:10px">${daysLabel}</td>
@@ -1815,17 +1868,189 @@ function openInoutPopup() {
 }
 
 
-function toggleEntryCheckPopup(startDk, site, entryId, 입력, val) {
+function toggleEntryCheckPopup(startDk, site, entryId, type, val) {
   if(!state[startDk] || !state[startDk][site]) return;
   const entry = state[startDk][site].entries.find(e => String(e.id) === String(entryId));
   if(!entry) return;
-  if(입력 === 'out') entry.outDone = val;
+  if(type === 'out') entry.outDone = val;
   else entry.inDone = val;
   if(saveTimer) clearTimeout(saveTimer);
   saveData();
   renderAll();
   openInoutPopup();
 }
+
+
+// ═══ 임대 내역 수정 ═══
+let editTarget = null; // {startDk, site, idx}
+let editEquip  = null;
+let editDays   = 1;
+let editDelivery = false;
+
+function openEditModal(startDk, site, idx) {
+  const e = state[startDk][site].entries[idx];
+  if(!e) return;
+  editTarget = {startDk, site, idx};
+
+  // 장비명
+  document.getElementById('editSearchInp').value = e.equipName + (e.equipSpec ? ' / '+e.equipSpec : '');
+  editEquip = {n: e.equipName, s: e.equipSpec||'', m: e.baseMins - (e.delivery?240:0)};
+
+  // 성명
+  document.getElementById('editPersonInp').value = e.personName || '';
+
+  // 임대기간
+  editDays = e.days;
+  editDelivery = e.delivery || false;
+  [1,2,3].forEach(n => document.getElementById('editDayBtn'+n).classList.toggle('active', n===editDays));
+  const btnX = document.getElementById('editDayBtnX');
+  if(editDays > 3) {
+    btnX.classList.add('active');
+    btnX.textContent = editDays+'일';
+  } else {
+    btnX.classList.remove('active');
+    btnX.textContent = '📅 직접';
+  }
+  document.getElementById('editDeliveryToggle').classList.toggle('on', editDelivery);
+  document.getElementById('editDeliveryChkSq').style.background = editDelivery ? 'var(--yellow)' : '';
+
+  updateEditHalfInfo();
+  document.getElementById('editModal').classList.remove('hidden');
+}
+
+function closeEditModal() {
+  document.getElementById('editModal').classList.add('hidden');
+  editTarget = null;
+}
+
+function setEditDays(d) {
+  editDays = d;
+  [1,2,3].forEach(n => document.getElementById('editDayBtn'+n).classList.toggle('active', n===d));
+  const btnX = document.getElementById('editDayBtnX');
+  btnX.classList.remove('active');
+  btnX.textContent = '📅 직접';
+  document.getElementById('editReturnDatePicker').style.display = 'none';
+  updateEditHalfInfo();
+}
+
+function openEditDatePicker() {
+  const dk = editTarget ? editTarget.startDk : getDkeys()[curIdx];
+  const picker = document.getElementById('editReturnDatePicker');
+  const minDate = new Date(dk);
+  minDate.setDate(minDate.getDate() + 1);
+  picker.min = minDate.toISOString().slice(0,10);
+  const maxDate = new Date(dk);
+  maxDate.setDate(maxDate.getDate() + 30);
+  picker.max = maxDate.toISOString().slice(0,10);
+  picker.value = '';
+  picker.style.display = 'block';
+  picker.focus(); picker.click();
+}
+
+function setEditDaysByDate(returnDate) {
+  if(!returnDate || !editTarget) return;
+  const start = new Date(editTarget.startDk);
+  const end   = new Date(returnDate);
+  const diff  = Math.round((end - start) / 86400000);
+  if(diff < 1) return;
+  editDays = diff;
+  [1,2,3].forEach(n => document.getElementById('editDayBtn'+n).classList.remove('active'));
+  const btnX = document.getElementById('editDayBtnX');
+  btnX.classList.add('active');
+  btnX.textContent = editDays+'일';
+  document.getElementById('editReturnDatePicker').style.display = 'none';
+  updateEditHalfInfo();
+}
+
+function toggleEditDelivery() {
+  editDelivery = !editDelivery;
+  document.getElementById('editDeliveryToggle').classList.toggle('on', editDelivery);
+  document.getElementById('editDeliveryChkSq').style.background = editDelivery ? 'var(--yellow)' : 'var(--bg)';
+  updateEditHalfInfo();
+}
+
+function updateEditHalfInfo() {
+  if(!editEquip) return;
+  const base = editEquip.m;
+  const info = document.getElementById('editHalfInfo');
+  const del  = editDelivery ? 240 : 0;
+  if(editDays === 1) {
+    info.textContent = '전타임 ' + (base+del) + '분' + (editDelivery?' (배송포함)':'');
+  } else {
+    info.textContent = '출고: ' + (base/2+(editDelivery?120:0)) + '분 / 입고: ' + (base/2+(editDelivery?120:0)) + '분';
+  }
+}
+
+function openEditDD() {
+  document.getElementById('editDropdown').classList.toggle('open');
+  if(document.getElementById('editDropdown').classList.contains('open')) {
+    document.getElementById('editDdFilter').value = '';
+    filterEditDD();
+    setTimeout(()=>document.getElementById('editDdFilter').focus(), 50);
+  }
+}
+
+function filterEditDD() {
+  const q = (document.getElementById('editDdFilter').value||'').toLowerCase().trim();
+  const site = editTarget ? editTarget.site : (curSite==='전체'?null:curSite);
+  let list = [];
+  if(!site) {
+    ['본소','북부'].forEach(st => EQUIP_LIST[st].forEach(e => list.push({...e,site:st})));
+  } else {
+    EQUIP_LIST[site].forEach(e => list.push({...e,site}));
+  }
+  const terms = q ? q.split(/[\s\-]+/).filter(Boolean) : [];
+  const filtered = terms.length===0 ? list : list.filter(e => {
+    const t = (e.n+' '+e.s).toLowerCase();
+    return terms.every(w => t.includes(w));
+  });
+  document.getElementById('editDdList').innerHTML = filtered.map(e =>
+    `<div class="dd-item" onclick='selectEditEquip(${JSON.stringify(e)})'>
+      <span class="dd-name">${e.n}</span>
+      <span class="dd-mins" style="font-size:10px;color:var(--muted)">${e.s}</span>
+    </div>`
+  ).join('') || '<div style="padding:12px;text-align:center;color:var(--muted);font-size:12px">검색 결과 없음</div>';
+}
+
+function selectEditEquip(e) {
+  editEquip = e;
+  document.getElementById('editSearchInp').value = e.n + (e.s?' / '+e.s:'');
+  document.getElementById('editDropdown').classList.remove('open');
+  updateEditHalfInfo();
+}
+
+function saveEdit() {
+  if(!editTarget || !editEquip) return;
+  const person = document.getElementById('editPersonInp').value.trim();
+  if(!person) {
+    document.getElementById('editPersonInp').style.borderColor='var(--red)';
+    document.getElementById('editPersonInp').focus();
+    return;
+  }
+  const {startDk, site, idx} = editTarget;
+  const entry = state[startDk][site].entries[idx];
+  if(!entry) return;
+
+  const deliveryMins = editDelivery ? 240 : 0;
+  entry.equipName  = editEquip.n;
+  entry.equipSpec  = editEquip.s || '';
+  entry.personName = person;
+  entry.days       = editDays;
+  entry.baseMins   = editEquip.m + deliveryMins;
+  entry.delivery   = editDelivery;
+
+  if(saveTimer) clearTimeout(saveTimer);
+  saveData();
+  closeEditModal();
+  renderAll();
+}
+
+// 드롭다운 외부 클릭 닫기 (수정 모달)
+document.addEventListener('click', e => {
+  if(!document.getElementById('editSearchWrap').contains(e.target)) {
+    document.getElementById('editDropdown').classList.remove('open');
+  }
+});
 
 
 function closePopup() {
