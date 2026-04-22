@@ -511,6 +511,23 @@ select:focus{border-color:var(--accent)}
 
 
 <div class="body">
+<div style="display:none"><span id="availHours" style="display:none"></span>
+<span id="availMins" style="display:none"></span>
+<span id="gaugeTxt" style="display:none"></span>
+<span id="statusText" style="display:none"></span>
+<span id="headerSub" style="display:none"></span>
+<span id="miniBody" style="display:none"></span>
+<span id="inputPanelTitle" style="display:none"></span>
+<span id="deliveryBar" style="display:none"></span>
+<span id="deliveryChk" style="display:none"></span>
+<span id="deliveryChkBox" style="display:none"></span>
+<span id="deliveryMins" style="display:none"></span>
+<span id="halfCheck" style="display:none"></span>
+<span id="halfMinsLabel" style="display:none"></span>
+<span id="halfToggle" style="display:none"></span>
+<span id="qtyVal" style="display:none"></span>
+<span id="loginBtn" style="display:none"></span>
+<span id="ghTokenInp" style="display:none"></span></div>
 <div class="layout">
     <!-- 왼쪽 -->
     <div class="col-left">
@@ -1241,8 +1258,8 @@ function renderWorkers(){
   }).join('');
   const avail=getAvail(dk,curSite);
   const active=showSites.reduce((s,st)=>s+Object.values(state[dk][st].workers).filter(v=>v>0).length,0);
-  document.getElementById('availHours').textContent=(avail/60).toFixed(1);
-  document.getElementById('availMins').textContent=avail;
+  document.getElementById('availVal')&&(document.getElementById('availVal').textContent=(avail/60).toFixed(1));
+  document.getElementById('availDetail')&&(document.getElementById('availDetail').textContent=avail);
   document.getElementById('availDetail').textContent='근무 '+active+'명 합계';
 }
 
