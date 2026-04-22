@@ -540,7 +540,7 @@ select:focus{border-color:var(--accent)}
   <button onclick="shiftDates(7)" style="padding:0 12px;background:transparent;border:none;border-left:1px solid var(--border);color:var(--muted);font-size:16px;cursor:pointer;transition:all .2s;flex-shrink:0" onmouseover="this.style.background='rgba(99,102,241,.1)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--muted)'" title="7일 이후">▶</button>
 </div>
 
-<div class="body">
+<div class="body"><span id="headerSub" style="display:none"></span>
   
   <div class="layout">
 
@@ -577,7 +577,7 @@ select:focus{border-color:var(--accent)}
     <!-- 오른쪽 -->
     <div class="col-right">
       <!-- 3일치 선택 기종 요약 -->
-      <div id="triDayPanel" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:8px;min-height:300px;width:100%"></div>
+      <div id="selList" style="display:none"></div><div id="triDayPanel" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:8px;min-height:300px;width:100%"></div>
     </div>
   </div>
 </div>
@@ -1257,9 +1257,10 @@ function renderGauge(){
 }
 
 function renderSelList(){
+  const el = document.getElementById('selList');
+  if(!el) return; // selList 없는 레이아웃에서는 스킵
   const dk = getDkeys()[curIdx];
   const showSites = curSite==='전체' ? SITES : [curSite];
-  const el = document.getElementById('selList');
   const holidays = getHolidays();
 
   // 전체 entries 수집 + 타입 분류
@@ -1458,7 +1459,7 @@ if(_savedAuth) {
   initState(); renderAll();
 }
 
-document.getElementById('headerSub').textContent='파주시 농업기계임대사업소 · '+t.getFullYear()+'년 '+(t.getMonth()+1)+'월 '+t.getDate()+'일';
+document.getElementById('headerSub')&&(document.getElementById('headerSub').textContent='파주시 농업기계임대사업소 · '+t.getFullYear()+'년 '+(t.getMonth()+1)+'월 '+t.getDate()+'일');
 loadData();
 
 
