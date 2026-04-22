@@ -576,7 +576,7 @@ select:focus{border-color:var(--accent)}
     <!-- 오른쪽 -->
     <div class="col-right">
       <!-- 3일치 선택 기종 요약 -->
-      <div id="triDayPanel" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;min-height:400px">
+      <div id="triDayPanel" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;flex:1">
         <!-- renderTriDayPanel이 채움 -->
       </div>
     </div>
@@ -1840,6 +1840,9 @@ function renderTriDayPanel() {
   const DATES = getDates();
   const DKEYS = getDkeys();
   const idx2  = curIdx;
+  // 디버그: state 키 개수와 패널 존재 확인
+  const panel0 = document.getElementById('triDayPanel');
+  if(!panel0) { console.warn('triDayPanel 없음'); return; }
   const holidays = getHolidays();
   const DOW2  = ['일','월','화','수','목','금','토'];
   const targetSites = curSite==='전체' ? ['본소','북부'] : [curSite];
