@@ -511,12 +511,38 @@ select:focus{border-color:var(--accent)}
 
 
 <div class="body">
-
-<div id="inlineInputPanel" style="display:none;background:var(--card);border-bottom:2px solid var(--accent);padding:12px 16px">
-
+<div class="layout">
+    <!-- 왼쪽 -->
+    <div class="col-left">
+      <div class="card">
+        <div class="card-title">근무자 현황</div>
+        <div id="workerBlocks"></div>
+        <div class="avail-box">
+          <div><div class="avail-lbl">총 가용 정비시간</div><div class="avail-sub" id="availDetail">–</div></div>
+          <div class="avail-val" id="availVal">–</div>
+        </div>
+      </div>
+      <div class="card" id="gaugeCard">
+        <div class="card-title">업무 부하율</div>
+        <div id="statusBadge" class="status-badge">–</div>
+        <div class="gauge-wrap"><div class="gauge-bar" id="gaugeBar"></div>
+          <div class="gauge-marks">
+            <span>0%</span><span style="margin-left:auto;margin-right:0;color:var(--yellow)">⚠ 80%</span>
+            <span style="color:var(--red)">🚫 100%</span>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-box"><div class="val" id="statPct">–</div><div class="lbl">부하율</div></div>
+          <div class="stat-box"><div class="val" id="statUsed">–</div><div class="lbl">소요(분)</div></div>
+          <div class="stat-box"><div class="val" id="statRemain">–</div><div class="lbl">여유(분)</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- 오른쪽 -->
+    <div class="col-right" style="display:flex;flex-direction:column;gap:0">
+      <!-- 입력 패널 -->
+      <div id="inlineInputPanel" style="background:var(--card);border-bottom:2px solid var(--accent);padding:10px 16px">
   <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-    <span id="inlineInputDate" style="font-size:12px;font-weight:700;color:var(--accent);flex-shrink:0">날짜</span>
-    <!-- 장비 검색 -->
     <div class="search-wrap" id="searchWrap" style="flex:1;min-width:180px;margin-bottom:0">
       <input type="text" class="search-inp" id="searchInp" placeholder="● 장비명 검색…" readonly onclick="openDD()" autocomplete="off" style="margin-bottom:0">
       <span class="search-arrow">▼</span>
@@ -525,7 +551,6 @@ select:focus{border-color:var(--accent)}
         <div id="ddList"></div>
       </div>
     </div>
-    <!-- 입력 행 (장비 선택 후 표시) -->
     <div id="inputRow" style="display:none;align-items:center;gap:8px;flex-wrap:wrap">
       <input type="text" id="personNameInp" class="person-inp" placeholder="성명" autocomplete="off" style="width:80px">
       <div class="days-ctrl">
@@ -540,53 +565,17 @@ select:focus{border-color:var(--accent)}
         <span class="delivery-box">🚚</span>
         <span class="delivery-txt">배송</span>
       </div>
-      <div class="half-info" id="halfInfo" style="display:none;padding:3px 8px;font-size:11px"></div>
+      <div class="half-info" id="halfInfo" style="padding:3px 8px;font-size:11px;display:none"></div>
       <button class="btn-add" onclick="addEntry()">입력</button>
-    </div>
-    <button onclick="closeInlineInput()" style="padding:3px 10px;background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--muted);font-size:11px;cursor:pointer;flex-shrink:0">✕</button>
-  </div>
-<div 
-</div><span id="headerSub" style="display:none"></span>
-  
-  <div class="layout">
-
-    <!-- 왼쪽 -->
-    <div class="col-left">
-      <div class="card">
-        <div class="card-title">근무자 현황</div>
-        <div id="workerBlocks"></div>
-        <div class="avail-box">
-          <div><div class="avail-lbl">총 가용 정비시간</div><div class="avail-sub" id="availDetail">–</div></div>
-          <div style="text-align:right"><div class="avail-val" id="availHours">–</div><div class="avail-sub">h&nbsp;(<span id="availMins">–</span>분)</div></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">업무 부하율</div>
-        <div class="status-badge s-정상" id="statusBadge"><span class="dot"></span><span id="statusText">정상 — 접수 가능</span></div>
-        <div style="position:relative;height:7px;margin-bottom:2px">
-          <div style="position:absolute;left:80%;width:1px;height:7px;background:var(--muted);opacity:.4"></div>
-          <div style="position:absolute;left:100%;width:1px;height:7px;background:var(--muted);opacity:.4"></div>
-        </div>
-        <div class="gauge-track"><div class="gauge-bar" id="gaugeBar" style="width:0%;background:var(--green)"><span id="gaugeTxt">0%</span></div></div>
-        <div class="gauge-marks"><span>0%</span><span style="color:var(--yellow)">⚠ 80%</span><span style="color:var(--red)">🚫 100%</span></div>
-        <div class="stats-row">
-          <div class="stat-box"><div class="val" id="statPct">0<span style="font-size:10px">%</span></div><div class="lbl">부하율</div></div>
-          <div class="stat-box"><div class="val" id="statUsed">0</div><div class="lbl">소요(분)</div></div>
-          <div class="stat-box"><div class="val" id="statRemain">–</div><div class="lbl">여유(분)</div></div>
-        </div>
-      </div>
-
-
-    </div>
-
-    <!-- 오른쪽 -->
-    <div class="col-right">
-      <!-- 3일치 선택 기종 요약 -->
-      <div id="selList" style="display:none"></div><div id="triDayPanel" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:8px;min-height:300px;width:100%"></div>
     </div>
   </div>
 </div>
+      <!-- 3일치 요약 -->
+      <div id="triDayPanel" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:8px;flex:1;min-height:300px"></div>
+      <!-- 숨김 요소들 -->
+      <div id="selList" style="display:none"></div>
+    </div>
+  </div>
 
 <script>
 
@@ -1909,42 +1898,9 @@ function renderTriDayPanel() {
 
 
 function openInputForDate(dk) {
-  const panel = document.getElementById('inlineInputPanel');
-  if(!panel) { alert('입력창을 찾을 수 없습니다'); return; }
-
-  // 같은 날짜 다시 누르면 닫기
-  if(panel.style.display !== 'none' && panel.dataset.dk === dk) {
-    closeInlineInput(); return;
-  }
-
-  // 날짜 탭 이동
-  const dkeys = getDkeys();
-  const i = dkeys.indexOf(dk);
-  if(i >= 0) { curIdx = i; renderAll(); }
-
-  // 날짜 레이블
-  const d = new Date(dk);
-  const DOW3=['일','월','화','수','목','금','토'];
-  const lbl = document.getElementById('inlineInputDate');
-  if(lbl) lbl.textContent = '📅 '+(d.getMonth()+1)+'/'+d.getDate()+'('+DOW3[d.getDay()]+') 신청';
-
-  // 패널 열기
-  panel.style.display = 'block';
-  panel.dataset.dk = dk;
-
-  // 입력 초기화
-  selEquip = null; selDays = 1; selDelivery = false;
-  const si = document.getElementById('searchInp');
-  const ir = document.getElementById('inputRow');
-  if(si) si.value = '';
-  if(ir) ir.style.display = 'none';
-  [1,2,3].forEach(n => {
-    const b = document.getElementById('dayBtn'+n);
-    if(b) b.classList.remove('active');
-  });
-
-  // 드롭다운 열기
-  setTimeout(() => openDD(), 200);
+  // 입력 패널은 항상 표시 - 날짜만 설정
+  const i2 = getDkeys().indexOf(dk);
+  if(i2 >= 0) { curIdx = i2; renderAll(); }
 }
 
 
