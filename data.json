@@ -4996,7 +4996,7 @@
             "personName": "강경희",
             "days": 3,
             "startDate": "2026-04-19",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 60,
