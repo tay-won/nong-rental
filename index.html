@@ -1267,13 +1267,16 @@ function renderGauge(){
   const dk=getDkeys()[curIdx];
   const avail=getAvail(dk,curSite),used=getUsed(dk,curSite),pct=getPct(dk,curSite),remain=avail-used,st=getStatus(pct);
   const col=st==='마감'?'var(--red)':st==='주의'?'var(--yellow)':'var(--green)';
-  const bar=document.getElementById('gaugeBar');bar.style.width=Math.min(pct,100)+'%';bar.style.background=col;
-  document.getElementById('statPct').textContent=pct+'%';
-  document.getElementById('statusBadge').className='status-badge s-'+st;
-  document.// statusText 제거 (statusBadge로 대체)
-  document.getElementById('statPct').innerHTML=pct+'<span style="font-size:10px">%</span>';
-  document.getElementById('statUsed').textContent=used;
-  const re=document.getElementById('statRemain');re.textContent=remain>=0?remain:'초과';re.style.color=remain<0?'var(--red)':'#fff';
+  const bar=document.getElementById('gaugeBar');
+  if(bar){bar.style.width=Math.min(pct,100)+'%';bar.style.background=col;}
+  const badge=document.getElementById('statusBadge');
+  if(badge){
+    badge.className='status-badge status-'+st;
+    badge.textContent={정상:'✅ 정상 — 접수 가능',주의:'⚠ 주의 — 신중 검토 필요',마감:'🚫 신청 마감 — 금일 접수 불가'}[st]||st;
+  }
+  const sp=document.getElementById('statPct');if(sp)sp.textContent=pct+'%';
+  const su=document.getElementById('statUsed');if(su)su.textContent=used;
+  const sr=document.getElementById('statRemain');if(sr)sr.textContent=remain;
 }
 
 function renderSelList(){
