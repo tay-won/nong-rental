@@ -4988,7 +4988,21 @@
           "nb3": 420,
           "nb4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1776835968147.992,
+            "equipName": "비료살포기-05",
+            "equipSpec": "JHT-550/500kg",
+            "personName": "강경희",
+            "days": 3,
+            "startDate": "2026-04-19",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
+          }
+        ],
         "delivery": false
       }
     },
