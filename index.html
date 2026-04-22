@@ -727,13 +727,18 @@ async function loadData(){
       const jsonStr = decodeURIComponent(escape(atob(json.content.replace(/\n/g,''))));
       const raw = JSON.parse(jsonStr);
       // 새 포맷(state+holidays) vs 구 포맷 호환
-      const decoded = raw.state || raw;
-      const savedHolidays = raw.holidays || [];
-
-      // 휴무일 복원 (localStorage에도 저장)
-      if(savedHolidays.length > 0) {
-        saveHolidays(savedHolidays);
+      let decoded, savedHolidays = [];
+      if(raw && raw.state && typeof raw.state === 'object') {
+        decoded = raw.state;
+        savedHolidays = raw.holidays || [];
+      } else if(raw && typeof raw === 'object') {
+        decoded = raw;
+      } else {
+        decoded = {};
       }
+
+      // 휴무일 복원
+      if(savedHolidays.length > 0) saveHolidays(savedHolidays);
 
       // 빈 상태로 초기화 후 복원
       initState();
@@ -764,9 +769,10 @@ async function loadData(){
     }
   } catch(e){
     setSyncUI('err','불러오기 실패: '+e.message);
+  } finally {
+    document.getElementById('loadingOverlay').classList.add('hidden');
+    renderAll();
   }
-  document.getElementById('loadingOverlay').classList.add('hidden');
-  renderAll();
 }
 
 async function saveData(){
