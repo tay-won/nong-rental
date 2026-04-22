@@ -1843,6 +1843,12 @@ function collectInoutForDate(dk) {
 function renderTriDayPanel() {
   const panel = document.getElementById('triDayPanel');
   if(!panel) return;
+  // col-left 높이 읽어서 CSS 변수로 설정
+  const colLeft = document.querySelector('.col-left');
+  if(colLeft) {
+    const h = colLeft.offsetHeight;
+    if(h > 100) panel.style.setProperty('--col-h', h+'px');
+  }
 
   const dk = getDkeys()[curIdx];
   const d = getDates()[curIdx];
