@@ -1035,6 +1035,40 @@ function resetDates() {
   renderAll();
 }
 
+// ═══ 장비 임대 상태 계산 ═══
+function getEquipStatus(equipName, siteName) {
+  const dk = getDkeys()[curIdx]; // 현재 선택 날짜
+  const targetSites = siteName ? [siteName] : (curSite==='전체' ? ['본소','북부'] : [curSite]);
+
+  for(const st of targetSites) {
+    const entries = [];
+    Object.keys(state).forEach(startDk => {
+      if(!state[startDk]||!state[startDk][st]) return;
+      state[startDk][st].entries.forEach(e => {
+        if(e.equipName === equipName) entries.push({e, startDk});
+      });
+    });
+
+    for(const {e} of entries) {
+      // 입고일 계산 (원래 스케줄 기준)
+      const inDate = new Date(e.startDate);
+      inDate.setDate(inDate.getDate() + e.days - 1);
+      const inDk = inDate.toISOString().slice(0,10);
+
+      // 정비중: 오늘이 입고일 (실제 입고 여부와 무관)
+      if(inDk === dk) return '정비중';
+
+      // 임대중: 출고됐고 입고일이 오늘 이후
+      if(e.outDone && inDk > dk) return '임대중';
+
+      // 출고 예정(오늘): 아직 임대 가능 아님
+      if(e.startDate === dk && !e.outDone) return '출고예정';
+    }
+  }
+  return null; // 이상 없음
+}
+
+
 function renderDateTabs(){
   const DATES=getDates(), DKEYS=getDkeys();
   const holidays = getHolidays();
@@ -1357,12 +1391,21 @@ function filterDD() {
     return terms.every(t => target.includes(t));
   });
 
-  document.getElementById('ddList').innerHTML = filtered.map(e =>
-    `<div class="dd-item" onclick='selectEquip(${JSON.stringify(e)})'>
-      <span class="dd-name">${e.n}</span>
+  document.getElementById('ddList').innerHTML = filtered.map(e => {
+    const status = getEquipStatus(e.n, e.site);
+    const statusBadge = status === '정비중'
+      ? '<span style="margin-left:6px;font-size:9px;padding:1px 5px;border-radius:4px;background:rgba(245,158,11,.2);color:var(--yellow);font-weight:700">🔧 정비중</span>'
+      : status === '임대중'
+      ? '<span style="margin-left:6px;font-size:9px;padding:1px 5px;border-radius:4px;background:rgba(239,68,68,.2);color:var(--red);font-weight:700">📤 임대중</span>'
+      : status === '출고예정'
+      ? '<span style="margin-left:6px;font-size:9px;padding:1px 5px;border-radius:4px;background:rgba(96,165,250,.2);color:var(--blue);font-weight:700">📦 출고예정</span>'
+      : '';
+    const dimStyle = status ? 'opacity:.6;pointer-events:none' : '';
+    return `<div class="dd-item" onclick='${status?"":("selectEquip("+JSON.stringify(e)+")")}' style="${dimStyle}">
+      <span class="dd-name">${e.n} ${statusBadge}</span>
       <span class="dd-mins" style="font-size:10px;color:var(--muted)">${e.s}</span>
-    </div>`
-  ).join('') || '<div style="padding:12px;text-align:center;color:var(--muted);font-size:12px">검색 결과 없음</div>';
+    </div>`;
+  }).join('') || '<div style="padding:12px;text-align:center;color:var(--muted);font-size:12px">검색 결과 없음</div>';
 }
 
 
@@ -2032,12 +2075,21 @@ function filterEditDD() {
     const t = (e.n+' '+e.s).toLowerCase();
     return terms.every(w => t.includes(w));
   });
-  document.getElementById('editDdList').innerHTML = filtered.map(e =>
-    `<div class="dd-item" onclick='selectEditEquip(${JSON.stringify(e)})'>
-      <span class="dd-name">${e.n}</span>
+  document.getElementById('editDdList').innerHTML = filtered.map(e => {
+    const status = getEquipStatus(e.n, e.site);
+    const statusBadge = status === '정비중'
+      ? '<span style="margin-left:6px;font-size:9px;padding:1px 5px;border-radius:4px;background:rgba(245,158,11,.2);color:var(--yellow);font-weight:700">🔧 정비중</span>'
+      : status === '임대중'
+      ? '<span style="margin-left:6px;font-size:9px;padding:1px 5px;border-radius:4px;background:rgba(239,68,68,.2);color:var(--red);font-weight:700">📤 임대중</span>'
+      : status === '출고예정'
+      ? '<span style="margin-left:6px;font-size:9px;padding:1px 5px;border-radius:4px;background:rgba(96,165,250,.2);color:var(--blue);font-weight:700">📦 출고예정</span>'
+      : '';
+    const dimStyle = status ? 'opacity:.6;pointer-events:none' : '';
+    return `<div class="dd-item" onclick='${status?"":("selectEditEquip("+JSON.stringify(e)+")")}' style="${dimStyle}">
+      <span class="dd-name">${e.n} ${statusBadge}</span>
       <span class="dd-mins" style="font-size:10px;color:var(--muted)">${e.s}</span>
-    </div>`
-  ).join('') || '<div style="padding:12px;text-align:center;color:var(--muted);font-size:12px">검색 결과 없음</div>';
+    </div>`;
+  }).join('') || '<div style="padding:12px;text-align:center;color:var(--muted);font-size:12px">검색 결과 없음</div>';
 }
 
 function selectEditEquip(e) {
