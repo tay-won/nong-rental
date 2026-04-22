@@ -85,7 +85,7 @@ select:focus{border-color:var(--accent)}
 .gauge-track{height:24px;background:var(--surface);border-radius:12px;overflow:hidden;border:1px solid var(--border)}
 .gauge-bar{height:100%;border-radius:12px;transition:width .6s cubic-bezier(.4,0,.2,1),background .4s;display:flex;align-items:center;justify-content:flex-end;padding-right:9px;min-width:0}
 .gauge-bar span{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#fff}
-.gauge-marks{display:flex;justify-content:space-between;font-size:9px;color:var(--muted);padding:2px 3px 0}
+.gauge-marks{display:flex;justify-content:space-between;font-size:9px;margin-top:3px;padding:0 2px}
 .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:9px}
 .stat-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center}
 .stat-box .val{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:#fff}
@@ -380,6 +380,7 @@ select:focus{border-color:var(--accent)}
 .tri-reset{width:100%;padding:5px;background:transparent;border:none;color:var(--muted);font-size:10px;cursor:pointer;text-align:center;font-family:"Noto Sans KR",sans-serif;border-top:1px solid var(--border)}
 .tri-reset:hover{color:var(--red)}
 .tri-empty{padding:16px;text-align:center;color:var(--muted);font-size:11px}
+.gauge-wrap{position:relative;height:22px;background:var(--surface);border-radius:12px;overflow:hidden;margin:8px 0}
 </style>
 </head>
 <body>
@@ -1911,9 +1912,7 @@ function renderTriDayPanel() {
         <span style="font-size:12px;font-weight:700;color:${hdrColor}">${label}${isHol?' 🔴':''}</span>
         <span style="font-size:10px;color:#64748b">출고${outN}/입고${inN}</span>
       </div>
-      <div style="padding:5px 8px;border-bottom:1px solid #334155">
-        <button onclick="setIdxByDk('${colDk}')" style="width:100%;padding:4px;background:rgba(99,102,241,.15);border:1px dashed rgba(99,102,241,.4);border-radius:6px;color:#818cf8;font-size:11px;cursor:pointer;font-family:inherit">+ 임대 추가</button>
-      </div>
+
       <div style="flex:1;overflow-y:auto">${rowsHtml}</div>
     </div>`;
   });
