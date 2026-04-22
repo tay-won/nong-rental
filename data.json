@@ -5001,6 +5001,19 @@
             "site": "북부",
             "baseMins": 60,
             "delivery": false
+          },
+          {
+            "id": 1776835991619.9238,
+            "equipName": "원판쟁기8련-02",
+            "equipSpec": "W82-DP/원판-8련",
+            "personName": "강병구",
+            "days": 3,
+            "startDate": "2026-04-19",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
