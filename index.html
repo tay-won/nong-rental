@@ -143,8 +143,11 @@ select:focus{border-color:var(--accent)}
 /* ④ 선택 기종 목록 */
 .sel-list{display:flex;flex-direction:column;gap:5px;max-height:300px;overflow-y:auto;padding-right:2px}
 .sel-list::-webkit-scrollbar{width:3px}.sel-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-.sel-item{display:flex;align-items:center;gap:5px;padding:5px 8px;background:var(--surface);border-radius:7px;cursor:grab;flex-wrap:nowrap}
+.sel-item{display:flex;align-items:center;gap:5px;padding:5px 8px;border-radius:7px;cursor:grab;flex-wrap:nowrap;border-left:3px solid transparent}
 .sel-item.done{opacity:.55}
+.sel-item.type-in{background:rgba(100,116,139,.15);border-left-color:#64748b}
+.sel-item.type-1day{background:rgba(234,179,8,.08);border-left-color:#eab308}
+.sel-item.type-out{background:rgba(34,197,94,.08);border-left-color:#22c55e}
 .sel-item.dragging{opacity:.4;background:rgba(99,102,241,.15);cursor:grabbing}
 .sel-item.drag-over{border-top:2px solid var(--accent)}
 .sel-equip{font-size:12px;font-weight:600;color:var(--text);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -1102,61 +1105,86 @@ function renderSelList(){
   const dk = getDkeys()[curIdx];
   const showSites = curSite==='전체' ? SITES : [curSite];
   const el = document.getElementById('selList');
-  let h = '';
+  const holidays = getHolidays();
 
+  // 전체 entries 수집 + 타입 분류
+  const items = [];
   showSites.forEach(st => {
-    const relEntries = [];
     Object.keys(state).forEach(startDk => {
-      if(!state[startDk] || !state[startDk][st]) return;
-      state[startDk][st].entries.forEach((e, i) => {
-        const start = new Date(e.startDate);
-        const target = new Date(dk);
-        const diff = Math.round((target - start) / 86400000);
+      if(!state[startDk]||!state[startDk][st]) return;
+      state[startDk][st].entries.forEach((e, idx2) => {
+        const start   = new Date(e.startDate);
+        const target  = new Date(dk);
+        const diff    = Math.round((target - start) / 86400000);
         const lastDay = e.days - 1;
 
-        // 출고 표시: 원래 시작일
         const canOut = diff === 0;
-        // 입고 표시: 원래 입고일 (1일=시작일, 2~3일=마지막날)
-        const canIn = (e.days === 1 && diff === 0) || (e.days > 1 && diff === lastDay);
+        const canIn  = (e.days===1 && diff===0) || (e.days>1 && diff===lastDay);
+        if(!canOut && !canIn) return;
 
-        if(canOut || canIn) {
-          relEntries.push({ e, startDk, idx: i, canOut, canIn });
-        }
+        // 타입 분류
+        let type;
+        if(e.days===1 && canOut && canIn) type = 'type-1day';  // 1일 임대 (노란)
+        else if(canIn && !canOut)          type = 'type-in';    // 입고 (회색)
+        else                               type = 'type-out';   // 출고 (초록)
+
+        items.push({e, st, startDk, idx: idx2, canOut, canIn, type});
       });
     });
+  });
 
-    relEntries.forEach(({e, startDk, idx, canOut, canIn}) => {
-      const entries = state[startDk][st].entries;
-      const isFirst = idx===0, isLast = idx===entries.length-1;
-      const daysLabel = e.days + '일';
-      const totalMins = calcMinsForDate(e, dk);
+  // 정렬
+  items.sort((a, b) => {
+    // 그룹 순서: 입고(0) → 1일(1) → 출고(2)
+    const order = {'type-in':0,'type-1day':1,'type-out':2};
+    if(order[a.type] !== order[b.type]) return order[a.type] - order[b.type];
 
-      h += `<div class="sel-item ${e.outDone&&e.inDone?'done':''}"
-        draggable="true" data-site="${st}" data-startdk="${startDk}" data-idx="${idx}"
-        ondragstart="dragStart(event)" ondragover="dragOver(event)"
-        ondrop="dragDrop(event)" ondragend="dragEnd(event)">
-        <div style="display:flex;flex-direction:column;gap:1px;flex-shrink:0">
-          <button class="move-btn" onclick="moveEntry('${st}',${idx},-1,'${startDk}')"
-            ${isFirst?'disabled style="opacity:.25;pointer-events:none"':''}>&#9650;</button>
-          <button class="move-btn" onclick="moveEntry('${st}',${idx},+1,'${startDk}')"
-            ${isLast?'disabled style="opacity:.25;pointer-events:none"':''}>&#9660;</button>
-        </div>
-        <span class="sel-equip">${e.equipName}${e.delivery?" 🚚":""}</span>
-        <span class="sel-person">👤 ${e.personName}</span>
-        <span class="sel-days">${daysLabel}</span>
-        ${canOut ? `<label class="sel-chk out-chk">
-          <input type="checkbox" ${e.outDone?'checked':''} onchange="toggleEntryCheckInline('${startDk}','${st}',${idx},'out',this.checked)">
-          <span class="sel-cb">출고</span>
-        </label>` : `<span style="min-width:38px"></span>`}
-        ${canIn ? `<label class="sel-chk in-chk">
-          <input type="checkbox" ${e.inDone?'checked':''} onchange="toggleEntryCheckInline('${startDk}','${st}',${idx},'in',this.checked)">
-          <span class="sel-cb">입고</span>
-        </label>` : `<span style="min-width:38px"></span>`}
-        <span class="sel-mins">${totalMins}분</span>
-        <button class="btn-edit" onclick="openEditModal('${startDk}','${st}',${idx})" title="수정">✏️</button>
-        <button class="btn-del" onclick="delEntry('${st}',${idx},'${startDk}')" title="삭제">&#10005;</button>
-      </div>`;
-    });
+    // 입고: 기간 긴 순
+    if(a.type==='type-in') {
+      if(a.e.days !== b.e.days) return b.e.days - a.e.days;
+    }
+    // 출고: 기간 짧은 순
+    if(a.type==='type-out') {
+      if(a.e.days !== b.e.days) return a.e.days - b.e.days;
+    }
+    // 성명 가나다
+    return (a.e.personName||'').localeCompare(b.e.personName||'', 'ko');
+  });
+
+  // 렌더링
+  let h = '';
+  items.forEach(({e, st, startDk, idx: idx2, canOut, canIn, type}) => {
+    const entries = state[startDk][st].entries;
+    const isFirst = idx2===0, isLast = idx2===entries.length-1;
+    const totalMins = calcMinsForDate(e, dk);
+    const daysLabel = e.days+'일';
+
+    h += `<div class="sel-item ${type} ${e.outDone&&e.inDone?'done':''}"
+      draggable="true" data-site="${st}" data-startdk="${startDk}" data-idx="${idx2}"
+      ondragstart="dragStart(event)" ondragover="dragOver(event)"
+      ondrop="dragDrop(event)" ondragend="dragEnd(event)">
+      <div style="display:flex;flex-direction:column;gap:1px;flex-shrink:0">
+        <button class="move-btn" onclick="moveEntry('${st}',${idx2},-1,'${startDk}')"
+          ${isFirst?'disabled style="opacity:.25;pointer-events:none"':''}>&#9650;</button>
+        <button class="move-btn" onclick="moveEntry('${st}',${idx2},+1,'${startDk}')"
+          ${isLast?'disabled style="opacity:.25;pointer-events:none"':''}>&#9660;</button>
+      </div>
+      <span class="sel-person" style="min-width:52px;flex-shrink:0;font-weight:700;color:#fff">👤 ${e.personName}</span>
+      ${canOut ? `<label class="sel-chk out-chk">
+        <input type="checkbox" ${e.outDone?'checked':''} onchange="toggleEntryCheckInline('${startDk}','${st}',${idx2},'out',this.checked)">
+        <span class="sel-cb">출고</span>
+      </label>` : `<span style="min-width:38px"></span>`}
+      ${canIn ? `<label class="sel-chk in-chk">
+        <input type="checkbox" ${e.inDone?'checked':''} onchange="toggleEntryCheckInline('${startDk}','${st}',${idx2},'in',this.checked)">
+        <span class="sel-cb">입고</span>
+      </label>` : `<span style="min-width:38px"></span>`}
+      <span class="sel-days" style="flex-shrink:0">${daysLabel}</span>
+      <span class="sel-equip" style="flex:1">${e.equipName}${e.delivery?' 🚚':''}</span>
+      ${curSite==='전체'?`<span style="font-size:9px;padding:1px 5px;border-radius:4px;background:rgba(100,116,139,.2);color:var(--muted);flex-shrink:0">${st}</span>`:''}
+      <span class="sel-mins">${totalMins}분</span>
+      <button class="btn-edit" onclick="openEditModal('${startDk}','${st}',${idx2})" title="수정">✏️</button>
+      <button class="btn-del" onclick="delEntry('${st}',${idx2},'${startDk}')" title="삭제">&#10005;</button>
+    </div>`;
   });
 
   el.innerHTML = h || '<div class="empty-msg">장비를 선택 후 입력하세요</div>';
