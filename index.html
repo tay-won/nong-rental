@@ -577,9 +577,7 @@ select:focus{border-color:var(--accent)}
     <!-- 오른쪽 -->
     <div class="col-right">
       <!-- 3일치 선택 기종 요약 -->
-      <div id="triDayPanel" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;flex:1;background:var(--surface);border-radius:10px;padding:8px;min-height:300px">
-        <!-- renderTriDayPanel이 채움 -->
-      </div>
+      <div id="triDayPanel" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;flex:1;padding:8px;min-height:300px"></div>
     </div>
   </div>
 </div>
@@ -1822,7 +1820,8 @@ function collectInoutForDate(dk) {
 // ═══ 3일 임대 목록 렌더 ═══
 function renderTriDayPanel() {
   const panel = document.getElementById('triDayPanel');
-  if(!panel) return;
+  if(!panel) { console.error('triDayPanel 없음'); return; }
+  console.log('renderTriDayPanel 실행, state keys:', Object.keys(state).length, 'curIdx:', curIdx);
 
   const targetDate = getDkeys()[curIdx];
   const holidays = getHolidays();
@@ -1841,7 +1840,7 @@ function renderTriDayPanel() {
     };
   });
 
-  let html2 = '';
+  let colsHtml = '';
 
   cols.forEach(col => {
     // 이 날짜 관련 entries 수집
@@ -1911,19 +1910,19 @@ function renderTriDayPanel() {
           </div>`;
         }).join('');
 
-    html2 += `<div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column">
+    colsHtml += `<div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column">
       <div style="padding:8px 12px;background:${hdrBg};border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-shrink:0">
         <span style="font-size:12px;font-weight:700;color:${hdrColor}">${col.label}</span>
         <span style="font-size:10px;color:var(--muted)">출고${outCnt}/입고${inCnt}</span>
       </div>
       <div style="flex:1;overflow-y:auto">${rows}</div>
       <div style="padding:6px 8px;border-top:1px solid var(--border);flex-shrink:0">
-        <button onclick="openInputForDate('${col.dk}')" style="width:100%;padding:5px;background:rgba(99,102,241,.1);border:1px dashed rgba(99,102,241,.3);border-radius:6px;color:var(--accent);font-size:11px;cursor:pointer;font-family:'Noto Sans KR',sans-serif">+ 임대 추가</button>
+        <button onclick="console.log('+ 버튼 클릭:', '${col.dk}'); openInputForDate('${col.dk}')" style="width:100%;padding:5px;background:rgba(99,102,241,.1);border:1px dashed rgba(99,102,241,.3);border-radius:6px;color:var(--accent);font-size:11px;cursor:pointer;font-family:'Noto Sans KR',sans-serif">+ 임대 추가</button>
       </div>
     </div>`;
   });
 
-  panel.innerHTML = html2;
+  panel.innerHTML = colsHtml;
 }
 
 
