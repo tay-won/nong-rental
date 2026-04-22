@@ -1824,91 +1824,101 @@ function renderTriDayPanel() {
   const panel = document.getElementById('triDayPanel');
   if(!panel) return;
 
-  const DATES = getDates();
-  const DKEYS = getDkeys();
-  const cur = curIdx;
+  const targetDate = getDkeys()[curIdx];
   const holidays = getHolidays();
   const DOW2 = ['일','월','화','수','목','금','토'];
-  const sites = curSite==='전체' ? ['본소','북부'] : [curSite];
+  const targetSites = curSite==='전체' ? ['본소','북부'] : [curSite];
 
-  // 선택날짜 기준 전날/오늘/다음날
-  const selDate = new Date(DATES[cur]);
-  const threeD = [-1,0,1].map(off => {
-    const d = new Date(selDate);
-    d.setDate(d.getDate() + off);
-    return { dk: d.toISOString().slice(0,10), d, off };
+  // 전날/오늘/내일 날짜 계산
+  const cols = [-1,0,1].map(offset => {
+    const d = new Date(targetDate);
+    d.setDate(d.getDate() + offset);
+    const dk = d.toISOString().slice(0,10);
+    const isToday2 = dk === new Date().toISOString().slice(0,10);
+    const isHol = holidays.includes(dk);
+    return {dk, d, offset, isToday2, isHol,
+      label: (d.getMonth()+1)+'/'+d.getDate()+'('+DOW2[d.getDay()]+')'+(isHol?' 🔴':'')
+    };
   });
 
   let html2 = '';
 
-  threeD.forEach(col => {
-    const isT = col.off === 0;
-    const isH = holidays.includes(col.dk);
-    const label = (col.d.getMonth()+1)+'/'+col.d.getDate()+'('+DOW2[col.d.getDay()]+')';
-    const hColor = isH ? '#ef4444' : isT ? 'var(--accent)' : 'var(--dim)';
-    const hBg = isT ? 'rgba(99,102,241,.08)' : 'var(--bg)';
-
+  cols.forEach(col => {
     // 이 날짜 관련 entries 수집
     const items = [];
-    Object.keys(state).forEach(sdk => {
-      sites.forEach(st => {
-        if(!state[sdk]||!state[sdk][st]) return;
-        state[sdk][st].entries.forEach((e,ei) => {
-          const diff = Math.round((new Date(col.dk)-new Date(e.startDate))/86400000);
-          const last = e.days - 1;
+    Object.keys(state).forEach(startDk => {
+      targetSites.forEach(site => {
+        if(!state[startDk] || !state[startDk][site]) return;
+        state[startDk][site].entries.forEach((e, ei) => {
+          const diff = Math.round((new Date(col.dk) - new Date(e.startDate)) / 86400000);
+          const lastDay = e.days - 1;
           const inDk = new Date(e.startDate);
-          inDk.setDate(inDk.getDate()+last);
+          inDk.setDate(inDk.getDate() + lastDay);
           const inDkStr = inDk.toISOString().slice(0,10);
 
-          const isOut = diff===0;
-          const isIn  = (e.days===1&&diff===0)||(e.days>1&&diff===last);
-          const isInPast = e.outDone&&!e.inDone&&inDkStr===col.dk;
+          const isOutDay = diff === 0;
+          const isInDay  = (e.days===1 && diff===0) || (e.days>1 && diff===lastDay);
+          const isInPastOut = e.outDone && !e.inDone && inDkStr===col.dk;
 
-          if(!isOut&&!isIn&&!isInPast) return;
+          if(!isOutDay && !isInDay && !isInPastOut) return;
 
-          let type = e.days===1&&isOut ? 'y' : (isIn||isInPast)&&!isOut ? 'g' : 'gr';
-          items.push({e,st,sdk,ei,isOut,isIn:isIn||isInPast,type});
+          // 타입
+          let type = 'type-out';
+          if(e.days===1 && isOutDay) type = 'type-1day';
+          else if((isInDay||isInPastOut) && !isOutDay) type = 'type-in';
+
+          items.push({e, site, startDk, ei, type,
+            canOut: isOutDay && !e.outDone,
+            canIn:  (isInDay||isInPastOut) && !e.inDone
+          });
         });
       });
     });
 
-    // 정렬
-    const ord = {g:0,y:1,gr:2};
-    items.sort((a,b)=>{
-      if(ord[a.type]!==ord[b.type]) return ord[a.type]-ord[b.type];
-      if(a.type==='g'&&a.e.days!==b.e.days) return b.e.days-a.e.days;
-      if(a.type==='gr'&&a.e.days!==b.e.days) return a.e.days-b.e.days;
+    // 정렬: 입고→1일→출고, 기간순, 성명순
+    items.sort((a,b) => {
+      const order = {'type-in':0,'type-1day':1,'type-out':2};
+      if(order[a.type]!==order[b.type]) return order[a.type]-order[b.type];
+      if(a.type==='type-in'  && a.e.days!==b.e.days) return b.e.days-a.e.days;
+      if(a.type==='type-out' && a.e.days!==b.e.days) return a.e.days-b.e.days;
       return (a.e.personName||'').localeCompare(b.e.personName||'','ko');
     });
 
-    const outN = items.filter(x=>x.isOut&&!x.e.outDone).length;
-    const inN  = items.filter(x=>x.isIn &&!x.e.inDone).length;
-    const typeColor = {g:'#64748b',y:'#eab308',gr:'#22c55e'};
+    const outCnt = items.filter(t=>t.canOut).length;
+    const inCnt  = items.filter(t=>t.canIn).length;
+    const hdrColor = col.isHol?'var(--red)':col.isToday2?'var(--accent)':'var(--dim)';
+    const hdrBg    = col.isToday2?'rgba(99,102,241,.1)':'var(--bg)';
+
+    const typeColor = {'type-in':'#64748b','type-1day':'#eab308','type-out':'#22c55e'};
 
     const rows = items.length===0
-      ? '<div style="padding:10px;text-align:center;color:var(--muted);font-size:11px">없음</div>'
-      : items.map(({e,st,sdk,ei,isOut,isIn,type})=>{
-          const mins = calcMinsForDate(e,col.dk);
-          return `<div style="display:flex;align-items:center;gap:3px;padding:4px 6px;border-bottom:1px solid var(--border);border-left:3px solid ${typeColor[type]}">
-            <span style="font-size:10px;font-weight:700;color:#fff;min-width:42px;flex-shrink:0">${e.personName}</span>
-            ${isOut?`<label style="display:flex;align-items:center;gap:1px;cursor:pointer;flex-shrink:0"><input type="checkbox" ${e.outDone?'checked':''} onchange="toggleEntryCheckInline('${sdk}','${st}',${ei},'out',this.checked)" style="width:11px;height:11px;cursor:pointer"><span style="font-size:9px;color:var(--blue)">출</span></label>`:'<span style="width:22px"></span>'}
-            ${isIn?`<label style="display:flex;align-items:center;gap:1px;cursor:pointer;flex-shrink:0"><input type="checkbox" ${e.inDone?'checked':''} onchange="toggleEntryCheckInline('${sdk}','${st}',${ei},'in',this.checked)" style="width:11px;height:11px;cursor:pointer"><span style="font-size:9px;color:var(--green)">입</span></label>`:'<span style="width:22px"></span>'}
-            <span style="font-size:9px;color:var(--muted);flex-shrink:0">${e.days}일</span>
-            <span style="flex:1;font-size:10px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${e.equipName}${e.delivery?' 🚚':''}</span>
-            <span style="font-size:9px;color:var(--muted);flex-shrink:0">${mins}분</span>
-            <button onclick="openEditModal('${sdk}','${st}',${ei})" style="width:16px;height:16px;border-radius:3px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:9px;cursor:pointer;flex-shrink:0">✏</button>
-            <button onclick="delEntry('${st}',${ei},'${sdk}')" style="width:16px;height:16px;border-radius:3px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:10px;cursor:pointer;flex-shrink:0">✕</button>
+      ? '<div style="padding:14px;text-align:center;color:var(--muted);font-size:11px">없음</div>'
+      : items.map(t => {
+          const e = t.e;
+          return `<div style="display:flex;align-items:center;gap:4px;padding:5px 8px;border-bottom:1px solid var(--border);border-left:3px solid ${typeColor[t.type]}">
+            <span style="font-weight:700;color:#fff;min-width:44px;font-size:11px;flex-shrink:0">${e.personName||''}</span>
+            ${t.canOut?`<label style="display:flex;align-items:center;gap:2px;cursor:pointer;flex-shrink:0">
+              <input type="checkbox" ${e.outDone?'checked':''} onchange="toggleEntryCheckInline('${t.startDk}','${t.site}',${t.ei},'out',this.checked)" style="width:13px;height:13px;cursor:pointer">
+              <span style="color:var(--blue);font-size:10px">출고</span></label>`:'<span style="min-width:32px"></span>'}
+            ${t.canIn?`<label style="display:flex;align-items:center;gap:2px;cursor:pointer;flex-shrink:0">
+              <input type="checkbox" ${e.inDone?'checked':''} onchange="toggleEntryCheckInline('${t.startDk}','${t.site}',${t.ei},'in',this.checked)" style="width:13px;height:13px;cursor:pointer">
+              <span style="color:var(--green);font-size:10px">입고</span></label>`:'<span style="min-width:32px"></span>'}
+            <span style="color:var(--muted);font-size:10px;flex-shrink:0">${e.days}일</span>
+            <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;color:var(--text)">${e.equipName||''}${e.delivery?' 🚚':''}</span>
+            <span style="font-size:10px;color:var(--muted);flex-shrink:0">${calcMinsForDate(e,col.dk)}분</span>
+            <button class="btn-edit" onclick="openEditModal('${t.startDk}','${t.site}',${t.ei})" style="width:18px;height:18px;font-size:10px;flex-shrink:0">✏️</button>
+            <button class="btn-del" onclick="delEntry('${t.site}',${t.ei},'${t.startDk}')" style="width:18px;height:18px;font-size:11px;flex-shrink:0">✕</button>
           </div>`;
         }).join('');
 
-    html2 += `<div style="background:var(--card);border:1px solid var(--border);border-radius:8px;display:flex;flex-direction:column;overflow:hidden">
-      <div style="padding:6px 10px;background:${hBg};border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-shrink:0">
-        <span style="font-size:11px;font-weight:700;color:${hColor}">${label}${isH?' 🔴':''}</span>
-        <span style="font-size:10px;color:var(--muted)">출${outN}/입${inN}</span>
+    html2 += `<div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column">
+      <div style="padding:8px 12px;background:${hdrBg};border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-shrink:0">
+        <span style="font-size:12px;font-weight:700;color:${hdrColor}">${col.label}</span>
+        <span style="font-size:10px;color:var(--muted)">출고${outCnt}/입고${inCnt}</span>
       </div>
       <div style="flex:1;overflow-y:auto">${rows}</div>
-      <div style="padding:4px 6px;border-top:1px solid var(--border);flex-shrink:0">
-        <button onclick="openInputForDate('${col.dk}')" style="width:100%;padding:3px;background:rgba(99,102,241,.1);border:1px dashed rgba(99,102,241,.3);border-radius:5px;color:var(--accent);font-size:10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif">+ 추가</button>
+      <div style="padding:6px 8px;border-top:1px solid var(--border);flex-shrink:0">
+        <button onclick="openInputForDate('${col.dk}')" style="width:100%;padding:5px;background:rgba(99,102,241,.1);border:1px dashed rgba(99,102,241,.3);border-radius:6px;color:var(--accent);font-size:11px;cursor:pointer;font-family:'Noto Sans KR',sans-serif">+ 임대 추가</button>
       </div>
     </div>`;
   });
@@ -1919,32 +1929,43 @@ function renderTriDayPanel() {
 
 function openInputForDate(dk) {
   const panel = document.getElementById('inlineInputPanel');
-  if(!panel) return;
-  const dateLabel = document.getElementById('inlineInputDate');
-  // 같은 날짜 + 버튼 다시 누르면 닫기
+  if(!panel) { alert('입력창을 찾을 수 없습니다'); return; }
+
+  // 같은 날짜 다시 누르면 닫기
   if(panel.style.display !== 'none' && panel.dataset.dk === dk) {
     closeInlineInput(); return;
   }
-  // 해당 날짜 탭으로 이동 (setIdx 호출하면 renderAll → renderTriDayPanel 자동)
-  const idx2 = getDkeys().indexOf(dk);
-  if(idx2 >= 0) {
-    curIdx = idx2;
-    renderAll();
-  }
+
+  // 날짜 탭 이동
+  const dkeys = getDkeys();
+  const i = dkeys.indexOf(dk);
+  if(i >= 0) { curIdx = i; renderAll(); }
+
+  // 날짜 레이블
+  const d = new Date(dk);
+  const DOW3=['일','월','화','수','목','금','토'];
+  const lbl = document.getElementById('inlineInputDate');
+  if(lbl) lbl.textContent = '📅 '+(d.getMonth()+1)+'/'+d.getDate()+'('+DOW3[d.getDay()]+') 신청';
+
   // 패널 열기
   panel.style.display = 'block';
   panel.dataset.dk = dk;
-  const d = new Date(dk);
-  const DOW3 = ['일','월','화','수','목','금','토'];
-  if(dateLabel) dateLabel.textContent = '📅 '+(d.getMonth()+1)+'/'+d.getDate()+'('+DOW3[d.getDay()]+') 신청';
-  // 입력창 초기화
-  const searchInp = document.getElementById('searchInp');
-  const inputRow  = document.getElementById('inputRow');
-  if(searchInp) searchInp.value = '';
-  if(inputRow)  inputRow.style.display = 'none';
+
+  // 입력 초기화
   selEquip = null; selDays = 1; selDelivery = false;
-  setTimeout(() => { if(searchInp) { openDD(); } }, 150);
+  const si = document.getElementById('searchInp');
+  const ir = document.getElementById('inputRow');
+  if(si) si.value = '';
+  if(ir) ir.style.display = 'none';
+  [1,2,3].forEach(n => {
+    const b = document.getElementById('dayBtn'+n);
+    if(b) b.classList.remove('active');
+  });
+
+  // 드롭다운 열기
+  setTimeout(() => openDD(), 200);
 }
+
 
 function closeInlineInput() {
   const panel = document.getElementById('inlineInputPanel');
