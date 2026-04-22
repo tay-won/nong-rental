@@ -107,7 +107,7 @@
             "personName": "신종배",
             "days": 2,
             "startDate": "2026-04-22",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 90,
