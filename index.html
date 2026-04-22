@@ -1886,14 +1886,25 @@ function renderTriDayPanel() {
         <span style="font-size:12px;font-weight:700;color:${hdrColor}">${label}${isHol?' 🔴':''}</span>
         <span style="font-size:10px;color:#64748b">출고${outN}/입고${inN}</span>
       </div>
-      <div style="flex:1;overflow-y:auto">${rowsHtml}</div>
-      <div style="padding:6px 8px;border-top:1px solid #334155">
-        <button onclick="openInputForDate('${colDk}')" style="width:100%;padding:5px;background:rgba(99,102,241,.15);border:1px dashed rgba(99,102,241,.4);border-radius:6px;color:#818cf8;font-size:11px;cursor:pointer;font-family:inherit">+ 임대 추가</button>
+      <div style="padding:5px 8px;border-bottom:1px solid #334155">
+        <button onclick="setIdxByDk('${colDk}')" style="width:100%;padding:4px;background:rgba(99,102,241,.15);border:1px dashed rgba(99,102,241,.4);border-radius:6px;color:#818cf8;font-size:11px;cursor:pointer;font-family:inherit">+ 임대 추가</button>
       </div>
+      <div style="flex:1;overflow-y:auto">${rowsHtml}</div>
     </div>`;
   });
 
   panel.innerHTML = colsHtml;
+}
+
+
+function setIdxByDk(dk) {
+  const i = getDkeys().indexOf(dk);
+  if(i >= 0) { curIdx = i; renderAll(); }
+  // 입력창 장비검색 포커스
+  setTimeout(() => {
+    const si = document.getElementById('searchInp');
+    if(si) { si.click(); si.focus(); }
+  }, 100);
 }
 
 
