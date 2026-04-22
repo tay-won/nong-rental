@@ -49,9 +49,9 @@ header h1 span{color:var(--accent)}
 .chip-마감{background:rgba(239,68,68,.15);color:var(--red)}
 
 /* ── 레이아웃 ── */
-.body{padding:8px}.layout{display:flex;gap:8px;flex-wrap:nowrap;align-items:flex-start}
-.col-left{width:240px;min-width:240px;flex-shrink:0;display:flex;flex-direction:column;gap:8px}
-.col-right{flex:1;min-width:0;display:flex;flex-direction:column;gap:0}
+.body{padding:8px;height:calc(100vh - 170px);overflow:hidden}.layout{display:flex;gap:8px;flex-wrap:nowrap;align-items:stretch;height:100%}
+.col-left{width:240px;min-width:240px;flex-shrink:0;display:flex;flex-direction:column;gap:8px;overflow-y:auto}
+.col-right{flex:1;min-width:0;display:flex;flex-direction:column;gap:0;height:100%;overflow:hidden}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:13px}
 .card-title{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:11px;display:flex;align-items:center;gap:5px}
 .card-title::before{content:'';display:inline-block;width:3px;height:11px;background:var(--accent);border-radius:2px}
@@ -587,7 +587,7 @@ select:focus{border-color:var(--accent)}
           </div>
         </div>
       </div>
-      <div id="triDayPanel" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:8px;flex:1;overflow:hidden"></div>
+      <div id="triDayPanel" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:8px;flex:1;min-height:0;overflow:hidden"></div>
       <div id="selList" style="display:none"></div>
     </div>
   </div>
@@ -1845,8 +1845,7 @@ function collectInoutForDate(dk) {
 function renderTriDayPanel() {
   const panel = document.getElementById('triDayPanel');
   if(!panel) return;
-  const colLeft = document.querySelector('.col-left');
-  const colH = colLeft && colLeft.offsetHeight > 100 ? colLeft.offsetHeight : (window.innerHeight - 280);
+
 
   const dk = getDkeys()[curIdx];
   const d = getDates()[curIdx];
