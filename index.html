@@ -1226,9 +1226,7 @@ function renderAll(){
     + (_isHolCur ? ' <span style="color:#ef4444;font-size:11px">🔴 휴무일</span>' : '')
     + ' <button onclick="toggleHoliday(\'' + _dkCur + '\')" style="' + _holBtnStyle + '">' + (_isHolCur ? '휴무 해제' : '휴무 지정') + '</button>'
     + (dateOffset !== 0 ? ' <button onclick="resetDates()" style="margin-left:6px;padding:2px 8px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);border-radius:8px;color:var(--accent);font-size:10px;cursor:pointer">오늘로</button>' : '');
-  renderWorkers();renderGauge();renderSelList();
-
-  renderTriDayPanel();}
+  renderWorkers();renderGauge();renderSelList();renderTriDayPanel();}
 
 
 
@@ -1823,119 +1821,99 @@ function collectInoutForDate(dk) {
 
 // ═══ 3일 임대 목록 렌더 ═══
 function renderTriDayPanel() {
+  const panel = document.getElementById('triDayPanel');
+  if(!panel) return;
+
   const DATES = getDates();
   const DKEYS = getDkeys();
-  const idx2  = curIdx;
-  // 디버그: state 키 개수와 패널 존재 확인
-  const panel0 = document.getElementById('triDayPanel');
-  if(!panel0) { console.warn('triDayPanel 없음'); return; }
+  const cur = curIdx;
   const holidays = getHolidays();
-  const DOW2  = ['일','월','화','수','목','금','토'];
-  const targetSites = curSite==='전체' ? ['본소','북부'] : [curSite];
+  const DOW2 = ['일','월','화','수','목','금','토'];
+  const sites = curSite==='전체' ? ['본소','북부'] : [curSite];
 
-  const cols = [-1, 0, 1].map(offset => {
-    const d = new Date(DATES[idx2]);
-    d.setDate(d.getDate() + offset);
-    const dk = d.toISOString().slice(0,10);
-    return { dk, d: new Date(d), offset };
+  // 선택날짜 기준 전날/오늘/다음날
+  const selDate = new Date(DATES[cur]);
+  const threeD = [-1,0,1].map(off => {
+    const d = new Date(selDate);
+    d.setDate(d.getDate() + off);
+    return { dk: d.toISOString().slice(0,10), d, off };
   });
 
-  let colsHtml = '';
+  let html2 = '';
 
-  cols.forEach(col => {
-    const isToday2 = col.offset === 0;
-    const isHol = holidays.includes(col.dk);
-    const dateStr = (col.d.getMonth()+1)+'/'+col.d.getDate()+'('+DOW2[col.d.getDay()]+')';
-    const hdrColor = isHol ? 'var(--red)' : (isToday2 ? 'var(--accent)' : 'var(--dim)');
-    const hdrBg = isToday2 ? 'rgba(99,102,241,.08)' : 'var(--bg)';
+  threeD.forEach(col => {
+    const isT = col.off === 0;
+    const isH = holidays.includes(col.dk);
+    const label = (col.d.getMonth()+1)+'/'+col.d.getDate()+'('+DOW2[col.d.getDay()]+')';
+    const hColor = isH ? '#ef4444' : isT ? 'var(--accent)' : 'var(--dim)';
+    const hBg = isT ? 'rgba(99,102,241,.08)' : 'var(--bg)';
 
-    // 이 날짜 관련 entries 수집 + 타입 분류
+    // 이 날짜 관련 entries 수집
     const items = [];
-    Object.keys(state).forEach(startDk => {
-      targetSites.forEach(site => {
-        if(!state[startDk]||!state[startDk][site]) return;
-        state[startDk][site].entries.forEach((e, entIdx) => {
-          const start   = new Date(e.startDate);
-          const target  = new Date(col.dk);
-          const diff    = Math.round((target - start) / 86400000);
-          const lastDay = e.days - 1;
-          const inDate  = new Date(e.startDate);
-          inDate.setDate(inDate.getDate() + lastDay);
-          const inDk = inDate.toISOString().slice(0,10);
+    Object.keys(state).forEach(sdk => {
+      sites.forEach(st => {
+        if(!state[sdk]||!state[sdk][st]) return;
+        state[sdk][st].entries.forEach((e,ei) => {
+          const diff = Math.round((new Date(col.dk)-new Date(e.startDate))/86400000);
+          const last = e.days - 1;
+          const inDk = new Date(e.startDate);
+          inDk.setDate(inDk.getDate()+last);
+          const inDkStr = inDk.toISOString().slice(0,10);
 
-          const canOut = diff === 0;
-          const canIn  = (e.days===1&&diff===0)||(e.days>1&&diff===lastDay);
-          const canInPastOut = e.outDone && !e.inDone && inDk===col.dk;
+          const isOut = diff===0;
+          const isIn  = (e.days===1&&diff===0)||(e.days>1&&diff===last);
+          const isInPast = e.outDone&&!e.inDone&&inDkStr===col.dk;
 
-          if(!canOut && !canIn && !canInPastOut) return;
+          if(!isOut&&!isIn&&!isInPast) return;
 
-          let type;
-          if(e.days===1&&canOut) type='type-1day';
-          else if((canIn||canInPastOut)&&!canOut) type='type-in';
-          else type='type-out';
-
-          items.push({e, site, startDk, entIdx, canOut, canIn: canIn||canInPastOut, type});
+          let type = e.days===1&&isOut ? 'y' : (isIn||isInPast)&&!isOut ? 'g' : 'gr';
+          items.push({e,st,sdk,ei,isOut,isIn:isIn||isInPast,type});
         });
       });
     });
 
-    // 정렬 (선택기종 요약과 동일)
-    items.sort((a,b) => {
-      const order = {'type-in':0,'type-1day':1,'type-out':2};
-      if(order[a.type]!==order[b.type]) return order[a.type]-order[b.type];
-      if(a.type==='type-in' && a.e.days!==b.e.days) return b.e.days-a.e.days;
-      if(a.type==='type-out' && a.e.days!==b.e.days) return a.e.days-b.e.days;
+    // 정렬
+    const ord = {g:0,y:1,gr:2};
+    items.sort((a,b)=>{
+      if(ord[a.type]!==ord[b.type]) return ord[a.type]-ord[b.type];
+      if(a.type==='g'&&a.e.days!==b.e.days) return b.e.days-a.e.days;
+      if(a.type==='gr'&&a.e.days!==b.e.days) return a.e.days-b.e.days;
       return (a.e.personName||'').localeCompare(b.e.personName||'','ko');
     });
 
-    const outCnt = items.filter(t=>t.canOut&&!t.e.outDone).length;
-    const inCnt  = items.filter(t=>t.canIn &&!t.e.inDone).length;
-    const cntStr = `출고${outCnt}/입고${inCnt}`;
+    const outN = items.filter(x=>x.isOut&&!x.e.outDone).length;
+    const inN  = items.filter(x=>x.isIn &&!x.e.inDone).length;
+    const typeColor = {g:'#64748b',y:'#eab308',gr:'#22c55e'};
 
-    let entriesHtml = items.length === 0
-      ? '<div style="padding:12px;text-align:center;color:var(--muted);font-size:11px">없음</div>'
-      : items.map(t => {
-          const e = t.e;
-          const typeColors = {'type-in':'#64748b','type-1day':'#eab308','type-out':'#22c55e'};
-          const borderColor = typeColors[t.type];
-          const daysLabel = e.days+'일';
-          return `<div style="display:flex;align-items:center;gap:4px;padding:5px 8px;border-bottom:1px solid var(--border);border-left:3px solid ${borderColor};font-size:11px">
-            <div style="display:flex;flex-direction:column;gap:1px;flex-shrink:0">
-              <button class="move-btn" onclick="moveEntry('${t.site}',${t.entIdx},-1,'${t.startDk}')" style="width:14px;height:14px;font-size:8px">▲</button>
-              <button class="move-btn" onclick="moveEntry('${t.site}',${t.entIdx},+1,'${t.startDk}')" style="width:14px;height:14px;font-size:8px">▼</button>
-            </div>
-            <span style="font-weight:700;color:#fff;min-width:40px;flex-shrink:0">${e.personName}</span>
-            ${t.canOut?`<label style="display:flex;align-items:center;gap:2px;cursor:pointer;flex-shrink:0">
-              <input type="checkbox" ${e.outDone?'checked':''} onchange="toggleEntryCheckInline('${t.startDk}','${t.site}',${t.entIdx},'out',this.checked)" style="cursor:pointer;width:12px;height:12px">
-              <span style="color:var(--blue);font-size:10px">출고</span>
-            </label>`:'<span style="min-width:30px"></span>'}
-            ${t.canIn?`<label style="display:flex;align-items:center;gap:2px;cursor:pointer;flex-shrink:0">
-              <input type="checkbox" ${e.inDone?'checked':''} onchange="toggleEntryCheckInline('${t.startDk}','${t.site}',${t.entIdx},'in',this.checked)" style="cursor:pointer;width:12px;height:12px">
-              <span style="color:var(--green);font-size:10px">입고</span>
-            </label>`:'<span style="min-width:30px"></span>'}
-            <span style="color:var(--muted);flex-shrink:0;font-size:10px">${daysLabel}</span>
-            <span style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)">${e.equipName}${e.delivery?' 🚚':''}</span>
-            ${curSite==='전체'?`<span style="font-size:9px;color:var(--muted);flex-shrink:0">${t.site}</span>`:''}
-            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);flex-shrink:0">${calcMinsForDate(e,col.dk)}분</span>
-            <button class="btn-edit" onclick="openEditModal('${t.startDk}','${t.site}',${t.entIdx})" style="width:18px;height:18px;font-size:10px">✏️</button>
-            <button class="btn-del" onclick="delEntry('${t.site}',${t.entIdx},'${t.startDk}')" style="width:18px;height:18px;font-size:11px">✕</button>
+    const rows = items.length===0
+      ? '<div style="padding:10px;text-align:center;color:var(--muted);font-size:11px">없음</div>'
+      : items.map(({e,st,sdk,ei,isOut,isIn,type})=>{
+          const mins = calcMinsForDate(e,col.dk);
+          return `<div style="display:flex;align-items:center;gap:3px;padding:4px 6px;border-bottom:1px solid var(--border);border-left:3px solid ${typeColor[type]}">
+            <span style="font-size:10px;font-weight:700;color:#fff;min-width:42px;flex-shrink:0">${e.personName}</span>
+            ${isOut?`<label style="display:flex;align-items:center;gap:1px;cursor:pointer;flex-shrink:0"><input type="checkbox" ${e.outDone?'checked':''} onchange="toggleEntryCheckInline('${sdk}','${st}',${ei},'out',this.checked)" style="width:11px;height:11px;cursor:pointer"><span style="font-size:9px;color:var(--blue)">출</span></label>`:'<span style="width:22px"></span>'}
+            ${isIn?`<label style="display:flex;align-items:center;gap:1px;cursor:pointer;flex-shrink:0"><input type="checkbox" ${e.inDone?'checked':''} onchange="toggleEntryCheckInline('${sdk}','${st}',${ei},'in',this.checked)" style="width:11px;height:11px;cursor:pointer"><span style="font-size:9px;color:var(--green)">입</span></label>`:'<span style="width:22px"></span>'}
+            <span style="font-size:9px;color:var(--muted);flex-shrink:0">${e.days}일</span>
+            <span style="flex:1;font-size:10px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${e.equipName}${e.delivery?' 🚚':''}</span>
+            <span style="font-size:9px;color:var(--muted);flex-shrink:0">${mins}분</span>
+            <button onclick="openEditModal('${sdk}','${st}',${ei})" style="width:16px;height:16px;border-radius:3px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:9px;cursor:pointer;flex-shrink:0">✏</button>
+            <button onclick="delEntry('${st}',${ei},'${sdk}')" style="width:16px;height:16px;border-radius:3px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:10px;cursor:pointer;flex-shrink:0">✕</button>
           </div>`;
         }).join('');
 
-    colsHtml += `<div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column">
-      <div style="padding:8px 12px;background:${hdrBg};border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
-        <span style="font-size:12px;font-weight:700;color:${hdrColor}">${dateStr}${isHol?' 🔴':''}</span>
-        <span style="font-size:10px;color:var(--muted)">${cntStr}</span>
+    html2 += `<div style="background:var(--card);border:1px solid var(--border);border-radius:8px;display:flex;flex-direction:column;overflow:hidden">
+      <div style="padding:6px 10px;background:${hBg};border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-shrink:0">
+        <span style="font-size:11px;font-weight:700;color:${hColor}">${label}${isH?' 🔴':''}</span>
+        <span style="font-size:10px;color:var(--muted)">출${outN}/입${inN}</span>
       </div>
-      <div style="flex:1;overflow-y:auto;max-height:calc(100vh - 280px)">${entriesHtml}</div>
-      <div style="padding:6px 8px;border-top:1px solid var(--border)">
-        <button onclick="openInputForDate('${col.dk}')" style="width:100%;padding:4px;background:rgba(99,102,241,.1);border:1px dashed rgba(99,102,241,.3);border-radius:6px;color:var(--accent);font-size:11px;cursor:pointer;font-family:'Noto Sans KR',sans-serif">+ 임대 추가</button>
+      <div style="flex:1;overflow-y:auto">${rows}</div>
+      <div style="padding:4px 6px;border-top:1px solid var(--border);flex-shrink:0">
+        <button onclick="openInputForDate('${col.dk}')" style="width:100%;padding:3px;background:rgba(99,102,241,.1);border:1px dashed rgba(99,102,241,.3);border-radius:5px;color:var(--accent);font-size:10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif">+ 추가</button>
       </div>
     </div>`;
   });
 
-  const panel = document.getElementById('triDayPanel');
-  if(panel) panel.innerHTML = colsHtml;
+  panel.innerHTML = html2;
 }
 
 
