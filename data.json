@@ -1341,6 +1341,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776836123647.6453,
+            "equipName": "로터베이터1950-01",
+            "equipSpec": "WJ195B/1950",
+            "personName": "조규영",
+            "days": 3,
+            "startDate": "2026-04-23",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
