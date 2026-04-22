@@ -537,8 +537,7 @@ select:focus{border-color:var(--accent)}
           <div class="stat-box"><div class="val" id="statRemain">–</div><div class="lbl">여유(분)</div></div>
         </div>
       </div>
-    </div>
-    <!-- 오른쪽 -->
+    
     <div class="col-right" style="display:flex;flex-direction:column;gap:0">
       <!-- 입력 패널 -->
       <div id="inlineInputPanel" style="background:var(--card);border-bottom:2px solid var(--accent);padding:10px 16px">
@@ -575,6 +574,9 @@ select:focus{border-color:var(--accent)}
       <!-- 숨김 요소들 -->
       <div id="selList" style="display:none"></div>
     </div>
+  </div>
+    <!-- 오른쪽 -->
+    
   </div>
 
 <script>
@@ -1532,7 +1534,6 @@ function selectEquip(e) {
   document.getElementById('searchInp').value = e.n + ' / ' + e.s;
   document.getElementById('dropdown').classList.remove('open');
   document.getElementById('inputRow').style.display = 'flex';
-  document.getElementById('inputRowName').textContent = e.n;
   document.getElementById('personNameInp').value = '';
   setDays(1);
   updateHalfInfo();
