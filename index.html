@@ -1141,7 +1141,7 @@ function renderSelList(){
           <button class="move-btn" onclick="moveEntry('${st}',${idx},+1,'${startDk}')"
             ${isLast?'disabled style="opacity:.25;pointer-events:none"':''}>&#9660;</button>
         </div>
-        <span class="sel-equip">${e.equipName}</span>
+        <span class="sel-equip">${e.equipName}${e.delivery?" 🚚":""}</span>
         <span class="sel-person">👤 ${e.personName}</span>
         <span class="sel-days">${daysLabel}</span>
         ${canOut ? `<label class="sel-chk out-chk">
