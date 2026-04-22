@@ -529,7 +529,6 @@ select:focus{border-color:var(--accent)}
 <span id="loginBtn" style="display:none"></span>
 <span id="ghTokenInp" style="display:none"></span></div>
 <div class="layout">
-    <!-- 왼쪽 -->
     <div class="col-left">
       <div class="card">
         <div class="card-title">근무자 현황</div>
@@ -542,9 +541,11 @@ select:focus{border-color:var(--accent)}
       <div class="card" id="gaugeCard">
         <div class="card-title">업무 부하율</div>
         <div id="statusBadge" class="status-badge">–</div>
-        <div class="gauge-wrap"><div class="gauge-bar" id="gaugeBar"></div>
+        <div class="gauge-wrap">
+          <div class="gauge-bar" id="gaugeBar"></div>
           <div class="gauge-marks">
-            <span>0%</span><span style="margin-left:auto;margin-right:0;color:var(--yellow)">⚠ 80%</span>
+            <span>0%</span>
+            <span style="margin-left:auto;margin-right:0;color:var(--yellow)">⚠ 80%</span>
             <span style="color:var(--red)">🚫 100%</span>
           </div>
         </div>
@@ -554,52 +555,39 @@ select:focus{border-color:var(--accent)}
           <div class="stat-box"><div class="val" id="statRemain">–</div><div class="lbl">여유(분)</div></div>
         </div>
       </div>
-    
-    
-      <div class="col-right" style="display:flex;flex-direction:column;gap:0">
-      <!-- 입력 패널 -->
+    </div>
+    <div class="col-right" style="display:flex;flex-direction:column;gap:0">
       <div id="inlineInputPanel" style="background:var(--card);border-bottom:2px solid var(--accent);padding:10px 16px">
-  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-    <div class="search-wrap" id="searchWrap" style="flex:1;min-width:180px;margin-bottom:0">
-      <input type="text" class="search-inp" id="searchInp" placeholder="● 장비명 검색…" readonly onclick="openDD()" autocomplete="off" style="margin-bottom:0">
-      <span class="search-arrow">▼</span>
-      <div class="dropdown" id="dropdown">
-        <div class="dd-filter"><input type="text" id="ddFilter" placeholder="검색…" oninput="filterDD()" onclick="event.stopPropagation()"></div>
-        <div id="ddList"></div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <div class="search-wrap" id="searchWrap" style="flex:1;min-width:180px;margin-bottom:0">
+            <input type="text" class="search-inp" id="searchInp" placeholder="● 장비명 검색…" readonly onclick="openDD()" autocomplete="off" style="margin-bottom:0">
+            <span class="search-arrow">▼</span>
+            <div class="dropdown" id="dropdown">
+              <div class="dd-filter"><input type="text" id="ddFilter" placeholder="검색…" oninput="filterDD()" onclick="event.stopPropagation()"></div>
+              <div id="ddList"></div>
+            </div>
+          </div>
+          <div id="inputRow" style="display:none;align-items:center;gap:8px;flex-wrap:wrap">
+            <input type="text" id="personNameInp" class="person-inp" placeholder="성명" autocomplete="off" style="width:80px">
+            <div class="days-ctrl">
+              <button class="day-btn" onclick="setDays(1)" id="dayBtn1">1일</button>
+              <button class="day-btn" onclick="setDays(2)" id="dayBtn2">2일</button>
+              <button class="day-btn" onclick="setDays(3)" id="dayBtn3">3일</button>
+              <button class="day-btn" onclick="openDatePicker()" id="dayBtnX">📅 직접</button>
+              <input type="date" id="returnDatePicker" style="display:none" onchange="setDaysByDate(this.value)">
+            </div>
+            <div class="delivery-toggle" id="deliveryToggle" onclick="toggleDelivery()">
+              <span class="delivery-chk-sq" id="deliveryChkSq"></span>
+              <span class="delivery-box">🚚</span>
+              <span class="delivery-txt">배송</span>
+            </div>
+            <div class="half-info" id="halfInfo" style="padding:3px 8px;font-size:11px;display:none"></div>
+            <button class="btn-add" onclick="addEntry()">입력</button>
+          </div>
+        </div>
       </div>
-    </div>
-    <div id="inputRow" style="display:none;align-items:center;gap:8px;flex-wrap:wrap">
-      <input type="text" id="personNameInp" class="person-inp" placeholder="성명" autocomplete="off" style="width:80px">
-      <div class="days-ctrl">
-        <button class="day-btn" onclick="setDays(1)" id="dayBtn1">1일</button>
-        <button class="day-btn" onclick="setDays(2)" id="dayBtn2">2일</button>
-        <button class="day-btn" onclick="setDays(3)" id="dayBtn3">3일</button>
-        <button class="day-btn" onclick="openDatePicker()" id="dayBtnX">📅 직접</button>
-        <input type="date" id="returnDatePicker" style="display:none" onchange="setDaysByDate(this.value)">
-      </div>
-      <div class="delivery-toggle" id="deliveryToggle" onclick="toggleDelivery()">
-        <span class="delivery-chk-sq" id="deliveryChkSq"></span>
-        <span class="delivery-box">🚚</span>
-        <span class="delivery-txt">배송</span>
-      </div>
-      <div class="half-info" id="halfInfo" style="padding:3px 8px;font-size:11px;display:none"></div>
-      <button class="btn-add" onclick="addEntry()">입력</button>
-    </div>
-  </div>
-</div>
-      <!-- 3일치 요약 -->
       <div id="triDayPanel" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:8px;min-height:300px;flex:1"></div>
       <div id="selList" style="display:none"></div>
-    </div>
-  </div>
-    
-    <div class="col-right" style="display:flex;flex-direction:column;gap:0">
-      <!-- 입력 패널 -->
-      
-      <!-- 3일치 요약 -->
-      
-      <!-- 숨김 요소 -->
-      
     </div>
   </div>
     <!-- 오른쪽 -->
