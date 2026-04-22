@@ -486,7 +486,10 @@ select:focus{border-color:var(--accent)}
 <div class="sync-bar">
   <div class="sync-left"><div class="sdot idle" id="sdot"></div><span class="stxt" id="stxt">불러오는 중…</span></div>
   <div id="dateBar" style="font-size:12px;font-weight:700;color:var(--accent);text-align:center;flex:1">오늘</div>
-  <button class="btn-sync" onclick="loadData()">🔄 새로고침</button>
+  <div style="display:flex;gap:6px;align-items:center">
+    <button onclick="openInoutPopup()" style="padding:3px 10px;background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.3);border-radius:6px;color:var(--blue);font-family:'Noto Sans KR',sans-serif;font-size:11px;cursor:pointer">📋 입출고</button>
+    <button class="btn-sync" onclick="loadData()">🔄 새로고침</button>
+  </div>
 </div>
   <div id="dateBar" style="font-size:12px;font-weight:700;color:var(--accent);flex:1;text-align:center;cursor:default"></div>
   <div style="display:flex;gap:5px">
@@ -575,18 +578,6 @@ select:focus{border-color:var(--accent)}
       <!-- 3일치 선택 기종 요약 -->
       <div id="triDayPanel" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;height:100%">
         <!-- renderTriDayPanel이 채움 -->
-      </div>
-    </div>
-
-
-    <!-- 3일 임대 목록 -->
-    <div style="flex:1 1 360px;display:flex;flex-direction:column;gap:0;min-width:0">
-      <div class="card" style="flex:1;padding:0;overflow:hidden">
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);height:100%">
-          <div id="inoutCol0" style="border-right:1px solid var(--border);overflow-y:auto"></div>
-          <div id="inoutCol1" style="border-right:1px solid var(--border);overflow-y:auto;background:rgba(99,102,241,.03)"></div>
-          <div id="inoutCol2" style="overflow-y:auto"></div>
-        </div>
       </div>
     </div>
   </div>
@@ -1244,7 +1235,8 @@ function renderAll(){
     + ' <button onclick="toggleHoliday(\'' + _dkCur + '\')" style="' + _holBtnStyle + '">' + (_isHolCur ? '휴무 해제' : '휴무 지정') + '</button>'
     + (dateOffset !== 0 ? ' <button onclick="resetDates()" style="margin-left:6px;padding:2px 8px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);border-radius:8px;color:var(--accent);font-size:10px;cursor:pointer">오늘로</button>' : '');
   renderWorkers();renderGauge();renderSelList();renderInoutCols();updateDeliveryUI();
-}
+
+  renderTriDayPanel();}
 
 
 
