@@ -576,7 +576,7 @@ select:focus{border-color:var(--accent)}
     <!-- 오른쪽 -->
     <div class="col-right">
       <!-- 3일치 선택 기종 요약 -->
-      <div id="triDayPanel" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;height:100%">
+      <div id="triDayPanel" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;min-height:400px">
         <!-- renderTriDayPanel이 채움 -->
       </div>
     </div>
@@ -1234,7 +1234,7 @@ function renderAll(){
     + (_isHolCur ? ' <span style="color:#ef4444;font-size:11px">🔴 휴무일</span>' : '')
     + ' <button onclick="toggleHoliday(\'' + _dkCur + '\')" style="' + _holBtnStyle + '">' + (_isHolCur ? '휴무 해제' : '휴무 지정') + '</button>'
     + (dateOffset !== 0 ? ' <button onclick="resetDates()" style="margin-left:6px;padding:2px 8px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);border-radius:8px;color:var(--accent);font-size:10px;cursor:pointer">오늘로</button>' : '');
-  renderWorkers();renderGauge();renderSelList();renderInoutCols();updateDeliveryUI();
+  renderWorkers();renderGauge();renderSelList();
 
   renderTriDayPanel();}
 
@@ -1952,24 +1952,31 @@ function renderTriDayPanel() {
 
 function openInputForDate(dk) {
   const panel = document.getElementById('inlineInputPanel');
+  if(!panel) return;
   const dateLabel = document.getElementById('inlineInputDate');
   // 같은 날짜 + 버튼 다시 누르면 닫기
   if(panel.style.display !== 'none' && panel.dataset.dk === dk) {
     closeInlineInput(); return;
   }
-  // 해당 날짜 탭으로 이동
+  // 해당 날짜 탭으로 이동 (setIdx 호출하면 renderAll → renderTriDayPanel 자동)
   const idx2 = getDkeys().indexOf(dk);
-  if(idx2 >= 0) setIdx(idx2);
+  if(idx2 >= 0) {
+    curIdx = idx2;
+    renderAll();
+  }
   // 패널 열기
   panel.style.display = 'block';
   panel.dataset.dk = dk;
   const d = new Date(dk);
   const DOW3 = ['일','월','화','수','목','금','토'];
-  dateLabel.textContent = '📅 '+(d.getMonth()+1)+'/'+d.getDate()+'('+DOW3[d.getDay()]+') 신청';
+  if(dateLabel) dateLabel.textContent = '📅 '+(d.getMonth()+1)+'/'+d.getDate()+'('+DOW3[d.getDay()]+') 신청';
   // 입력창 초기화
-  document.getElementById('searchInp').value = '';
-  document.getElementById('inputRow').style.display = 'none';
-  setTimeout(() => document.getElementById('searchInp').click(), 100);
+  const searchInp = document.getElementById('searchInp');
+  const inputRow  = document.getElementById('inputRow');
+  if(searchInp) searchInp.value = '';
+  if(inputRow)  inputRow.style.display = 'none';
+  selEquip = null; selDays = 1; selDelivery = false;
+  setTimeout(() => { if(searchInp) { openDD(); } }, 150);
 }
 
 function closeInlineInput() {
