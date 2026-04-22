@@ -4084,19 +4084,6 @@
             "site": "본소",
             "baseMins": 320,
             "delivery": true
-          },
-          {
-            "id": 1776729884283.2656,
-            "equipName": "돌수집기-03",
-            "equipSpec": "SH-L1400B/1400",
-            "personName": "김영수",
-            "days": 2,
-            "startDate": "2026-05-05",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 90,
-            "delivery": false
           }
         ],
         "delivery": false
