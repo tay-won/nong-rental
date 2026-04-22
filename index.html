@@ -587,8 +587,8 @@ select:focus{border-color:var(--accent)}
   </div>
 </div>
       <!-- 3일치 요약 -->
-      <div id="triDayPanel" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:8px;flex:1;min-height:300px"></div>
-      <!-- 숨김 요소들 -->
+      <div id="triDayPanel" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:8px;min-height:300px;flex:1"></div>
+      <!-- 숨김 요소 -->
       <div id="selList" style="display:none"></div>
     </div>
   </div>
@@ -1268,9 +1268,9 @@ function renderGauge(){
   const avail=getAvail(dk,curSite),used=getUsed(dk,curSite),pct=getPct(dk,curSite),remain=avail-used,st=getStatus(pct);
   const col=st==='마감'?'var(--red)':st==='주의'?'var(--yellow)':'var(--green)';
   const bar=document.getElementById('gaugeBar');bar.style.width=Math.min(pct,100)+'%';bar.style.background=col;
-  document.getElementById('gaugeTxt').textContent=pct+'%';
+  document.getElementById('statPct').textContent=pct+'%';
   document.getElementById('statusBadge').className='status-badge s-'+st;
-  document.getElementById('statusText').textContent={정상:'✅ 정상 — 접수 가능',주의:'⚠ 주의 — 신중 검토 필요',마감:'🚫 신청 마감 — 금일 접수 불가'}[st];
+  document.// statusText 제거 (statusBadge로 대체)
   document.getElementById('statPct').innerHTML=pct+'<span style="font-size:10px">%</span>';
   document.getElementById('statUsed').textContent=used;
   const re=document.getElementById('statRemain');re.textContent=remain>=0?remain:'초과';re.style.color=remain<0?'var(--red)':'#fff';
