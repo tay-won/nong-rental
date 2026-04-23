@@ -4187,7 +4187,21 @@
           "bs3": 420,
           "bs4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1776917619551.4648,
+            "equipName": "소형트랙터25HP-03",
+            "equipSpec": "CK250V/25HP",
+            "personName": "안옥분",
+            "days": 1,
+            "startDate": "2026-05-07",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 290,
+            "delivery": true
+          }
+        ],
         "delivery": false
       },
       "북부": {
