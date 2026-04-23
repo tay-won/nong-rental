@@ -4821,6 +4821,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776905271264.4414,
+            "equipName": "원판쟁기4련-01",
+            "equipSpec": "W42-DP/원판-4련",
+            "personName": "고원석",
+            "days": 2,
+            "startDate": "2026-04-20",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
