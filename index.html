@@ -480,6 +480,7 @@ select:focus{border-color:var(--accent)}
     </div>
     <div style="display:flex;gap:6px;align-items:center">
       <button onclick="downloadReport()" style="padding:4px 12px;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);border-radius:14px;color:#22c55e;font-family:'Noto Sans KR',sans-serif;font-size:11px;cursor:pointer">📊 엑셀</button>
+      <button onclick="openInoutPopup()" style="padding:4px 12px;background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.3);border-radius:14px;color:var(--blue);font-family:'Noto Sans KR',sans-serif;font-size:11px;cursor:pointer">📋 입출고</button>
       <button onclick="clearToken()" style="padding:4px 12px;background:transparent;border:1px solid var(--border);border-radius:14px;color:var(--muted);font-family:'Noto Sans KR',sans-serif;font-size:11px;cursor:pointer">🔒 로그아웃</button>
     </div>
   </div>
@@ -1534,8 +1535,7 @@ function filterDD() {
       : status === '출고예정'
       ? '<span style="margin-left:6px;font-size:9px;padding:1px 5px;border-radius:4px;background:rgba(96,165,250,.2);color:var(--blue);font-weight:700">📦 출고예정</span>'
       : '';
-    const dimStyle = status ? 'opacity:.6;pointer-events:none' : '';
-    return `<div class="dd-item" onclick='${status?"":("selectEquip("+JSON.stringify(e)+")")}' style="${dimStyle}">
+    return `<div class="dd-item" onclick='selectEquip(${JSON.stringify(e)})'>
       <span class="dd-name">${e.n} ${statusBadge}</span>
       <span class="dd-mins" style="font-size:10px;color:var(--muted)">${e.s}</span>
     </div>`;
@@ -2331,8 +2331,7 @@ function filterEditDD() {
       : status === '출고예정'
       ? '<span style="margin-left:6px;font-size:9px;padding:1px 5px;border-radius:4px;background:rgba(96,165,250,.2);color:var(--blue);font-weight:700">📦 출고예정</span>'
       : '';
-    const dimStyle = status ? 'opacity:.6;pointer-events:none' : '';
-    return `<div class="dd-item" onclick='${status?"":("selectEditEquip("+JSON.stringify(e)+")")}' style="${dimStyle}">
+    return `<div class="dd-item" onclick='selectEditEquip(${JSON.stringify(e)})'>
       <span class="dd-name">${e.n} ${statusBadge}</span>
       <span class="dd-mins" style="font-size:10px;color:var(--muted)">${e.s}</span>
     </div>`;
