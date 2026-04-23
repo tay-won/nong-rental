@@ -2828,6 +2828,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776904551897.7822,
+            "equipName": "돌수집기-02",
+            "equipSpec": "GWD-1400T/1400",
+            "personName": "강의섭",
+            "days": 1,
+            "startDate": "2026-04-28",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
