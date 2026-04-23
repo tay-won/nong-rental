@@ -1525,19 +1525,6 @@
             "delivery": false
           },
           {
-            "id": 1776728983204.7732,
-            "equipName": "논두렁조성기(중)-02",
-            "equipSpec": "WJLF750/(중)",
-            "personName": "윤태영",
-            "days": 1,
-            "startDate": "2026-04-25",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
             "id": 1776728998180.6875,
             "equipName": "관리기-로터리-01",
             "equipSpec": "AMC-1000SM/로타리(중)",
