@@ -669,6 +669,19 @@
             "site": "본소",
             "baseMins": 80,
             "delivery": false
+          },
+          {
+            "id": 1776905508625.488,
+            "equipName": "휴립피복기2조-02",
+            "equipSpec": "WJCM-2000/휴립피복(2조)",
+            "personName": "조동현",
+            "days": 3,
+            "startDate": "2026-04-23",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
