@@ -2414,6 +2414,19 @@
             "site": "북부",
             "baseMins": 150,
             "delivery": false
+          },
+          {
+            "id": 1776904387764.4287,
+            "equipName": "논두렁조성기(중)-04",
+            "equipSpec": "WJLF750/(중)",
+            "personName": "문광배",
+            "days": 2,
+            "startDate": "2026-04-27",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
