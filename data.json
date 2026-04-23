@@ -4719,19 +4719,6 @@
             "delivery": false
           },
           {
-            "id": 1776727409039.8132,
-            "equipName": "원판쟁기4련-01",
-            "equipSpec": "W42-DP/원판-4련",
-            "personName": "고원석",
-            "days": 2,
-            "startDate": "2026-04-20",
-            "outDone": true,
-            "inDone": true,
-            "site": "본소",
-            "baseMins": 60,
-            "delivery": false
-          },
-          {
             "id": 1776727429141.6462,
             "equipName": "관리기-로터리-01",
             "equipSpec": "AMC-1000SM/로타리(중)",
