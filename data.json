@@ -274,7 +274,7 @@
             "personName": "김해성",
             "days": 1,
             "startDate": "2026-04-22",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 40,
