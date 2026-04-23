@@ -2544,6 +2544,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776918935840.6272,
+            "equipName": "동력제초기(보행)-01",
+            "equipSpec": "SGM71B/보행형",
+            "personName": "황중하",
+            "days": 1,
+            "startDate": "2026-04-27",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
