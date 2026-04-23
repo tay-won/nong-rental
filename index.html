@@ -488,10 +488,7 @@ select:focus{border-color:var(--accent)}
 <div class="sync-bar">
   <div class="sync-left"><div class="sdot idle" id="sdot"></div><span class="stxt" id="stxt">불러오는 중…</span></div>
   <div id="dateBar" style="font-size:12px;font-weight:700;color:var(--accent);text-align:center;flex:1">오늘</div>
-  <div style="display:flex;gap:6px;align-items:center">
-    <button onclick="openInoutPopup()" style="padding:3px 10px;background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.3);border-radius:6px;color:var(--blue);font-family:'Noto Sans KR',sans-serif;font-size:11px;cursor:pointer">📋 입출고</button>
-    <button class="btn-sync" onclick="loadData()">🔄 새로고침</button>
-  </div>
+  
 </div>
   <div id="dateBar" style="font-size:12px;font-weight:700;color:var(--accent);flex:1;text-align:center;cursor:default"></div>
   <div style="display:flex;gap:5px">
@@ -531,14 +528,6 @@ select:focus{border-color:var(--accent)}
 <span id="ghTokenInp" style="display:none"></span></div>
 <div class="layout">
     <div class="col-left">
-      <div class="card">
-        <div class="card-title">근무자 현황</div>
-        <div id="workerBlocks"></div>
-        <div class="avail-box">
-          <div><div class="avail-lbl">총 가용 정비시간</div><div class="avail-sub" id="availDetail">–</div></div>
-          <div class="avail-val" id="availVal">–</div>
-        </div>
-      </div>
       <div class="card" id="gaugeCard">
         <div class="card-title">업무 부하율</div>
         <div id="statusBadge" class="status-badge">–</div>
@@ -554,6 +543,14 @@ select:focus{border-color:var(--accent)}
           <div class="stat-box"><div class="val" id="statPct">–</div><div class="lbl">부하율</div></div>
           <div class="stat-box"><div class="val" id="statUsed">–</div><div class="lbl">소요(분)</div></div>
           <div class="stat-box"><div class="val" id="statRemain">–</div><div class="lbl">여유(분)</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">근무자 현황</div>
+        <div id="workerBlocks"></div>
+        <div class="avail-box">
+          <div><div class="avail-lbl">총 가용 정비시간</div><div class="avail-sub" id="availDetail">–</div></div>
+          <div class="avail-val" id="availVal">–</div>
         </div>
       </div>
     </div>
@@ -1244,7 +1241,7 @@ function renderAll(){
     '📅 ' + d.getFullYear() + '년 ' + (d.getMonth()+1) + '월 ' + d.getDate() + '일 (' + DOW[d.getDay()] + '요일)' + (isToday(d) ? ' — 오늘' : (dk === new Date(today().getTime()-86400000).toISOString().slice(0,10) ? ' — 어제' : ''))
     + (_isHolCur ? ' <span style="color:#ef4444;font-size:11px">🔴 휴무일</span>' : '')
     + ' <button onclick="toggleHoliday(\'' + _dkCur + '\')" style="' + _holBtnStyle + '">' + (_isHolCur ? '휴무 해제' : '휴무 지정') + '</button>'
-    + (dateOffset !== 0 ? ' <button onclick="resetDates()" style="margin-left:6px;padding:2px 8px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);border-radius:8px;color:var(--accent);font-size:10px;cursor:pointer">오늘로</button>' : '');
+    + (!isToday(d) ? ' <button onclick="resetDates()" style="margin-left:6px;padding:2px 8px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);border-radius:8px;color:var(--accent);font-size:10px;cursor:pointer">오늘로</button>' : '');
   renderWorkers();renderGauge();renderSelList();renderTriDayPanel();}
 
 
