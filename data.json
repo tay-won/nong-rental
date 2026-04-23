@@ -1976,19 +1976,6 @@
             "delivery": false
           },
           {
-            "id": 1776746167134.5764,
-            "equipName": "원판쟁기6련-02",
-            "equipSpec": "W62-DP/원판-6련",
-            "personName": "김주년",
-            "days": 1,
-            "startDate": "2026-04-26",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 60,
-            "delivery": false
-          },
-          {
             "id": 1776750438458.2979,
             "equipName": "퇴비살포기(승용)-02",
             "equipSpec": "HSC-1500W/자주형1000kg",
