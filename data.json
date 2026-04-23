@@ -3565,6 +3565,19 @@
             "site": "본소",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1776906730340.9949,
+            "equipName": "굴착기(1톤)-04",
+            "equipSpec": "U-10-5/1TON",
+            "personName": "전영갑",
+            "days": 2,
+            "startDate": "2026-05-01",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
