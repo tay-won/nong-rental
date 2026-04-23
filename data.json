@@ -4396,7 +4396,21 @@
           "nb3": 420,
           "nb4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1776918156362.3,
+            "equipName": "소형트랙터25HP-04",
+            "equipSpec": "LK2805/25HP",
+            "personName": "홍사헌",
+            "days": 1,
+            "startDate": "2026-05-10",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 290,
+            "delivery": true
+          }
+        ],
         "delivery": false
       }
     },
