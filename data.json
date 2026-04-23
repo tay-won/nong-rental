@@ -1987,6 +1987,19 @@
             "site": "북부",
             "baseMins": 140,
             "delivery": false
+          },
+          {
+            "id": 1776904319400.2974,
+            "equipName": "원판쟁기8련-03",
+            "equipSpec": "W82-DP/원판-8련",
+            "personName": "조규영",
+            "days": 1,
+            "startDate": "2026-04-26",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
