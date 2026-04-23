@@ -3307,6 +3307,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776906646751.6003,
+            "equipName": "굴착기(1톤)-05",
+            "equipSpec": "U-10-5/1TON",
+            "personName": "이종호",
+            "days": 1,
+            "startDate": "2026-04-30",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
