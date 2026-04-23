@@ -1884,11 +1884,16 @@ function renderTriDayPanel() {
       });
     });
 
-    // 정렬
+    // 정렬: 회색(입고,기간긴순) → 노란(1일,성명순) → 초록(출고,기간짧은순)
     rows.sort((a,b)=>{
-      const go = a.tc==='#64748b'?0:a.tc==='#eab308'?1:2;
-      const gb = b.tc==='#64748b'?0:b.tc==='#eab308'?1:2;
-      if(go!==gb) return go-gb;
+      // 1순위: 그룹 (입고→1일→출고)
+      const typeOrder = {'#64748b':0,'#eab308':1,'#22c55e':2};
+      const ga = typeOrder[a.tc], gb2 = typeOrder[b.tc];
+      if(ga !== gb2) return ga - gb2;
+      // 2순위: 기간 정렬
+      if(a.tc === '#64748b' && a.e.days !== b.e.days) return b.e.days - a.e.days; // 입고: 긴순
+      if(a.tc === '#22c55e' && a.e.days !== b.e.days) return a.e.days - b.e.days; // 출고: 짧은순
+      // 3순위: 성명 가나다
       return (a.e.personName||'').localeCompare(b.e.personName||'','ko');
     });
 
