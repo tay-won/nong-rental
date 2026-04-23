@@ -1317,19 +1317,6 @@
         },
         "entries": [
           {
-            "id": 1776729070788.4712,
-            "equipName": "로터베이터1150-02",
-            "equipSpec": "DWR115GM/1150",
-            "personName": "안승문",
-            "days": 1,
-            "startDate": "2026-04-26",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 40,
-            "delivery": false
-          },
-          {
             "id": 1776729091218.9229,
             "equipName": "소형트랙터25HP-03",
             "equipSpec": "CK250V/25HP",
@@ -2123,19 +2110,6 @@
             "equipName": "관리기-로터리-02",
             "equipSpec": "AMC-1000SM/로타리(중)",
             "personName": "김정수",
-            "days": 1,
-            "startDate": "2026-04-28",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1776759247205.4534,
-            "equipName": "관리기-휴립기-01",
-            "equipSpec": "AMC-1000SM/휴립기(중)",
-            "personName": "김진웅",
             "days": 1,
             "startDate": "2026-04-28",
             "outDone": false,
