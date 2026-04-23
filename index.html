@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>파주시 농기계임대사업소 현황</title>
+<title>농기계 임대 현황</title>
 <!-- v1776847346 -->
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
@@ -367,14 +367,14 @@ select:focus{border-color:var(--accent)}
 .tri-item{display:flex;align-items:center;gap:4px;padding:5px 8px;border-bottom:1px solid var(--border);font-size:11px}
 .tri-item:last-child{border-bottom:none}
 .tri-item.ti-in{border-left:3px solid var(--muted);background:rgba(100,116,139,.06)}
-.tri-item.ti-1day{border-left:3px solid #eab308;background:rgba(234,179,8,.06)}
+.tri-item.ti-1 일 전{border-left:3px solid #eab308;background:rgba(234,179,8,.06)}
 .tri-item.ti-out{border-left:3px solid var(--green);background:rgba(34,197,94,.06)}
-.tri-item-person{font-weight:700;color:#fff;white-space:nowrap;min-width:40px;flex-shrink:0}
+.tri-item-person{font-weight:700;color:#fff;white-space:지금rap;min-width:40px;flex-shrink:0}
 .tri-item-chks{display:flex;gap:3px;flex-shrink:0}
 .tri-item-chk{display:inline-flex;align-items:center;gap:2px;cursor:pointer;font-size:10px}
 .tri-item-chk input{width:11px;height:11px;cursor:pointer}
 .tri-item-days{font-size:9px;color:var(--muted);flex-shrink:0}
-.tri-item-equip{flex:1;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.tri-item-equip{flex:1;color:var(--dim);white-space:지금rap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .tri-item-mins{font-family:"JetBrains Mono",monospace;font-size:9px;color:var(--muted);flex-shrink:0}
 .tri-item-btns{display:flex;gap:2px;flex-shrink:0}
 .tri-reset{width:100%;padding:5px;background:transparent;border:none;color:var(--muted);font-size:10px;cursor:pointer;text-align:center;font-family:"Noto Sans KR",sans-serif;border-top:1px solid var(--border)}
@@ -396,10 +396,10 @@ select:focus{border-color:var(--accent)}
     <div style="margin-bottom:10px">
       <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px">장비명</label>
       <div class="search-wrap" id="editSearchWrap">
-        <input type="text" class="search-inp" id="editSearchInp" placeholder="검색…" readonly onclick="openEditDD()" autocomplete="off" style="margin-bottom:0">
+        <input 입력="text" class="search-inp" id="editSearchInp" placeholder="검색…" readonly onclick="openEditDD()" autocomplete="off" style="margin-bottom:0">
         <span class="search-arrow">▼</span>
         <div class="dropdown" id="editDropdown">
-          <div class="dd-filter"><input type="text" id="editDdFilter" placeholder="검색…" oninput="filterEditDD()" onclick="event.stopPropagation()"></div>
+          <div class="dd-filter"><input 입력="text" id="editDdFilter" placeholder="검색…" oninput="filterEditDD()" onclick="event.stopPropagation()"></div>
           <div id="editDdList"></div>
         </div>
       </div>
@@ -407,18 +407,18 @@ select:focus{border-color:var(--accent)}
     <!-- 성명 -->
     <div style="margin-bottom:10px">
       <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px">성명</label>
-      <input type="text" id="editPersonInp" class="person-inp" placeholder="성명 입력" style="width:100%">
+      <input 입력="text" id="editPersonInp" class="person-inp" placeholder="성명 입력" style="width:100%">
     </div>
     <!-- 임대기간 -->
     <div style="margin-bottom:10px">
       <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px">임대기간</label>
-      <div style="display:flex;align-items:center;gap:6px;flex-wrap:nowrap">
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:지금rap">
         <div class="days-ctrl">
           <button class="day-btn" onclick="setEditDays(1)" id="editDayBtn1">1일</button>
           <button class="day-btn" onclick="setEditDays(2)" id="editDayBtn2">2일</button>
           <button class="day-btn" onclick="setEditDays(3)" id="editDayBtn3">3일</button>
           <button class="day-btn" onclick="openEditDatePicker()" id="editDayBtnX">📅 직접</button>
-          <input type="date" id="editReturnDatePicker" style="display:none" onchange="setEditDaysByDate(this.value)">
+          <input 입력="date" id="editReturnDatePicker" style="display:none" onchange="setEditDaysByDate(this.value)">
         </div>
         <div class="delivery-toggle" id="editDeliveryToggle" onclick="toggleEditDelivery()">
           <span class="delivery-chk-sq" id="editDeliveryChkSq"></span>
@@ -454,9 +454,9 @@ select:focus{border-color:var(--accent)}
 <!-- 비밀번호 로그인 모달 -->
 <div class="token-modal hidden" id="tokenModal">
   <div class="token-box">
-    <h2>🚜 농기계 임대 현황</h2>
-    <p>파주시 농업기계임대사업소</p>
-    <input type="password" class="token-inp" id="tokenInp" placeholder="비밀번호 입력" onkeydown="if(event.key==='Enter')saveToken()">
+    <h2>🚜 파주시농기계임대사업소 현황</h2>
+    <p>파주시 농기계임대사업소</p>
+    <input 입력="password" class="token-inp" id="tokenInp" placeholder="비밀번호 입력" onkeydown="if(event.key==='Enter')saveToken()">
     <button class="btn-token-save" onclick="saveToken()">접속</button>
     <div id="loginError" style="color:var(--red);font-size:12px;text-align:center;margin-top:8px;display:none">비밀번호가 틀렸습니다</div>
   </div>
@@ -471,7 +471,7 @@ select:focus{border-color:var(--accent)}
 <header>
   <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
     <div style="display:flex;align-items:center;gap:10px">
-      <h1>🚜 농기계 <span>임대 현황</span></h1>
+      <h1>🚜 파주시농기계임대사업소 <span>현황</span></h1>
       <div class="site-tabs" style="margin-top:0">
         <button class="stab a-전체" onclick="setSite('전체')">전체</button>
         <button class="stab" onclick="setSite('본소')">본소</button>
@@ -491,7 +491,7 @@ select:focus{border-color:var(--accent)}
   <div id="dateBar" style="font-size:12px;font-weight:700;color:var(--accent);text-align:center;flex:1">오늘</div>
   
 </div>
-  <div id="dateBar" style="font-size:12px;font-weight:700;color:var(--accent);flex:1;text-align:center;cursor:default"></div>
+  <div id="dateBar" style="font-size:12px;font-weight:700;color:var(--accent);flex:1;text-align:center;cursor:기본"></div>
   
 </div></div>
 
@@ -915,15 +915,15 @@ function downloadReport(){
   const today = new Date();
   const dateStr = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
-  const files = [
+  const 파일 = [
     {name: `농기계임대현황_일자별부하_${dateStr}.csv`, content: '\uFEFF'+s1},
     {name: `농기계임대현황_임대상세_${dateStr}.csv`,   content: '\uFEFF'+s2},
     {name: `농기계임대현황_기종별집계_${dateStr}.csv`, content: '\uFEFF'+s3},
     {name: `농기계임대현황_근무자현황_${dateStr}.csv`, content: '\uFEFF'+s4},
   ];
 
-  files.forEach(f => {
-    const blob = new Blob([f.content], {type:'text/csv;charset=utf-8'});
+  파일.forEach(f => {
+    const blob = new Blob([f.content], {입력:'text/csv;charset=utf-8'});
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url; a.download = f.name;
