@@ -4257,8 +4257,8 @@
             "personName": "이영대",
             "days": 1,
             "startDate": "2026-04-21",
-            "outDone": false,
-            "inDone": false,
+            "outDone": true,
+            "inDone": true,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
