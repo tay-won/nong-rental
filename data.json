@@ -4200,6 +4200,19 @@
             "site": "본소",
             "baseMins": 290,
             "delivery": true
+          },
+          {
+            "id": 1776917628078.9495,
+            "equipName": "로터베이터1150-03",
+            "equipSpec": "DWR115GM/1150",
+            "personName": "안옥분",
+            "days": 1,
+            "startDate": "2026-05-07",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 40,
+            "delivery": false
           }
         ],
         "delivery": false
