@@ -229,6 +229,19 @@
             "site": "본소",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1776988420070.733,
+            "equipName": "비료동력살포기-02",
+            "equipSpec": "MD-7030/입제",
+            "personName": "김진웅",
+            "days": 1,
+            "startDate": "2026-04-23",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 40,
+            "delivery": false
           }
         ],
         "delivery": false
