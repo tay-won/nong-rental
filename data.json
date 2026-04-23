@@ -146,7 +146,7 @@
             "personName": "유인수",
             "days": 2,
             "startDate": "2026-04-22",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 40,
@@ -655,6 +655,19 @@
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1776905464550.132,
+            "equipName": "굴착기(1.7톤)-01",
+            "equipSpec": "DX17Z-5/2TON",
+            "personName": "정세영",
+            "days": 1,
+            "startDate": "2026-04-23",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 80,
             "delivery": false
           }
         ],
