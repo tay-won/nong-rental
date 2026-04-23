@@ -1588,6 +1588,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776906483622.7668,
+            "equipName": "휴립복토파종기(2조)-01",
+            "equipSpec": "BG-800BCT/휴립복토(2조)",
+            "personName": "고원석",
+            "days": 1,
+            "startDate": "2026-04-25",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
