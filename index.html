@@ -491,10 +491,7 @@ select:focus{border-color:var(--accent)}
   
 </div>
   <div id="dateBar" style="font-size:12px;font-weight:700;color:var(--accent);flex:1;text-align:center;cursor:default"></div>
-  <div style="display:flex;gap:5px">
-    <button class="btn-sync" onclick="loadData()">🔄</button>
-    <button onclick="openInoutPopup()" style="padding:3px 8px;background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.3);border-radius:6px;color:var(--blue);font-size:11px;cursor:pointer;font-family:'Noto Sans KR',sans-serif">📋 입출고</button>
-  </div>
+  
 </div></div>
 
 
@@ -1912,9 +1909,9 @@ function renderTriDayPanel() {
         </div>`).join('');
 
     colsHtml += `
-    <div style="background:#1e293b;border:1px solid #334155;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;min-height:200px">
+    <div style="background:#1e293b;border:${isTod?'2px solid #818cf8':'1px solid #334155'};border-radius:10px;overflow:hidden;display:flex;flex-direction:column;min-height:200px;${isTod?'box-shadow:0 0 0 2px rgba(129,140,248,.2)':''}">
       <div style="padding:8px 12px;background:${hdrBg};border-bottom:1px solid #334155;display:flex;justify-content:space-between;align-items:center">
-        <span style="font-size:12px;font-weight:700;color:${hdrColor}">${label}${isHol?' 🔴':''}</span>
+        <span style="font-size:${isTod?'16':'12'}px;font-weight:${isTod?'900':'700'};color:${hdrColor};letter-spacing:${isTod?'-0.3px':'0'}">${label}${isHol?' 🔴':''}</span>
         <span style="font-size:10px;color:#64748b">출고${outN}/입고${inN}</span>
       </div>
 
