@@ -968,19 +968,6 @@
             "delivery": false
           },
           {
-            "id": 1776732301236.9998,
-            "equipName": "관리기-구굴기(중)-03",
-            "equipSpec": "AMC-1000SM/구굴기(중)",
-            "personName": "한연순",
-            "days": 2,
-            "startDate": "2026-04-24",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1776732318409.4495,
             "equipName": "관리기-휴립피복기-03",
             "equipSpec": "AMC-1000SM/휴립피복기(중)",
@@ -4219,6 +4206,18 @@
         "site": "북부",
         "baseMins": 50,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-04-24T09:00:04.647Z",
+        "reason": "기타",
+        "equipName": "관리기-구굴기(중)-03",
+        "equipSpec": "AMC-1000SM/구굴기(중)",
+        "personName": "한연순",
+        "days": 2,
+        "startDate": "2026-04-24",
+        "site": "북부",
+        "baseMins": 50,
+        "delivery": false
       }
     ],
     "2026-04-22": {
@@ -6826,6 +6825,18 @@
       "reason": "기타",
       "equipName": "관리기-로터리-03",
       "equipSpec": "AMC-1000SM/로타리(중)",
+      "personName": "한연순",
+      "days": 2,
+      "startDate": "2026-04-24",
+      "site": "북부",
+      "baseMins": 50,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-04-24T09:00:04.647Z",
+      "reason": "기타",
+      "equipName": "관리기-구굴기(중)-03",
+      "equipSpec": "AMC-1000SM/구굴기(중)",
       "personName": "한연순",
       "days": 2,
       "startDate": "2026-04-24",
