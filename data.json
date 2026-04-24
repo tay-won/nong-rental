@@ -5015,7 +5015,7 @@
             "days": 3,
             "startDate": "2026-04-21",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "북부",
             "baseMins": 80,
             "delivery": false
@@ -6765,5 +6765,28 @@
     "2026-06-02",
     "2026-06-05",
     "2026-06-06"
-  ]
+  ],
+  "rainy": [],
+  "cancelled": {
+    "본소": {
+      "workers": {
+        "bs1": 420,
+        "bs2": 420,
+        "bs3": 420,
+        "bs4": 420
+      },
+      "entries": [],
+      "delivery": false
+    },
+    "북부": {
+      "workers": {
+        "nb1": 420,
+        "nb2": 420,
+        "nb3": 420,
+        "nb4": 420
+      },
+      "entries": [],
+      "delivery": false
+    }
+  }
 }
