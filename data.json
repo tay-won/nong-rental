@@ -851,19 +851,6 @@
             "delivery": false
           },
           {
-            "id": 1776731632979.4287,
-            "equipName": "관리기-구굴기(소)-05",
-            "equipSpec": "ASC-640/구굴기(소)",
-            "personName": "이학수",
-            "days": 1,
-            "startDate": "2026-04-24",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1776731648903.808,
             "equipName": "관리기-로터리-05",
             "equipSpec": "AMC-1000SM/로타리(중)",
@@ -4196,6 +4183,20 @@
         "delivery": false
       }
     },
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-04-24T08:33:13.099Z",
+        "reason": "기타",
+        "equipName": "관리기-구굴기(소)-05",
+        "equipSpec": "ASC-640/구굴기(소)",
+        "personName": "이학수",
+        "days": 1,
+        "startDate": "2026-04-24",
+        "site": "북부",
+        "baseMins": 50,
+        "delivery": false
+      }
+    ],
     "2026-04-22": {
       "본소": {
         "workers": {
@@ -6754,28 +6755,6 @@
         "entries": [],
         "delivery": false
       }
-    },
-    "_cancelled": {
-      "본소": {
-        "workers": {
-          "bs1": 420,
-          "bs2": 420,
-          "bs3": 420,
-          "bs4": 420
-        },
-        "entries": [],
-        "delivery": false
-      },
-      "북부": {
-        "workers": {
-          "nb1": 420,
-          "nb2": 420,
-          "nb3": 420,
-          "nb4": 420
-        },
-        "entries": [],
-        "delivery": false
-      }
     }
   },
   "holidays": [
@@ -6793,26 +6772,18 @@
     "2026-06-06"
   ],
   "rainy": [],
-  "cancelled": {
-    "본소": {
-      "workers": {
-        "bs1": 420,
-        "bs2": 420,
-        "bs3": 420,
-        "bs4": 420
-      },
-      "entries": [],
-      "delivery": false
-    },
-    "북부": {
-      "workers": {
-        "nb1": 420,
-        "nb2": 420,
-        "nb3": 420,
-        "nb4": 420
-      },
-      "entries": [],
+  "cancelled": [
+    {
+      "cancelledAt": "2026-04-24T08:33:13.099Z",
+      "reason": "기타",
+      "equipName": "관리기-구굴기(소)-05",
+      "equipSpec": "ASC-640/구굴기(소)",
+      "personName": "이학수",
+      "days": 1,
+      "startDate": "2026-04-24",
+      "site": "북부",
+      "baseMins": 50,
       "delivery": false
     }
-  }
+  ]
 }
