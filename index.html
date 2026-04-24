@@ -728,7 +728,8 @@ function emptyDay(){
   return s;
 }
 function ensureDay(dk){if(!state[dk])state[dk]=emptyDay();}
-function initState(){getDkeys().forEach(dk=>ensureDay(dk));}
+function initState(){getDkeys().forEach(dk=>ensureDay(dk));  state._cancelled = [];
+}
 
 // ─── GitHub ───
 function setSyncUI(mode,msg){document.getElementById('sdot').className='sdot '+mode;document.getElementById('stxt').textContent=msg;}
@@ -772,7 +773,7 @@ async function loadData(){
       // 우천 복원
       if(raw.rainy && raw.rainy.length > 0) saveRainy(raw.rainy);
       // 취소 이력 복원
-      if(raw.cancelled && raw.cancelled.length > 0) state._cancelled = raw.cancelled;
+      if(raw.cancelled && Array.isArray(raw.cancelled)) state._cancelled = raw.cancelled;
 
       // 빈 상태로 초기화 후 복원
       initState();
@@ -2306,8 +2307,8 @@ function confirmCancel(reason) {
   if(!state[startDk] || !state[startDk][site]) return;
   const e = state[startDk][site].entries[idx];
   if(!e) return;
-  // 취소 이력 저장
-  if(!state._cancelled) state._cancelled = [];
+  // 취소 이력 저장 - 배열 확인
+  if(!Array.isArray(state._cancelled)) state._cancelled = [];
   state._cancelled.push({
     cancelledAt: new Date().toISOString(),
     reason: reason,
