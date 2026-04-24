@@ -437,19 +437,6 @@
             "delivery": false
           },
           {
-            "id": 1776731265776.5432,
-            "equipName": "논두렁조성기(중)-02",
-            "equipSpec": "WJLF750/(중)",
-            "personName": "윤태영",
-            "days": 2,
-            "startDate": "2026-04-23",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
             "id": 1776731278576.086,
             "equipName": "굴착기(1톤)-05",
             "equipSpec": "U-10-5/1TON",
