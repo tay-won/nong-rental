@@ -5054,7 +5054,7 @@
             "days": 3,
             "startDate": "2026-04-21",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
