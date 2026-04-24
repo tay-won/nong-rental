@@ -48,6 +48,18 @@
         "site": "본소",
         "baseMins": 50,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-04-24T23:58:34.240Z",
+        "reason": "기타",
+        "equipName": "관리기-피복기-03",
+        "equipSpec": "AMC-1000SM/피복기(중)",
+        "personName": "임현식",
+        "days": 1,
+        "startDate": "2026-04-24",
+        "site": "본소",
+        "baseMins": 50,
+        "delivery": false
       }
     ],
     "2026-04-24": {
@@ -226,19 +238,6 @@
             "inDone": false,
             "site": "본소",
             "baseMins": 40,
-            "delivery": false
-          },
-          {
-            "id": 1776988580420.6638,
-            "equipName": "관리기-피복기-03",
-            "equipSpec": "AMC-1000SM/피복기(중)",
-            "personName": "임현식",
-            "days": 1,
-            "startDate": "2026-04-24",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
             "delivery": false
           }
         ],
@@ -6865,6 +6864,18 @@
       "equipName": "관리기-휴립피복기-03",
       "equipSpec": "AMC-1000SM/휴립피복기(중)",
       "personName": "이언성",
+      "days": 1,
+      "startDate": "2026-04-24",
+      "site": "본소",
+      "baseMins": 50,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-04-24T23:58:34.240Z",
+      "reason": "기타",
+      "equipName": "관리기-피복기-03",
+      "equipSpec": "AMC-1000SM/피복기(중)",
+      "personName": "임현식",
       "days": 1,
       "startDate": "2026-04-24",
       "site": "본소",
