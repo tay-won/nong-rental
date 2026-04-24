@@ -1,6 +1,19 @@
 {
   "state": {
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-04-24T23:57:57.294Z",
+        "reason": "개인사정",
+        "equipName": "육묘적재이송기-01",
+        "equipSpec": "MDJI1400/400~1,500",
+        "personName": "사택환",
+        "days": 1,
+        "startDate": "2026-04-24",
+        "site": "본소",
+        "baseMins": 80,
+        "delivery": false
+      }
+    ],
     "2026-04-24": {
       "본소": {
         "workers": {
@@ -60,19 +73,6 @@
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1776728697630.4587,
-            "equipName": "육묘적재이송기-01",
-            "equipSpec": "MDJI1400/400~1,500",
-            "personName": "사택환",
-            "days": 1,
-            "startDate": "2026-04-24",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 80,
             "delivery": false
           },
           {
@@ -6825,5 +6825,18 @@
     "2026-06-06"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-04-24T23:57:57.294Z",
+      "reason": "개인사정",
+      "equipName": "육묘적재이송기-01",
+      "equipSpec": "MDJI1400/400~1,500",
+      "personName": "사택환",
+      "days": 1,
+      "startDate": "2026-04-24",
+      "site": "본소",
+      "baseMins": 80,
+      "delivery": false
+    }
+  ]
 }
