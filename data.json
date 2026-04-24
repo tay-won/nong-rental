@@ -3796,8 +3796,8 @@
             "personName": "고재흥",
             "days": 1,
             "startDate": "2026-04-23",
-            "outDone": false,
-            "inDone": false,
+            "outDone": true,
+            "inDone": true,
             "site": "본소",
             "baseMins": 290,
             "delivery": true
@@ -4004,8 +4004,8 @@
             "personName": "고양하",
             "days": 1,
             "startDate": "2026-04-23",
-            "outDone": false,
-            "inDone": false,
+            "outDone": true,
+            "inDone": true,
             "site": "본소",
             "baseMins": 40,
             "delivery": false
