@@ -3688,6 +3688,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1777021667871.7966,
+            "equipName": "원판쟁기8련-01",
+            "equipSpec": "W82-DP/원판-8련",
+            "personName": "장덕근",
+            "days": 2,
+            "startDate": "2026-05-04",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
