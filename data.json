@@ -3021,6 +3021,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776989662059.9026,
+            "equipName": "논두렁조성기(중)-04",
+            "equipSpec": "WJLF750/(중)",
+            "personName": "김형규",
+            "days": 1,
+            "startDate": "2026-04-30",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
