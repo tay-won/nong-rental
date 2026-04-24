@@ -352,7 +352,7 @@
             "personName": "전광선",
             "days": 1,
             "startDate": "2026-04-24",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
