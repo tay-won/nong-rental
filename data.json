@@ -404,7 +404,7 @@
             "personName": "임재빈",
             "days": 1,
             "startDate": "2026-04-23",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 60,
