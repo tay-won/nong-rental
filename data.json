@@ -320,19 +320,6 @@
             "delivery": false
           },
           {
-            "id": 1776731115725.3787,
-            "equipName": "관리기-구굴기(중)-01",
-            "equipSpec": "AMC-1000SM/구굴기(중)",
-            "personName": "명인복",
-            "days": 1,
-            "startDate": "2026-04-23",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1776731147463.731,
             "equipName": "관리기-휴립기-03",
             "equipSpec": "AMC-1000SM/휴립기(중)",
@@ -6742,20 +6729,28 @@
         "delivery": false
       }
     },
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-04-24T04:30:36.663Z",
-        "reason": "기타",
-        "equipName": "배토기1950-01",
-        "equipSpec": "DOA-220/1950(2조)",
-        "personName": "조규영",
-        "days": 3,
-        "startDate": "2026-04-23",
-        "site": "북부",
-        "baseMins": 90,
+    "_cancelled": {
+      "본소": {
+        "workers": {
+          "bs1": 420,
+          "bs2": 420,
+          "bs3": 420,
+          "bs4": 420
+        },
+        "entries": [],
+        "delivery": false
+      },
+      "북부": {
+        "workers": {
+          "nb1": 420,
+          "nb2": 420,
+          "nb3": 420,
+          "nb4": 420
+        },
+        "entries": [],
         "delivery": false
       }
-    ]
+    }
   },
   "holidays": [
     "2026-04-25",
@@ -6770,20 +6765,5 @@
     "2026-06-02",
     "2026-06-05",
     "2026-06-06"
-  ],
-  "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-04-24T04:30:36.663Z",
-      "reason": "기타",
-      "equipName": "배토기1950-01",
-      "equipSpec": "DOA-220/1950(2조)",
-      "personName": "조규영",
-      "days": 3,
-      "startDate": "2026-04-23",
-      "site": "북부",
-      "baseMins": 90,
-      "delivery": false
-    }
   ]
 }
