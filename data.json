@@ -3368,19 +3368,6 @@
         },
         "entries": [
           {
-            "id": 1776729820410.8862,
-            "equipName": "소형트랙터25HP-01",
-            "equipSpec": "CK250V/25HP",
-            "personName": "박재우",
-            "days": 1,
-            "startDate": "2026-05-03",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 290,
-            "delivery": true
-          },
-          {
             "id": 1776729853471.794,
             "equipName": "로터베이터1150-01",
             "equipSpec": "DWR115GM/1150",
