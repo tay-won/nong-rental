@@ -3822,7 +3822,7 @@
             "personName": "김해단",
             "days": 1,
             "startDate": "2026-04-23",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
@@ -4419,7 +4419,7 @@
             "days": 2,
             "startDate": "2026-04-22",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "본소",
             "baseMins": 40,
             "delivery": false
