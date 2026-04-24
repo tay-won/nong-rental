@@ -3190,6 +3190,19 @@
             "site": "본소",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776988896510.415,
+            "equipName": "분무기-엔진식(제)-01",
+            "equipSpec": "WPS-80A/밀차제초제",
+            "personName": "손석남",
+            "days": 1,
+            "startDate": "2026-05-01",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 40,
+            "delivery": false
           }
         ],
         "delivery": false
