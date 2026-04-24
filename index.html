@@ -1003,14 +1003,7 @@ function changeQty(d){
   document.getElementById('qtyVal').textContent=selQty;
 }
 
-function delEntry(site, idx, startDk) {
-  const dk2 = startDk || getDkeys()[curIdx];
-  if(!state[dk2] || !state[dk2][site]) return;
-  state[dk2][site].entries.splice(idx, 1);
-  if(saveTimer) clearTimeout(saveTimer);
-  saveData();
-  renderAll();
-}
+
 
 
 function setSite(s){
