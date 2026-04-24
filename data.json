@@ -1523,19 +1523,6 @@
             "delivery": true
           },
           {
-            "id": 1776733017534.2537,
-            "equipName": "로터베이터1750-04",
-            "equipSpec": "DW175GM/1750",
-            "personName": "한만학",
-            "days": 1,
-            "startDate": "2026-04-26",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 60,
-            "delivery": false
-          },
-          {
             "id": 1776733032343.475,
             "equipName": "소형트랙터25HP-03",
             "equipSpec": "CK250V/25HP",
@@ -4231,6 +4218,18 @@
         "site": "북부",
         "baseMins": 50,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-04-24T09:01:37.119Z",
+        "reason": "기타",
+        "equipName": "로터베이터1750-04",
+        "equipSpec": "DW175GM/1750",
+        "personName": "한만학",
+        "days": 1,
+        "startDate": "2026-04-26",
+        "site": "북부",
+        "baseMins": 60,
+        "delivery": false
       }
     ],
     "2026-04-22": {
@@ -6855,6 +6854,18 @@
       "startDate": "2026-04-24",
       "site": "북부",
       "baseMins": 50,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-04-24T09:01:37.119Z",
+      "reason": "기타",
+      "equipName": "로터베이터1750-04",
+      "equipSpec": "DW175GM/1750",
+      "personName": "한만학",
+      "days": 1,
+      "startDate": "2026-04-26",
+      "site": "북부",
+      "baseMins": 60,
       "delivery": false
     }
   ]
