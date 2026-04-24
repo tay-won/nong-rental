@@ -4195,6 +4195,18 @@
         "site": "북부",
         "baseMins": 50,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-04-24T08:56:50.959Z",
+        "reason": "기타",
+        "equipName": "로터베이터2350-01",
+        "equipSpec": "AR5240SC/2350",
+        "personName": "박수형",
+        "days": 3,
+        "startDate": "2026-04-22",
+        "site": "북부",
+        "baseMins": 90,
+        "delivery": false
       }
     ],
     "2026-04-22": {
@@ -4612,19 +4624,6 @@
             "equipName": "원판쟁기10련-04",
             "equipSpec": "W300-DP/원판-10련",
             "personName": "문종천",
-            "days": 3,
-            "startDate": "2026-04-22",
-            "outDone": true,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1776731035454.3455,
-            "equipName": "로터베이터2350-01",
-            "equipSpec": "AR5240SC/2350",
-            "personName": "박수형",
             "days": 3,
             "startDate": "2026-04-22",
             "outDone": true,
@@ -6783,6 +6782,18 @@
       "startDate": "2026-04-24",
       "site": "북부",
       "baseMins": 50,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-04-24T08:56:50.959Z",
+      "reason": "기타",
+      "equipName": "로터베이터2350-01",
+      "equipSpec": "AR5240SC/2350",
+      "personName": "박수형",
+      "days": 3,
+      "startDate": "2026-04-22",
+      "site": "북부",
+      "baseMins": 90,
       "delivery": false
     }
   ]
