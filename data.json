@@ -314,7 +314,7 @@
             "days": 1,
             "startDate": "2026-04-23",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "북부",
             "baseMins": 40,
             "delivery": false
@@ -792,7 +792,7 @@
             "personName": "김진제",
             "days": 1,
             "startDate": "2026-04-24",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 80,
