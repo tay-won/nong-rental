@@ -2661,6 +2661,19 @@
             "site": "본소",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1776988832805.737,
+            "equipName": "논두렁조성기(중)-02",
+            "equipSpec": "WJLF750/(중)",
+            "personName": "황봉구",
+            "days": 1,
+            "startDate": "2026-04-29",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
