@@ -49,7 +49,7 @@ header h1 span{color:var(--accent)}
 .chip-마감{background:rgba(239,68,68,.15);color:var(--red)}
 
 /* ── 레이아웃 ── */
-.body{padding:8px;height:calc(100vh - 170px);overflow:hidden}.layout{display:flex;gap:8px;flex-wrap:지금rap;align-items:stretch;height:100%}
+.body{padding:8px;height:calc(100vh - 170px);overflow:hidden}.layout{display:flex;gap:8px;flex-wrap:nowrap;align-items:stretch;height:100%}
 .col-left{width:240px;min-width:240px;flex-shrink:0;display:flex;flex-direction:column;gap:8px;overflow-y:auto}
 .col-right{flex:1;min-width:0;display:flex;flex-direction:column;gap:0;height:100%;overflow:hidden}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:13px}
@@ -112,7 +112,7 @@ select:focus{border-color:var(--accent)}
 .dropdown::-webkit-scrollbar{width:3px}.dropdown::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 .dd-item{display:flex;justify-content:space-between;align-items:center;padding:9px 12px;cursor:pointer;transition:background .15s;font-size:12px}
 .dd-item:hover{background:rgba(99,102,241,.1)}
-.dd-item .dd-name{flex:1;min-width:0;white-space:지금rap;overflow:hidden;text-overflow:ellipsis}
+.dd-item .dd-name{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .dd-item .dd-mins{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);flex-shrink:0;margin-left:8px}
 .dd-filter{padding:8px 10px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--card)}
 .dd-filter input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'Noto Sans KR',sans-serif;font-size:12px;padding:5px 8px;outline:none}
@@ -121,53 +121,53 @@ select:focus{border-color:var(--accent)}
 /* ③ 선택된 기종 입력 행 */
 .input-row{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin-bottom:10px;display:none}
 .input-row.visible{display:block}
-.input-row-name{font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;white-space:지금rap;overflow:hidden;text-overflow:ellipsis}
+.input-row-name{font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .input-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .half-toggle{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:5px 10px;border:1px solid var(--border);border-radius:7px;background:var(--bg);transition:all .2s}
 .half-toggle:hover{border-color:var(--yellow)}
-.half-toggle.：{border-color:var(--yellow);background:rgba(245,158,11,.1)}
+.half-toggle.on{border-color:var(--yellow);background:rgba(245,158,11,.1)}
 .half-toggle input{display:none}
 .half-toggle-box{width:14px;height:14px;border:1px solid var(--border);border-radius:3px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:900;color:transparent;transition:all .2s;flex-shrink:0}
-.half-toggle.： .half-toggle-box{background:var(--yellow);border-color:var(--yellow);color:#000}
-.half-toggle-txt{font-size:11px;color:var(--muted);transition:color .2s;white-space:지금rap}
-.half-toggle.： .half-toggle-txt{color:var(--yellow)}
-.half-mins{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);white-space:지금rap}
-.half-mins.：{color:var(--yellow)}
+.half-toggle.on .half-toggle-box{background:var(--yellow);border-color:var(--yellow);color:#000}
+.half-toggle-txt{font-size:11px;color:var(--muted);transition:color .2s;white-space:nowrap}
+.half-toggle.on .half-toggle-txt{color:var(--yellow)}
+.half-mins{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);white-space:nowrap}
+.half-mins.on{color:var(--yellow)}
 .cnt-ctrl{display:flex;align-items:center;gap:4px}
 .btn-c{width:28px;height:28px;border-radius:7px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;line-height:1}
 .btn-c:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 .cnt-val{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;color:#fff;width:28px;text-align:center}
-.btn-add{padding:6px 16px;background:var(--accent);border:none;border-radius:7px;color:#fff;font-family:'Noto Sans KR',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;white-space:지금rap;margin-left:auto}
+.btn-add{padding:6px 16px;background:var(--accent);border:none;border-radius:7px;color:#fff;font-family:'Noto Sans KR',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap;margin-left:auto}
 .btn-add:hover{background:#5254d4}
 .btn-add:active{transform:scale(.97)}
 
 /* ④ 선택 기종 목록 */
 .sel-list{display:flex;flex-direction:column;gap:5px;max-height:300px;overflow-y:auto;padding-right:2px}
 .sel-list::-webkit-scrollbar{width:3px}.sel-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-.sel-item{display:flex;align-items:center;gap:5px;padding:5px 8px;border-radius:7px;cursor:grab;flex-wrap:지금rap;border-left:3px solid transparent}
+.sel-item{display:flex;align-items:center;gap:5px;padding:5px 8px;border-radius:7px;cursor:grab;flex-wrap:nowrap;border-left:3px solid transparent}
 .sel-item.done{opacity:.55}
 .sel-item.type-in{background:rgba(100,116,139,.15);border-left-color:#64748b}
-.sel-item.type-1 일 전{background:rgba(234,179,8,.08);border-left-color:#eab308}
+.sel-item.type-1day{background:rgba(234,179,8,.08);border-left-color:#eab308}
 .sel-item.type-out{background:rgba(34,197,94,.08);border-left-color:#22c55e}
 .sel-item.dragging{opacity:.4;background:rgba(99,102,241,.15);cursor:grabbing}
 .sel-item.drag-over{border-top:2px solid var(--accent)}
-.sel-equip{font-size:12px;font-weight:600;color:var(--text);flex:1;min-width:0;white-space:지금rap;overflow:hidden;text-overflow:ellipsis}
-.sel-person{font-size:11px;color:var(--dim);white-space:지금rap;flex-shrink:0}
-.sel-days{font-size:10px;color:var(--muted);white-space:지금rap;flex-shrink:0;min-width:22px}
+.sel-equip{font-size:12px;font-weight:600;color:var(--text);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sel-person{font-size:11px;color:var(--dim);white-space:nowrap;flex-shrink:0}
+.sel-days{font-size:10px;color:var(--muted);white-space:nowrap;flex-shrink:0;min-width:22px}
 .sel-chk{display:flex;align-items:center;gap:2px;cursor:pointer;flex-shrink:0}
 .sel-chk input{display:none}
-.sel-cb{font-size:10px;padding:2px 6px;border-radius:4px;border:1px solid var(--border);color:var(--muted);background:var(--bg);transition:all .15s;white-space:지금rap}
+.sel-cb{font-size:10px;padding:2px 6px;border-radius:4px;border:1px solid var(--border);color:var(--muted);background:var(--bg);transition:all .15s;white-space:nowrap}
 .sel-chk.out-chk input:checked~.sel-cb{background:var(--blue);border-color:var(--blue);color:#fff}
 .sel-chk.in-chk input:checked~.sel-cb{background:var(--green);border-color:var(--green);color:#fff}
-.sel-mins{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--muted);white-space:지금rap;flex-shrink:0;min-width:30px;text-align:right}
+.sel-mins{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--muted);white-space:nowrap;flex-shrink:0;min-width:30px;text-align:right}
 .move-btn{width:20px;height:20px;border-radius:4px;border:1px solid var(--border);background:var(--bg);color:var(--muted);font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0;line-height:1}
 .move-btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 .sel-item.full{border-left:3px solid var(--accent)}
 .sel-item.half{border-left:3px solid var(--yellow)}
 .sel-item-info{flex:1;min-width:0}
-.sel-item-name{font-size:12px;font-weight:500;color:var(--text);white-space:지금rap;overflow:hidden;text-overflow:ellipsis}
+.sel-item-name{font-size:12px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sel-item-meta{font-size:10px;color:var(--muted);margin-top:1px}
-.sel-item-meta .꼬리표{display:inline-block;padding:0px 5px;border-radius:4px;font-size:9px;font-weight:700;margin-right:3px}
+.sel-item-meta .tag{display:inline-block;padding:0px 5px;border-radius:4px;font-size:9px;font-weight:700;margin-right:3px}
 .tag-full{background:rgba(99,102,241,.15);color:var(--accent)}
 .tag-half{background:rgba(245,158,11,.15);color:var(--yellow)}
 .tag-site{background:rgba(100,116,139,.15);color:var(--muted)}
@@ -184,7 +184,7 @@ select:focus{border-color:var(--accent)}
 .loading-overlay{position:fixed;inset:0;background:rgba(15,17,23,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:500;gap:14px}
 .loading-overlay.hidden{display:none}
 .spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
-@keyframes spin{까지{transform:rotate(360deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
 .loading-txt{font-size:13px;color:var(--dim)}
 @media(max-width:600px){.worker-grid{grid-template-columns:1fr 1fr}.stats-row{grid-template-columns:repeat(3,1fr)}.input-controls{gap:6px}}
 
@@ -367,14 +367,14 @@ select:focus{border-color:var(--accent)}
 .tri-item{display:flex;align-items:center;gap:4px;padding:5px 8px;border-bottom:1px solid var(--border);font-size:11px}
 .tri-item:last-child{border-bottom:none}
 .tri-item.ti-in{border-left:3px solid var(--muted);background:rgba(100,116,139,.06)}
-.tri-item.ti-1 일 전{border-left:3px solid #eab308;background:rgba(234,179,8,.06)}
+.tri-item.ti-1day{border-left:3px solid #eab308;background:rgba(234,179,8,.06)}
 .tri-item.ti-out{border-left:3px solid var(--green);background:rgba(34,197,94,.06)}
-.tri-item-person{font-weight:700;color:#fff;white-space:지금rap;min-width:40px;flex-shrink:0}
+.tri-item-person{font-weight:700;color:#fff;white-space:nowrap;min-width:40px;flex-shrink:0}
 .tri-item-chks{display:flex;gap:3px;flex-shrink:0}
 .tri-item-chk{display:inline-flex;align-items:center;gap:2px;cursor:pointer;font-size:10px}
 .tri-item-chk input{width:11px;height:11px;cursor:pointer}
 .tri-item-days{font-size:9px;color:var(--muted);flex-shrink:0}
-.tri-item-equip{flex:1;color:var(--dim);white-space:지금rap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.tri-item-equip{flex:1;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .tri-item-mins{font-family:"JetBrains Mono",monospace;font-size:9px;color:var(--muted);flex-shrink:0}
 .tri-item-btns{display:flex;gap:2px;flex-shrink:0}
 .tri-reset{width:100%;padding:5px;background:transparent;border:none;color:var(--muted);font-size:10px;cursor:pointer;text-align:center;font-family:"Noto Sans KR",sans-serif;border-top:1px solid var(--border)}
@@ -384,6 +384,20 @@ select:focus{border-color:var(--accent)}
 </style>
 </head>
 <body>
+
+<!-- 취소 사유 모달 -->
+<div class="token-modal hidden" id="cancelModal">
+  <div class="token-box" style="max-width:320px">
+    <h2 style="font-size:15px;font-weight:900;color:#fff;margin-bottom:4px">취소 사유</h2>
+    <p id="cancelEquipName" style="font-size:12px;color:var(--muted);margin-bottom:16px"></p>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <button onclick="confirmCancel('우천')" style="padding:10px;background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.3);border-radius:8px;color:var(--blue);font-family:'Noto Sans KR',sans-serif;font-size:13px;cursor:pointer">🌧️ 우천</button>
+      <button onclick="confirmCancel('개인사정')" style="padding:10px;background:rgba(100,116,139,.15);border:1px solid rgba(100,116,139,.3);border-radius:8px;color:var(--dim);font-family:'Noto Sans KR',sans-serif;font-size:13px;cursor:pointer">👤 개인사정</button>
+      <button onclick="confirmCancel('기타')" style="padding:10px;background:rgba(100,116,139,.15);border:1px solid rgba(100,116,139,.3);border-radius:8px;color:var(--dim);font-family:'Noto Sans KR',sans-serif;font-size:13px;cursor:pointer">📝 기타</button>
+    </div>
+    <button onclick="closeCancelModal()" style="width:100%;margin-top:12px;padding:8px;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--muted);font-family:'Noto Sans KR',sans-serif;font-size:12px;cursor:pointer">취소 안 함</button>
+  </div>
+</div>
 
 <!-- 임대 내역 수정 모달 -->
 <div class="token-modal hidden" id="editModal">
@@ -396,10 +410,10 @@ select:focus{border-color:var(--accent)}
     <div style="margin-bottom:10px">
       <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px">장비명</label>
       <div class="search-wrap" id="editSearchWrap">
-        <input 입력="text" class="search-inp" id="editSearchInp" placeholder="검색…" readonly onclick="openEditDD()" autocomplete="off" style="margin-bottom:0">
+        <input type="text" class="search-inp" id="editSearchInp" placeholder="검색…" readonly onclick="openEditDD()" autocomplete="off" style="margin-bottom:0">
         <span class="search-arrow">▼</span>
         <div class="dropdown" id="editDropdown">
-          <div class="dd-filter"><input 입력="text" id="editDdFilter" placeholder="검색…" oninput="filterEditDD()" onclick="event.stopPropagation()"></div>
+          <div class="dd-filter"><input type="text" id="editDdFilter" placeholder="검색…" oninput="filterEditDD()" onclick="event.stopPropagation()"></div>
           <div id="editDdList"></div>
         </div>
       </div>
@@ -407,18 +421,18 @@ select:focus{border-color:var(--accent)}
     <!-- 성명 -->
     <div style="margin-bottom:10px">
       <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px">성명</label>
-      <input 입력="text" id="editPersonInp" class="person-inp" placeholder="성명 입력" style="width:100%">
+      <input type="text" id="editPersonInp" class="person-inp" placeholder="성명 입력" style="width:100%">
     </div>
     <!-- 임대기간 -->
     <div style="margin-bottom:10px">
       <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px">임대기간</label>
-      <div style="display:flex;align-items:center;gap:6px;flex-wrap:지금rap">
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:nowrap">
         <div class="days-ctrl">
           <button class="day-btn" onclick="setEditDays(1)" id="editDayBtn1">1일</button>
           <button class="day-btn" onclick="setEditDays(2)" id="editDayBtn2">2일</button>
           <button class="day-btn" onclick="setEditDays(3)" id="editDayBtn3">3일</button>
           <button class="day-btn" onclick="openEditDatePicker()" id="editDayBtnX">📅 직접</button>
-          <input 입력="date" id="editReturnDatePicker" style="display:none" onchange="setEditDaysByDate(this.value)">
+          <input type="date" id="editReturnDatePicker" style="display:none" onchange="setEditDaysByDate(this.value)">
         </div>
         <div class="delivery-toggle" id="editDeliveryToggle" onclick="toggleEditDelivery()">
           <span class="delivery-chk-sq" id="editDeliveryChkSq"></span>
@@ -454,9 +468,9 @@ select:focus{border-color:var(--accent)}
 <!-- 비밀번호 로그인 모달 -->
 <div class="token-modal hidden" id="tokenModal">
   <div class="token-box">
-    <h2>🚜 파주시농기계임대사업소 현황</h2>
-    <p>파주시 농기계임대사업소</p>
-    <input 입력="password" class="token-inp" id="tokenInp" placeholder="비밀번호 입력" onkeydown="if(event.key==='Enter')saveToken()">
+    <h2>🚜 농기계 임대 현황</h2>
+    <p>파주시 농업기계임대사업소</p>
+    <input type="password" class="token-inp" id="tokenInp" placeholder="비밀번호 입력" onkeydown="if(event.key==='Enter')saveToken()">
     <button class="btn-token-save" onclick="saveToken()">접속</button>
     <div id="loginError" style="color:var(--red);font-size:12px;text-align:center;margin-top:8px;display:none">비밀번호가 틀렸습니다</div>
   </div>
@@ -471,7 +485,7 @@ select:focus{border-color:var(--accent)}
 <header>
   <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
     <div style="display:flex;align-items:center;gap:10px">
-      <h1>🚜 파주시농기계임대사업소 <span>현황</span></h1>
+      <h1>🚜 농기계 <span>임대 현황</span></h1>
       <div class="site-tabs" style="margin-top:0">
         <button class="stab a-전체" onclick="setSite('전체')">전체</button>
         <button class="stab" onclick="setSite('본소')">본소</button>
@@ -491,7 +505,7 @@ select:focus{border-color:var(--accent)}
   <div id="dateBar" style="font-size:12px;font-weight:700;color:var(--accent);text-align:center;flex:1">오늘</div>
   
 </div>
-  <div id="dateBar" style="font-size:12px;font-weight:700;color:var(--accent);flex:1;text-align:center;cursor:기본"></div>
+  <div id="dateBar" style="font-size:12px;font-weight:700;color:var(--accent);flex:1;text-align:center;cursor:default"></div>
   
 </div></div>
 
@@ -752,6 +766,10 @@ async function loadData(){
 
       // 휴무일 복원
       if(savedHolidays.length > 0) saveHolidays(savedHolidays);
+      // 우천 복원
+      if(raw.rainy && raw.rainy.length > 0) saveRainy(raw.rainy);
+      // 취소 이력 복원
+      if(raw.cancelled && raw.cancelled.length > 0) state._cancelled = raw.cancelled;
 
       // 빈 상태로 초기화 후 복원
       initState();
@@ -798,7 +816,9 @@ async function saveData(){
   const trimmed = JSON.parse(JSON.stringify(state));
   const savePayload = {
     state: trimmed,
-    holidays: getHolidays()
+    holidays: getHolidays(),
+    rainy: getRainy(),
+    cancelled: state._cancelled || []
   };
   const jsonStr = JSON.stringify(savePayload, null, 2);
   const content = btoa(unescape(encodeURIComponent(jsonStr)));
@@ -915,24 +935,37 @@ function downloadReport(){
   const today = new Date();
   const dateStr = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
-  const 파일 = [
+  const files = [
     {name: `농기계임대현황_일자별부하_${dateStr}.csv`, content: '\uFEFF'+s1},
     {name: `농기계임대현황_임대상세_${dateStr}.csv`,   content: '\uFEFF'+s2},
     {name: `농기계임대현황_기종별집계_${dateStr}.csv`, content: '\uFEFF'+s3},
     {name: `농기계임대현황_근무자현황_${dateStr}.csv`, content: '\uFEFF'+s4},
   ];
 
-  파일.forEach(f => {
-    const blob = new Blob([f.content], {입력:'text/csv;charset=utf-8'});
+  files.forEach(f => {
+    const blob = new Blob([f.content], {type:'text/csv;charset=utf-8'});
     const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    // ── 시트4: 취소 이력 ──
+  let s4b = '취소일시,취소사유,장비명,성명,임대기간(일),시작일,사업소,소요시간(분),배송\n';
+  (state._cancelled || []).forEach(c => {
+    const dt = new Date(c.cancelledAt);
+    const dtStr = (dt.getMonth()+1)+'/'+dt.getDate()+' '+ dt.getHours()+':'+String(dt.getMinutes()).padStart(2,'0');
+    s4b += [dtStr, c.reason, '"'+(c.equipName||'')+'"', c.personName||'', c.days||1, c.startDate||'', c.site||'', c.baseMins||0, c.delivery?'배송':''].join(',') + '\n';
+  });
+  // 우천일 시트
+  let s5 = '우천일\n' + getRainy().sort().join('\n');
+
+  const a = document.createElement('a');
     a.href = url; a.download = f.name;
     document.body.appendChild(a); a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
   });
 
-  setSyncUI('ok', '📊 CSV 4개 다운로드 완료!');
+  // 취소 이력 CSV
+  
+
+  setSyncUI('ok', '📊 CSV 6개 다운로드 완료!');
 }
 
 
@@ -2235,6 +2268,71 @@ function openEditModal(startDk, site, idx) {
   updateEditHalfInfo();
   document.getElementById('editModal').classList.remove('hidden');
 }
+
+// ═══ 우천 관리 ═══
+function getRainy() {
+  try { return JSON.parse(localStorage.getItem('rainy_' + GH_REPO) || '[]'); } catch(e) { return []; }
+}
+function saveRainy(arr) {
+  localStorage.setItem('rainy_' + GH_REPO, JSON.stringify(arr));
+}
+function toggleRainy(dk) {
+  const rainy = getRainy();
+  const idx = rainy.indexOf(dk);
+  if(idx === -1) rainy.push(dk); else rainy.splice(idx, 1);
+  saveRainy(rainy);
+  saveData(); // data.json에도 저장
+  renderAll();
+}
+
+// ═══ 취소 이력 관리 ═══
+let cancelTarget = null; // {site, idx, startDk}
+
+function delEntry(site, idx, startDk) {
+  const dk2 = startDk || getDkeys()[curIdx];
+  if(!state[dk2] || !state[dk2][site]) return;
+  const e = state[dk2][site].entries[idx];
+  if(!e) return;
+  // 취소 모달 표시
+  cancelTarget = {site, idx, startDk: dk2};
+  document.getElementById('cancelEquipName').textContent = e.equipName + ' / ' + e.personName + ' (' + e.days + '일)';
+  document.getElementById('cancelModal').classList.remove('hidden');
+}
+
+function confirmCancel(reason) {
+  if(!cancelTarget) return;
+  const {site, idx, startDk} = cancelTarget;
+  if(!state[startDk] || !state[startDk][site]) return;
+  const e = state[startDk][site].entries[idx];
+  if(!e) return;
+  // 취소 이력 저장
+  if(!state._cancelled) state._cancelled = [];
+  state._cancelled.push({
+    cancelledAt: new Date().toISOString(),
+    reason: reason,
+    equipName: e.equipName,
+    equipSpec: e.equipSpec || '',
+    personName: e.personName,
+    days: e.days,
+    startDate: e.startDate,
+    site: site,
+    baseMins: e.baseMins,
+    delivery: e.delivery || false
+  });
+  // 실제 삭제
+  state[startDk][site].entries.splice(idx, 1);
+  cancelTarget = null;
+  document.getElementById('cancelModal').classList.add('hidden');
+  if(saveTimer) clearTimeout(saveTimer);
+  saveData();
+  renderAll();
+}
+
+function closeCancelModal() {
+  cancelTarget = null;
+  document.getElementById('cancelModal').classList.add('hidden');
+}
+
 
 function closeEditModal() {
   document.getElementById('editModal').classList.add('hidden');
