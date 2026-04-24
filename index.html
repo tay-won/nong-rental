@@ -1272,7 +1272,8 @@ function renderAll(){
     '📅 ' + d.getFullYear() + '년 ' + (d.getMonth()+1) + '월 ' + d.getDate() + '일 (' + DOW[d.getDay()] + '요일)' + (isToday(d) ? ' — 오늘' : (dk === new Date(today().getTime()-86400000).toISOString().slice(0,10) ? ' — 어제' : ''))
     + (_isHolCur ? ' <span style="color:#ef4444;font-size:11px">🔴 휴무일</span>' : '')
     + ' <button onclick="toggleHoliday(\'' + _dkCur + '\')" style="' + _holBtnStyle + '">' + (_isHolCur ? '휴무 해제' : '휴무 지정') + '</button>'
-    + (!isToday(d) ? ' <button onclick="resetDates()" style="margin-left:6px;padding:2px 8px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);border-radius:8px;color:var(--accent);font-size:10px;cursor:pointer">오늘로</button>' : '');
+    + (!isToday(d) ? ' <button onclick="resetDates()" style="margin-left:6px;padding:2px 8px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);border-radius:8px;color:var(--accent);font-size:10px;cursor:pointer">오늘로</button>' : '')
+    + (() => { const isRainy = getRainy().includes(_dkCur); return ' <button onclick="toggleRainy(\'' + _dkCur + '\')" style="margin-left:4px;padding:2px 8px;background:' + (isRainy?'rgba(96,165,250,.2)':'transparent') + ';border:1px solid ' + (isRainy?'#60a5fa':'#2e3350') + ';border-radius:8px;color:' + (isRainy?'#60a5fa':'#64748b') + ';font-size:10px;cursor:pointer">' + (isRainy?'🌧️ 우천 해제':'🌧️ 우천') + '</button>'; })();
   renderWorkers();renderGauge();renderSelList();renderTriDayPanel();}
 
 
