@@ -1612,6 +1612,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1777021273719.4365,
+            "equipName": "관리기-구굴기(소)-03",
+            "equipSpec": "ASC-640/구굴기(소)",
+            "personName": "윤태웅",
+            "days": 1,
+            "startDate": "2026-04-26",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
