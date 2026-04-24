@@ -2971,19 +2971,6 @@
             "delivery": false
           },
           {
-            "id": 1776734637229.988,
-            "equipName": "원판쟁기10련-05",
-            "equipSpec": "W300-DP/원판-10련",
-            "personName": "안호영",
-            "days": 2,
-            "startDate": "2026-04-30",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
             "id": 1776734649549.0894,
             "equipName": "굴착기(1톤)-05",
             "equipSpec": "U-10-5/1TON",
