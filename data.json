@@ -476,19 +476,6 @@
             "delivery": false
           },
           {
-            "id": 1776836139961.0588,
-            "equipName": "배토기1950-01",
-            "equipSpec": "DOA-220/1950(2조)",
-            "personName": "조규영",
-            "days": 3,
-            "startDate": "2026-04-23",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
             "id": 1776839342195.9102,
             "equipName": "로터베이터2150-02",
             "equipSpec": "WR2150DGWJ/2150",
@@ -6741,7 +6728,21 @@
         "entries": [],
         "delivery": false
       }
-    }
+    },
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-04-24T04:30:36.663Z",
+        "reason": "기타",
+        "equipName": "배토기1950-01",
+        "equipSpec": "DOA-220/1950(2조)",
+        "personName": "조규영",
+        "days": 3,
+        "startDate": "2026-04-23",
+        "site": "북부",
+        "baseMins": 90,
+        "delivery": false
+      }
+    ]
   },
   "holidays": [
     "2026-04-25",
@@ -6758,5 +6759,18 @@
     "2026-06-06"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-04-24T04:30:36.663Z",
+      "reason": "기타",
+      "equipName": "배토기1950-01",
+      "equipSpec": "DOA-220/1950(2조)",
+      "personName": "조규영",
+      "days": 3,
+      "startDate": "2026-04-23",
+      "site": "북부",
+      "baseMins": 90,
+      "delivery": false
+    }
+  ]
 }
