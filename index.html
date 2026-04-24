@@ -1245,20 +1245,24 @@ function openInputPanel() {
 function renderDateTabs(){
   const DATES=getDates(), DKEYS=getDkeys();
   const holidays = getHolidays();
+  const rainyDays = getRainy();
   document.getElementById('dateTabs').innerHTML = DATES.map((d,i) => {
     const dk = DKEYS[i];
     const pct = getPct(dk, curSite);
     const st = getStatus(pct);
     const isHol = holidays.includes(dk);
+    const isRain = rainyDays.includes(dk);
     const isYesterday = dk === new Date(today().getTime()-86400000).toISOString().slice(0,10);
-    return '<div class="dtab'+(i===curIdx?' active':'')+(isHol?' holiday':'')+'" onclick="setIdx('+i+')" style="position:relative">'
+    return '<div class="dtab'+(i===curIdx?' active':'')+(isHol?' holiday':isRain?' rainy':'')
+      +'" onclick="setIdx('+i+')" style="position:relative">'
       +(isToday(d)?'<div class="tl">TODAY</div>':isYesterday?'<div class="tl" style="color:var(--muted)">어제</div>':'')
       +'<div class="day">'+d.getDate()+'</div>'
       +'<div class="dow">'+DOW[d.getDay()]+'</div>'
       +(isHol
         ? '<div class="holiday-badge">휴무</div>'
+        : isRain
+        ? '<div class="holiday-badge" style="background:rgba(96,165,250,.15);color:#60a5fa;border-color:rgba(96,165,250,.4)">🌧️</div>'
         : '<div class="chip chip-'+st+'">'+pct+'%</div>')
-      +'<div onclick="event.stopPropagation();setIdx('+i+');openInputPanel()" style="position:absolute;bottom:-1px;right:-1px;width:14px;height:14px;background:var(--accent);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:#fff;cursor:pointer;line-height:1">+</div>'
       +'</div>';
   }).join('');
 }
