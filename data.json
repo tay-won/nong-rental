@@ -333,19 +333,6 @@
             "delivery": false
           },
           {
-            "id": 1776731161969.3079,
-            "equipName": "관리기-구굴기(소)-04",
-            "equipSpec": "ASC-640/구굴기(소)",
-            "personName": "안병천",
-            "days": 1,
-            "startDate": "2026-04-23",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1776731184156.005,
             "equipName": "양용쟁기(3련)-01",
             "equipSpec": "KP3300W/양용-3련",
@@ -495,7 +482,7 @@
             "personName": "조규영",
             "days": 3,
             "startDate": "2026-04-23",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -4262,7 +4249,20 @@
         "delivery": false
       }
     },
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-04-24T09:08:45.933Z",
+        "reason": "기타",
+        "equipName": "관리기-구굴기(소)-04",
+        "equipSpec": "ASC-640/구굴기(소)",
+        "personName": "안병천",
+        "days": 1,
+        "startDate": "2026-04-23",
+        "site": "북부",
+        "baseMins": 50,
+        "delivery": false
+      }
+    ],
     "2026-04-22": {
       "본소": {
         "workers": {
@@ -6838,5 +6838,18 @@
     "2026-06-06"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-04-24T09:08:45.933Z",
+      "reason": "기타",
+      "equipName": "관리기-구굴기(소)-04",
+      "equipSpec": "ASC-640/구굴기(소)",
+      "personName": "안병천",
+      "days": 1,
+      "startDate": "2026-04-23",
+      "site": "북부",
+      "baseMins": 50,
+      "delivery": false
+    }
+  ]
 }
