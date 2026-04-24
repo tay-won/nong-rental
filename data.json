@@ -24,6 +24,18 @@
         "site": "본소",
         "baseMins": 50,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-04-24T23:58:15.077Z",
+        "reason": "개인사정",
+        "equipName": "관리기-쟁기-02",
+        "equipSpec": "AMC-900SM/쟁기(중)",
+        "personName": "오정은",
+        "days": 1,
+        "startDate": "2026-04-24",
+        "site": "본소",
+        "baseMins": 50,
+        "delivery": false
       }
     ],
     "2026-04-24": {
@@ -79,19 +91,6 @@
             "equipName": "관리기-휴립기-02",
             "equipSpec": "AMC-1000SM/휴립기(중)",
             "personName": "방화숙",
-            "days": 1,
-            "startDate": "2026-04-24",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1776728737287.8528,
-            "equipName": "관리기-쟁기-02",
-            "equipSpec": "AMC-900SM/쟁기(중)",
-            "personName": "오정은",
             "days": 1,
             "startDate": "2026-04-24",
             "outDone": false,
@@ -6842,6 +6841,18 @@
       "reason": "개인사정",
       "equipName": "관리기-로터리-03",
       "equipSpec": "AMC-1000SM/로타리(중)",
+      "personName": "오정은",
+      "days": 1,
+      "startDate": "2026-04-24",
+      "site": "본소",
+      "baseMins": 50,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-04-24T23:58:15.077Z",
+      "reason": "개인사정",
+      "equipName": "관리기-쟁기-02",
+      "equipSpec": "AMC-900SM/쟁기(중)",
       "personName": "오정은",
       "days": 1,
       "startDate": "2026-04-24",
