@@ -2570,19 +2570,6 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
-          },
-          {
-            "id": 1776917213201.275,
-            "equipName": "분무기-엔진식(제)-01",
-            "equipSpec": "HS-70AD/제초제",
-            "personName": "손석남",
-            "days": 1,
-            "startDate": "2026-04-28",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 40,
-            "delivery": false
           }
         ],
         "delivery": false
