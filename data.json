@@ -689,7 +689,7 @@
             "personName": "민태길",
             "days": 3,
             "startDate": "2026-04-25",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
