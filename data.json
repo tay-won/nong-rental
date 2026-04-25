@@ -624,7 +624,7 @@
             "personName": "정찬엽",
             "days": 1,
             "startDate": "2026-04-25",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
