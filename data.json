@@ -1,6 +1,19 @@
 {
   "state": {
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-04-25T02:11:52.920Z",
+        "reason": "기타",
+        "equipName": "관리기-구굴기(중)-03",
+        "equipSpec": "AMC-1000SM/구굴기(중)",
+        "personName": "한연순",
+        "days": 1,
+        "startDate": "2026-04-24",
+        "site": "북부",
+        "baseMins": 50,
+        "delivery": false
+      }
+    ],
     "2026-04-24": {
       "본소": {
         "workers": {
@@ -432,19 +445,6 @@
             "days": 1,
             "startDate": "2026-04-24",
             "outDone": true,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1777021182792.756,
-            "equipName": "관리기-구굴기(중)-03",
-            "equipSpec": "AMC-1000SM/구굴기(중)",
-            "personName": "한연순",
-            "days": 1,
-            "startDate": "2026-04-24",
-            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
@@ -6760,5 +6760,18 @@
     "2026-06-06"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-04-25T02:11:52.920Z",
+      "reason": "기타",
+      "equipName": "관리기-구굴기(중)-03",
+      "equipSpec": "AMC-1000SM/구굴기(중)",
+      "personName": "한연순",
+      "days": 1,
+      "startDate": "2026-04-24",
+      "site": "북부",
+      "baseMins": 50,
+      "delivery": false
+    }
+  ]
 }
