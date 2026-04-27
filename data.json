@@ -2972,7 +2972,7 @@
             "personName": "양인석",
             "days": 1,
             "startDate": "2026-04-26",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
