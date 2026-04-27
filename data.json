@@ -164,6 +164,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777329541497.4346,
+            "equipName": "원판쟁기8련-04",
+            "equipSpec": "W82-DP/원판-8련",
+            "personName": "사택환",
+            "days": 1,
+            "startDate": "2026-04-27",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
