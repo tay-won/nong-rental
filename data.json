@@ -3455,7 +3455,7 @@
             "personName": "박다롱",
             "days": 1,
             "startDate": "2026-04-24",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 90,
