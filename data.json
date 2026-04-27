@@ -2959,8 +2959,8 @@
             "personName": "안옥분",
             "days": 1,
             "startDate": "2026-04-26",
-            "outDone": false,
-            "inDone": false,
+            "outDone": true,
+            "inDone": true,
             "site": "본소",
             "baseMins": 40,
             "delivery": false
