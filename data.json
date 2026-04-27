@@ -3076,7 +3076,7 @@
             "personName": "배승례",
             "days": 3,
             "startDate": "2026-04-26",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
