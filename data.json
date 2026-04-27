@@ -2233,6 +2233,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777265989072.8752,
+            "equipName": "관리기-로터리-02",
+            "equipSpec": "AMC-900SM/로타리(중)",
+            "personName": "이성제",
+            "days": 1,
+            "startDate": "2026-05-01",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
