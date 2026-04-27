@@ -1,19 +1,5 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-04-27T01:33:36.676Z",
-        "reason": "우천",
-        "equipName": "논두렁조성기(대)-02",
-        "equipSpec": "TANTAN-K5/(대)",
-        "personName": "곽희용",
-        "days": 1,
-        "startDate": "2026-04-26",
-        "site": "북부",
-        "baseMins": 90,
-        "delivery": false
-      }
-    ],
     "2026-04-26": {
       "본소": {
         "workers": {
@@ -3178,6 +3164,7 @@
         "delivery": false
       }
     },
+    "_cancelled": [],
     "2026-04-24": {
       "본소": {
         "workers": {
@@ -4098,7 +4085,7 @@
             "equipName": "휴립피복기2조-02",
             "equipSpec": "WJCM-2000/휴립피복(2조)",
             "personName": "조동현",
-            "days": 3,
+            "days": 2,
             "startDate": "2026-04-23",
             "outDone": true,
             "inDone": false,
@@ -6890,18 +6877,5 @@
     "2026-06-06"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-04-27T01:33:36.676Z",
-      "reason": "우천",
-      "equipName": "논두렁조성기(대)-02",
-      "equipSpec": "TANTAN-K5/(대)",
-      "personName": "곽희용",
-      "days": 1,
-      "startDate": "2026-04-26",
-      "site": "북부",
-      "baseMins": 90,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
