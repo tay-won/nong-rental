@@ -955,19 +955,6 @@
         },
         "entries": [
           {
-            "id": 1776729573714.3245,
-            "equipName": "소형트랙터25HP-02",
-            "equipSpec": "CK250V/25HP",
-            "personName": "유영수",
-            "days": 1,
-            "startDate": "2026-04-29",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1776729582828.7385,
             "equipName": "로터베이터1150-02",
             "equipSpec": "DWR115GM/1150",
@@ -3043,6 +3030,18 @@
         "startDate": "2026-04-27",
         "site": "본소",
         "baseMins": 90,
+        "delivery": false
+      },
+      {
+        "cancelledAt": "2026-04-27T23:59:29.055Z",
+        "reason": "개인사정",
+        "equipName": "소형트랙터25HP-02",
+        "equipSpec": "CK250V/25HP",
+        "personName": "유영수",
+        "days": 1,
+        "startDate": "2026-04-29",
+        "site": "본소",
+        "baseMins": 50,
         "delivery": false
       }
     ],
@@ -7184,6 +7183,18 @@
       "startDate": "2026-04-27",
       "site": "본소",
       "baseMins": 90,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-04-27T23:59:29.055Z",
+      "reason": "개인사정",
+      "equipName": "소형트랙터25HP-02",
+      "equipSpec": "CK250V/25HP",
+      "personName": "유영수",
+      "days": 1,
+      "startDate": "2026-04-29",
+      "site": "본소",
+      "baseMins": 50,
       "delivery": false
     }
   ]
