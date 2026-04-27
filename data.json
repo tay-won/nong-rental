@@ -1626,6 +1626,19 @@
             "site": "북부",
             "baseMins": 60,
             "delivery": false
+          },
+          {
+            "id": 1777253788462.2427,
+            "equipName": "붐스프레이어-01",
+            "equipSpec": "BS-2000/600ℓ",
+            "personName": "최준호",
+            "days": 1,
+            "startDate": "2026-04-29",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 150,
+            "delivery": false
           }
         ],
         "delivery": false
