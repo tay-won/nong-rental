@@ -1,19 +1,5 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-04-27T22:52:51.488Z",
-        "reason": "개인사정",
-        "equipName": "동력제초기(보행)-01",
-        "equipSpec": "SGM71B/보행형",
-        "personName": "황중하",
-        "days": 1,
-        "startDate": "2026-04-27",
-        "site": "북부",
-        "baseMins": 60,
-        "delivery": false
-      }
-    ],
     "2026-04-27": {
       "본소": {
         "workers": {
@@ -2982,6 +2968,7 @@
         "delivery": false
       }
     },
+    "_cancelled": [],
     "2026-04-26": {
       "본소": {
         "workers": {
@@ -3865,7 +3852,7 @@
             "personName": "고원석",
             "days": 1,
             "startDate": "2026-04-25",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 60,
@@ -7110,18 +7097,5 @@
     "2026-06-13"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-04-27T22:52:51.488Z",
-      "reason": "개인사정",
-      "equipName": "동력제초기(보행)-01",
-      "equipSpec": "SGM71B/보행형",
-      "personName": "황중하",
-      "days": 1,
-      "startDate": "2026-04-27",
-      "site": "북부",
-      "baseMins": 60,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
