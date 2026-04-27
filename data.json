@@ -2,15 +2,15 @@
   "state": {
     "_cancelled": [
       {
-        "cancelledAt": "2026-04-27T04:54:19.276Z",
+        "cancelledAt": "2026-04-27T06:01:20.028Z",
         "reason": "개인사정",
-        "equipName": "퇴비살포기(소)-01",
-        "equipSpec": "GW-500H/500KG-퇴비",
-        "personName": "박재석",
-        "days": 2,
+        "equipName": "관리기-휴립피복기-03",
+        "equipSpec": "AMC-1000SM/휴립피복기(중)",
+        "personName": "조국현",
+        "days": 1,
         "startDate": "2026-04-27",
         "site": "북부",
-        "baseMins": 90,
+        "baseMins": 50,
         "delivery": false
       }
     ],
@@ -674,19 +674,6 @@
             "equipName": "관리기-로터리-04",
             "equipSpec": "AMC-1000SM/로타리(중)",
             "personName": "정용진",
-            "days": 1,
-            "startDate": "2026-04-27",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1776734066059.326,
-            "equipName": "관리기-휴립피복기-03",
-            "equipSpec": "AMC-1000SM/휴립피복기(중)",
-            "personName": "조국현",
             "days": 1,
             "startDate": "2026-04-27",
             "outDone": false,
@@ -6958,15 +6945,15 @@
   "rainy": [],
   "cancelled": [
     {
-      "cancelledAt": "2026-04-27T04:54:19.276Z",
+      "cancelledAt": "2026-04-27T06:01:20.028Z",
       "reason": "개인사정",
-      "equipName": "퇴비살포기(소)-01",
-      "equipSpec": "GW-500H/500KG-퇴비",
-      "personName": "박재석",
-      "days": 2,
+      "equipName": "관리기-휴립피복기-03",
+      "equipSpec": "AMC-1000SM/휴립피복기(중)",
+      "personName": "조국현",
+      "days": 1,
       "startDate": "2026-04-27",
       "site": "북부",
-      "baseMins": 90,
+      "baseMins": 50,
       "delivery": false
     }
   ]
