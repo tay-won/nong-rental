@@ -955,19 +955,6 @@
         },
         "entries": [
           {
-            "id": 1776729582828.7385,
-            "equipName": "로터베이터1150-02",
-            "equipSpec": "DWR115GM/1150",
-            "personName": "유영수",
-            "days": 1,
-            "startDate": "2026-04-29",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 40,
-            "delivery": false
-          },
-          {
             "id": 1776729595484.903,
             "equipName": "관리기-로터리-04",
             "equipSpec": "AMC-1000SM/로타리(중)",
@@ -3042,6 +3029,18 @@
         "startDate": "2026-04-29",
         "site": "본소",
         "baseMins": 50,
+        "delivery": false
+      },
+      {
+        "cancelledAt": "2026-04-27T23:59:31.358Z",
+        "reason": "개인사정",
+        "equipName": "로터베이터1150-02",
+        "equipSpec": "DWR115GM/1150",
+        "personName": "유영수",
+        "days": 1,
+        "startDate": "2026-04-29",
+        "site": "본소",
+        "baseMins": 40,
         "delivery": false
       }
     ],
@@ -7195,6 +7194,18 @@
       "startDate": "2026-04-29",
       "site": "본소",
       "baseMins": 50,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-04-27T23:59:31.358Z",
+      "reason": "개인사정",
+      "equipName": "로터베이터1150-02",
+      "equipSpec": "DWR115GM/1150",
+      "personName": "유영수",
+      "days": 1,
+      "startDate": "2026-04-29",
+      "site": "본소",
+      "baseMins": 40,
       "delivery": false
     }
   ]
