@@ -2208,19 +2208,6 @@
             "delivery": false
           },
           {
-            "id": 1777253952613.6377,
-            "equipName": "관리기-로터리-03",
-            "equipSpec": "AMC-1000SM/로타리(중)",
-            "personName": "신현국",
-            "days": 1,
-            "startDate": "2026-05-01",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1777254005173.0923,
             "equipName": "돌수집기-02",
             "equipSpec": "GWD-1400T/1400",
@@ -3190,7 +3177,20 @@
         "delivery": false
       }
     },
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-04-27T02:15:34.770Z",
+        "reason": "기타",
+        "equipName": "관리기-로터리-03",
+        "equipSpec": "AMC-1000SM/로타리(중)",
+        "personName": "신현국",
+        "days": 1,
+        "startDate": "2026-05-01",
+        "site": "북부",
+        "baseMins": 50,
+        "delivery": false
+      }
+    ],
     "2026-04-24": {
       "본소": {
         "workers": {
@@ -6903,5 +6903,18 @@
     "2026-06-06"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-04-27T02:15:34.770Z",
+      "reason": "기타",
+      "equipName": "관리기-로터리-03",
+      "equipSpec": "AMC-1000SM/로타리(중)",
+      "personName": "신현국",
+      "days": 1,
+      "startDate": "2026-05-01",
+      "site": "북부",
+      "baseMins": 50,
+      "delivery": false
+    }
+  ]
 }
