@@ -12,6 +12,18 @@
         "site": "북부",
         "baseMins": 150,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-04-27T01:32:42.482Z",
+        "reason": "개인사정",
+        "equipName": "논두렁조성기(대)-02",
+        "equipSpec": "TANTAN-K5/(대)",
+        "personName": "곽희용",
+        "days": 1,
+        "startDate": "2026-04-26",
+        "site": "북부",
+        "baseMins": 90,
+        "delivery": false
       }
     ],
     "2026-04-26": {
@@ -190,19 +202,6 @@
           "nb4": 420
         },
         "entries": [
-          {
-            "id": 1776732956270.1978,
-            "equipName": "논두렁조성기(대)-02",
-            "equipSpec": "TANTAN-K5/(대)",
-            "personName": "곽희용",
-            "days": 1,
-            "startDate": "2026-04-26",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
           {
             "id": 1776732964204.9783,
             "equipName": "굴착기(1톤)-04",
@@ -6823,6 +6822,18 @@
       "startDate": "2026-04-27",
       "site": "북부",
       "baseMins": 150,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-04-27T01:32:42.482Z",
+      "reason": "개인사정",
+      "equipName": "논두렁조성기(대)-02",
+      "equipSpec": "TANTAN-K5/(대)",
+      "personName": "곽희용",
+      "days": 1,
+      "startDate": "2026-04-26",
+      "site": "북부",
+      "baseMins": 90,
       "delivery": false
     }
   ]
