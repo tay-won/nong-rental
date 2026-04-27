@@ -2487,6 +2487,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777256224518.8918,
+            "equipName": "돌수집기-04",
+            "equipSpec": "SH-L1400B/1400",
+            "personName": "송양호",
+            "days": 2,
+            "startDate": "2026-05-03",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
