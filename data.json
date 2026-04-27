@@ -606,19 +606,6 @@
             "delivery": false
           },
           {
-            "id": 1776759296413.45,
-            "equipName": "관리기-피복기-02",
-            "equipSpec": "AMC-900SM/피복기(중)",
-            "personName": "표상규",
-            "days": 2,
-            "startDate": "2026-04-28",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1776906601994.935,
             "equipName": "원판쟁기10련-02",
             "equipSpec": "W300-DP/원판-10련",
@@ -3006,6 +2993,18 @@
         "site": "본소",
         "baseMins": 290,
         "delivery": true
+      },
+      {
+        "cancelledAt": "2026-04-27T22:44:21.593Z",
+        "reason": "기타",
+        "equipName": "관리기-피복기-02",
+        "equipSpec": "AMC-900SM/피복기(중)",
+        "personName": "표상규",
+        "days": 2,
+        "startDate": "2026-04-28",
+        "site": "본소",
+        "baseMins": 50,
+        "delivery": false
       }
     ],
     "2026-04-26": {
@@ -7148,6 +7147,18 @@
       "site": "본소",
       "baseMins": 290,
       "delivery": true
+    },
+    {
+      "cancelledAt": "2026-04-27T22:44:21.593Z",
+      "reason": "기타",
+      "equipName": "관리기-피복기-02",
+      "equipSpec": "AMC-900SM/피복기(중)",
+      "personName": "표상규",
+      "days": 2,
+      "startDate": "2026-04-28",
+      "site": "본소",
+      "baseMins": 50,
+      "delivery": false
     }
   ]
 }
