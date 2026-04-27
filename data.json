@@ -288,7 +288,7 @@
             "personName": "기술보급과",
             "days": 4,
             "startDate": "2026-04-26",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 140,
