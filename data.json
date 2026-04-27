@@ -2986,7 +2986,7 @@
             "days": 1,
             "startDate": "2026-04-26",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "본소",
             "baseMins": 90,
             "delivery": false
@@ -2998,7 +2998,7 @@
             "personName": "박영진",
             "days": 2,
             "startDate": "2026-04-26",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 90,
