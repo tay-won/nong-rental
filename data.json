@@ -1,6 +1,19 @@
 {
   "state": {
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-04-27T09:00:10.479Z",
+        "reason": "기타",
+        "equipName": "원판쟁기8련-02",
+        "equipSpec": "W82-DP/원판-8련",
+        "personName": "박다롱",
+        "days": 1,
+        "startDate": "2026-04-24",
+        "site": "본소",
+        "baseMins": 90,
+        "delivery": false
+      }
+    ],
     "2026-04-26": {
       "본소": {
         "workers": {
@@ -3441,19 +3454,6 @@
             "equipSpec": "W300-DP/원판-10련",
             "personName": "윤영주",
             "days": 2,
-            "startDate": "2026-04-24",
-            "outDone": true,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1777280392367.3325,
-            "equipName": "원판쟁기8련-02",
-            "equipSpec": "W82-DP/원판-8련",
-            "personName": "박다롱",
-            "days": 1,
             "startDate": "2026-04-24",
             "outDone": true,
             "inDone": false,
@@ -7071,5 +7071,18 @@
     "2026-06-13"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-04-27T09:00:10.479Z",
+      "reason": "기타",
+      "equipName": "원판쟁기8련-02",
+      "equipSpec": "W82-DP/원판-8련",
+      "personName": "박다롱",
+      "days": 1,
+      "startDate": "2026-04-24",
+      "site": "본소",
+      "baseMins": 90,
+      "delivery": false
+    }
+  ]
 }
