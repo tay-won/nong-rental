@@ -2907,6 +2907,19 @@
             "site": "북부",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1777272020820.4763,
+            "equipName": "로터베이터2150-01",
+            "equipSpec": "WR2150DGWJ/2150",
+            "personName": "윤충성",
+            "days": 2,
+            "startDate": "2026-05-08",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
