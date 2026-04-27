@@ -29,7 +29,7 @@
             "personName": "박우미",
             "days": 1,
             "startDate": "2026-04-27",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "본소",
             "baseMins": 290,
