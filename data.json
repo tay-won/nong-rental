@@ -1,6 +1,19 @@
 {
   "state": {
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-04-27T01:31:41.180Z",
+        "reason": "개인사정",
+        "equipName": "퇴비살포기(중)-02",
+        "equipSpec": "HM-3000/3.5TON-퇴비",
+        "personName": "정재정",
+        "days": 3,
+        "startDate": "2026-04-27",
+        "site": "북부",
+        "baseMins": 150,
+        "delivery": false
+      }
+    ],
     "2026-04-26": {
       "본소": {
         "workers": {
@@ -771,19 +784,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1776757208503.406,
-            "equipName": "퇴비살포기(중)-02",
-            "equipSpec": "HM-3000/3.5TON-퇴비",
-            "personName": "정재정",
-            "days": 3,
-            "startDate": "2026-04-27",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 150,
             "delivery": false
           },
           {
@@ -6812,5 +6812,18 @@
     "2026-06-06"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-04-27T01:31:41.180Z",
+      "reason": "개인사정",
+      "equipName": "퇴비살포기(중)-02",
+      "equipSpec": "HM-3000/3.5TON-퇴비",
+      "personName": "정재정",
+      "days": 3,
+      "startDate": "2026-04-27",
+      "site": "북부",
+      "baseMins": 150,
+      "delivery": false
+    }
+  ]
 }
