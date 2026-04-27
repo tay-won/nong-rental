@@ -811,6 +811,19 @@
             "site": "북부",
             "baseMins": 60,
             "delivery": false
+          },
+          {
+            "id": 1777253647100.4875,
+            "equipName": "논두렁조성기(대)-02",
+            "equipSpec": "TANTAN-K5/(대)",
+            "personName": "곽희용",
+            "days": 1,
+            "startDate": "2026-04-27",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
