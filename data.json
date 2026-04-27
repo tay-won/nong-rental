@@ -210,7 +210,7 @@
             "personName": "신월철",
             "days": 1,
             "startDate": "2026-04-26",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -3698,7 +3698,7 @@
             "days": 1,
             "startDate": "2026-04-25",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
