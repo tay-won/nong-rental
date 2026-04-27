@@ -16,7 +16,7 @@
             "personName": "고석현",
             "days": 1,
             "startDate": "2026-04-27",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
