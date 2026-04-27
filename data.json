@@ -1822,15 +1822,15 @@
           },
           {
             "id": 1777021536391.671,
-            "equipName": "원판쟁기6련-02",
-            "equipSpec": "W62-DP/원판-6련",
+            "equipName": "원판쟁기8련-03",
+            "equipSpec": "W82-DP/원판-8련",
             "personName": "조응연",
             "days": 2,
             "startDate": "2026-04-30",
             "outDone": false,
             "inDone": false,
             "site": "북부",
-            "baseMins": 60,
+            "baseMins": 90,
             "delivery": false
           },
           {
