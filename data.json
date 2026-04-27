@@ -643,6 +643,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777329747422.9685,
+            "equipName": "원판쟁기6련-01",
+            "equipSpec": "W62-DP/원판-6련",
+            "personName": "강봉희",
+            "days": 1,
+            "startDate": "2026-04-28",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
