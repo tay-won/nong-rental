@@ -2207,6 +2207,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777254005173.0923,
+            "equipName": "돌수집기-02",
+            "equipSpec": "GWD-1400T/1400",
+            "personName": "우관제",
+            "days": 2,
+            "startDate": "2026-05-01",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
