@@ -2693,6 +2693,19 @@
             "site": "북부",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1777356011325.4485,
+            "equipName": "관리기-로터리-03",
+            "equipSpec": "AMC-1000SM/로타리(중)",
+            "personName": "남승우",
+            "days": 1,
+            "startDate": "2026-05-06",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
