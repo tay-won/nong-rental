@@ -190,6 +190,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777413802020.307,
+            "equipName": "관리기-구굴기(소)-01",
+            "equipSpec": "ASC-640/구굴기(소)",
+            "personName": "한건수",
+            "days": 1,
+            "startDate": "2026-04-28",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
