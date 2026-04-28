@@ -1,19 +1,6 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-04-28T23:20:51.828Z",
-        "reason": "개인사정",
-        "equipName": "보통쟁기(3련)-01",
-        "equipSpec": "KP300A/보통-3련",
-        "personName": "홍천희",
-        "days": 1,
-        "startDate": "2026-04-28",
-        "site": "북부",
-        "baseMins": 60,
-        "delivery": false
-      }
-    ],
+    "_cancelled": [],
     "2026-04-28": {
       "본소": {
         "workers": {
@@ -275,7 +262,7 @@
             "personName": "이종길",
             "days": 1,
             "startDate": "2026-04-28",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
@@ -7674,18 +7661,5 @@
     "2026-06-13"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-04-28T23:20:51.828Z",
-      "reason": "개인사정",
-      "equipName": "보통쟁기(3련)-01",
-      "equipSpec": "KP300A/보통-3련",
-      "personName": "홍천희",
-      "days": 1,
-      "startDate": "2026-04-28",
-      "site": "북부",
-      "baseMins": 60,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
