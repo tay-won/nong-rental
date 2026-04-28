@@ -2141,6 +2141,19 @@
             "site": "본소",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1777335310402.0146,
+            "equipName": "동력운반차-01",
+            "equipSpec": "TKT-600B/궤도",
+            "personName": "문덕근",
+            "days": 1,
+            "startDate": "2026-05-03",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 80,
+            "delivery": false
           }
         ],
         "delivery": false
