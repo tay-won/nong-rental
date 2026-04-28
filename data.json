@@ -2902,7 +2902,21 @@
           "bs3": 420,
           "bs4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1777414527723.127,
+            "equipName": "굴착기(1톤)-05",
+            "equipSpec": "U-10-5/1TON",
+            "personName": "이주성",
+            "days": 1,
+            "startDate": "2026-05-12",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 330,
+            "delivery": true
+          }
+        ],
         "delivery": false
       },
       "북부": {
