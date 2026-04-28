@@ -1,19 +1,6 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-04-28T01:44:14.542Z",
-        "reason": "개인사정",
-        "equipName": "돌수집기-03",
-        "equipSpec": "SH-L1400B/1400",
-        "personName": "이윤석",
-        "days": 1,
-        "startDate": "2026-04-27",
-        "site": "북부",
-        "baseMins": 90,
-        "delivery": false
-      }
-    ],
+    "_cancelled": [],
     "2026-04-27": {
       "본소": {
         "workers": {
@@ -908,6 +895,19 @@
             "equipName": "관리기-로터리-05",
             "equipSpec": "AMC-1000SM/로타리(중)",
             "personName": "황중하",
+            "days": 1,
+            "startDate": "2026-04-28",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1777341162230.7773,
+            "equipName": "관리기-구굴기(소)-02",
+            "equipSpec": "ASC-640/구굴기(소)",
+            "personName": "장용환",
             "days": 1,
             "startDate": "2026-04-28",
             "outDone": false,
@@ -7439,18 +7439,5 @@
     "2026-06-13"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-04-28T01:44:14.542Z",
-      "reason": "개인사정",
-      "equipName": "돌수집기-03",
-      "equipSpec": "SH-L1400B/1400",
-      "personName": "이윤석",
-      "days": 1,
-      "startDate": "2026-04-27",
-      "site": "북부",
-      "baseMins": 90,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
