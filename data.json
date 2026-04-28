@@ -398,19 +398,6 @@
             "delivery": false
           },
           {
-            "id": 1776904387764.4287,
-            "equipName": "논두렁조성기(중)-04",
-            "equipSpec": "WJLF750/(중)",
-            "personName": "문광배",
-            "days": 2,
-            "startDate": "2026-04-27",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
             "id": 1776917672485.7798,
             "equipName": "굴착기(1톤)-05",
             "equipSpec": "U-10-5/1TON",
@@ -3418,6 +3405,18 @@
         "days": 2,
         "startDate": "2026-04-27",
         "site": "본소",
+        "baseMins": 90,
+        "delivery": false
+      },
+      {
+        "cancelledAt": "2026-04-28T00:42:03.641Z",
+        "reason": "개인사정",
+        "equipName": "논두렁조성기(중)-04",
+        "equipSpec": "WJLF750/(중)",
+        "personName": "문광배",
+        "days": 2,
+        "startDate": "2026-04-27",
+        "site": "북부",
         "baseMins": 90,
         "delivery": false
       }
@@ -7619,6 +7618,18 @@
       "days": 2,
       "startDate": "2026-04-27",
       "site": "본소",
+      "baseMins": 90,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-04-28T00:42:03.641Z",
+      "reason": "개인사정",
+      "equipName": "논두렁조성기(중)-04",
+      "equipSpec": "WJLF750/(중)",
+      "personName": "문광배",
+      "days": 2,
+      "startDate": "2026-04-27",
+      "site": "북부",
       "baseMins": 90,
       "delivery": false
     }
