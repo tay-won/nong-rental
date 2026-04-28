@@ -3156,7 +3156,21 @@
           "bs3": 420,
           "bs4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1777335936245.0657,
+            "equipName": "탈곡기(궤도)-05",
+            "equipSpec": "PBTA1200/궤도",
+            "personName": "정정실",
+            "days": 1,
+            "startDate": "2026-05-13",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 350,
+            "delivery": true
+          }
+        ],
         "delivery": false
       },
       "북부": {
