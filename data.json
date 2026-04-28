@@ -1,6 +1,19 @@
 {
   "state": {
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-04-28T02:33:12.422Z",
+        "reason": "개인사정",
+        "equipName": "굴착기(1톤)-05",
+        "equipSpec": "U-10-5/1TON",
+        "personName": "한만학",
+        "days": 1,
+        "startDate": "2026-05-01",
+        "site": "북부",
+        "baseMins": 90,
+        "delivery": false
+      }
+    ],
     "2026-04-27": {
       "본소": {
         "workers": {
@@ -1779,19 +1792,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 40,
-            "delivery": false
-          },
-          {
-            "id": 1776734709044.1902,
-            "equipName": "굴착기(1톤)-05",
-            "equipSpec": "U-10-5/1TON",
-            "personName": "한만학",
-            "days": 1,
-            "startDate": "2026-05-01",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
             "delivery": false
           },
           {
@@ -7439,5 +7439,18 @@
     "2026-06-13"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-04-28T02:33:12.422Z",
+      "reason": "개인사정",
+      "equipName": "굴착기(1톤)-05",
+      "equipSpec": "U-10-5/1TON",
+      "personName": "한만학",
+      "days": 1,
+      "startDate": "2026-05-01",
+      "site": "북부",
+      "baseMins": 90,
+      "delivery": false
+    }
+  ]
 }
