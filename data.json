@@ -1,5 +1,6 @@
 {
   "state": {
+    "_cancelled": [],
     "2026-04-28": {
       "본소": {
         "workers": {
@@ -3166,7 +3167,6 @@
         "delivery": false
       }
     },
-    "_cancelled": [],
     "2026-04-27": {
       "본소": {
         "workers": {
@@ -3481,7 +3481,7 @@
             "days": 1,
             "startDate": "2026-04-27",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
