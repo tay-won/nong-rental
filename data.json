@@ -1,5 +1,6 @@
 {
   "state": {
+    "_cancelled": [],
     "2026-04-27": {
       "본소": {
         "workers": {
@@ -209,7 +210,7 @@
             "personName": "이윤석",
             "days": 1,
             "startDate": "2026-04-27",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -3323,104 +3324,6 @@
         "delivery": false
       }
     },
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-04-27T23:57:23.891Z",
-        "reason": "개인사정",
-        "equipName": "돌수집기-02",
-        "equipSpec": "DR-1400T/1400",
-        "personName": "이학수",
-        "days": 2,
-        "startDate": "2026-04-26",
-        "site": "본소",
-        "baseMins": 90,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-04-27T23:58:07.196Z",
-        "reason": "개인사정",
-        "equipName": "원판쟁기8련-01",
-        "equipSpec": "W82-DP/원판-8련",
-        "personName": "이병문",
-        "days": 2,
-        "startDate": "2026-04-27",
-        "site": "본소",
-        "baseMins": 90,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-04-27T23:59:29.055Z",
-        "reason": "개인사정",
-        "equipName": "소형트랙터25HP-02",
-        "equipSpec": "CK250V/25HP",
-        "personName": "유영수",
-        "days": 1,
-        "startDate": "2026-04-29",
-        "site": "본소",
-        "baseMins": 50,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-04-27T23:59:31.358Z",
-        "reason": "개인사정",
-        "equipName": "로터베이터1150-02",
-        "equipSpec": "DWR115GM/1150",
-        "personName": "유영수",
-        "days": 1,
-        "startDate": "2026-04-29",
-        "site": "본소",
-        "baseMins": 40,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-04-27T23:59:57.300Z",
-        "reason": "개인사정",
-        "equipName": "굴착기(1톤)-01",
-        "equipSpec": "U-10-3/1TON",
-        "personName": "김신곤",
-        "days": 2,
-        "startDate": "2026-04-29",
-        "site": "본소",
-        "baseMins": 90,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-04-28T00:21:29.607Z",
-        "reason": "개인사정",
-        "equipName": "로터베이터1150-03",
-        "equipSpec": "DWR115GM/1150",
-        "personName": "안옥분",
-        "days": 1,
-        "startDate": "2026-05-07",
-        "site": "본소",
-        "baseMins": 40,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-04-28T00:40:26.774Z",
-        "reason": "개인사정",
-        "equipName": "굴착기(1톤)-02",
-        "equipSpec": "U-10-3/1TON",
-        "personName": "정회순",
-        "days": 2,
-        "startDate": "2026-04-27",
-        "site": "본소",
-        "baseMins": 90,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-04-28T00:42:03.641Z",
-        "reason": "개인사정",
-        "equipName": "논두렁조성기(중)-04",
-        "equipSpec": "WJLF750/(중)",
-        "personName": "문광배",
-        "days": 2,
-        "startDate": "2026-04-27",
-        "site": "북부",
-        "baseMins": 90,
-        "delivery": false
-      }
-    ],
     "2026-04-26": {
       "본소": {
         "workers": {
@@ -7536,102 +7439,5 @@
     "2026-06-13"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-04-27T23:57:23.891Z",
-      "reason": "개인사정",
-      "equipName": "돌수집기-02",
-      "equipSpec": "DR-1400T/1400",
-      "personName": "이학수",
-      "days": 2,
-      "startDate": "2026-04-26",
-      "site": "본소",
-      "baseMins": 90,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-04-27T23:58:07.196Z",
-      "reason": "개인사정",
-      "equipName": "원판쟁기8련-01",
-      "equipSpec": "W82-DP/원판-8련",
-      "personName": "이병문",
-      "days": 2,
-      "startDate": "2026-04-27",
-      "site": "본소",
-      "baseMins": 90,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-04-27T23:59:29.055Z",
-      "reason": "개인사정",
-      "equipName": "소형트랙터25HP-02",
-      "equipSpec": "CK250V/25HP",
-      "personName": "유영수",
-      "days": 1,
-      "startDate": "2026-04-29",
-      "site": "본소",
-      "baseMins": 50,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-04-27T23:59:31.358Z",
-      "reason": "개인사정",
-      "equipName": "로터베이터1150-02",
-      "equipSpec": "DWR115GM/1150",
-      "personName": "유영수",
-      "days": 1,
-      "startDate": "2026-04-29",
-      "site": "본소",
-      "baseMins": 40,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-04-27T23:59:57.300Z",
-      "reason": "개인사정",
-      "equipName": "굴착기(1톤)-01",
-      "equipSpec": "U-10-3/1TON",
-      "personName": "김신곤",
-      "days": 2,
-      "startDate": "2026-04-29",
-      "site": "본소",
-      "baseMins": 90,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-04-28T00:21:29.607Z",
-      "reason": "개인사정",
-      "equipName": "로터베이터1150-03",
-      "equipSpec": "DWR115GM/1150",
-      "personName": "안옥분",
-      "days": 1,
-      "startDate": "2026-05-07",
-      "site": "본소",
-      "baseMins": 40,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-04-28T00:40:26.774Z",
-      "reason": "개인사정",
-      "equipName": "굴착기(1톤)-02",
-      "equipSpec": "U-10-3/1TON",
-      "personName": "정회순",
-      "days": 2,
-      "startDate": "2026-04-27",
-      "site": "본소",
-      "baseMins": 90,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-04-28T00:42:03.641Z",
-      "reason": "개인사정",
-      "equipName": "논두렁조성기(중)-04",
-      "equipSpec": "WJLF750/(중)",
-      "personName": "문광배",
-      "days": 2,
-      "startDate": "2026-04-27",
-      "site": "북부",
-      "baseMins": 90,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
