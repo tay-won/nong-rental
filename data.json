@@ -250,7 +250,7 @@
             "days": 1,
             "startDate": "2026-04-27",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "북부",
             "baseMins": 40,
             "delivery": false
@@ -901,6 +901,19 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1777357731083.3354,
+            "equipName": "논두렁조성기(중)-01",
+            "equipSpec": "WJLF750/(중)",
+            "personName": "김태영",
+            "days": 1,
+            "startDate": "2026-04-28",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
             "delivery": false
           }
         ],
