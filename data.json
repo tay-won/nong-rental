@@ -2897,6 +2897,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1777354532350.5208,
+            "equipName": "비료동력살포기-03",
+            "equipSpec": "MD-7030/입제",
+            "personName": "이수복",
+            "days": 1,
+            "startDate": "2026-05-08",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 40,
+            "delivery": false
           }
         ],
         "delivery": false
