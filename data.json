@@ -1341,6 +1341,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777334948538.743,
+            "equipName": "관리기-구굴기(소)-03",
+            "equipSpec": "ASC-640/구굴기(소)",
+            "personName": "김평수",
+            "days": 1,
+            "startDate": "2026-04-30",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
