@@ -2317,8 +2317,8 @@
             "outDone": false,
             "inDone": false,
             "site": "본소",
-            "baseMins": 80,
-            "delivery": false
+            "baseMins": 320,
+            "delivery": true
           },
           {
             "id": 1777335608789.9553,
