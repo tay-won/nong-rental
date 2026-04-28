@@ -146,7 +146,7 @@
             "personName": "임몽용",
             "days": 1,
             "startDate": "2026-04-28",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
