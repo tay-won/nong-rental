@@ -1225,6 +1225,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777355283435.2903,
+            "equipName": "피복기-인력-01",
+            "equipSpec": "BG-777B/8자",
+            "personName": "이경택",
+            "days": 1,
+            "startDate": "2026-04-29",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 40,
+            "delivery": false
           }
         ],
         "delivery": false
