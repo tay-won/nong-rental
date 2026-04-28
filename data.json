@@ -1380,6 +1380,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777414109320.81,
+            "equipName": "관리기-구굴기(중)-05",
+            "equipSpec": "AMC-1000SM/구굴기(중)",
+            "personName": "김정희",
+            "days": 1,
+            "startDate": "2026-05-01",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
