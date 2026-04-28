@@ -203,6 +203,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777416675365.0232,
+            "equipName": "논두렁조성기(소)-04",
+            "equipSpec": "WJLF380/(소)",
+            "personName": "이병문",
+            "days": 1,
+            "startDate": "2026-04-28",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
