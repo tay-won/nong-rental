@@ -2412,6 +2412,19 @@
             "site": "본소",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1777335464607.5376,
+            "equipName": "관리기-구굴기(중)-05",
+            "equipSpec": "AMC-1000SM/구굴기(중)",
+            "personName": "김승철",
+            "days": 1,
+            "startDate": "2026-05-04",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
