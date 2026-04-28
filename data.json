@@ -1,19 +1,5 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-04-28T02:33:12.422Z",
-        "reason": "개인사정",
-        "equipName": "굴착기(1톤)-05",
-        "equipSpec": "U-10-5/1TON",
-        "personName": "한만학",
-        "days": 1,
-        "startDate": "2026-05-01",
-        "site": "북부",
-        "baseMins": 90,
-        "delivery": false
-      }
-    ],
     "2026-04-27": {
       "본소": {
         "workers": {
@@ -617,19 +603,6 @@
           "nb4": 420
         },
         "entries": [
-          {
-            "id": 1776734229806.9534,
-            "equipName": "관리기-휴립피복기-01",
-            "equipSpec": "AMC-900SM/휴립피복기(중)",
-            "personName": "김미숙",
-            "days": 1,
-            "startDate": "2026-04-28",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
           {
             "id": 1776734243526.9932,
             "equipName": "소형트랙터25HP-04",
@@ -3324,6 +3297,20 @@
         "delivery": false
       }
     },
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-04-28T05:06:30.903Z",
+        "reason": "기타",
+        "equipName": "관리기-휴립피복기-01",
+        "equipSpec": "AMC-900SM/휴립피복기(중)",
+        "personName": "김미숙",
+        "days": 1,
+        "startDate": "2026-04-28",
+        "site": "북부",
+        "baseMins": 50,
+        "delivery": false
+      }
+    ],
     "2026-04-26": {
       "본소": {
         "workers": {
@@ -7441,15 +7428,15 @@
   "rainy": [],
   "cancelled": [
     {
-      "cancelledAt": "2026-04-28T02:33:12.422Z",
-      "reason": "개인사정",
-      "equipName": "굴착기(1톤)-05",
-      "equipSpec": "U-10-5/1TON",
-      "personName": "한만학",
+      "cancelledAt": "2026-04-28T05:06:30.903Z",
+      "reason": "기타",
+      "equipName": "관리기-휴립피복기-01",
+      "equipSpec": "AMC-900SM/휴립피복기(중)",
+      "personName": "김미숙",
       "days": 1,
-      "startDate": "2026-05-01",
+      "startDate": "2026-04-28",
       "site": "북부",
-      "baseMins": 90,
+      "baseMins": 50,
       "delivery": false
     }
   ]
