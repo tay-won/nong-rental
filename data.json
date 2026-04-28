@@ -1987,7 +1987,21 @@
           "bs3": 420,
           "bs4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1777335221740.1409,
+            "equipName": "관리기-구굴기(소)-01",
+            "equipSpec": "ASC-640/구굴기(소)",
+            "personName": "배재윤",
+            "days": 1,
+            "startDate": "2026-05-02",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
+          }
+        ],
         "delivery": false
       },
       "북부": {
