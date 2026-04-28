@@ -1,6 +1,19 @@
 {
   "state": {
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-04-28T01:44:14.542Z",
+        "reason": "개인사정",
+        "equipName": "돌수집기-03",
+        "equipSpec": "SH-L1400B/1400",
+        "personName": "이윤석",
+        "days": 1,
+        "startDate": "2026-04-27",
+        "site": "북부",
+        "baseMins": 90,
+        "delivery": false
+      }
+    ],
     "2026-04-27": {
       "본소": {
         "workers": {
@@ -198,19 +211,6 @@
             "days": 1,
             "startDate": "2026-04-27",
             "outDone": true,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1776757124607.5295,
-            "equipName": "돌수집기-03",
-            "equipSpec": "SH-L1400B/1400",
-            "personName": "이윤석",
-            "days": 1,
-            "startDate": "2026-04-27",
-            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -7439,5 +7439,18 @@
     "2026-06-13"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-04-28T01:44:14.542Z",
+      "reason": "개인사정",
+      "equipName": "돌수집기-03",
+      "equipSpec": "SH-L1400B/1400",
+      "personName": "이윤석",
+      "days": 1,
+      "startDate": "2026-04-27",
+      "site": "북부",
+      "baseMins": 90,
+      "delivery": false
+    }
+  ]
 }
