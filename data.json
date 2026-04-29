@@ -605,6 +605,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777453636611.7432,
+            "equipName": "관리기-구굴기(중)-03",
+            "equipSpec": "AMC-900SM/구굴기(중)",
+            "personName": "손상철",
+            "days": 1,
+            "startDate": "2026-04-29",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
