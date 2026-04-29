@@ -69,7 +69,7 @@
             "personName": "박영창",
             "days": 1,
             "startDate": "2026-04-29",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
