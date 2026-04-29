@@ -2771,6 +2771,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777454206001.7053,
+            "equipName": "로터베이터1150-03",
+            "equipSpec": "DWR115GM/1150",
+            "personName": "성의석",
+            "days": 1,
+            "startDate": "2026-05-08",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 40,
+            "delivery": false
           }
         ],
         "delivery": false
