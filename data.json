@@ -1,19 +1,5 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-04-29T00:02:00.386Z",
-        "reason": "우천",
-        "equipName": "원판쟁기8련-04",
-        "equipSpec": "W82-DP/원판-8련",
-        "personName": "사택환",
-        "days": 1,
-        "startDate": "2026-04-27",
-        "site": "본소",
-        "baseMins": 90,
-        "delivery": false
-      }
-    ],
     "2026-04-28": {
       "본소": {
         "workers": {
@@ -875,6 +861,19 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 40,
+            "delivery": false
+          },
+          {
+            "id": 1777421554359.568,
+            "equipName": "승용관리기20HP-01",
+            "equipSpec": "CFM-2000/20HP",
+            "personName": "최준호",
+            "days": 1,
+            "startDate": "2026-04-29",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 140,
             "delivery": false
           }
         ],
@@ -3167,6 +3166,7 @@
         "delivery": false
       }
     },
+    "_cancelled": [],
     "2026-04-27": {
       "본소": {
         "workers": {
@@ -7661,18 +7661,5 @@
     "2026-06-13"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-04-29T00:02:00.386Z",
-      "reason": "우천",
-      "equipName": "원판쟁기8련-04",
-      "equipSpec": "W82-DP/원판-8련",
-      "personName": "사택환",
-      "days": 1,
-      "startDate": "2026-04-27",
-      "site": "본소",
-      "baseMins": 90,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
