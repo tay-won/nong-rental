@@ -1058,6 +1058,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777453878879.4172,
+            "equipName": "관리기-휴립피복기-01",
+            "equipSpec": "AMC-1000SM/휴립피복기(중)",
+            "personName": "이언성",
+            "days": 1,
+            "startDate": "2026-04-30",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
