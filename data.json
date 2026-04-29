@@ -618,6 +618,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777453692704.0178,
+            "equipName": "콩선별기-01",
+            "equipSpec": "BHB-2007/설치형",
+            "personName": "정만수",
+            "days": 1,
+            "startDate": "2026-04-29",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
