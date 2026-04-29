@@ -3386,6 +3386,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777455656174.6826,
+            "equipName": "잔가지파쇄기(대)-01",
+            "equipSpec": "DLK210E/2000kg/h",
+            "personName": "임현주",
+            "days": 1,
+            "startDate": "2026-05-16",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 320,
+            "delivery": true
           }
         ],
         "delivery": false
