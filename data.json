@@ -3176,6 +3176,19 @@
             "site": "본소",
             "baseMins": 330,
             "delivery": true
+          },
+          {
+            "id": 1777455446714.3474,
+            "equipName": "소형트랙터25HP-02",
+            "equipSpec": "CK250V/25HP",
+            "personName": "한기철",
+            "days": 1,
+            "startDate": "2026-05-12",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
