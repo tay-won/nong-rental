@@ -1,5 +1,6 @@
 {
   "state": {
+    "_cancelled": [],
     "2026-04-29": {
       "본소": {
         "workers": {
@@ -378,7 +379,7 @@
             "personName": "이경택",
             "days": 2,
             "startDate": "2026-04-29",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 40,
@@ -2945,7 +2946,6 @@
         "delivery": false
       }
     },
-    "_cancelled": [],
     "2026-04-28": {
       "본소": {
         "workers": {
