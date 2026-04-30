@@ -1363,6 +1363,19 @@
             "site": "북부",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1777515205857.5347,
+            "equipName": "평탄쟁기-02",
+            "equipSpec": "FDS-R6/평탄-6련",
+            "personName": "성정식",
+            "days": 1,
+            "startDate": "2026-05-02",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
