@@ -2325,6 +2325,23 @@ function openEditModal(startDk, site, idx) {
 function saveRainy(arr) {
   localStorage.setItem('rainy_' + GH_REPO, JSON.stringify(arr));
 }
+
+// ═══ 우천 관리 ═══
+function getRainy() {
+  try { return JSON.parse(localStorage.getItem('rainy_' + GH_REPO) || '[]'); } catch(e) { return []; }
+}
+function saveRainy(arr) {
+  localStorage.setItem('rainy_' + GH_REPO, JSON.stringify(arr));
+}
+function toggleRainy(dk) {
+  const rainy = getRainy();
+  const idx2 = rainy.indexOf(dk);
+  if(idx2 === -1) rainy.push(dk); else rainy.splice(idx2, 1);
+  saveRainy(rainy);
+  saveData();
+  renderAll();
+}
+
 function toggleRainy(dk) {
   const rainy = getRainy();
   const idx = rainy.indexOf(dk);
