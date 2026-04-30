@@ -1689,6 +1689,19 @@
             "site": "북부",
             "baseMins": 60,
             "delivery": false
+          },
+          {
+            "id": 1777536329222.685,
+            "equipName": "논두렁조성기(중)-04",
+            "equipSpec": "WJLF750/(중)",
+            "personName": "최연우",
+            "days": 1,
+            "startDate": "2026-05-03",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
