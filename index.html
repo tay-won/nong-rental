@@ -2522,14 +2522,13 @@ function saveEdit() {
   if(!entry) return;
 
   const deliveryMins = editDelivery ? 240 : 0;
-  // editStartDate.value는 브라우저가 UTC로 해석해서 하루 빠질 수 있음
-  // 원래 startDk와 비교해서 실제로 변경됐는지 확인
+  // input[type=date].value는 UTC 기준으로 하루 빠짐 → +1일 보정
   const rawDate = document.getElementById('editStartDate').value;
-  let newStartDate = startDk; // 기본값: 변경 없음
-  if(rawDate && rawDate !== startDk) {
-    // 날짜가 변경됐으면 T12:00:00 보정
-    const fd = new Date(rawDate + 'T12:00:00');
-    newStartDate = fd.getFullYear()+'-'+String(fd.getMonth()+1).padStart(2,'0')+'-'+String(fd.getDate()).padStart(2,'0');
+  let newStartDate = startDk;
+  if(rawDate) {
+    const fd = new Date(rawDate);
+    fd.setDate(fd.getDate() + 1); // +1일 보정
+    newStartDate = fd.toISOString().slice(0, 10);
   }
 
   entry.equipName  = editEquip.n;
