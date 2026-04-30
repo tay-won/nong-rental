@@ -1,5 +1,6 @@
 {
   "state": {
+    "_cancelled": [],
     "2026-04-29": {
       "본소": {
         "workers": {
@@ -519,7 +520,7 @@
             "personName": "조국현",
             "days": 2,
             "startDate": "2026-04-30",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -2254,19 +2255,6 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
-          },
-          {
-            "id": 1777539094487.7607,
-            "equipName": "관리기-구굴기(중)-03",
-            "equipSpec": "AMC-1000SM/구굴기(중)",
-            "personName": "마영철",
-            "days": 1,
-            "startDate": "2026-05-06",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
           }
         ],
         "delivery": false
@@ -3494,7 +3482,6 @@
         "delivery": false
       }
     },
-    "_cancelled": [],
     "2026-04-28": {
       "본소": {
         "workers": {
