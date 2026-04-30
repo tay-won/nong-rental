@@ -855,6 +855,33 @@ async function saveData(){
     setSyncUI('ok','저장 완료 · '+new Date().toLocaleTimeString('ko-KR'));
   } catch(e){
     setSyncUI('err','저장 실패: '+e.message);
+    // SHA 충돌(409)이면 최신 SHA 받아서 재시도
+    if(e.message.includes('409')) {
+      try {
+        const r2 = await fetch(GH_API+'?t='+Date.now(), {
+          headers: { Authorization: 'token '+GH_TOKEN, Accept: 'application/vnd.github.v3+json' }
+        });
+        const j2 = await r2.json();
+        ghSha = j2.sha;
+        // 재시도
+        body.sha = ghSha;
+        const r3 = await fetch(GH_API, {
+          method: 'PUT',
+          headers: { Authorization: 'token '+GH_TOKEN, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        if(r3.ok) {
+          const j3 = await r3.json();
+          ghSha = j3.content.sha;
+          setSyncUI('ok','저장 완료(재시도) · '+new Date().toLocaleTimeString('ko-KR'));
+        }
+      } catch(e2) {
+        setSyncUI('err','저장 실패(재시도): '+e2.message);
+      }
+    } else {
+      // 저장 실패 시 3초 후 재시도
+      setTimeout(() => saveData(), 3000);
+    }
   }
 }
 
