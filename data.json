@@ -382,6 +382,19 @@
             "site": "북부",
             "baseMins": 150,
             "delivery": false
+          },
+          {
+            "id": 1777514761638.8484,
+            "equipName": "돌수집기-03",
+            "equipSpec": "SH-L1400B/1400",
+            "personName": "김영수",
+            "days": 2,
+            "startDate": "2026-04-29",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
