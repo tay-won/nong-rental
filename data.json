@@ -1,31 +1,6 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-04-30T05:29:28.000Z",
-        "reason": "개인사정",
-        "equipName": "관리기-로터리-03",
-        "equipSpec": "AMC-1000SM/로타리(중)",
-        "personName": "박순섭",
-        "days": 1,
-        "startDate": "2026-04-30",
-        "site": "북부",
-        "baseMins": 50,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-04-30T06:00:14.646Z",
-        "reason": "기타",
-        "equipName": "관리기-휴립기-01",
-        "equipSpec": "AMC-900SM/휴립기(중)",
-        "personName": "유치삼",
-        "days": 1,
-        "startDate": "2026-04-30",
-        "site": "북부",
-        "baseMins": 50,
-        "delivery": false
-      }
-    ],
+    "_cancelled": [],
     "2026-04-29": {
       "본소": {
         "workers": {
@@ -3347,7 +3322,7 @@
             "equipName": "굴착기(1.7톤)-01",
             "equipSpec": "DX17Z-5/2TON",
             "personName": "전환식",
-            "days": 2,
+            "days": 3,
             "startDate": "2026-04-28",
             "outDone": true,
             "inDone": false,
@@ -7974,30 +7949,5 @@
     "2026-06-13"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-04-30T05:29:28.000Z",
-      "reason": "개인사정",
-      "equipName": "관리기-로터리-03",
-      "equipSpec": "AMC-1000SM/로타리(중)",
-      "personName": "박순섭",
-      "days": 1,
-      "startDate": "2026-04-30",
-      "site": "북부",
-      "baseMins": 50,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-04-30T06:00:14.646Z",
-      "reason": "기타",
-      "equipName": "관리기-휴립기-01",
-      "equipSpec": "AMC-900SM/휴립기(중)",
-      "personName": "유치삼",
-      "days": 1,
-      "startDate": "2026-04-30",
-      "site": "북부",
-      "baseMins": 50,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
