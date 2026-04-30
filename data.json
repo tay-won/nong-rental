@@ -1186,6 +1186,19 @@
             "site": "북부",
             "baseMins": 60,
             "delivery": false
+          },
+          {
+            "id": 1777535752857.24,
+            "equipName": "고구마수확기-03",
+            "equipSpec": "DRK-650/경운기용",
+            "personName": "박희호",
+            "days": 1,
+            "startDate": "2026-05-01",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
@@ -1643,19 +1656,6 @@
             "equipName": "관리기-구굴기(소)-02",
             "equipSpec": "ASC-640/구굴기(소)",
             "personName": "이병삼",
-            "days": 1,
-            "startDate": "2026-05-03",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1777535752857.24,
-            "equipName": "고구마수확기-03",
-            "equipSpec": "DRK-650/경운기용",
-            "personName": "박희호",
             "days": 1,
             "startDate": "2026-05-03",
             "outDone": false,
