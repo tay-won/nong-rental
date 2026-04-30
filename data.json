@@ -1,6 +1,19 @@
 {
   "state": {
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-04-30T08:13:25.486Z",
+        "reason": "기타",
+        "equipName": "소형트랙터25HP-02",
+        "equipSpec": "CK250V/25HP",
+        "personName": "정석희",
+        "days": 1,
+        "startDate": "2026-05-07",
+        "site": "북부",
+        "baseMins": 50,
+        "delivery": false
+      }
+    ],
     "2026-04-29": {
       "본소": {
         "workers": {
@@ -2447,19 +2460,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1777536748566.341,
-            "equipName": "소형트랙터25HP-02",
-            "equipSpec": "CK250V/25HP",
-            "personName": "정석희",
-            "days": 1,
-            "startDate": "2026-05-07",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
             "delivery": false
           },
           {
@@ -8288,5 +8288,18 @@
     "2026-06-13"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-04-30T08:13:25.486Z",
+      "reason": "기타",
+      "equipName": "소형트랙터25HP-02",
+      "equipSpec": "CK250V/25HP",
+      "personName": "정석희",
+      "days": 1,
+      "startDate": "2026-05-07",
+      "site": "북부",
+      "baseMins": 50,
+      "delivery": false
+    }
+  ]
 }
