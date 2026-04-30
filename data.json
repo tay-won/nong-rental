@@ -12,6 +12,18 @@
         "site": "북부",
         "baseMins": 60,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-04-30T02:04:35.760Z",
+        "reason": "개인사정",
+        "equipName": "돌수집기-03",
+        "equipSpec": "SH-L1400B/1400",
+        "personName": "김영수",
+        "days": 1,
+        "startDate": "2026-04-29",
+        "site": "북부",
+        "baseMins": 90,
+        "delivery": false
       }
     ],
     "2026-04-29": {
@@ -237,19 +249,6 @@
             "days": 3,
             "startDate": "2026-04-29",
             "outDone": true,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1776834943526.191,
-            "equipName": "돌수집기-03",
-            "equipSpec": "SH-L1400B/1400",
-            "personName": "김영수",
-            "days": 1,
-            "startDate": "2026-04-29",
-            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -7934,6 +7933,18 @@
       "startDate": "2026-04-28",
       "site": "북부",
       "baseMins": 60,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-04-30T02:04:35.760Z",
+      "reason": "개인사정",
+      "equipName": "돌수집기-03",
+      "equipSpec": "SH-L1400B/1400",
+      "personName": "김영수",
+      "days": 1,
+      "startDate": "2026-04-29",
+      "site": "북부",
+      "baseMins": 90,
       "delivery": false
     }
   ]
