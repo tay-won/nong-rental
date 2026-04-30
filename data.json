@@ -2781,6 +2781,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1777536902142.6846,
+            "equipName": "돌수집기-04",
+            "equipSpec": "SH-L1400B/1400",
+            "personName": "박병만",
+            "days": 2,
+            "startDate": "2026-05-09",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
