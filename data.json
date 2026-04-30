@@ -12,6 +12,18 @@
         "site": "북부",
         "baseMins": 50,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-04-30T00:05:20.392Z",
+        "reason": "개인사정",
+        "equipName": "로터베이터1150-01",
+        "equipSpec": "DWR115GM/1150",
+        "personName": "송영수",
+        "days": 1,
+        "startDate": "2026-04-29",
+        "site": "북부",
+        "baseMins": 40,
+        "delivery": false
       }
     ],
     "2026-04-29": {
@@ -137,19 +149,6 @@
             "site": "북부",
             "baseMins": 290,
             "delivery": true
-          },
-          {
-            "id": 1776734503574.6953,
-            "equipName": "로터베이터1150-01",
-            "equipSpec": "DWR115GM/1150",
-            "personName": "송영수",
-            "days": 1,
-            "startDate": "2026-04-29",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 40,
-            "delivery": false
           },
           {
             "id": 1776734517812.0166,
@@ -7947,6 +7946,18 @@
       "startDate": "2026-04-29",
       "site": "북부",
       "baseMins": 50,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-04-30T00:05:20.392Z",
+      "reason": "개인사정",
+      "equipName": "로터베이터1150-01",
+      "equipSpec": "DWR115GM/1150",
+      "personName": "송영수",
+      "days": 1,
+      "startDate": "2026-04-29",
+      "site": "북부",
+      "baseMins": 40,
       "delivery": false
     }
   ]
