@@ -730,6 +730,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777514908554.992,
+            "equipName": "관리기-구굴기(소)-02",
+            "equipSpec": "ASC-640/구굴기(소)",
+            "personName": "이학수",
+            "days": 1,
+            "startDate": "2026-04-30",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
