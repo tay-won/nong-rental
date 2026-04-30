@@ -1,31 +1,5 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-04-30T00:05:13.070Z",
-        "reason": "개인사정",
-        "equipName": "소형트랙터25HP-01",
-        "equipSpec": "CK250V/25HP",
-        "personName": "송영수",
-        "days": 1,
-        "startDate": "2026-04-29",
-        "site": "북부",
-        "baseMins": 50,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-04-30T00:05:20.392Z",
-        "reason": "개인사정",
-        "equipName": "로터베이터1150-01",
-        "equipSpec": "DWR115GM/1150",
-        "personName": "송영수",
-        "days": 1,
-        "startDate": "2026-04-29",
-        "site": "북부",
-        "baseMins": 40,
-        "delivery": false
-      }
-    ],
     "2026-04-29": {
       "본소": {
         "workers": {
@@ -45,8 +19,8 @@
             "outDone": false,
             "inDone": false,
             "site": "본소",
-            "baseMins": 50,
-            "delivery": false
+            "baseMins": 290,
+            "delivery": true
           },
           {
             "id": 1776729604776.6414,
@@ -2932,6 +2906,7 @@
         "delivery": false
       }
     },
+    "_cancelled": [],
     "2026-04-28": {
       "본소": {
         "workers": {
@@ -7935,30 +7910,5 @@
     "2026-06-13"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-04-30T00:05:13.070Z",
-      "reason": "개인사정",
-      "equipName": "소형트랙터25HP-01",
-      "equipSpec": "CK250V/25HP",
-      "personName": "송영수",
-      "days": 1,
-      "startDate": "2026-04-29",
-      "site": "북부",
-      "baseMins": 50,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-04-30T00:05:20.392Z",
-      "reason": "개인사정",
-      "equipName": "로터베이터1150-01",
-      "equipSpec": "DWR115GM/1150",
-      "personName": "송영수",
-      "days": 1,
-      "startDate": "2026-04-29",
-      "site": "북부",
-      "baseMins": 40,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
