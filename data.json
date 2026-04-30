@@ -2718,6 +2718,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777536872118.6355,
+            "equipName": "동력운반차-01",
+            "equipSpec": "TKT-600B/궤도",
+            "personName": "정붕채",
+            "days": 1,
+            "startDate": "2026-05-08",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 80,
+            "delivery": false
           }
         ],
         "delivery": false
