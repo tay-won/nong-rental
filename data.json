@@ -3063,6 +3063,19 @@
             "site": "북부",
             "baseMins": 330,
             "delivery": true
+          },
+          {
+            "id": 1777536983093.38,
+            "equipName": "소형트랙터25HP-01",
+            "equipSpec": "CK250V/25HP",
+            "personName": "김정호",
+            "days": 1,
+            "startDate": "2026-05-11",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
