@@ -1,31 +1,5 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-04-30T08:13:25.486Z",
-        "reason": "기타",
-        "equipName": "소형트랙터25HP-02",
-        "equipSpec": "CK250V/25HP",
-        "personName": "정석희",
-        "days": 1,
-        "startDate": "2026-05-07",
-        "site": "북부",
-        "baseMins": 50,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-04-30T08:13:28.342Z",
-        "reason": "기타",
-        "equipName": "쟁기(2련)-01",
-        "equipSpec": "SW-PN602/소형-2련",
-        "personName": "정석희",
-        "days": 1,
-        "startDate": "2026-05-07",
-        "site": "북부",
-        "baseMins": 40,
-        "delivery": false
-      }
-    ],
     "2026-04-29": {
       "본소": {
         "workers": {
@@ -2280,6 +2254,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1777539094487.7607,
+            "equipName": "관리기-구굴기(중)-03",
+            "equipSpec": "AMC-1000SM/구굴기(중)",
+            "personName": "마영철",
+            "days": 1,
+            "startDate": "2026-05-06",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
@@ -3507,6 +3494,7 @@
         "delivery": false
       }
     },
+    "_cancelled": [],
     "2026-04-28": {
       "본소": {
         "workers": {
@@ -8497,30 +8485,5 @@
     "2026-06-13"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-04-30T08:13:25.486Z",
-      "reason": "기타",
-      "equipName": "소형트랙터25HP-02",
-      "equipSpec": "CK250V/25HP",
-      "personName": "정석희",
-      "days": 1,
-      "startDate": "2026-05-07",
-      "site": "북부",
-      "baseMins": 50,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-04-30T08:13:28.342Z",
-      "reason": "기타",
-      "equipName": "쟁기(2련)-01",
-      "equipSpec": "SW-PN602/소형-2련",
-      "personName": "정석희",
-      "days": 1,
-      "startDate": "2026-05-07",
-      "site": "북부",
-      "baseMins": 40,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
