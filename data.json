@@ -3882,7 +3882,7 @@
             "days": 3,
             "startDate": "2026-04-27",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "북부",
             "baseMins": 80,
             "delivery": false
