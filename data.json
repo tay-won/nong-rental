@@ -1715,6 +1715,19 @@
             "site": "북부",
             "baseMins": 140,
             "delivery": false
+          },
+          {
+            "id": 1777536378030.3794,
+            "equipName": "붐스프레이어-01",
+            "equipSpec": "BS-2000/600ℓ",
+            "personName": "조창열",
+            "days": 2,
+            "startDate": "2026-05-03",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 150,
+            "delivery": false
           }
         ],
         "delivery": false
