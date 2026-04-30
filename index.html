@@ -2260,9 +2260,13 @@ function openEditModal(startDk, site, idx) {
   // 성명
   document.getElementById('editPersonInp').value = e.personName || '';
 
-  // 시작일
+  // 시작일 - timezone 보정
   const sdInput = document.getElementById('editStartDate');
-  if(sdInput) sdInput.value = e.startDate || editTarget.startDk;
+  if(sdInput) {
+    const sdStr = e.startDate || editTarget.startDk;
+    // YYYY-MM-DD 형식 그대로 사용 (timezone 변환 없이)
+    sdInput.value = sdStr.slice(0, 10);
+  }
 
   // 임대기간
   editDays = e.days;
