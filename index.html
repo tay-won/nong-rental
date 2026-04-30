@@ -429,7 +429,10 @@ select:focus{border-color:var(--accent)}
     <!-- 시작일 -->
     <div style="margin-bottom:10px">
       <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px">임대 시작일</label>
-      <input type="date" id="editStartDate" style="width:100%;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:7px;color:var(--text);font-size:13px;font-family:'Noto Sans KR',sans-serif">
+      <div style="position:relative;cursor:pointer" onclick="document.getElementById('editStartDate').showPicker()">
+        <input type="date" id="editStartDate" style="width:100%;padding:8px 36px 8px 10px;background:var(--bg);border:1px solid var(--border);border-radius:7px;color:var(--text);font-size:13px;font-family:'Noto Sans KR',sans-serif;cursor:pointer" onclick="this.showPicker()">
+        <span style="position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:14px">📅</span>
+      </div>
     </div>
     <!-- 임대기간 -->
     <div style="margin-bottom:10px">
