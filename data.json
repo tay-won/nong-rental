@@ -48,6 +48,18 @@
         "site": "북부",
         "baseMins": 50,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-04-30T02:15:08.720Z",
+        "reason": "개인사정",
+        "equipName": "굴착기(1톤)-02",
+        "equipSpec": "U-10-3S/1TON",
+        "personName": "이재권",
+        "days": 1,
+        "startDate": "2026-04-30",
+        "site": "북부",
+        "baseMins": 90,
+        "delivery": false
       }
     ],
     "2026-04-29": {
@@ -573,19 +585,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1776757517740.6782,
-            "equipName": "굴착기(1톤)-02",
-            "equipSpec": "U-10-3S/1TON",
-            "personName": "이재권",
-            "days": 1,
-            "startDate": "2026-04-30",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
             "delivery": false
           },
           {
@@ -8084,6 +8083,18 @@
       "startDate": "2026-04-29",
       "site": "북부",
       "baseMins": 50,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-04-30T02:15:08.720Z",
+      "reason": "개인사정",
+      "equipName": "굴착기(1톤)-02",
+      "equipSpec": "U-10-3S/1TON",
+      "personName": "이재권",
+      "days": 1,
+      "startDate": "2026-04-30",
+      "site": "북부",
+      "baseMins": 90,
       "delivery": false
     }
   ]
