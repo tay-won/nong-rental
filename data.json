@@ -1301,6 +1301,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777535765793.9568,
+            "equipName": "동력경운기-01",
+            "equipSpec": "DT100N/10HP",
+            "personName": "박희호",
+            "days": 1,
+            "startDate": "2026-05-02",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 40,
+            "delivery": false
           }
         ],
         "delivery": false
