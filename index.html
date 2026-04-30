@@ -2298,15 +2298,15 @@ function openEditModal(startDk, site, idx) {
   // 성명
   document.getElementById('editPersonInp').value = e.personName || '';
 
-  // 시작일 - 문자열 그대로 설정 (timezone 변환 없이)
+  // 시작일 - T12:00:00 고정으로 timezone 보정
   const sdInput = document.getElementById('editStartDate');
   if(sdInput) {
-    const sdVal = (e.startDate || editTarget.startDk).slice(0, 10);
-    sdInput.value = sdVal;
-    const picker = document.getElementById('editStartDatePicker');
-    if(picker) picker.value = sdVal;
-    const txt = document.getElementById('editStartDateTxt');
-    if(txt) txt.textContent = formatLocalDate(sdVal);
+    const sdStr = (e.startDate || editTarget.startDk).slice(0, 10);
+    const fixedDate = new Date(sdStr + 'T12:00:00');
+    const yyyy = fixedDate.getFullYear();
+    const mm = String(fixedDate.getMonth()+1).padStart(2,'0');
+    const dd = String(fixedDate.getDate()).padStart(2,'0');
+    sdInput.value = yyyy+'-'+mm+'-'+dd;
   }
 
   // 임대기간
@@ -2314,24 +2314,14 @@ function openEditModal(startDk, site, idx) {
   editDelivery = e.delivery || false;
   [1,2,3].forEach(n => document.getElementById('editDayBtn'+n).classList.toggle('active', n===editDays));
   const btnX = document.getElementById('editDayBtnX');
-  if(editDays > 3) {
-    btnX.classList.add('active');
-    btnX.textContent = editDays+'일';
-  } else {
-    btnX.classList.remove('active');
-    btnX.textContent = '📅 직접';
-  }
+  if(editDays > 3) { btnX.classList.add('active'); btnX.textContent = editDays+'일'; }
+  else { btnX.classList.remove('active'); btnX.textContent = '📅 직접'; }
   document.getElementById('editDeliveryToggle').classList.toggle('on', editDelivery);
   document.getElementById('editDeliveryChkSq').style.background = editDelivery ? 'var(--yellow)' : '';
-
   updateEditHalfInfo();
   document.getElementById('editModal').classList.remove('hidden');
 }
 
-// ═══ 우천 관리 ═══
-function getRainy() {
-  try { return JSON.parse(localStorage.getItem('rainy_' + GH_REPO) || '[]'); } catch(e) { return []; }
-}
 function saveRainy(arr) {
   localStorage.setItem('rainy_' + GH_REPO, JSON.stringify(arr));
 }
