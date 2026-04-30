@@ -3089,6 +3089,19 @@
             "site": "북부",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1777537009397.0671,
+            "equipName": "무논정지기2200-01",
+            "equipSpec": "WJS220/2200",
+            "personName": "윤석준",
+            "days": 1,
+            "startDate": "2026-05-11",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
