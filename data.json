@@ -1676,6 +1676,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777536296310.85,
+            "equipName": "보통쟁기(3련)-01",
+            "equipSpec": "KP300A/보통-3련",
+            "personName": "정붕채",
+            "days": 1,
+            "startDate": "2026-05-03",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
