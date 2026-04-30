@@ -3267,6 +3267,19 @@
             "site": "북부",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1777537068589.8806,
+            "equipName": "무논정지기2200-01",
+            "equipSpec": "WJS220/2200",
+            "personName": "정찬엽",
+            "days": 2,
+            "startDate": "2026-05-13",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
