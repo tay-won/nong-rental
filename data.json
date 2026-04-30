@@ -12,6 +12,18 @@
         "site": "북부",
         "baseMins": 50,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-04-30T08:13:28.342Z",
+        "reason": "기타",
+        "equipName": "쟁기(2련)-01",
+        "equipSpec": "SW-PN602/소형-2련",
+        "personName": "정석희",
+        "days": 1,
+        "startDate": "2026-05-07",
+        "site": "북부",
+        "baseMins": 40,
+        "delivery": false
       }
     ],
     "2026-04-29": {
@@ -2460,19 +2472,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1777536761494.2239,
-            "equipName": "쟁기(2련)-01",
-            "equipSpec": "SW-PN602/소형-2련",
-            "personName": "정석희",
-            "days": 1,
-            "startDate": "2026-05-07",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 40,
             "delivery": false
           }
         ],
@@ -8299,6 +8298,18 @@
       "startDate": "2026-05-07",
       "site": "북부",
       "baseMins": 50,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-04-30T08:13:28.342Z",
+      "reason": "기타",
+      "equipName": "쟁기(2련)-01",
+      "equipSpec": "SW-PN602/소형-2련",
+      "personName": "정석희",
+      "days": 1,
+      "startDate": "2026-05-07",
+      "site": "북부",
+      "baseMins": 40,
       "delivery": false
     }
   ]
