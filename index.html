@@ -429,9 +429,13 @@ select:focus{border-color:var(--accent)}
     <!-- 시작일 -->
     <div style="margin-bottom:10px">
       <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px">임대 시작일</label>
-      <div style="position:relative;cursor:pointer" onclick="document.getElementById('editStartDate').showPicker()">
-        <input type="date" id="editStartDate" style="width:100%;padding:8px 36px 8px 10px;background:var(--bg);border:1px solid var(--border);border-radius:7px;color:var(--text);font-size:13px;font-family:'Noto Sans KR',sans-serif;cursor:pointer" onclick="this.showPicker()">
-        <span style="position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:14px">📅</span>
+      <div style="position:relative;cursor:pointer;display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--bg);border:1px solid var(--border);border-radius:7px;" onclick="document.getElementById('editStartDatePicker').showPicker()">
+        <span id="editStartDateTxt" style="flex:1;color:var(--text);font-size:13px">날짜 선택</span>
+        <span style="color:var(--muted);font-size:14px">📅</span>
+        <input type="date" id="editStartDate" style="position:absolute;opacity:0;width:0;height:0;pointer-events:none"
+          oninput="document.getElementById('editStartDateTxt').textContent=formatLocalDate(this.value)">
+        <input type="date" id="editStartDatePicker" style="position:absolute;opacity:0;width:100%;height:100%;top:0;left:0;cursor:pointer"
+          oninput="document.getElementById('editStartDate').value=this.value;document.getElementById('editStartDateTxt').textContent=formatLocalDate(this.value)">
       </div>
     </div>
     <!-- 임대기간 -->
@@ -2275,6 +2279,13 @@ let editEquip  = null;
 let editDays   = 1;
 let editDelivery = false;
 
+function formatLocalDate(dateStr) {
+  if(!dateStr) return '날짜 선택';
+  const [y,m,d] = dateStr.split('-');
+  return y+'년 '+parseInt(m)+'월 '+parseInt(d)+'일';
+}
+
+
 function openEditModal(startDk, site, idx) {
   const e = state[startDk][site].entries[idx];
   if(!e) return;
@@ -2289,7 +2300,14 @@ function openEditModal(startDk, site, idx) {
 
   // 시작일 - 문자열 그대로 설정 (timezone 변환 없이)
   const sdInput = document.getElementById('editStartDate');
-  if(sdInput) sdInput.value = (e.startDate || editTarget.startDk).slice(0, 10);
+  if(sdInput) {
+    const sdVal = (e.startDate || editTarget.startDk).slice(0, 10);
+    sdInput.value = sdVal;
+    const picker = document.getElementById('editStartDatePicker');
+    if(picker) picker.value = sdVal;
+    const txt = document.getElementById('editStartDateTxt');
+    if(txt) txt.textContent = formatLocalDate(sdVal);
+  }
 
   // 임대기간
   editDays = e.days;
