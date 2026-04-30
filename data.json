@@ -24,6 +24,18 @@
         "site": "북부",
         "baseMins": 90,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-04-30T02:05:17.632Z",
+        "reason": "개인사정",
+        "equipName": "관리기-구굴기(소)-05",
+        "equipSpec": "ASC-640/구굴기(소)",
+        "personName": "이학수",
+        "days": 1,
+        "startDate": "2026-04-29",
+        "site": "북부",
+        "baseMins": 50,
+        "delivery": false
       }
     ],
     "2026-04-29": {
@@ -330,19 +342,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 60,
-            "delivery": false
-          },
-          {
-            "id": 1777256039513.156,
-            "equipName": "관리기-구굴기(소)-05",
-            "equipSpec": "ASC-640/구굴기(소)",
-            "personName": "이학수",
-            "days": 1,
-            "startDate": "2026-04-29",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
             "delivery": false
           },
           {
@@ -7945,6 +7944,18 @@
       "startDate": "2026-04-29",
       "site": "북부",
       "baseMins": 90,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-04-30T02:05:17.632Z",
+      "reason": "개인사정",
+      "equipName": "관리기-구굴기(소)-05",
+      "equipSpec": "ASC-640/구굴기(소)",
+      "personName": "이학수",
+      "days": 1,
+      "startDate": "2026-04-29",
+      "site": "북부",
+      "baseMins": 50,
       "delivery": false
     }
   ]
