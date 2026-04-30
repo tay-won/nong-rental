@@ -1,6 +1,19 @@
 {
   "state": {
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-04-29T23:59:59.235Z",
+        "reason": "개인사정",
+        "equipName": "관리기-쟁기-01",
+        "equipSpec": "AMC-900SM/쟁기(중)",
+        "personName": "허준수",
+        "days": 1,
+        "startDate": "2026-04-29",
+        "site": "본소",
+        "baseMins": 50,
+        "delivery": false
+      }
+    ],
     "2026-04-29": {
       "본소": {
         "workers": {
@@ -82,7 +95,7 @@
             "personName": "손상철",
             "days": 1,
             "startDate": "2026-04-29",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
@@ -93,19 +106,6 @@
             "equipName": "콩선별기-01",
             "equipSpec": "BHB-2007/설치형",
             "personName": "정만수",
-            "days": 1,
-            "startDate": "2026-04-29",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1777453756594.22,
-            "equipName": "관리기-쟁기-01",
-            "equipSpec": "AMC-900SM/쟁기(중)",
-            "personName": "허준수",
             "days": 1,
             "startDate": "2026-04-29",
             "outDone": false,
@@ -7949,5 +7949,18 @@
     "2026-06-13"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-04-29T23:59:59.235Z",
+      "reason": "개인사정",
+      "equipName": "관리기-쟁기-01",
+      "equipSpec": "AMC-900SM/쟁기(중)",
+      "personName": "허준수",
+      "days": 1,
+      "startDate": "2026-04-29",
+      "site": "본소",
+      "baseMins": 50,
+      "delivery": false
+    }
+  ]
 }
