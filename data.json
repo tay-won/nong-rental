@@ -60,6 +60,18 @@
         "site": "북부",
         "baseMins": 90,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-04-30T04:16:00.243Z",
+        "reason": "개인사정",
+        "equipName": "로터베이터1950-01",
+        "equipSpec": "WJ195B/1950",
+        "personName": "조규영",
+        "days": 1,
+        "startDate": "2026-04-29",
+        "site": "북부",
+        "baseMins": 60,
+        "delivery": false
       }
     ],
     "2026-04-29": {
@@ -324,19 +336,6 @@
             "days": 1,
             "startDate": "2026-04-29",
             "outDone": true,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 60,
-            "delivery": false
-          },
-          {
-            "id": 1777253772946.6926,
-            "equipName": "로터베이터1950-01",
-            "equipSpec": "WJ195B/1950",
-            "personName": "조규영",
-            "days": 1,
-            "startDate": "2026-04-29",
-            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 60,
@@ -8095,6 +8094,18 @@
       "startDate": "2026-04-30",
       "site": "북부",
       "baseMins": 90,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-04-30T04:16:00.243Z",
+      "reason": "개인사정",
+      "equipName": "로터베이터1950-01",
+      "equipSpec": "WJ195B/1950",
+      "personName": "조규영",
+      "days": 1,
+      "startDate": "2026-04-29",
+      "site": "북부",
+      "baseMins": 60,
       "delivery": false
     }
   ]
