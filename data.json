@@ -2948,6 +2948,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1777536937725.4136,
+            "equipName": "로터베이터2350-02",
+            "equipSpec": "AR5240SC/2350",
+            "personName": "김미경",
+            "days": 3,
+            "startDate": "2026-05-10",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
