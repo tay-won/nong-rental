@@ -2260,12 +2260,18 @@ function openEditModal(startDk, site, idx) {
   // 성명
   document.getElementById('editPersonInp').value = e.personName || '';
 
-  // 시작일 - timezone 보정
+  // 시작일 - 로컬 날짜로 설정
   const sdInput = document.getElementById('editStartDate');
   if(sdInput) {
-    const sdStr = e.startDate || editTarget.startDk;
-    // YYYY-MM-DD 형식 그대로 사용 (timezone 변환 없이)
-    sdInput.value = sdStr.slice(0, 10);
+    const sdStr = (e.startDate || editTarget.startDk).slice(0, 10);
+    // input[type=date]는 YYYY-MM-DD 문자열을 UTC로 파싱하므로
+    // 로컬 오프셋을 더해서 보정
+    const [y,m,d] = sdStr.split('-').map(Number);
+    const local = new Date(y, m-1, d); // 로컬 타임존으로 생성
+    const yyyy = local.getFullYear();
+    const mm = String(local.getMonth()+1).padStart(2,'0');
+    const dd = String(local.getDate()).padStart(2,'0');
+    sdInput.value = yyyy+'-'+mm+'-'+dd;
   }
 
   // 임대기간
