@@ -2705,6 +2705,19 @@
             "site": "북부",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1777536858279.5967,
+            "equipName": "고구마수확기-01",
+            "equipSpec": "DRK-650/경운기용",
+            "personName": "이치선",
+            "days": 1,
+            "startDate": "2026-05-08",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
