@@ -546,7 +546,7 @@
             "personName": "윤태오",
             "days": 3,
             "startDate": "2026-04-30",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -1287,6 +1287,19 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 60,
+            "delivery": false
+          },
+          {
+            "id": 1777535752857.24,
+            "equipName": "고구마수확기-03",
+            "equipSpec": "DRK-650/경운기용",
+            "personName": "박희호",
+            "days": 1,
+            "startDate": "2026-05-02",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
             "delivery": false
           }
         ],
