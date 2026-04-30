@@ -1,19 +1,6 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-04-29T23:59:59.235Z",
-        "reason": "개인사정",
-        "equipName": "관리기-쟁기-01",
-        "equipSpec": "AMC-900SM/쟁기(중)",
-        "personName": "허준수",
-        "days": 1,
-        "startDate": "2026-04-29",
-        "site": "본소",
-        "baseMins": 50,
-        "delivery": false
-      }
-    ],
+    "_cancelled": [],
     "2026-04-29": {
       "본소": {
         "workers": {
@@ -145,7 +132,7 @@
             "personName": "송영수",
             "days": 1,
             "startDate": "2026-04-29",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
@@ -7949,18 +7936,5 @@
     "2026-06-13"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-04-29T23:59:59.235Z",
-      "reason": "개인사정",
-      "equipName": "관리기-쟁기-01",
-      "equipSpec": "AMC-900SM/쟁기(중)",
-      "personName": "허준수",
-      "days": 1,
-      "startDate": "2026-04-29",
-      "site": "본소",
-      "baseMins": 50,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
