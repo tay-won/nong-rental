@@ -3608,7 +3608,7 @@
             "days": 2,
             "startDate": "2026-04-28",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "본소",
             "baseMins": 290,
             "delivery": true
@@ -3621,7 +3621,7 @@
             "days": 2,
             "startDate": "2026-04-28",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "본소",
             "baseMins": 40,
             "delivery": false
