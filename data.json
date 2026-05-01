@@ -2935,7 +2935,7 @@
             "personName": "표상규",
             "days": 3,
             "startDate": "2026-04-30",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
