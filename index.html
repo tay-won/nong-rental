@@ -2291,9 +2291,17 @@ function openEditModal(startDk, site, idx) {
   // 성명
   document.getElementById('editPersonInp').value = e.personName || '';
 
-  // 시작일 - 문자열 직접 설정 (YYYY-MM-DD 그대로)
+  // 시작일 - 로컬 날짜로 보정하여 세팅 (브라우저 UTC 파싱으로 하루 빠지는 현상 방지)
   const sdEl = document.getElementById('editStartDate');
-  if(sdEl) sdEl.value = (e.startDate || editTarget.startDk).slice(0, 10);
+  if(sdEl) {
+    const rawDk = (e.startDate || editTarget.startDk).slice(0, 10);
+    const parts = rawDk.split('-').map(Number);
+    // 로컬 시간 기준 Date 생성 → value에 세팅할 때 하루 안 빠짐
+    const localD = new Date(parts[0], parts[1]-1, parts[2]);
+    sdEl.value = localD.getFullYear()+'-'
+      +String(localD.getMonth()+1).padStart(2,'0')+'-'
+      +String(localD.getDate()).padStart(2,'0');
+  }
 
   // 임대기간
   editDays = e.days;
@@ -2508,20 +2516,12 @@ function saveEdit() {
   if(!entry) return;
 
   const deliveryMins = editDelivery ? 240 : 0;
-  // 날짜 읽기: input value가 비어있거나 안 바뀌면 원본 유지
+  // 날짜 읽기: input[type=date].value는 항상 YYYY-MM-DD 로컬 문자열 반환
+  // openEditModal에서 로컬 기준으로 세팅했으므로 그대로 사용하면 됨
   const sdEl2 = document.getElementById('editStartDate');
   const sdVal = sdEl2 ? sdEl2.value : '';
-  // input[type=date].value는 항상 YYYY-MM-DD 형식 반환
-  // 빈 값이거나 원본과 같으면 startDk 사용
-  let newStartDate = startDk;
-  if(sdVal && sdVal !== startDk) {
-    // 브라우저가 UTC로 파싱해서 하루 빠지므로 +1일 보정
-    const parts = sdVal.split('-').map(Number);
-    const corrected = new Date(parts[0], parts[1]-1, parts[2]+1);
-    newStartDate = corrected.getFullYear()+'-'
-      +String(corrected.getMonth()+1).padStart(2,'0')+'-'
-      +String(corrected.getDate()).padStart(2,'0');
-  }
+  // 빈 값이거나 원본과 같으면 startDk 유지
+  const newStartDate = (sdVal && sdVal !== startDk) ? sdVal : startDk;
 
   entry.equipName  = editEquip.n;
   entry.equipSpec  = editEquip.s || '';
