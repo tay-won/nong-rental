@@ -429,7 +429,11 @@ select:focus{border-color:var(--accent)}
     <!-- 시작일 -->
     <div style="margin-bottom:10px">
       <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px">임대 시작일</label>
-      <input type="date" id="editStartDate" style="width:100%;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:7px;color:var(--text);font-size:13px;font-family:'Noto Sans KR',sans-serif;cursor:pointer" onclick="try{this.showPicker()}catch(e){}">
+      <div style="display:flex;align-items:center;gap:8px">
+        <div id="editStartDateDisplay" style="flex:1;padding:8px 12px;background:var(--bg);border:1px solid var(--border);border-radius:7px;color:var(--text);font-size:13px;font-weight:700;font-family:'Noto Sans KR',sans-serif">–</div>
+        <button onclick="openEditStartDatePicker()" style="padding:7px 12px;background:transparent;border:1px solid var(--border);border-radius:7px;color:var(--muted);font-size:12px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;white-space:nowrap;transition:all .2s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">📅 변경</button>
+        <input type="date" id="editStartDate" style="display:none" onchange="onEditStartDateChange(this.value)">
+      </div>
     </div>
     <!-- 임대기간 -->
     <div style="margin-bottom:10px">
@@ -1145,9 +1149,9 @@ function getEquipStatus(equipName, siteName) {
 
     for(const {e} of entries) {
       // 입고일 계산 (원래 스케줄 기준)
-      const inDate = new Date(e.startDate);
+      const inDate = new Date((e.startDate||"")+"T12:00:00");
       inDate.setDate(inDate.getDate() + e.days - 1);
-      const inDk = inDate.toISOString().slice(0,10);
+      const inDk = inDate.getFullYear()+'-'+String(inDate.getMonth()+1).padStart(2,'0')+'-'+String(inDate.getDate()).padStart(2,'0');
 
       // 정비중: 오늘이 입고일 (실제 입고 여부와 무관)
       if(inDk === dk) return '정비중';
@@ -1192,9 +1196,9 @@ function renderInoutCols() {
       targetSites.forEach(site => {
         if(!state[startDk]||!state[startDk][site]) return;
         state[startDk][site].entries.forEach(e => {
-          const inDate = new Date(e.startDate);
+          const inDate = new Date((e.startDate||"")+"T12:00:00");
           inDate.setDate(inDate.getDate() + e.days - 1);
-          const inDk  = inDate.toISOString().slice(0,10);
+          const inDk  = inDate.getFullYear()+'-'+String(inDate.getMonth()+1).padStart(2,'0')+'-'+String(inDate.getDate()).padStart(2,'0');
           const outDk = e.startDate;
 
           const needOut = outDk === dk && !e.outDone;
@@ -1355,8 +1359,8 @@ function renderSelList(){
     Object.keys(state).forEach(startDk => {
       if(!state[startDk]||!state[startDk][st]) return;
       state[startDk][st].entries.forEach((e, idx2) => {
-        const start   = new Date(e.startDate);
-        const target  = new Date(dk);
+        const start   = new Date((e.startDate||"")+"T12:00:00");
+        const target  = new Date(dk+"T12:00:00");
         const diff    = Math.round((target - start) / 86400000);
         const lastDay = e.days - 1;
 
@@ -1883,7 +1887,7 @@ function collectInoutForDate(dk) {
     targetSites.forEach(site => {
       if(!state[startDk] || !state[startDk][site]) return;
       state[startDk][site].entries.forEach(e => {
-        const start = new Date(e.startDate);
+        const start = new Date((e.startDate||"")+"T12:00:00");
         const target = new Date(dk);
         const diff = Math.round((target - start) / 86400000);
         const lastDay = e.days - 1;
@@ -1927,14 +1931,16 @@ function renderTriDayPanel() {
 
     // entries 수집
     const rows = [];
+    const colDate = new Date(colDk+'T12:00:00'); // 로컬 정오 기준
     Object.keys(state).forEach(startDk => {
       targetSites.forEach(site => {
         if(!state[startDk]||!state[startDk][site]) return;
         state[startDk][site].entries.forEach((e,ei) => {
-          const diff = Math.round((new Date(colDk)-new Date(e.startDate))/86400000);
-          const inDkD = new Date(e.startDate);
+          const startDate = new Date((e.startDate||startDk)+'T12:00:00');
+          const diff = Math.round((colDate-startDate)/86400000);
+          const inDkD = new Date((e.startDate||startDk)+'T12:00:00');
           inDkD.setDate(inDkD.getDate()+e.days-1);
-          const inDk = inDkD.toISOString().slice(0,10);
+          const inDk = inDkD.getFullYear()+'-'+String(inDkD.getMonth()+1).padStart(2,'0')+'-'+String(inDkD.getDate()).padStart(2,'0');
           const isOut = diff===0;
           const isIn  = inDk===colDk;
           const isPastOut = e.outDone&&!e.inDone&&isIn;
@@ -2074,9 +2080,9 @@ function openInoutPopup() {
     targetSites.forEach(site => {
       if(!state[startDk]||!state[startDk][site]) return;
       state[startDk][site].entries.forEach(e => {
-        const start   = new Date(e.startDate);
+        const start   = new Date((e.startDate||"")+"T12:00:00");
         const outDk   = e.startDate; // 출고일 = 시작일
-        const inDate  = new Date(e.startDate);
+        const inDate  = new Date((e.startDate||"")+"T12:00:00");
         inDate.setDate(inDate.getDate() + e.days - 1);
         const inDk    = inDate.toISOString().slice(0,10); // 입고일
 
@@ -2291,16 +2297,16 @@ function openEditModal(startDk, site, idx) {
   // 성명
   document.getElementById('editPersonInp').value = e.personName || '';
 
-  // 시작일 - 로컬 날짜로 보정하여 세팅 (브라우저 UTC 파싱으로 하루 빠지는 현상 방지)
+  // 시작일 - 표시용 텍스트 세팅 + 숨겨진 input에 YYYY-MM-DD 저장
+  const rawDk = (e.startDate || editTarget.startDk).slice(0, 10);
   const sdEl = document.getElementById('editStartDate');
-  if(sdEl) {
-    const rawDk = (e.startDate || editTarget.startDk).slice(0, 10);
-    const parts = rawDk.split('-').map(Number);
-    // 로컬 시간 기준 Date 생성 → value에 세팅할 때 하루 안 빠짐
-    const localD = new Date(parts[0], parts[1]-1, parts[2]);
-    sdEl.value = localD.getFullYear()+'-'
-      +String(localD.getMonth()+1).padStart(2,'0')+'-'
-      +String(localD.getDate()).padStart(2,'0');
+  if(sdEl) sdEl.value = rawDk; // 숨겨진 input에 원본 날짜 저장
+  const disp = document.getElementById('editStartDateDisplay');
+  if(disp) {
+    const [y,m,d] = rawDk.split('-').map(Number);
+    const DOW3=['일','월','화','수','목','금','토'];
+    const ld = new Date(y,m-1,d);
+    disp.textContent = `${y}. ${String(m).padStart(2,'0')}. ${String(d).padStart(2,'0')}. (${DOW3[ld.getDay()]})`;
   }
 
   // 임대기간
@@ -2501,6 +2507,24 @@ function selectEditEquip(e) {
   document.getElementById('editSearchInp').value = e.n + (e.s?' / '+e.s:'');
   document.getElementById('editDropdown').classList.remove('open');
   updateEditHalfInfo();
+}
+
+function openEditStartDatePicker() {
+  const el = document.getElementById('editStartDate');
+  if(!el) return;
+  // 현재 값 기준으로 picker 열기
+  try { el.showPicker(); } catch(e) { el.click(); }
+}
+
+function onEditStartDateChange(val) {
+  if(!val) return;
+  // input[type=date].value는 YYYY-MM-DD 로컬 문자열 → 그대로 사용
+  const [y,m,d] = val.split('-').map(Number);
+  const DOW3=['일','월','화','수','목','금','토'];
+  const ld = new Date(y,m-1,d);
+  const disp = document.getElementById('editStartDateDisplay');
+  if(disp) disp.textContent = `${y}. ${String(m).padStart(2,'0')}. ${String(d).padStart(2,'0')}. (${DOW3[ld.getDay()]})`;
+  // 숨겨진 input value는 이미 브라우저가 YYYY-MM-DD로 업데이트했으므로 그대로
 }
 
 function saveEdit() {
