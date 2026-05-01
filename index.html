@@ -2519,13 +2519,12 @@ function openEditStartDatePicker() {
 
 function onEditStartDateChange(val) {
   if(!val) return;
-  // input[type=date].value는 YYYY-MM-DD 로컬 문자열 → 그대로 사용
   const [y,m,d] = val.split('-').map(Number);
   const DOW3=['일','월','화','수','목','금','토'];
   const ld = new Date(y,m-1,d);
   const disp = document.getElementById('editStartDateDisplay');
   if(disp) disp.textContent = `${y}. ${String(m).padStart(2,'0')}. ${String(d).padStart(2,'0')}. (${DOW3[ld.getDay()]})`;
-  // 숨겨진 input value는 이미 브라우저가 YYYY-MM-DD로 업데이트했으므로 그대로
+  // input value는 브라우저가 이미 YYYY-MM-DD로 세팅함 — saveEdit에서 읽어감
 }
 
 function saveEdit() {
@@ -2541,14 +2540,24 @@ function saveEdit() {
   if(!entry) return;
 
   const deliveryMins = editDelivery ? 240 : 0;
+  const sdEl2 = document.getElementById('editStartDate');
+  const newStartDate = (sdEl2 && sdEl2.value) ? sdEl2.value : startDk;
 
-  // startDate/startDk 변경 없이 내용만 수정 (날짜 이동 로직 제거)
   entry.equipName  = editEquip.n;
   entry.equipSpec  = editEquip.s || '';
   entry.personName = person;
   entry.days       = editDays;
   entry.baseMins   = editEquip.m + deliveryMins;
   entry.delivery   = editDelivery;
+  entry.startDate  = newStartDate;
+
+  // 날짜가 바뀐 경우 state 키 이동
+  if(newStartDate !== startDk) {
+    ensureDay(newStartDate);
+    if(!state[newStartDate][site]) state[newStartDate][site] = {workers:{}, entries:[]};
+    state[startDk][site].entries.splice(idx, 1);
+    state[newStartDate][site].entries.push(entry);
+  }
 
   if(saveTimer) clearTimeout(saveTimer);
   saveData();
