@@ -2298,16 +2298,18 @@ function openEditModal(startDk, site, idx) {
   // 성명
   document.getElementById('editPersonInp').value = e.personName || '';
 
-  // 시작일 - T12:00:00 고정으로 timezone 보정
-  const sdInput = document.getElementById('editStartDate');
-  if(sdInput) {
-    const sdStr = (e.startDate || editTarget.startDk).slice(0, 10);
-    const fixedDate = new Date(sdStr + 'T12:00:00');
-    const yyyy = fixedDate.getFullYear();
-    const mm = String(fixedDate.getMonth()+1).padStart(2,'0');
-    const dd = String(fixedDate.getDate()).padStart(2,'0');
-    sdInput.value = yyyy+'-'+mm+'-'+dd;
-  }
+  // 시작일 - select로 설정 (timezone 문제 없음)
+  const sdStr = (e.startDate || editTarget.startDk).slice(0, 10);
+  const [sy, sm, sd2] = sdStr.split('-').map(Number);
+  const yearSel = document.getElementById('editStartYear');
+  const monSel  = document.getElementById('editStartMonth');
+  const daySel  = document.getElementById('editStartDay');
+  // 년도 옵션 (현재 연도 ±1)
+  yearSel.innerHTML = [sy-1,sy,sy+1].map(y=>`<option value="${y}"${y===sy?' selected':''}>${y}년</option>`).join('');
+  // 월 옵션
+  monSel.innerHTML = Array.from({length:12},(_,i)=>i+1).map(m=>`<option value="${m}"${m===sm?' selected':''}>${m}월</option>`).join('');
+  // 일 옵션
+  daySel.innerHTML = Array.from({length:31},(_,i)=>i+1).map(d=>`<option value="${d}"${d===sd2?' selected':''}>${d}일</option>`).join('');
 
   // 임대기간
   editDays = e.days;
@@ -2522,14 +2524,11 @@ function saveEdit() {
   if(!entry) return;
 
   const deliveryMins = editDelivery ? 240 : 0;
-  // input[type=date].value는 UTC 기준으로 하루 빠짐 → +1일 보정
-  const rawDate = document.getElementById('editStartDate').value;
-  let newStartDate = startDk;
-  if(rawDate) {
-    const fd = new Date(rawDate);
-    fd.setDate(fd.getDate() + 1); // +1일 보정
-    newStartDate = fd.toISOString().slice(0, 10);
-  }
+  // select에서 날짜 읽기 (timezone 문제 없음)
+  const sy2 = parseInt(document.getElementById('editStartYear').value);
+  const sm2 = parseInt(document.getElementById('editStartMonth').value);
+  const sd3 = parseInt(document.getElementById('editStartDay').value);
+  const newStartDate = sy2+'-'+String(sm2).padStart(2,'0')+'-'+String(sd3).padStart(2,'0');
 
   entry.equipName  = editEquip.n;
   entry.equipSpec  = editEquip.s || '';
