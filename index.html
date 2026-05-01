@@ -432,7 +432,7 @@ select:focus{border-color:var(--accent)}
       <div style="display:flex;align-items:center;gap:8px">
         <div id="editStartDateDisplay" style="flex:1;padding:8px 12px;background:var(--bg);border:1px solid var(--border);border-radius:7px;color:var(--text);font-size:13px;font-weight:700;font-family:'Noto Sans KR',sans-serif">–</div>
         <button onclick="openEditStartDatePicker()" style="padding:7px 12px;background:transparent;border:1px solid var(--border);border-radius:7px;color:var(--muted);font-size:12px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;white-space:nowrap;transition:all .2s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">📅 변경</button>
-        <input type="date" id="editStartDate" style="display:none" onchange="onEditStartDateChange(this.value)">
+        <input type="date" id="editStartDate" style="position:absolute;opacity:0;width:1px;height:1px;pointer-events:none" onchange="onEditStartDateChange(this.value)">
       </div>
     </div>
     <!-- 임대기간 -->
@@ -723,8 +723,9 @@ let selMachine=null, selHalf=false, selQty=1;
 
 function today(){const d=new Date();d.setHours(0,0,0,0);return d;}
 function getDates(){return Array.from({length:22},(_,i)=>{const d=new Date(today());d.setDate(today().getDate()+dateOffset+i);return d;});}
-function getDkeys(){return getDates().map(d=>d.toISOString().slice(0,10));}
-function isToday(d){return d.toISOString().slice(0,10)===today().toISOString().slice(0,10);}
+function toLocalDk(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function getDkeys(){return getDates().map(d=>toLocalDk(d));}
+function isToday(d){return toLocalDk(d)===toLocalDk(today());}
 function fmtDate(d){return (d.getMonth()+1)+'/'+d.getDate();}
 
 // state[dk][site] = { workers:{}, entries:[{name,half,qty,mins}] }
@@ -1058,11 +1059,11 @@ function openDatePicker() {
   // 최소 날짜: 시작일 + 4일 (4일 이상만)
   const minDate = new Date(dk);
   minDate.setDate(minDate.getDate() + 1);
-  picker.min = minDate.toISOString().slice(0,10);
+  picker.min = toLocalDk(minDate);
   // 최대 날짜: 시작일 + 30일
   const maxDate = new Date(dk);
   maxDate.setDate(maxDate.getDate() + 30);
-  picker.max = maxDate.toISOString().slice(0,10);
+  picker.max = toLocalDk(maxDate);
   picker.value = '';
   picker.style.display = 'block';
   picker.focus();
@@ -1121,7 +1122,7 @@ function shiftDates(delta) {
   dateOffset = Math.max(-30, Math.min(30, dateOffset));
   // curIdx 재조정: 오늘이 범위 내에 있으면 오늘로, 아니면 0
   const dkeys = getDkeys();
-  const todayDk = today().toISOString().slice(0,10);
+  const todayDk = toLocalDk(today());
   const todayIdx = dkeys.indexOf(todayDk);
   curIdx = todayIdx >= 0 ? todayIdx : 0;
   renderAll();
@@ -1183,9 +1184,9 @@ function renderInoutCols() {
     // 날짜 계산 (탭 범위 밖이어도 실제 날짜 사용)
     const d = new Date(DATES[idx]);
     d.setDate(d.getDate() + offset);
-    const dk = d.toISOString().slice(0,10);
+    const dk = toLocalDk(d);
 
-    const isToday2 = dk === today().toISOString().slice(0,10);
+    const isToday2 = dk === toLocalDk(today());
     const isHol = holidays.includes(dk);
     const dateStr = (d.getMonth()+1)+'/'+d.getDate()+'('+DOW2[d.getDay()]+')';
     const hdrColor = isToday2 ? 'var(--accent)' : (isHol ? 'var(--red)' : 'var(--muted)');
@@ -1282,7 +1283,7 @@ function renderDateTabs(){
     const st = getStatus(pct);
     const isHol = holidays.includes(dk);
     const isRain = rainyDays.includes(dk);
-    const isYesterday = dk === new Date(today().getTime()-86400000).toISOString().slice(0,10);
+    const isYesterday = dk === toLocalDk(new Date(today().getTime()-86400000));
     return '<div class="dtab'+(i===curIdx?' active':'')+(isHol?' holiday':isRain?' rainy':'')
       +'" onclick="setIdx('+i+')" style="position:relative">'
       +(isToday(d)?'<div class="tl">TODAY</div>':isYesterday?'<div class="tl" style="color:var(--muted)">어제</div>':'')
@@ -1306,7 +1307,7 @@ function renderAll(){
   const _isHolCur = getHolidays().includes(_dkCur);
   const _holBtnStyle = 'margin-left:8px;padding:2px 8px;background:transparent;border:1px solid ' + (_isHolCur ? '#ef4444' : '#2e3350') + ';border-radius:8px;color:' + (_isHolCur ? '#ef4444' : '#64748b') + ';font-size:10px;cursor:pointer';
   document.getElementById('dateBar').innerHTML =
-    '📅 ' + d.getFullYear() + '년 ' + (d.getMonth()+1) + '월 ' + d.getDate() + '일 (' + DOW[d.getDay()] + '요일)' + (isToday(d) ? ' — 오늘' : (dk === new Date(today().getTime()-86400000).toISOString().slice(0,10) ? ' — 어제' : ''))
+    '📅 ' + d.getFullYear() + '년 ' + (d.getMonth()+1) + '월 ' + d.getDate() + '일 (' + DOW[d.getDay()] + '요일)' + (isToday(d) ? ' — 오늘' : (dk === toLocalDk(new Date(today().getTime()-86400000)) ? ' — 어제' : ''))
     + (_isHolCur ? ' <span style="color:#ef4444;font-size:11px">🔴 휴무일</span>' : '')
     + ' <button onclick="toggleHoliday(\'' + _dkCur + '\')" style="' + _holBtnStyle + '">' + (_isHolCur ? '휴무 해제' : '휴무 지정') + '</button>'
     + (!isToday(d) ? ' <button onclick="resetDates()" style="margin-left:6px;padding:2px 8px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);border-radius:8px;color:var(--accent);font-size:10px;cursor:pointer">오늘로</button>' : '')
@@ -1646,11 +1647,11 @@ function openDatePicker() {
   // 최소 날짜: 시작일 + 4일 (4일 이상만)
   const minDate = new Date(dk);
   minDate.setDate(minDate.getDate() + 1);
-  picker.min = minDate.toISOString().slice(0,10);
+  picker.min = toLocalDk(minDate);
   // 최대 날짜: 시작일 + 30일
   const maxDate = new Date(dk);
   maxDate.setDate(maxDate.getDate() + 30);
-  picker.max = maxDate.toISOString().slice(0,10);
+  picker.max = toLocalDk(maxDate);
   picker.value = '';
   picker.style.display = 'block';
   picker.focus();
@@ -1746,7 +1747,7 @@ function addEntry() {
   for (let i = 1; i < selDays; i++) {
     const d = new Date(startDate);
     d.setDate(d.getDate() + i);
-    const dki = d.toISOString().slice(0,10);
+    const dki = toLocalDk(d);
     ensureDay(dki);
   }
 
@@ -1785,14 +1786,14 @@ function getUsedSite(dk, site) {
         // 휴무일 배송: 전날 120분 + 다음날 120분
         let prevDay = new Date(startDk);
         prevDay.setDate(prevDay.getDate() - 1);
-        while(holidays.includes(prevDay.toISOString().slice(0,10)))
+        while(holidays.includes(toLocalDk(prevDay)))
           prevDay.setDate(prevDay.getDate() - 1);
         let nextDay = new Date(startDk);
         nextDay.setDate(nextDay.getDate() + 1);
-        while(holidays.includes(nextDay.toISOString().slice(0,10)))
+        while(holidays.includes(toLocalDk(nextDay)))
           nextDay.setDate(nextDay.getDate() + 1);
-        if(prevDay.toISOString().slice(0,10) === dk) total += 120;
-        if(nextDay.toISOString().slice(0,10) === dk) total += 120;
+        if(toLocalDk(prevDay) === dk) total += 120;
+        if(toLocalDk(nextDay) === dk) total += 120;
       } else {
         // 일반 배송: 해당일 240분
         if(startDk === dk) total += 240;
@@ -1805,20 +1806,20 @@ function getUsedSite(dk, site) {
 function getEffectiveOutDate(entry, holidays) {
   // 출고일(시작일)이 휴무면 전날 근무일로
   let d = new Date(entry.startDate);
-  while(holidays.includes(d.toISOString().slice(0,10))) {
+  while(holidays.includes(toLocalDk(d))) {
     d.setDate(d.getDate() - 1);
   }
-  return d.toISOString().slice(0,10);
+  return toLocalDk(d);
 }
 
 function getEffectiveInDate(entry, holidays) {
   // 입고일 = 시작일 + (days-1), 휴무면 다음 근무일로
   let d = new Date(entry.startDate);
   d.setDate(d.getDate() + entry.days - 1);
-  while(holidays.includes(d.toISOString().slice(0,10))) {
+  while(holidays.includes(toLocalDk(d))) {
     d.setDate(d.getDate() + 1);
   }
-  return d.toISOString().slice(0,10);
+  return toLocalDk(d);
 }
 
 // 목록 소요시간 표시용 (원래 날짜 기준)
@@ -1851,7 +1852,7 @@ function calcMinsForLoad(entry, targetDk) {
   // 마지막날 계산 (입고일)
   let lastDate = new Date(startDk);
   lastDate.setDate(lastDate.getDate() + entry.days - 1);
-  const lastDk = lastDate.toISOString().slice(0,10);
+  const lastDk = toLocalDk(lastDate);
   const isLastHoliday = holidays.includes(lastDk);
 
   // 출고 effective 날짜 (시작일이 휴무면 전날)
@@ -1922,7 +1923,7 @@ function renderTriDayPanel() {
   [-1,0,1].forEach(offset => {
     const dd = new Date(d);
     dd.setDate(dd.getDate() + offset);
-    const colDk = dd.toISOString().slice(0,10);
+    const colDk = toLocalDk(dd);
     const label = (dd.getMonth()+1)+'/'+ dd.getDate()+'('+DOW2[dd.getDay()]+')';
     const isHol = holidays.includes(colDk);
     const isTod = offset===0;
@@ -2059,7 +2060,7 @@ function openInoutPopup() {
   const cols = [-1, 0, 1].map(offset => {
     const d = new Date(selD);
     d.setDate(d.getDate() + offset);
-    const dk = d.toISOString().slice(0,10);
+    const dk = toLocalDk(d);
     return { dk, d: new Date(d), offset };
   });
 
@@ -2084,7 +2085,7 @@ function openInoutPopup() {
         const outDk   = e.startDate; // 출고일 = 시작일
         const inDate  = new Date((e.startDate||"")+"T12:00:00");
         inDate.setDate(inDate.getDate() + e.days - 1);
-        const inDk    = inDate.toISOString().slice(0,10); // 입고일
+        const inDk    = toLocalDk(inDate); // 입고일
 
         // 이 entry가 3일 범위와 관련 있는지 판단
         const outInRange = colDks.includes(outDk);
@@ -2420,10 +2421,10 @@ function openEditDatePicker() {
   const picker = document.getElementById('editReturnDatePicker');
   const minDate = new Date(dk);
   minDate.setDate(minDate.getDate() + 1);
-  picker.min = minDate.toISOString().slice(0,10);
+  picker.min = toLocalDk(minDate);
   const maxDate = new Date(dk);
   maxDate.setDate(maxDate.getDate() + 30);
-  picker.max = maxDate.toISOString().slice(0,10);
+  picker.max = toLocalDk(maxDate);
   picker.value = '';
   picker.style.display = 'block';
   picker.focus(); picker.click();
@@ -2540,29 +2541,14 @@ function saveEdit() {
   if(!entry) return;
 
   const deliveryMins = editDelivery ? 240 : 0;
-  // 날짜 읽기: input[type=date].value는 항상 YYYY-MM-DD 로컬 문자열 반환
-  // openEditModal에서 로컬 기준으로 세팅했으므로 그대로 사용하면 됨
-  const sdEl2 = document.getElementById('editStartDate');
-  const sdVal = sdEl2 ? sdEl2.value : '';
-  // 빈 값이거나 원본과 같으면 startDk 유지
-  const newStartDate = (sdVal && sdVal !== startDk) ? sdVal : startDk;
 
+  // startDate/startDk 변경 없이 내용만 수정 (날짜 이동 로직 제거)
   entry.equipName  = editEquip.n;
   entry.equipSpec  = editEquip.s || '';
   entry.personName = person;
   entry.days       = editDays;
   entry.baseMins   = editEquip.m + deliveryMins;
   entry.delivery   = editDelivery;
-  entry.startDate  = newStartDate;
-
-  // 시작일이 바뀌면 다른 날짜 키로 이동
-  if(newStartDate !== startDk) {
-    ensureDay(newStartDate);
-    if(!state[newStartDate][site]) state[newStartDate][site] = {workers:{}, entries:[]};
-    // 새 날짜로 이동
-    state[newStartDate][site].entries.push(entry);
-    state[startDk][site].entries.splice(idx, 1);
-  }
 
   if(saveTimer) clearTimeout(saveTimer);
   saveData();
