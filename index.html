@@ -429,13 +429,13 @@ select:focus{border-color:var(--accent)}
     <!-- 시작일 -->
     <div style="margin-bottom:10px">
       <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px">임대 시작일</label>
-      <div style="position:relative;cursor:pointer;display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--bg);border:1px solid var(--border);border-radius:7px;" onclick="document.getElementById('editStartDatePicker').showPicker()">
-        <span id="editStartDateTxt" style="flex:1;color:var(--text);font-size:13px">날짜 선택</span>
-        <span style="color:var(--muted);font-size:14px">📅</span>
-        <input type="date" id="editStartDate" style="position:absolute;opacity:0;width:0;height:0;pointer-events:none"
-          oninput="document.getElementById('editStartDateTxt').textContent=formatLocalDate(this.value)">
-        <input type="date" id="editStartDatePicker" style="position:absolute;opacity:0;width:100%;height:100%;top:0;left:0;cursor:pointer"
-          oninput="document.getElementById('editStartDate').value=this.value;document.getElementById('editStartDateTxt').textContent=formatLocalDate(this.value)">
+      <div style="display:flex;gap:4px;align-items:center">
+        <select id="editStartYear" style="flex:2;padding:7px;background:var(--bg);border:1px solid var(--border);border-radius:7px;color:var(--text);font-size:13px"></select>
+        <span style="color:var(--muted);flex-shrink:0">년</span>
+        <select id="editStartMonth" style="flex:1;padding:7px;background:var(--bg);border:1px solid var(--border);border-radius:7px;color:var(--text);font-size:13px"></select>
+        <span style="color:var(--muted);flex-shrink:0">월</span>
+        <select id="editStartDay" style="flex:1;padding:7px;background:var(--bg);border:1px solid var(--border);border-radius:7px;color:var(--text);font-size:13px"></select>
+        <span style="color:var(--muted);flex-shrink:0">일</span>
       </div>
     </div>
     <!-- 임대기간 -->
