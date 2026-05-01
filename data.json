@@ -269,6 +269,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1776729683534.5896,
+            "equipName": "로터베이터1150-02",
+            "equipSpec": "DWR115GM/1150",
+            "personName": "김광수",
+            "days": 1,
+            "startDate": "2026-05-01",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 40,
+            "delivery": false
           }
         ],
         "delivery": false
@@ -591,19 +604,6 @@
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1776729683534.5896,
-            "equipName": "로터베이터1150-02",
-            "equipSpec": "DWR115GM/1150",
-            "personName": "김광수",
-            "days": 1,
-            "startDate": "2026-05-02",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 40,
             "delivery": false
           }
         ],
