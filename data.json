@@ -76,19 +76,6 @@
             "delivery": false
           },
           {
-            "id": 1777334948538.743,
-            "equipName": "관리기-구굴기(소)-03",
-            "equipSpec": "ASC-640/구굴기(소)",
-            "personName": "김평수",
-            "days": 1,
-            "startDate": "2026-04-30",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1777414002544.2708,
             "equipName": "원판쟁기8련-01",
             "equipSpec": "W82-DP/원판-8련",
@@ -869,6 +856,19 @@
             "equipName": "관리기-로터리-01",
             "equipSpec": "AMC-1000SM/로타리(중)",
             "personName": "김재관",
+            "days": 1,
+            "startDate": "2026-05-02",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1777334948538.743,
+            "equipName": "관리기-구굴기(소)-03",
+            "equipSpec": "ASC-640/구굴기(소)",
+            "personName": "김평수",
             "days": 1,
             "startDate": "2026-05-02",
             "outDone": false,
