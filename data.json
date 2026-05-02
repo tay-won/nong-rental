@@ -168,6 +168,18 @@
         "site": "본소",
         "baseMins": 290,
         "delivery": true
+      },
+      {
+        "cancelledAt": "2026-05-02T04:08:57.120Z",
+        "reason": "기타",
+        "equipName": "관리기-구굴기(중)-03",
+        "equipSpec": "AMC-900SM/구굴기(중)",
+        "personName": "김연서",
+        "days": 1,
+        "startDate": "2026-05-11",
+        "site": "본소",
+        "baseMins": 50,
+        "delivery": false
       }
     ],
     "2026-05-01": {
@@ -2603,19 +2615,6 @@
           "bs4": 420
         },
         "entries": [
-          {
-            "id": 1776815739681.6353,
-            "equipName": "관리기-구굴기(중)-03",
-            "equipSpec": "AMC-900SM/구굴기(중)",
-            "personName": "김연서",
-            "days": 1,
-            "startDate": "2026-05-11",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          },
           {
             "id": 1776989009053.4531,
             "equipName": "소형트랙터25HP-03",
@@ -9076,6 +9075,18 @@
       "site": "본소",
       "baseMins": 290,
       "delivery": true
+    },
+    {
+      "cancelledAt": "2026-05-02T04:08:57.120Z",
+      "reason": "기타",
+      "equipName": "관리기-구굴기(중)-03",
+      "equipSpec": "AMC-900SM/구굴기(중)",
+      "personName": "김연서",
+      "days": 1,
+      "startDate": "2026-05-11",
+      "site": "본소",
+      "baseMins": 50,
+      "delivery": false
     }
   ]
 }
