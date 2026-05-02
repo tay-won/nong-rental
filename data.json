@@ -3193,8 +3193,8 @@
             "personName": "이광백",
             "days": 1,
             "startDate": "2026-04-30",
-            "outDone": false,
-            "inDone": false,
+            "outDone": true,
+            "inDone": true,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
