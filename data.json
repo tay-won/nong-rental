@@ -24,6 +24,18 @@
         "site": "북부",
         "baseMins": 60,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-02T02:03:02.093Z",
+        "reason": "기타",
+        "equipName": "굴착기(1톤)-05",
+        "equipSpec": "U-10-5/1TON",
+        "personName": "조국현",
+        "days": 2,
+        "startDate": "2026-04-30",
+        "site": "북부",
+        "baseMins": 90,
+        "delivery": false
       }
     ],
     "2026-05-01": {
@@ -3042,19 +3054,6 @@
           "nb4": 420
         },
         "entries": [
-          {
-            "id": 1776734649549.0894,
-            "equipName": "굴착기(1톤)-05",
-            "equipSpec": "U-10-5/1TON",
-            "personName": "조국현",
-            "days": 2,
-            "startDate": "2026-04-30",
-            "outDone": true,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
           {
             "id": 1776904838180.1602,
             "equipName": "퇴비살포기(소)-05",
@@ -8670,6 +8669,18 @@
       "startDate": "2026-04-30",
       "site": "북부",
       "baseMins": 60,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-02T02:03:02.093Z",
+      "reason": "기타",
+      "equipName": "굴착기(1톤)-05",
+      "equipSpec": "U-10-5/1TON",
+      "personName": "조국현",
+      "days": 2,
+      "startDate": "2026-04-30",
+      "site": "북부",
+      "baseMins": 90,
       "delivery": false
     }
   ]
