@@ -481,7 +481,7 @@
             "personName": "이항섭",
             "days": 1,
             "startDate": "2026-05-01",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 90,
