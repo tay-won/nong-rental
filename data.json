@@ -1818,6 +1818,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1777688037073.0762,
+            "equipName": "원판쟁기8련-02",
+            "equipSpec": "W82-DP/원판-8련",
+            "personName": "조창열",
+            "days": 2,
+            "startDate": "2026-05-06",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
