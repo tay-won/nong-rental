@@ -48,6 +48,18 @@
         "site": "북부",
         "baseMins": 40,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-02T02:04:27.228Z",
+        "reason": "개인사정",
+        "equipName": "원판쟁기8련-01",
+        "equipSpec": "W82-DP/원판-8련",
+        "personName": "이이석",
+        "days": 1,
+        "startDate": "2026-05-01",
+        "site": "북부",
+        "baseMins": 90,
+        "delivery": false
       }
     ],
     "2026-05-01": {
@@ -364,19 +376,6 @@
             "days": 1,
             "startDate": "2026-05-01",
             "outDone": true,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1776734670355.5364,
-            "equipName": "원판쟁기8련-01",
-            "equipSpec": "W82-DP/원판-8련",
-            "personName": "이이석",
-            "days": 1,
-            "startDate": "2026-05-01",
-            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -8705,6 +8704,18 @@
       "startDate": "2026-05-01",
       "site": "북부",
       "baseMins": 40,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-02T02:04:27.228Z",
+      "reason": "개인사정",
+      "equipName": "원판쟁기8련-01",
+      "equipSpec": "W82-DP/원판-8련",
+      "personName": "이이석",
+      "days": 1,
+      "startDate": "2026-05-01",
+      "site": "북부",
+      "baseMins": 90,
       "delivery": false
     }
   ]
