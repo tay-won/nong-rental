@@ -273,7 +273,7 @@
             "days": 1,
             "startDate": "2026-05-01",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "본소",
             "baseMins": 50,
             "delivery": false
@@ -361,7 +361,7 @@
             "equipName": "관리기-피복기-02",
             "equipSpec": "AMC-900SM/피복기(중)",
             "personName": "홍사권",
-            "days": 2,
+            "days": 1,
             "startDate": "2026-05-01",
             "outDone": true,
             "inDone": false,
