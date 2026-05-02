@@ -4963,7 +4963,7 @@
             "days": 4,
             "startDate": "2026-04-26",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "북부",
             "baseMins": 140,
             "delivery": false
