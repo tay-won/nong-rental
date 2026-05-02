@@ -292,6 +292,19 @@
             "site": "본소",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1777688335766.0027,
+            "equipName": "비료살포기-03",
+            "equipSpec": "JHT-550/500kg",
+            "personName": "이상흠",
+            "days": 2,
+            "startDate": "2026-05-01",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
