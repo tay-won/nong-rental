@@ -72,6 +72,18 @@
         "site": "본소",
         "baseMins": 40,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-02T04:02:39.621Z",
+        "reason": "기타",
+        "equipName": "동력운반차-01",
+        "equipSpec": "TKT-600B/궤도",
+        "personName": "문덕근",
+        "days": 1,
+        "startDate": "2026-05-03",
+        "site": "본소",
+        "baseMins": 80,
+        "delivery": false
       }
     ],
     "2026-05-01": {
@@ -844,19 +856,6 @@
             "inDone": false,
             "site": "본소",
             "baseMins": 40,
-            "delivery": false
-          },
-          {
-            "id": 1777335310402.0146,
-            "equipName": "동력운반차-01",
-            "equipSpec": "TKT-600B/궤도",
-            "personName": "문덕근",
-            "days": 1,
-            "startDate": "2026-05-03",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 80,
             "delivery": false
           },
           {
@@ -8818,6 +8817,18 @@
       "startDate": "2026-05-03",
       "site": "본소",
       "baseMins": 40,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-02T04:02:39.621Z",
+      "reason": "기타",
+      "equipName": "동력운반차-01",
+      "equipSpec": "TKT-600B/궤도",
+      "personName": "문덕근",
+      "days": 1,
+      "startDate": "2026-05-03",
+      "site": "본소",
+      "baseMins": 80,
       "delivery": false
     }
   ]
