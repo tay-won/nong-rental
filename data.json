@@ -300,7 +300,7 @@
             "personName": "이상흠",
             "days": 2,
             "startDate": "2026-05-01",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 60,
