@@ -245,19 +245,6 @@
             "delivery": false
           },
           {
-            "id": 1777334918002.9534,
-            "equipName": "관리기-피복기-01",
-            "equipSpec": "AMC-900SM/피복기(중)",
-            "personName": "김평수",
-            "days": 1,
-            "startDate": "2026-05-01",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1776729683534.5896,
             "equipName": "로터베이터1150-02",
             "equipSpec": "DWR115GM/1150",
@@ -3054,6 +3041,19 @@
             "startDate": "2026-04-30",
             "outDone": true,
             "inDone": true,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1777334918002.9534,
+            "equipName": "관리기-피복기-01",
+            "equipSpec": "AMC-900SM/피복기(중)",
+            "personName": "김평수",
+            "days": 1,
+            "startDate": "2026-04-30",
+            "outDone": false,
+            "inDone": false,
             "site": "본소",
             "baseMins": 50,
             "delivery": false
