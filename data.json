@@ -84,6 +84,18 @@
         "site": "본소",
         "baseMins": 80,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-02T04:04:00.611Z",
+        "reason": "기타",
+        "equipName": "관리기-피복기-02",
+        "equipSpec": "AMC-900SM/피복기(중)",
+        "personName": "양인석",
+        "days": 2,
+        "startDate": "2026-05-03",
+        "site": "본소",
+        "baseMins": 50,
+        "delivery": false
       }
     ],
     "2026-05-01": {
@@ -890,19 +902,6 @@
             "equipSpec": "AMC-900SM/구굴기(중)",
             "personName": "허준수",
             "days": 1,
-            "startDate": "2026-05-03",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1777694608249.7178,
-            "equipName": "관리기-피복기-02",
-            "equipSpec": "AMC-900SM/피복기(중)",
-            "personName": "양인석",
-            "days": 2,
             "startDate": "2026-05-03",
             "outDone": false,
             "inDone": false,
@@ -8868,6 +8867,18 @@
       "startDate": "2026-05-03",
       "site": "본소",
       "baseMins": 80,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-02T04:04:00.611Z",
+      "reason": "기타",
+      "equipName": "관리기-피복기-02",
+      "equipSpec": "AMC-900SM/피복기(중)",
+      "personName": "양인석",
+      "days": 2,
+      "startDate": "2026-05-03",
+      "site": "본소",
+      "baseMins": 50,
       "delivery": false
     }
   ]
