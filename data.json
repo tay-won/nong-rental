@@ -180,6 +180,18 @@
         "site": "본소",
         "baseMins": 50,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-02T04:09:25.542Z",
+        "reason": "기타",
+        "equipName": "무논정지기2200-01",
+        "equipSpec": "WJS220/2200",
+        "personName": "정찬엽",
+        "days": 2,
+        "startDate": "2026-05-13",
+        "site": "본소",
+        "baseMins": 90,
+        "delivery": false
       }
     ],
     "2026-05-01": {
@@ -2844,19 +2856,6 @@
             "site": "본소",
             "baseMins": 350,
             "delivery": true
-          },
-          {
-            "id": 1777423397475.069,
-            "equipName": "무논정지기2200-01",
-            "equipSpec": "WJS220/2200",
-            "personName": "정찬엽",
-            "days": 2,
-            "startDate": "2026-05-13",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 90,
-            "delivery": false
           }
         ],
         "delivery": false
@@ -9099,6 +9098,18 @@
       "startDate": "2026-05-11",
       "site": "본소",
       "baseMins": 50,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-02T04:09:25.542Z",
+      "reason": "기타",
+      "equipName": "무논정지기2200-01",
+      "equipSpec": "WJS220/2200",
+      "personName": "정찬엽",
+      "days": 2,
+      "startDate": "2026-05-13",
+      "site": "본소",
+      "baseMins": 90,
       "delivery": false
     }
   ]
