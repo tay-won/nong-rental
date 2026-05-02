@@ -156,6 +156,18 @@
         "site": "북부",
         "baseMins": 60,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-02T02:15:06.513Z",
+        "reason": "개인사정",
+        "equipName": "원판쟁기8련-02",
+        "equipSpec": "W82-DP/원판-8련",
+        "personName": "조창열",
+        "days": 2,
+        "startDate": "2026-05-07",
+        "site": "북부",
+        "baseMins": 90,
+        "delivery": false
       }
     ],
     "2026-05-01": {
@@ -2018,19 +2030,6 @@
             "equipSpec": "SH-L1400B/1400",
             "personName": "이혁인",
             "days": 1,
-            "startDate": "2026-05-07",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1777677415823.0017,
-            "equipName": "원판쟁기8련-02",
-            "equipSpec": "W82-DP/원판-8련",
-            "personName": "조창열",
-            "days": 2,
             "startDate": "2026-05-07",
             "outDone": false,
             "inDone": false,
@@ -8986,6 +8985,18 @@
       "startDate": "2026-05-05",
       "site": "북부",
       "baseMins": 60,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-02T02:15:06.513Z",
+      "reason": "개인사정",
+      "equipName": "원판쟁기8련-02",
+      "equipSpec": "W82-DP/원판-8련",
+      "personName": "조창열",
+      "days": 2,
+      "startDate": "2026-05-07",
+      "site": "북부",
+      "baseMins": 90,
       "delivery": false
     }
   ]
