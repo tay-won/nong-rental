@@ -258,19 +258,6 @@
             "delivery": false
           },
           {
-            "id": 1777334948538.743,
-            "equipName": "관리기-구굴기(소)-03",
-            "equipSpec": "ASC-640/구굴기(소)",
-            "personName": "김평수",
-            "days": 1,
-            "startDate": "2026-05-01",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1776729675582.0657,
             "equipName": "소형트랙터25HP-01",
             "equipSpec": "CK250V/25HP",
@@ -3049,6 +3036,19 @@
             "id": 1777334918002.9534,
             "equipName": "관리기-피복기-01",
             "equipSpec": "AMC-900SM/피복기(중)",
+            "personName": "김평수",
+            "days": 1,
+            "startDate": "2026-04-30",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1777334948538.743,
+            "equipName": "관리기-구굴기(소)-03",
+            "equipSpec": "ASC-640/구굴기(소)",
             "personName": "김평수",
             "days": 1,
             "startDate": "2026-04-30",
