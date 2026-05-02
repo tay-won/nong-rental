@@ -120,6 +120,18 @@
         "site": "본소",
         "baseMins": 50,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-02T04:07:32.042Z",
+        "reason": "기타",
+        "equipName": "돌수집기-01",
+        "equipSpec": "GWD-1400T/1400",
+        "personName": "박병만",
+        "days": 2,
+        "startDate": "2026-05-09",
+        "site": "본소",
+        "baseMins": 90,
+        "delivery": false
       }
     ],
     "2026-05-01": {
@@ -2325,19 +2337,6 @@
           "bs4": 420
         },
         "entries": [
-          {
-            "id": 1777421589300.9958,
-            "equipName": "돌수집기-01",
-            "equipSpec": "GWD-1400T/1400",
-            "personName": "박병만",
-            "days": 2,
-            "startDate": "2026-05-09",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 90,
-            "delivery": false
-          },
           {
             "id": 1777335221740.1409,
             "equipName": "관리기-구굴기(소)-01",
@@ -9005,6 +9004,18 @@
       "startDate": "2026-05-07",
       "site": "본소",
       "baseMins": 50,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-02T04:07:32.042Z",
+      "reason": "기타",
+      "equipName": "돌수집기-01",
+      "equipSpec": "GWD-1400T/1400",
+      "personName": "박병만",
+      "days": 2,
+      "startDate": "2026-05-09",
+      "site": "본소",
+      "baseMins": 90,
       "delivery": false
     }
   ]
