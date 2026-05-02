@@ -883,6 +883,19 @@
             "site": "본소",
             "baseMins": 290,
             "delivery": true
+          },
+          {
+            "id": 1777694593111.0645,
+            "equipName": "관리기-구굴기(중)-04",
+            "equipSpec": "AMC-900SM/구굴기(중)",
+            "personName": "허준수",
+            "days": 1,
+            "startDate": "2026-05-03",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
