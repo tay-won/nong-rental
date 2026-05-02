@@ -304,6 +304,19 @@
             "site": "본소",
             "baseMins": 60,
             "delivery": false
+          },
+          {
+            "id": 1777694399922.552,
+            "equipName": "논두렁조성기(중)-01",
+            "equipSpec": "WJLF750/(중)",
+            "personName": "백귀현",
+            "days": 1,
+            "startDate": "2026-05-01",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
