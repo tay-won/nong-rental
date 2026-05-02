@@ -565,19 +565,6 @@
         },
         "entries": [
           {
-            "id": 1777335221740.1409,
-            "equipName": "관리기-구굴기(소)-01",
-            "equipSpec": "ASC-640/구굴기(소)",
-            "personName": "배재윤",
-            "days": 1,
-            "startDate": "2026-05-02",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1777454002657.271,
             "equipName": "관리기-로터리-01",
             "equipSpec": "AMC-1000SM/로타리(중)",
@@ -2173,6 +2160,19 @@
             "inDone": false,
             "site": "본소",
             "baseMins": 90,
+            "delivery": false
+          },
+          {
+            "id": 1777335221740.1409,
+            "equipName": "관리기-구굴기(소)-01",
+            "equipSpec": "ASC-640/구굴기(소)",
+            "personName": "배재윤",
+            "days": 1,
+            "startDate": "2026-05-09",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
             "delivery": false
           }
         ],
