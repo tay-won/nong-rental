@@ -2981,6 +2981,19 @@
             "site": "본소",
             "baseMins": 290,
             "delivery": true
+          },
+          {
+            "id": 1777694987958.5115,
+            "equipName": "소형트랙터25HP-03",
+            "equipSpec": "CK250V/25HP",
+            "personName": "신건재",
+            "days": 1,
+            "startDate": "2026-05-15",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 290,
+            "delivery": true
           }
         ],
         "delivery": false
