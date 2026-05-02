@@ -614,6 +614,19 @@
             "site": "본소",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1777694523689.4075,
+            "equipName": "분무기-엔진식(제)-01",
+            "equipSpec": "WPS-80A/밀차제초제",
+            "personName": "성운경",
+            "days": 3,
+            "startDate": "2026-05-02",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 40,
+            "delivery": false
           }
         ],
         "delivery": false
