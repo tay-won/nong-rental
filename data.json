@@ -767,6 +767,19 @@
             "site": "북부",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1777687674946.042,
+            "equipName": "구굴기30-01",
+            "equipSpec": "OM312/30",
+            "personName": "유재원",
+            "days": 2,
+            "startDate": "2026-05-02",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
