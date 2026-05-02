@@ -120,6 +120,18 @@
         "site": "북부",
         "baseMins": 90,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-02T02:08:48.626Z",
+        "reason": "개인사정",
+        "equipName": "고구마수확기-03",
+        "equipSpec": "DRK-650/경운기용",
+        "personName": "박희호",
+        "days": 1,
+        "startDate": "2026-05-03",
+        "site": "북부",
+        "baseMins": 50,
+        "delivery": false
       }
     ],
     "2026-05-01": {
@@ -1215,19 +1227,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1777535752857.24,
-            "equipName": "고구마수확기-03",
-            "equipSpec": "DRK-650/경운기용",
-            "personName": "박희호",
-            "days": 1,
-            "startDate": "2026-05-03",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
             "delivery": false
           }
         ],
@@ -8862,6 +8861,18 @@
       "startDate": "2026-05-03",
       "site": "북부",
       "baseMins": 90,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-02T02:08:48.626Z",
+      "reason": "개인사정",
+      "equipName": "고구마수확기-03",
+      "equipSpec": "DRK-650/경운기용",
+      "personName": "박희호",
+      "days": 1,
+      "startDate": "2026-05-03",
+      "site": "북부",
+      "baseMins": 50,
       "delivery": false
     }
   ]
