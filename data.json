@@ -36,6 +36,18 @@
         "site": "북부",
         "baseMins": 90,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-02T02:04:06.428Z",
+        "reason": "기타",
+        "equipName": "동력경운기-01",
+        "equipSpec": "DT100N/10HP",
+        "personName": "박희호",
+        "days": 1,
+        "startDate": "2026-05-01",
+        "site": "북부",
+        "baseMins": 40,
+        "delivery": false
       }
     ],
     "2026-05-01": {
@@ -550,19 +562,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 60,
-            "delivery": false
-          },
-          {
-            "id": 1777535765793.9568,
-            "equipName": "동력경운기-01",
-            "equipSpec": "DT100N/10HP",
-            "personName": "박희호",
-            "days": 1,
-            "startDate": "2026-05-01",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 40,
             "delivery": false
           },
           {
@@ -8694,6 +8693,18 @@
       "startDate": "2026-04-30",
       "site": "북부",
       "baseMins": 90,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-02T02:04:06.428Z",
+      "reason": "기타",
+      "equipName": "동력경운기-01",
+      "equipSpec": "DT100N/10HP",
+      "personName": "박희호",
+      "days": 1,
+      "startDate": "2026-05-01",
+      "site": "북부",
+      "baseMins": 40,
       "delivery": false
     }
   ]
