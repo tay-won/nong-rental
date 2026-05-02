@@ -795,6 +795,19 @@
             "site": "본소",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1777709151870.0422,
+            "equipName": "로터베이터1750-01",
+            "equipSpec": "WJ175A/1750",
+            "personName": "김완규",
+            "days": 1,
+            "startDate": "2026-05-02",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
