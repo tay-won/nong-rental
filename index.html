@@ -2567,7 +2567,7 @@ document.addEventListener('click', e => {
 
 
 // ═══ 1회성 날짜 일괄 -1일 수정 ═══
-function fixAllDatesOneDay() {
+async function fixAllDatesOneDay() {
   if(!confirm('⚠️ 전체 데이터의 날짜를 하루씩 당깁니다(-1일).\n이 작업은 되돌릴 수 없습니다.\n\n계속하시겠습니까?')) return;
 
   function subOneDay(dk) {
@@ -2576,7 +2576,6 @@ function fixAllDatesOneDay() {
     return nd.getFullYear()+'-'+String(nd.getMonth()+1).padStart(2,'0')+'-'+String(nd.getDate()).padStart(2,'0');
   }
 
-  // state 키와 entry.startDate 모두 -1일
   const oldState = JSON.parse(JSON.stringify(state));
   const newState = {};
 
@@ -2596,7 +2595,6 @@ function fixAllDatesOneDay() {
     newState[newDk] = newDay;
   });
 
-  // 취소 이력 날짜도 수정
   if(Array.isArray(newState._cancelled)) {
     newState._cancelled = newState._cancelled.map(c => ({
       ...c,
@@ -2604,23 +2602,22 @@ function fixAllDatesOneDay() {
     }));
   }
 
-  // state 교체
   Object.keys(state).forEach(k => { if(k !== '_cancelled') delete state[k]; });
   Object.assign(state, newState);
 
-  // 버튼 숨기기 (1회만 사용)
+  // 버튼 즉시 숨기기
   const btn = document.getElementById('fixDatesBtn');
   if(btn) btn.style.display = 'none';
 
-  // 저장
   setSyncUI('saving', '날짜 수정 저장 중…');
   if(saveTimer) clearTimeout(saveTimer);
-  saveData().then(() => {
-    alert('✅ 날짜 수정 완료!\n전체 데이터가 하루 당겨졌습니다(-1일).');
-    renderAll();
-  }).catch(err => {
-    alert('❌ 저장 실패: ' + err.message);
-  });
+  try {
+    await saveData();
+    alert('✅ 날짜 수정 완료! 전체 데이터가 하루 당겨졌습니다(-1일).');
+  } catch(err) {
+    alert('❌ 저장 실패: ' + (err.message||err));
+  }
+  renderAll();
 }
 
 
