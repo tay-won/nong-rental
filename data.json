@@ -542,19 +542,6 @@
             "delivery": false
           },
           {
-            "id": 1777535752857.24,
-            "equipName": "고구마수확기-03",
-            "equipSpec": "DRK-650/경운기용",
-            "personName": "박희호",
-            "days": 1,
-            "startDate": "2026-05-01",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1777535765793.9568,
             "equipName": "동력경운기-01",
             "equipSpec": "DT100N/10HP",
@@ -1101,6 +1088,19 @@
             "equipName": "관리기-휴립피복기-01",
             "equipSpec": "AMC-900SM/휴립피복기(중)",
             "personName": "김미숙",
+            "days": 1,
+            "startDate": "2026-05-03",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1777535752857.24,
+            "equipName": "고구마수확기-03",
+            "equipSpec": "DRK-650/경운기용",
+            "personName": "박희호",
             "days": 1,
             "startDate": "2026-05-03",
             "outDone": false,
