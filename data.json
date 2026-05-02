@@ -473,6 +473,19 @@
             "site": "본소",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1777709067999.8408,
+            "equipName": "돌수집기-03",
+            "equipSpec": "SH-L1400B/1400",
+            "personName": "이항섭",
+            "days": 1,
+            "startDate": "2026-05-01",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
