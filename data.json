@@ -803,7 +803,7 @@
             "personName": "김완규",
             "days": 1,
             "startDate": "2026-05-02",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 60,
