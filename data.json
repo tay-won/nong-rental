@@ -3091,7 +3091,21 @@
           "bs3": 420,
           "bs4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1777695039041.8818,
+            "equipName": "잔가지파쇄기(대)-01",
+            "equipSpec": "DLK210E/2000kg/h",
+            "personName": "임현주",
+            "days": 1,
+            "startDate": "2026-05-17",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 320,
+            "delivery": true
+          }
+        ],
         "delivery": false
       },
       "북부": {
