@@ -60,6 +60,18 @@
         "site": "본소",
         "baseMins": 50,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-02T04:02:08.040Z",
+        "reason": "기타",
+        "equipName": "분무기-엔진식(제)-01",
+        "equipSpec": "WPS-80A/밀차제초제",
+        "personName": "성운경",
+        "days": 3,
+        "startDate": "2026-05-03",
+        "site": "본소",
+        "baseMins": 40,
+        "delivery": false
       }
     ],
     "2026-05-01": {
@@ -845,19 +857,6 @@
             "inDone": false,
             "site": "본소",
             "baseMins": 80,
-            "delivery": false
-          },
-          {
-            "id": 1777335360002.249,
-            "equipName": "분무기-엔진식(제)-01",
-            "equipSpec": "WPS-80A/밀차제초제",
-            "personName": "성운경",
-            "days": 3,
-            "startDate": "2026-05-03",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 40,
             "delivery": false
           },
           {
@@ -8807,6 +8806,18 @@
       "startDate": "2026-05-02",
       "site": "본소",
       "baseMins": 50,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-02T04:02:08.040Z",
+      "reason": "기타",
+      "equipName": "분무기-엔진식(제)-01",
+      "equipSpec": "WPS-80A/밀차제초제",
+      "personName": "성운경",
+      "days": 3,
+      "startDate": "2026-05-03",
+      "site": "본소",
+      "baseMins": 40,
       "delivery": false
     }
   ]
