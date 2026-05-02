@@ -2131,6 +2131,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777694821206.542,
+            "equipName": "관리기-피복기-03",
+            "equipSpec": "AMC-1000SM/피복기(중)",
+            "personName": "성연용",
+            "days": 1,
+            "startDate": "2026-05-08",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 290,
+            "delivery": true
           }
         ],
         "delivery": false
