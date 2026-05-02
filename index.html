@@ -2570,6 +2570,10 @@ document.addEventListener('click', e => {
 async function fixAllDatesOneDay() {
   if(!confirm('⚠️ 전체 데이터의 날짜를 하루씩 당깁니다(-1일).\n이 작업은 되돌릴 수 없습니다.\n\n계속하시겠습니까?')) return;
 
+  // 버튼 즉시 제거
+  const btn = document.getElementById('fixDatesBtn');
+  if(btn) btn.remove();
+
   function subOneDay(dk) {
     const [y,m,d] = dk.split('-').map(Number);
     const nd = new Date(y, m-1, d-1);
@@ -2605,18 +2609,10 @@ async function fixAllDatesOneDay() {
   Object.keys(state).forEach(k => { if(k !== '_cancelled') delete state[k]; });
   Object.assign(state, newState);
 
-  // 버튼 즉시 숨기기
-  const btn = document.getElementById('fixDatesBtn');
-  if(btn) btn.style.display = 'none';
-
   setSyncUI('saving', '날짜 수정 저장 중…');
   if(saveTimer) clearTimeout(saveTimer);
-  try {
-    await saveData();
-    alert('✅ 날짜 수정 완료! 전체 데이터가 하루 당겨졌습니다(-1일).');
-  } catch(err) {
-    alert('❌ 저장 실패: ' + (err.message||err));
-  }
+  await saveData();
+  alert('✅ 날짜 수정 완료!');
   renderAll();
 }
 
