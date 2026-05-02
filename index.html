@@ -429,7 +429,28 @@ select:focus{border-color:var(--accent)}
     <!-- 시작일 -->
     <div style="margin-bottom:10px">
       <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px">임대 시작일</label>
-      <input type="date" id="editStartDate" style="width:100%;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:7px;color:var(--text);font-size:13px;font-family:'Noto Sans KR',sans-serif;cursor:pointer" onclick="try{this.showPicker()}catch(e){}">
+      <div style="display:flex;align-items:center;gap:8px">
+        <div id="editStartDateDisplay" style="flex:1;padding:8px 12px;background:var(--bg);border:1px solid var(--border);border-radius:7px;color:var(--text);font-size:13px;font-weight:700;font-family:'Noto Sans KR',sans-serif">–</div>
+        <button onclick="toggleEditMiniCal()" id="editMiniCalBtn" style="padding:7px 12px;background:transparent;border:1px solid var(--border);border-radius:7px;color:var(--muted);font-size:12px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;white-space:nowrap">📅 변경</button>
+      </div>
+      <div id="editMiniCal" style="display:none;margin-top:6px;background:#1e293b;border:1px solid var(--border);border-radius:10px;padding:10px;user-select:none">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <button onclick="editMiniCalMove(-1)" style="background:transparent;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:2px 8px">◀</button>
+          <span id="editMiniCalTitle" style="font-size:13px;font-weight:700;color:var(--text)"></span>
+          <button onclick="editMiniCalMove(1)" style="background:transparent;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:2px 8px">▶</button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center">
+          <span style="font-size:10px;color:#ef4444;padding:2px">일</span>
+          <span style="font-size:10px;color:var(--muted);padding:2px">월</span>
+          <span style="font-size:10px;color:var(--muted);padding:2px">화</span>
+          <span style="font-size:10px;color:var(--muted);padding:2px">수</span>
+          <span style="font-size:10px;color:var(--muted);padding:2px">목</span>
+          <span style="font-size:10px;color:var(--muted);padding:2px">금</span>
+          <span style="font-size:10px;color:#60a5fa;padding:2px">토</span>
+        </div>
+        <div id="editMiniCalDays" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center"></div>
+      </div>
+      <input type="hidden" id="editStartDate">
     </div>
     <!-- 임대기간 -->
     <div style="margin-bottom:10px">
@@ -1932,10 +1953,12 @@ function renderTriDayPanel() {
       targetSites.forEach(site => {
         if(!state[startDk]||!state[startDk][site]) return;
         state[startDk][site].entries.forEach((e,ei) => {
-          const diff = Math.round((new Date(colDk)-new Date(e.startDate))/86400000);
-          const inDkD = new Date(e.startDate);
+          const startDate = new Date((e.startDate||startDk)+'T12:00:00');
+          const colDate2  = new Date(colDk+'T12:00:00');
+          const diff = Math.round((colDate2-startDate)/86400000);
+          const inDkD = new Date((e.startDate||startDk)+'T12:00:00');
           inDkD.setDate(inDkD.getDate()+e.days-1);
-          const inDk = inDkD.toISOString().slice(0,10);
+          const inDk = inDkD.getFullYear()+'-'+String(inDkD.getMonth()+1).padStart(2,'0')+'-'+String(inDkD.getDate()).padStart(2,'0');
           const isOut = diff===0;
           const isIn  = inDk===colDk;
           const isPastOut = e.outDone&&!e.inDone&&isIn;
@@ -2292,9 +2315,20 @@ function openEditModal(startDk, site, idx) {
   // 성명
   document.getElementById('editPersonInp').value = e.personName || '';
 
-  // 시작일 - 문자열 직접 설정 (YYYY-MM-DD 그대로)
+  // 시작일 - 미니달력 표시용 텍스트 세팅
+  const rawDk = (e.startDate || editTarget.startDk).slice(0, 10);
   const sdEl = document.getElementById('editStartDate');
-  if(sdEl) sdEl.value = (e.startDate || editTarget.startDk).slice(0, 10);
+  if(sdEl) sdEl.value = rawDk;
+  const disp = document.getElementById('editStartDateDisplay');
+  if(disp) {
+    const [y,m,d] = rawDk.split('-').map(Number);
+    const DOW3=['일','월','화','수','목','금','토'];
+    const ld = new Date(y,m-1,d);
+    disp.textContent = `${y}. ${String(m).padStart(2,'0')}. ${String(d).padStart(2,'0')}. (${DOW3[ld.getDay()]})`;
+  }
+  // 미니달력 초기 상태 닫기
+  const cal = document.getElementById('editMiniCal');
+  if(cal) cal.style.display = 'none';
 
   // 임대기간
   editDays = e.days;
