@@ -3007,6 +3007,19 @@
             "site": "본소",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1777695009738.7136,
+            "equipName": "비료동력살포기-01",
+            "equipSpec": "SG-6030D/입제",
+            "personName": "이상흠",
+            "days": 2,
+            "startDate": "2026-05-15",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 40,
+            "delivery": false
           }
         ],
         "delivery": false
