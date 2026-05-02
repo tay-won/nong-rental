@@ -1,175 +1,6 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-05-02T02:01:56.401Z",
-        "reason": "개인사정",
-        "equipName": "굴착기(1톤)-03",
-        "equipSpec": "U-10-3S/1TON",
-        "personName": "이광백",
-        "days": 1,
-        "startDate": "2026-04-30",
-        "site": "북부",
-        "baseMins": 90,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-02T02:02:30.105Z",
-        "reason": "개인사정",
-        "equipName": "휴립복토파종기(2조2두둑)-02",
-        "equipSpec": "BG-1580BC/휴립복토(2조2두둑)",
-        "personName": "조규영",
-        "days": 1,
-        "startDate": "2026-04-30",
-        "site": "북부",
-        "baseMins": 60,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-02T02:03:02.093Z",
-        "reason": "기타",
-        "equipName": "굴착기(1톤)-05",
-        "equipSpec": "U-10-5/1TON",
-        "personName": "조국현",
-        "days": 2,
-        "startDate": "2026-04-30",
-        "site": "북부",
-        "baseMins": 90,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-02T02:04:06.428Z",
-        "reason": "기타",
-        "equipName": "동력경운기-01",
-        "equipSpec": "DT100N/10HP",
-        "personName": "박희호",
-        "days": 1,
-        "startDate": "2026-05-01",
-        "site": "북부",
-        "baseMins": 40,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-02T02:04:27.228Z",
-        "reason": "개인사정",
-        "equipName": "원판쟁기8련-01",
-        "equipSpec": "W82-DP/원판-8련",
-        "personName": "이이석",
-        "days": 1,
-        "startDate": "2026-05-01",
-        "site": "북부",
-        "baseMins": 90,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-02T02:04:36.164Z",
-        "reason": "개인사정",
-        "equipName": "관리기-구굴기(중)-02",
-        "equipSpec": "AMC-900SM/구굴기(중)",
-        "personName": "장용환",
-        "days": 1,
-        "startDate": "2026-05-01",
-        "site": "북부",
-        "baseMins": 50,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-02T02:08:11.962Z",
-        "reason": "개인사정",
-        "equipName": "관리기-휴립피복기-01",
-        "equipSpec": "AMC-900SM/휴립피복기(중)",
-        "personName": "김미숙",
-        "days": 1,
-        "startDate": "2026-05-03",
-        "site": "북부",
-        "baseMins": 50,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-02T02:08:39.050Z",
-        "reason": "개인사정",
-        "equipName": "못자리성형기1750-01",
-        "equipSpec": "DS-B003/1750-못자리",
-        "personName": "유재원",
-        "days": 1,
-        "startDate": "2026-05-03",
-        "site": "북부",
-        "baseMins": 90,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-02T02:08:43.130Z",
-        "reason": "개인사정",
-        "equipName": "동력파종기1750-01",
-        "equipSpec": "HG600A/1750(3조)",
-        "personName": "유재원",
-        "days": 1,
-        "startDate": "2026-05-03",
-        "site": "북부",
-        "baseMins": 80,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-02T02:08:45.754Z",
-        "reason": "개인사정",
-        "equipName": "논두렁조성기(중)-01",
-        "equipSpec": "WJLF750/(중)",
-        "personName": "김영환",
-        "days": 1,
-        "startDate": "2026-05-03",
-        "site": "북부",
-        "baseMins": 90,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-02T02:08:48.626Z",
-        "reason": "개인사정",
-        "equipName": "고구마수확기-03",
-        "equipSpec": "DRK-650/경운기용",
-        "personName": "박희호",
-        "days": 1,
-        "startDate": "2026-05-03",
-        "site": "북부",
-        "baseMins": 50,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-02T02:08:52.459Z",
-        "reason": "개인사정",
-        "equipName": "로터베이터1750-02",
-        "equipSpec": "WR1750DGW/1750",
-        "personName": "유재원",
-        "days": 1,
-        "startDate": "2026-05-03",
-        "site": "북부",
-        "baseMins": 60,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-02T02:11:49.036Z",
-        "reason": "기타",
-        "equipName": "보통쟁기(3련)-01",
-        "equipSpec": "KP300A/보통-3련",
-        "personName": "전동옥",
-        "days": 1,
-        "startDate": "2026-05-05",
-        "site": "북부",
-        "baseMins": 60,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-02T02:15:06.513Z",
-        "reason": "개인사정",
-        "equipName": "원판쟁기8련-02",
-        "equipSpec": "W82-DP/원판-8련",
-        "personName": "조창열",
-        "days": 2,
-        "startDate": "2026-05-07",
-        "site": "북부",
-        "baseMins": 90,
-        "delivery": false
-      }
-    ],
+    "_cancelled": [],
     "2026-05-01": {
       "본소": {
         "workers": {
@@ -2036,6 +1867,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1777677415823.0017,
+            "equipName": "원판쟁기8련-02",
+            "equipSpec": "W82-DP/원판-8련",
+            "personName": "조창열",
+            "days": 2,
+            "startDate": "2026-05-07",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
@@ -3193,7 +3037,7 @@
             "equipName": "로터베이터1750-01",
             "equipSpec": "WJ175A/1750",
             "personName": "김완규",
-            "days": 3,
+            "days": 2,
             "startDate": "2026-04-30",
             "outDone": true,
             "inDone": false,
@@ -4653,7 +4497,7 @@
             "days": 3,
             "startDate": "2026-04-27",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -4963,7 +4807,7 @@
             "days": 4,
             "startDate": "2026-04-26",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 140,
             "delivery": false
@@ -8830,174 +8674,5 @@
     "2026-04-25"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-05-02T02:01:56.401Z",
-      "reason": "개인사정",
-      "equipName": "굴착기(1톤)-03",
-      "equipSpec": "U-10-3S/1TON",
-      "personName": "이광백",
-      "days": 1,
-      "startDate": "2026-04-30",
-      "site": "북부",
-      "baseMins": 90,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-02T02:02:30.105Z",
-      "reason": "개인사정",
-      "equipName": "휴립복토파종기(2조2두둑)-02",
-      "equipSpec": "BG-1580BC/휴립복토(2조2두둑)",
-      "personName": "조규영",
-      "days": 1,
-      "startDate": "2026-04-30",
-      "site": "북부",
-      "baseMins": 60,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-02T02:03:02.093Z",
-      "reason": "기타",
-      "equipName": "굴착기(1톤)-05",
-      "equipSpec": "U-10-5/1TON",
-      "personName": "조국현",
-      "days": 2,
-      "startDate": "2026-04-30",
-      "site": "북부",
-      "baseMins": 90,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-02T02:04:06.428Z",
-      "reason": "기타",
-      "equipName": "동력경운기-01",
-      "equipSpec": "DT100N/10HP",
-      "personName": "박희호",
-      "days": 1,
-      "startDate": "2026-05-01",
-      "site": "북부",
-      "baseMins": 40,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-02T02:04:27.228Z",
-      "reason": "개인사정",
-      "equipName": "원판쟁기8련-01",
-      "equipSpec": "W82-DP/원판-8련",
-      "personName": "이이석",
-      "days": 1,
-      "startDate": "2026-05-01",
-      "site": "북부",
-      "baseMins": 90,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-02T02:04:36.164Z",
-      "reason": "개인사정",
-      "equipName": "관리기-구굴기(중)-02",
-      "equipSpec": "AMC-900SM/구굴기(중)",
-      "personName": "장용환",
-      "days": 1,
-      "startDate": "2026-05-01",
-      "site": "북부",
-      "baseMins": 50,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-02T02:08:11.962Z",
-      "reason": "개인사정",
-      "equipName": "관리기-휴립피복기-01",
-      "equipSpec": "AMC-900SM/휴립피복기(중)",
-      "personName": "김미숙",
-      "days": 1,
-      "startDate": "2026-05-03",
-      "site": "북부",
-      "baseMins": 50,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-02T02:08:39.050Z",
-      "reason": "개인사정",
-      "equipName": "못자리성형기1750-01",
-      "equipSpec": "DS-B003/1750-못자리",
-      "personName": "유재원",
-      "days": 1,
-      "startDate": "2026-05-03",
-      "site": "북부",
-      "baseMins": 90,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-02T02:08:43.130Z",
-      "reason": "개인사정",
-      "equipName": "동력파종기1750-01",
-      "equipSpec": "HG600A/1750(3조)",
-      "personName": "유재원",
-      "days": 1,
-      "startDate": "2026-05-03",
-      "site": "북부",
-      "baseMins": 80,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-02T02:08:45.754Z",
-      "reason": "개인사정",
-      "equipName": "논두렁조성기(중)-01",
-      "equipSpec": "WJLF750/(중)",
-      "personName": "김영환",
-      "days": 1,
-      "startDate": "2026-05-03",
-      "site": "북부",
-      "baseMins": 90,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-02T02:08:48.626Z",
-      "reason": "개인사정",
-      "equipName": "고구마수확기-03",
-      "equipSpec": "DRK-650/경운기용",
-      "personName": "박희호",
-      "days": 1,
-      "startDate": "2026-05-03",
-      "site": "북부",
-      "baseMins": 50,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-02T02:08:52.459Z",
-      "reason": "개인사정",
-      "equipName": "로터베이터1750-02",
-      "equipSpec": "WR1750DGW/1750",
-      "personName": "유재원",
-      "days": 1,
-      "startDate": "2026-05-03",
-      "site": "북부",
-      "baseMins": 60,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-02T02:11:49.036Z",
-      "reason": "기타",
-      "equipName": "보통쟁기(3련)-01",
-      "equipSpec": "KP300A/보통-3련",
-      "personName": "전동옥",
-      "days": 1,
-      "startDate": "2026-05-05",
-      "site": "북부",
-      "baseMins": 60,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-02T02:15:06.513Z",
-      "reason": "개인사정",
-      "equipName": "원판쟁기8련-02",
-      "equipSpec": "W82-DP/원판-8련",
-      "personName": "조창열",
-      "days": 2,
-      "startDate": "2026-05-07",
-      "site": "북부",
-      "baseMins": 90,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
