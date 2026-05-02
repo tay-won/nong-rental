@@ -192,6 +192,18 @@
         "site": "본소",
         "baseMins": 90,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-02T04:10:23.482Z",
+        "reason": "기타",
+        "equipName": "잔가지파쇄기(대)-01",
+        "equipSpec": "DLK210E/2000kg/h",
+        "personName": "임현주",
+        "days": 1,
+        "startDate": "2026-05-16",
+        "site": "본소",
+        "baseMins": 320,
+        "delivery": true
       }
     ],
     "2026-05-01": {
@@ -3056,19 +3068,6 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
-          },
-          {
-            "id": 1777455656174.6826,
-            "equipName": "잔가지파쇄기(대)-01",
-            "equipSpec": "DLK210E/2000kg/h",
-            "personName": "임현주",
-            "days": 1,
-            "startDate": "2026-05-16",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 320,
-            "delivery": true
           }
         ],
         "delivery": false
@@ -9150,6 +9149,18 @@
       "site": "본소",
       "baseMins": 90,
       "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-02T04:10:23.482Z",
+      "reason": "기타",
+      "equipName": "잔가지파쇄기(대)-01",
+      "equipSpec": "DLK210E/2000kg/h",
+      "personName": "임현주",
+      "days": 1,
+      "startDate": "2026-05-16",
+      "site": "본소",
+      "baseMins": 320,
+      "delivery": true
     }
   ]
 }
