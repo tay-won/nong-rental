@@ -3217,7 +3217,7 @@
             "personName": "조국현",
             "days": 2,
             "startDate": "2026-04-30",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
