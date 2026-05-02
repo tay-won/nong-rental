@@ -12,6 +12,18 @@
         "site": "북부",
         "baseMins": 90,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-02T02:02:30.105Z",
+        "reason": "개인사정",
+        "equipName": "휴립복토파종기(2조2두둑)-02",
+        "equipSpec": "BG-1580BC/휴립복토(2조2두둑)",
+        "personName": "조규영",
+        "days": 1,
+        "startDate": "2026-04-30",
+        "site": "북부",
+        "baseMins": 60,
+        "delivery": false
       }
     ],
     "2026-05-01": {
@@ -3119,19 +3131,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1777101108529.4343,
-            "equipName": "휴립복토파종기(2조2두둑)-02",
-            "equipSpec": "BG-1580BC/휴립복토(2조2두둑)",
-            "personName": "조규영",
-            "days": 1,
-            "startDate": "2026-04-30",
-            "outDone": true,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 60,
             "delivery": false
           },
           {
@@ -8646,6 +8645,18 @@
       "startDate": "2026-04-30",
       "site": "북부",
       "baseMins": 90,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-02T02:02:30.105Z",
+      "reason": "개인사정",
+      "equipName": "휴립복토파종기(2조2두둑)-02",
+      "equipSpec": "BG-1580BC/휴립복토(2조2두둑)",
+      "personName": "조규영",
+      "days": 1,
+      "startDate": "2026-04-30",
+      "site": "북부",
+      "baseMins": 60,
       "delivery": false
     }
   ]
