@@ -144,6 +144,18 @@
         "site": "본소",
         "baseMins": 80,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-02T04:08:01.211Z",
+        "reason": "기타",
+        "equipName": "굴착기(1톤)-04",
+        "equipSpec": "U-10-5/1TON",
+        "personName": "최정열",
+        "days": 2,
+        "startDate": "2026-05-10",
+        "site": "본소",
+        "baseMins": 90,
+        "delivery": false
       }
     ],
     "2026-05-01": {
@@ -2469,19 +2481,6 @@
             "equipName": "굴착기(1톤)-05",
             "equipSpec": "U-10-5/1TON",
             "personName": "문영진",
-            "days": 2,
-            "startDate": "2026-05-10",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1777429065374.005,
-            "equipName": "굴착기(1톤)-04",
-            "equipSpec": "U-10-5/1TON",
-            "personName": "최정열",
             "days": 2,
             "startDate": "2026-05-10",
             "outDone": false,
@@ -9027,6 +9026,18 @@
       "startDate": "2026-05-10",
       "site": "본소",
       "baseMins": 80,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-02T04:08:01.211Z",
+      "reason": "기타",
+      "equipName": "굴착기(1톤)-04",
+      "equipSpec": "U-10-5/1TON",
+      "personName": "최정열",
+      "days": 2,
+      "startDate": "2026-05-10",
+      "site": "본소",
+      "baseMins": 90,
       "delivery": false
     }
   ]
