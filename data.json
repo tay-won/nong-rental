@@ -1345,10 +1345,10 @@
           },
           {
             "id": 1777687802194.9739,
-            "equipName": "굴착기(1톤)-02",
-            "equipSpec": "U-10-3S/1TON",
+            "equipName": "논두렁조성기(소)-05",
+            "equipSpec": "WJLF380/(소)",
             "personName": "유재원",
-            "days": 1,
+            "days": 2,
             "startDate": "2026-05-04",
             "outDone": false,
             "inDone": false,
