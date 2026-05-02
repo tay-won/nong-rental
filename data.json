@@ -204,6 +204,18 @@
         "site": "본소",
         "baseMins": 320,
         "delivery": true
+      },
+      {
+        "cancelledAt": "2026-05-02T04:20:09.586Z",
+        "reason": "기타",
+        "equipName": "관리기-피복기-03",
+        "equipSpec": "AMC-1000SM/피복기(중)",
+        "personName": "성연용",
+        "days": 1,
+        "startDate": "2026-05-08",
+        "site": "본소",
+        "baseMins": 290,
+        "delivery": true
       }
     ],
     "2026-05-01": {
@@ -2215,19 +2227,6 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
-          },
-          {
-            "id": 1777694821206.542,
-            "equipName": "관리기-피복기-03",
-            "equipSpec": "AMC-1000SM/피복기(중)",
-            "personName": "성연용",
-            "days": 1,
-            "startDate": "2026-05-08",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 290,
-            "delivery": true
           },
           {
             "id": 1777694838464.7031,
@@ -9174,6 +9173,18 @@
       "startDate": "2026-05-16",
       "site": "본소",
       "baseMins": 320,
+      "delivery": true
+    },
+    {
+      "cancelledAt": "2026-05-02T04:20:09.586Z",
+      "reason": "기타",
+      "equipName": "관리기-피복기-03",
+      "equipSpec": "AMC-1000SM/피복기(중)",
+      "personName": "성연용",
+      "days": 1,
+      "startDate": "2026-05-08",
+      "site": "본소",
+      "baseMins": 290,
       "delivery": true
     }
   ]
