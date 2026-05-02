@@ -144,6 +144,18 @@
         "site": "북부",
         "baseMins": 60,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-02T02:11:49.036Z",
+        "reason": "기타",
+        "equipName": "보통쟁기(3련)-01",
+        "equipSpec": "KP300A/보통-3련",
+        "personName": "전동옥",
+        "days": 1,
+        "startDate": "2026-05-05",
+        "site": "북부",
+        "baseMins": 60,
+        "delivery": false
       }
     ],
     "2026-05-01": {
@@ -1538,19 +1550,6 @@
           },
           {
             "id": 1777536498023.6462,
-            "equipName": "보통쟁기(3련)-01",
-            "equipSpec": "KP300A/보통-3련",
-            "personName": "전동옥",
-            "days": 1,
-            "startDate": "2026-05-05",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 60,
-            "delivery": false
-          },
-          {
-            "id": 1777536517167.6665,
             "equipName": "보통쟁기(3련)-01",
             "equipSpec": "KP300A/보통-3련",
             "personName": "전동옥",
@@ -8908,6 +8907,18 @@
       "personName": "유재원",
       "days": 1,
       "startDate": "2026-05-03",
+      "site": "북부",
+      "baseMins": 60,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-02T02:11:49.036Z",
+      "reason": "기타",
+      "equipName": "보통쟁기(3련)-01",
+      "equipSpec": "KP300A/보통-3련",
+      "personName": "전동옥",
+      "days": 1,
+      "startDate": "2026-05-05",
       "site": "북부",
       "baseMins": 60,
       "delivery": false
