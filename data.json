@@ -3222,6 +3222,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1777687415636.2976,
+            "equipName": "휴립복토파종기(2조2두둑)-01",
+            "equipSpec": "BG-1580BC/휴립복토(2조2두둑)",
+            "personName": "조규영",
+            "days": 2,
+            "startDate": "2026-04-30",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
