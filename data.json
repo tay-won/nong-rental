@@ -601,6 +601,19 @@
             "site": "본소",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1777694509897.8367,
+            "equipName": "원판쟁기8련-04",
+            "equipSpec": "W82-DP/원판-8련",
+            "personName": "유명석",
+            "days": 2,
+            "startDate": "2026-05-02",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
