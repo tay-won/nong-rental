@@ -36,6 +36,18 @@
         "site": "본소",
         "baseMins": 40,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-02T02:18:39.034Z",
+        "reason": "개인사정",
+        "equipName": "비료살포기-01",
+        "equipSpec": "JHT-320H/300kg",
+        "personName": "이상흠",
+        "days": 2,
+        "startDate": "2026-05-01",
+        "site": "본소",
+        "baseMins": 60,
+        "delivery": false
       }
     ],
     "2026-05-01": {
@@ -84,19 +96,6 @@
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1776759443741.3289,
-            "equipName": "비료살포기-01",
-            "equipSpec": "JHT-320H/300kg",
-            "personName": "이상흠",
-            "days": 2,
-            "startDate": "2026-05-01",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 60,
             "delivery": false
           },
           {
@@ -8733,6 +8732,18 @@
       "startDate": "2026-05-01",
       "site": "본소",
       "baseMins": 40,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-02T02:18:39.034Z",
+      "reason": "개인사정",
+      "equipName": "비료살포기-01",
+      "equipSpec": "JHT-320H/300kg",
+      "personName": "이상흠",
+      "days": 2,
+      "startDate": "2026-05-01",
+      "site": "본소",
+      "baseMins": 60,
       "delivery": false
     }
   ]
