@@ -621,7 +621,7 @@
             "personName": "전환식",
             "days": 2,
             "startDate": "2026-05-01",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 80,
