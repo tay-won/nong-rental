@@ -1235,19 +1235,6 @@
             "delivery": false
           },
           {
-            "id": 1777852183519.5706,
-            "equipName": "배토기1950-01",
-            "equipSpec": "DOA-220/1950(2조)",
-            "personName": "조규영",
-            "days": 2,
-            "startDate": "2026-05-07",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
             "id": 1777852197453.3093,
             "equipName": "로터베이터1950-02",
             "equipSpec": "WR1950DGWJ/1950",
@@ -1550,6 +1537,19 @@
             "equipSpec": "U-10-3S/1TON",
             "personName": "이세종",
             "days": 1,
+            "startDate": "2026-05-08",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
+          },
+          {
+            "id": 1777852183519.5706,
+            "equipName": "배토기1950-01",
+            "equipSpec": "DOA-220/1950(2조)",
+            "personName": "조규영",
+            "days": 2,
             "startDate": "2026-05-08",
             "outDone": false,
             "inDone": false,
