@@ -3043,7 +3043,7 @@
             "personName": "성운경",
             "days": 3,
             "startDate": "2026-05-02",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 40,
