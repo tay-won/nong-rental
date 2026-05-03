@@ -1233,6 +1233,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1777852183519.5706,
+            "equipName": "배토기1950-01",
+            "equipSpec": "DOA-220/1950(2조)",
+            "personName": "조규영",
+            "days": 2,
+            "startDate": "2026-05-07",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
