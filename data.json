@@ -1233,19 +1233,6 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
-          },
-          {
-            "id": 1777852197453.3093,
-            "equipName": "로터베이터1950-02",
-            "equipSpec": "WR1950DGWJ/1950",
-            "personName": "조규영",
-            "days": 2,
-            "startDate": "2026-05-07",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 60,
-            "delivery": false
           }
         ],
         "delivery": false
@@ -1555,6 +1542,19 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
+            "delivery": false
+          },
+          {
+            "id": 1777852197453.3093,
+            "equipName": "로터베이터1950-02",
+            "equipSpec": "WR1950DGWJ/1950",
+            "personName": "조규영",
+            "days": 2,
+            "startDate": "2026-05-08",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
             "delivery": false
           }
         ],
