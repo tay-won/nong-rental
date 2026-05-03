@@ -2394,6 +2394,18 @@
         "site": "북부",
         "baseMins": 90,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-03T23:40:45.420Z",
+        "reason": "기타",
+        "equipName": "소형트랙터25HP-04",
+        "equipSpec": "LK2805/25HP",
+        "personName": "임종식",
+        "days": 2,
+        "startDate": "2026-05-01",
+        "site": "북부",
+        "baseMins": 50,
+        "delivery": false
       }
     ],
     "2026-05-01": {
@@ -2713,19 +2725,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1776734738973.288,
-            "equipName": "소형트랙터25HP-04",
-            "equipSpec": "LK2805/25HP",
-            "personName": "임종식",
-            "days": 2,
-            "startDate": "2026-05-01",
-            "outDone": true,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
             "delivery": false
           },
           {
@@ -8816,6 +8815,18 @@
       "startDate": "2026-05-01",
       "site": "북부",
       "baseMins": 90,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-03T23:40:45.420Z",
+      "reason": "기타",
+      "equipName": "소형트랙터25HP-04",
+      "equipSpec": "LK2805/25HP",
+      "personName": "임종식",
+      "days": 2,
+      "startDate": "2026-05-01",
+      "site": "북부",
+      "baseMins": 50,
       "delivery": false
     }
   ]
