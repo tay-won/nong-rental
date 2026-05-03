@@ -2382,7 +2382,20 @@
         "delivery": false
       }
     },
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-05-03T23:39:17.693Z",
+        "reason": "개인사정",
+        "equipName": "논두렁조성기(소)-04",
+        "equipSpec": "WJLF380/(소)",
+        "personName": "이돈식",
+        "days": 1,
+        "startDate": "2026-05-01",
+        "site": "북부",
+        "baseMins": 90,
+        "delivery": false
+      }
+    ],
     "2026-05-01": {
       "본소": {
         "workers": {
@@ -2804,19 +2817,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1777333986854.64,
-            "equipName": "논두렁조성기(소)-04",
-            "equipSpec": "WJLF380/(소)",
-            "personName": "이돈식",
-            "days": 1,
-            "startDate": "2026-05-01",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
             "delivery": false
           },
           {
@@ -8779,5 +8779,18 @@
     "2026-04-25"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-05-03T23:39:17.693Z",
+      "reason": "개인사정",
+      "equipName": "논두렁조성기(소)-04",
+      "equipSpec": "WJLF380/(소)",
+      "personName": "이돈식",
+      "days": 1,
+      "startDate": "2026-05-01",
+      "site": "북부",
+      "baseMins": 90,
+      "delivery": false
+    }
+  ]
 }
