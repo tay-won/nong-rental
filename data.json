@@ -2904,7 +2904,7 @@
             "personName": "임종식",
             "days": 1,
             "startDate": "2026-05-01",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
