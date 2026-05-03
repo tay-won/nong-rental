@@ -383,6 +383,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1777334049950.9392,
+            "equipName": "동력살분무기(살)-03",
+            "equipSpec": "L3EDA/액제",
+            "personName": "신승철",
+            "days": 3,
+            "startDate": "2026-05-03",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 40,
+            "delivery": false
           }
         ],
         "delivery": false
@@ -3021,19 +3034,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1777334049950.9392,
-            "equipName": "분무기-배낭식(제)-01",
-            "equipSpec": "BY-HP2625/배낭식-제초제",
-            "personName": "신승철",
-            "days": 3,
-            "startDate": "2026-05-02",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 40,
             "delivery": false
           },
           {
