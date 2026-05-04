@@ -2487,6 +2487,19 @@
             "site": "본소",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1777883724763.5083,
+            "equipName": "소형트랙터25HP-03",
+            "equipSpec": "CK250V/25HP",
+            "personName": "김기섭",
+            "days": 2,
+            "startDate": "2026-05-17",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 290,
+            "delivery": true
           }
         ],
         "delivery": false
