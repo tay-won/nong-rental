@@ -1,5 +1,6 @@
 {
   "state": {
+    "_cancelled": [],
     "2026-05-03": {
       "본소": {
         "workers": {
@@ -2434,68 +2435,6 @@
         "delivery": false
       }
     },
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-05-03T23:39:17.693Z",
-        "reason": "개인사정",
-        "equipName": "논두렁조성기(소)-04",
-        "equipSpec": "WJLF380/(소)",
-        "personName": "이돈식",
-        "days": 1,
-        "startDate": "2026-05-01",
-        "site": "북부",
-        "baseMins": 90,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-03T23:40:45.420Z",
-        "reason": "기타",
-        "equipName": "소형트랙터25HP-04",
-        "equipSpec": "LK2805/25HP",
-        "personName": "임종식",
-        "days": 2,
-        "startDate": "2026-05-01",
-        "site": "북부",
-        "baseMins": 50,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-03T23:40:52.916Z",
-        "reason": "개인사정",
-        "equipName": "로터베이터1150-02",
-        "equipSpec": "DWR115GM/1150",
-        "personName": "임종식",
-        "days": 2,
-        "startDate": "2026-05-01",
-        "site": "북부",
-        "baseMins": 40,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-03T23:48:52.748Z",
-        "reason": "개인사정",
-        "equipName": "배토기1950-01",
-        "equipSpec": "DOA-220/1950(2조)",
-        "personName": "조규영",
-        "days": 2,
-        "startDate": "2026-05-06",
-        "site": "북부",
-        "baseMins": 90,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-03T23:48:56.502Z",
-        "reason": "개인사정",
-        "equipName": "원판쟁기8련-02",
-        "equipSpec": "W82-DP/원판-8련",
-        "personName": "조창열",
-        "days": 2,
-        "startDate": "2026-05-06",
-        "site": "북부",
-        "baseMins": 90,
-        "delivery": false
-      }
-    ],
     "2026-05-01": {
       "본소": {
         "workers": {
@@ -3417,7 +3356,7 @@
             "days": 3,
             "startDate": "2026-04-30",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -8926,66 +8865,5 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-05-03T23:39:17.693Z",
-      "reason": "개인사정",
-      "equipName": "논두렁조성기(소)-04",
-      "equipSpec": "WJLF380/(소)",
-      "personName": "이돈식",
-      "days": 1,
-      "startDate": "2026-05-01",
-      "site": "북부",
-      "baseMins": 90,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-03T23:40:45.420Z",
-      "reason": "기타",
-      "equipName": "소형트랙터25HP-04",
-      "equipSpec": "LK2805/25HP",
-      "personName": "임종식",
-      "days": 2,
-      "startDate": "2026-05-01",
-      "site": "북부",
-      "baseMins": 50,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-03T23:40:52.916Z",
-      "reason": "개인사정",
-      "equipName": "로터베이터1150-02",
-      "equipSpec": "DWR115GM/1150",
-      "personName": "임종식",
-      "days": 2,
-      "startDate": "2026-05-01",
-      "site": "북부",
-      "baseMins": 40,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-03T23:48:52.748Z",
-      "reason": "개인사정",
-      "equipName": "배토기1950-01",
-      "equipSpec": "DOA-220/1950(2조)",
-      "personName": "조규영",
-      "days": 2,
-      "startDate": "2026-05-06",
-      "site": "북부",
-      "baseMins": 90,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-03T23:48:56.502Z",
-      "reason": "개인사정",
-      "equipName": "원판쟁기8련-02",
-      "equipSpec": "W82-DP/원판-8련",
-      "personName": "조창열",
-      "days": 2,
-      "startDate": "2026-05-06",
-      "site": "북부",
-      "baseMins": 90,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
