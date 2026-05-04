@@ -874,6 +874,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777873421929.7275,
+            "equipName": "관리기-휴립기-01",
+            "equipSpec": "AMC-900SM/휴립기(중)",
+            "personName": "정상석",
+            "days": 1,
+            "startDate": "2026-05-05",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
