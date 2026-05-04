@@ -384,6 +384,19 @@
             "site": "북부",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1777862244286.0786,
+            "equipName": "퇴비살포기(소)-05",
+            "equipSpec": "GW-900H/900KG-퇴비",
+            "personName": "맹국원",
+            "days": 1,
+            "startDate": "2026-05-03",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
