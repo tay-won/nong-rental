@@ -3019,7 +3019,7 @@
             "personName": "정경모",
             "days": 2,
             "startDate": "2026-05-02",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
@@ -3085,7 +3085,7 @@
             "days": 1,
             "startDate": "2026-05-02",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
