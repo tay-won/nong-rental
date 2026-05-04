@@ -633,7 +633,6 @@ function toggleHoliday(dk) {
   if (idx === -1) holidays.push(dk);
   else holidays.splice(idx, 1);
   saveHolidays(holidays);
-  scheduleSave();
   renderAll();
 }
 
@@ -877,8 +876,8 @@ async function saveData(){
         setSyncUI('err','저장 실패(재시도): '+e2.message);
       }
     } else {
-      // 저장 실패 시 3초 후 재시도
-      setTimeout(() => saveData(), 3000);
+      // 저장 실패 - 재시도 없이 명확히 표시
+      setSyncUI('err','❌ 저장 실패 — 우측 상단 빨간 점 확인');
     }
   }
 }
@@ -1547,7 +1546,7 @@ if(_savedAuth) {
 }
 
 document.getElementById('headerSub')&&(document.getElementById('headerSub').textContent='파주시 농업기계임대사업소 · '+t.getFullYear()+'년 '+(t.getMonth()+1)+'월 '+t.getDate()+'일');
-loadData();
+// loadData는 위 if(_savedAuth) 블록에서만 호출 (중복 제거)
 
 
 // ══════════════════════════════════════════════
