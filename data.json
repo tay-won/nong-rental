@@ -2329,6 +2329,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1777880879727.8901,
+            "equipName": "관리기-로터리-01",
+            "equipSpec": "AMC-1000SM/로타리(중)",
+            "personName": "송광훈",
+            "days": 2,
+            "startDate": "2026-05-12",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
