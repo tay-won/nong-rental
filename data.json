@@ -36,6 +36,18 @@
         "site": "본소",
         "baseMins": 50,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-04T06:09:59.198Z",
+        "reason": "개인사정",
+        "equipName": "관리기-로터리-02",
+        "equipSpec": "AMC-1000SM/로타리(중)",
+        "personName": "송광훈",
+        "days": 2,
+        "startDate": "2026-05-12",
+        "site": "본소",
+        "baseMins": 50,
+        "delivery": false
       }
     ],
     "2026-05-03": {
@@ -2315,19 +2327,6 @@
             "inDone": false,
             "site": "본소",
             "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1777862625304.692,
-            "equipName": "관리기-로터리-02",
-            "equipSpec": "AMC-1000SM/로타리(중)",
-            "personName": "송광훈",
-            "days": 2,
-            "startDate": "2026-05-12",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
             "delivery": false
           }
         ],
@@ -9327,6 +9326,18 @@
       "personName": "권상덕",
       "days": 2,
       "startDate": "2026-05-08",
+      "site": "본소",
+      "baseMins": 50,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-04T06:09:59.198Z",
+      "reason": "개인사정",
+      "equipName": "관리기-로터리-02",
+      "equipSpec": "AMC-1000SM/로타리(중)",
+      "personName": "송광훈",
+      "days": 2,
+      "startDate": "2026-05-12",
       "site": "본소",
       "baseMins": 50,
       "delivery": false
