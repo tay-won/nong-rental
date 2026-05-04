@@ -1,6 +1,19 @@
 {
   "state": {
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-05-04T08:01:14.718Z",
+        "reason": "개인사정",
+        "equipName": "관리기-로터리-03",
+        "equipSpec": "AMC-1000SM/로타리(중)",
+        "personName": "이병삼",
+        "days": 1,
+        "startDate": "2026-05-07",
+        "site": "본소",
+        "baseMins": 50,
+        "delivery": false
+      }
+    ],
     "2026-05-03": {
       "본소": {
         "workers": {
@@ -1274,19 +1287,6 @@
             "inDone": false,
             "site": "본소",
             "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1777872369445.216,
-            "equipName": "관리기-로터리-03",
-            "equipSpec": "AMC-1000SM/로타리(중)",
-            "personName": "이병삼",
-            "days": 1,
-            "startDate": "2026-05-07",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
             "delivery": false
           },
           {
@@ -9296,5 +9296,18 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-05-04T08:01:14.718Z",
+      "reason": "개인사정",
+      "equipName": "관리기-로터리-03",
+      "equipSpec": "AMC-1000SM/로타리(중)",
+      "personName": "이병삼",
+      "days": 1,
+      "startDate": "2026-05-07",
+      "site": "본소",
+      "baseMins": 50,
+      "delivery": false
+    }
+  ]
 }
