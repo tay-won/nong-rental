@@ -405,7 +405,7 @@
             "personName": "맹국원",
             "days": 1,
             "startDate": "2026-05-03",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
