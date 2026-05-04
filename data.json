@@ -2922,7 +2922,21 @@
           "bs3": 420,
           "bs4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1777882247586.4688,
+            "equipName": "소형트랙터25HP-02",
+            "equipSpec": "CK250V/25HP",
+            "personName": "박영주",
+            "days": 1,
+            "startDate": "2026-05-19",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
+          }
+        ],
         "delivery": false
       },
       "북부": {
