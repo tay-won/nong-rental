@@ -496,7 +496,7 @@
             "personName": "이수철",
             "days": 1,
             "startDate": "2026-05-04",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
