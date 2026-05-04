@@ -1,19 +1,6 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-05-04T07:41:47.336Z",
-        "reason": "개인사정",
-        "equipName": "관리기-구굴기(중)-03",
-        "equipSpec": "AMC-1000SM/구굴기(중)",
-        "personName": "마영철",
-        "days": 1,
-        "startDate": "2026-05-06",
-        "site": "북부",
-        "baseMins": 50,
-        "delivery": false
-      }
-    ],
+    "_cancelled": [],
     "2026-05-03": {
       "본소": {
         "workers": {
@@ -1409,6 +1396,19 @@
             "equipName": "관리기-구굴기(중)-01",
             "equipSpec": "AMC-1000SM/구굴기(중)",
             "personName": "이병삼",
+            "days": 1,
+            "startDate": "2026-05-07",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1777880635920.9998,
+            "equipName": "소형트랙터25HP-04",
+            "equipSpec": "LK2805/25HP",
+            "personName": "이명호",
             "days": 1,
             "startDate": "2026-05-07",
             "outDone": false,
@@ -9100,18 +9100,5 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-05-04T07:41:47.336Z",
-      "reason": "개인사정",
-      "equipName": "관리기-구굴기(중)-03",
-      "equipSpec": "AMC-1000SM/구굴기(중)",
-      "personName": "마영철",
-      "days": 1,
-      "startDate": "2026-05-06",
-      "site": "북부",
-      "baseMins": 50,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
