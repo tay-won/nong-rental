@@ -1,55 +1,5 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-05-04T01:27:33.924Z",
-        "reason": "개인사정",
-        "equipName": "관리기-휴립기-01",
-        "equipSpec": "AMC-900SM/휴립기(중)",
-        "personName": "윤석준",
-        "days": 1,
-        "startDate": "2026-05-03",
-        "site": "북부",
-        "baseMins": 50,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-04T01:30:15.231Z",
-        "reason": "개인사정",
-        "equipName": "승용관리기20HP-02",
-        "equipSpec": "CFM-2000/20HP",
-        "personName": "조창열",
-        "days": 2,
-        "startDate": "2026-05-03",
-        "site": "북부",
-        "baseMins": 140,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-04T01:30:18.754Z",
-        "reason": "개인사정",
-        "equipName": "붐스프레이어-01",
-        "equipSpec": "BS-2000/600ℓ",
-        "personName": "조창열",
-        "days": 2,
-        "startDate": "2026-05-03",
-        "site": "북부",
-        "baseMins": 150,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-04T01:31:32.294Z",
-        "reason": "개인사정",
-        "equipName": "비닐수거기-02",
-        "equipSpec": "DH-T3000/1조",
-        "personName": "김윤주",
-        "days": 1,
-        "startDate": "2026-05-04",
-        "site": "북부",
-        "baseMins": 40,
-        "delivery": false
-      }
-    ],
     "2026-05-03": {
       "본소": {
         "workers": {
@@ -201,13 +151,26 @@
         },
         "entries": [
           {
+            "id": 1776734815856.5918,
+            "equipName": "관리기-휴립기-01",
+            "equipSpec": "AMC-900SM/휴립기(중)",
+            "personName": "윤석준",
+            "days": 1,
+            "startDate": "2026-05-03",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
+          },
+          {
             "id": 1776734831281.864,
             "equipName": "굴착기(1톤)-05",
             "equipSpec": "U-10-5/1TON",
             "personName": "심재진",
             "days": 2,
             "startDate": "2026-05-03",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -220,7 +183,7 @@
             "personName": "김미현",
             "days": 3,
             "startDate": "2026-05-03",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 290,
@@ -233,7 +196,7 @@
             "personName": "김미현",
             "days": 3,
             "startDate": "2026-05-03",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 40,
@@ -246,7 +209,7 @@
             "personName": "김미현",
             "days": 3,
             "startDate": "2026-05-03",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 290,
@@ -285,7 +248,7 @@
             "personName": "유승철",
             "days": 2,
             "startDate": "2026-05-03",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -298,7 +261,7 @@
             "personName": "이원경",
             "days": 1,
             "startDate": "2026-05-03",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -324,7 +287,7 @@
             "personName": "송양호",
             "days": 2,
             "startDate": "2026-05-03",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -350,7 +313,7 @@
             "personName": "이병삼",
             "days": 1,
             "startDate": "2026-05-03",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
@@ -363,7 +326,7 @@
             "personName": "정붕채",
             "days": 1,
             "startDate": "2026-05-03",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 60,
@@ -380,6 +343,32 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
+            "delivery": false
+          },
+          {
+            "id": 1777536355894.068,
+            "equipName": "승용관리기20HP-02",
+            "equipSpec": "CFM-2000/20HP",
+            "personName": "조창열",
+            "days": 2,
+            "startDate": "2026-05-03",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 140,
+            "delivery": false
+          },
+          {
+            "id": 1777536378030.3794,
+            "equipName": "붐스프레이어-01",
+            "equipSpec": "BS-2000/600ℓ",
+            "personName": "조창열",
+            "days": 2,
+            "startDate": "2026-05-03",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 150,
             "delivery": false
           },
           {
@@ -402,75 +391,10 @@
             "personName": "신승철",
             "days": 3,
             "startDate": "2026-05-03",
-            "outDone": true,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 40,
-            "delivery": false
-          },
-          {
-            "id": 1777858008313.017,
-            "equipName": "퇴비살포기(소)-05",
-            "equipSpec": "GW-900H/900KG-퇴비",
-            "personName": "맹국원",
-            "days": 1,
-            "startDate": "2026-05-03",
-            "outDone": true,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1777858085580.4146,
-            "equipName": "비닐수거기-02",
-            "equipSpec": "DH-T3000/1조",
-            "personName": "김윤주",
-            "days": 2,
-            "startDate": "2026-05-03",
             "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 40,
-            "delivery": false
-          },
-          {
-            "id": 1777858112164.631,
-            "equipName": "동력운반차-01",
-            "equipSpec": "TKT-600B/궤도",
-            "personName": "오영희",
-            "days": 2,
-            "startDate": "2026-05-03",
-            "outDone": true,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 80,
-            "delivery": false
-          },
-          {
-            "id": 1777858153930.824,
-            "equipName": "붐스프레이어-02",
-            "equipSpec": "BS-2000/600ℓ",
-            "personName": "파평면행정복지센터",
-            "days": 2,
-            "startDate": "2026-05-03",
-            "outDone": true,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 150,
-            "delivery": false
-          },
-          {
-            "id": 1777858174428.0803,
-            "equipName": "승용관리기20HP-01",
-            "equipSpec": "CFM-2000/20HP",
-            "personName": "파평면행정복지센터",
-            "days": 2,
-            "startDate": "2026-05-03",
-            "outDone": true,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 140,
             "delivery": false
           }
         ],
@@ -602,6 +526,19 @@
             "delivery": false
           },
           {
+            "id": 1777687789842.7734,
+            "equipName": "비닐수거기-02",
+            "equipSpec": "DH-T3000/1조",
+            "personName": "김윤주",
+            "days": 1,
+            "startDate": "2026-05-04",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 40,
+            "delivery": false
+          },
+          {
             "id": 1777687802194.9739,
             "equipName": "논두렁조성기(소)-05",
             "equipSpec": "WJLF380/(소)",
@@ -628,16 +565,16 @@
             "delivery": false
           },
           {
-            "id": 1777858314371.7795,
-            "equipName": "양용쟁기(3련)-02",
-            "equipSpec": "KP3300W/양용-3련",
-            "personName": "노일천",
-            "days": 2,
+            "id": 1777858446571.5935,
+            "equipName": "관리기-피복기-02",
+            "equipSpec": "AMC-900SM/피복기(중)",
+            "personName": "정경모",
+            "days": 1,
             "startDate": "2026-05-04",
             "outDone": false,
             "inDone": false,
             "site": "북부",
-            "baseMins": 80,
+            "baseMins": 50,
             "delivery": false
           }
         ],
@@ -2510,6 +2447,7 @@
         "delivery": false
       }
     },
+    "_cancelled": [],
     "2026-05-01": {
       "본소": {
         "workers": {
@@ -2824,7 +2762,7 @@
             "days": 2,
             "startDate": "2026-05-01",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -2837,7 +2775,7 @@
             "days": 2,
             "startDate": "2026-05-01",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -2876,7 +2814,7 @@
             "days": 2,
             "startDate": "2026-05-01",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -2915,7 +2853,7 @@
             "days": 2,
             "startDate": "2026-05-01",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 60,
             "delivery": false
@@ -2954,7 +2892,7 @@
             "days": 2,
             "startDate": "2026-05-01",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -2967,7 +2905,7 @@
             "days": 2,
             "startDate": "2026-05-01",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
@@ -2980,7 +2918,7 @@
             "days": 2,
             "startDate": "2026-05-01",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 80,
             "delivery": false
@@ -3094,7 +3032,7 @@
             "personName": "정경모",
             "days": 2,
             "startDate": "2026-05-02",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
@@ -3108,7 +3046,7 @@
             "days": 1,
             "startDate": "2026-05-02",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 60,
             "delivery": false
@@ -3121,7 +3059,7 @@
             "days": 1,
             "startDate": "2026-05-02",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -3134,7 +3072,7 @@
             "days": 1,
             "startDate": "2026-05-02",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
@@ -3147,7 +3085,7 @@
             "days": 1,
             "startDate": "2026-05-02",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 40,
             "delivery": false
@@ -3157,10 +3095,10 @@
             "equipName": "구굴기30-01",
             "equipSpec": "OM312/30",
             "personName": "유재원",
-            "days": 1,
+            "days": 2,
             "startDate": "2026-05-02",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
@@ -3431,7 +3369,7 @@
             "days": 3,
             "startDate": "2026-04-30",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -8940,54 +8878,5 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-05-04T01:27:33.924Z",
-      "reason": "개인사정",
-      "equipName": "관리기-휴립기-01",
-      "equipSpec": "AMC-900SM/휴립기(중)",
-      "personName": "윤석준",
-      "days": 1,
-      "startDate": "2026-05-03",
-      "site": "북부",
-      "baseMins": 50,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-04T01:30:15.231Z",
-      "reason": "개인사정",
-      "equipName": "승용관리기20HP-02",
-      "equipSpec": "CFM-2000/20HP",
-      "personName": "조창열",
-      "days": 2,
-      "startDate": "2026-05-03",
-      "site": "북부",
-      "baseMins": 140,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-04T01:30:18.754Z",
-      "reason": "개인사정",
-      "equipName": "붐스프레이어-01",
-      "equipSpec": "BS-2000/600ℓ",
-      "personName": "조창열",
-      "days": 2,
-      "startDate": "2026-05-03",
-      "site": "북부",
-      "baseMins": 150,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-04T01:31:32.294Z",
-      "reason": "개인사정",
-      "equipName": "비닐수거기-02",
-      "equipSpec": "DH-T3000/1조",
-      "personName": "김윤주",
-      "days": 1,
-      "startDate": "2026-05-04",
-      "site": "북부",
-      "baseMins": 40,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
