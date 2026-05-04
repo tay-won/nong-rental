@@ -470,7 +470,7 @@
             "personName": "김승철",
             "days": 2,
             "startDate": "2026-05-04",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
