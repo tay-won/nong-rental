@@ -1118,6 +1118,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777873773877.6113,
+            "equipName": "로터베이터2350-01",
+            "equipSpec": "AR5240SC/2350",
+            "personName": "최학순",
+            "days": 3,
+            "startDate": "2026-05-06",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
