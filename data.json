@@ -379,7 +379,7 @@
             "personName": "신승철",
             "days": 3,
             "startDate": "2026-05-03",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 40,
