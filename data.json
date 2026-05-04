@@ -2798,6 +2798,19 @@
             "site": "본소",
             "baseMins": 320,
             "delivery": true
+          },
+          {
+            "id": 1777882170866.041,
+            "equipName": "소형트랙터25HP-02",
+            "equipSpec": "CK250V/25HP",
+            "personName": "김승철",
+            "days": 1,
+            "startDate": "2026-05-17",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
