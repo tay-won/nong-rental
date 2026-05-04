@@ -2805,6 +2805,19 @@
             "site": "본소",
             "baseMins": 320,
             "delivery": true
+          },
+          {
+            "id": 1777875179646.8147,
+            "equipName": "관리기-구굴기(중)-03",
+            "equipSpec": "AMC-900SM/구굴기(중)",
+            "personName": "김승철",
+            "days": 2,
+            "startDate": "2026-05-18",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
