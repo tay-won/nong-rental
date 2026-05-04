@@ -152,6 +152,19 @@
             "site": "본소",
             "baseMins": 60,
             "delivery": false
+          },
+          {
+            "id": 1777881359639.5574,
+            "equipName": "이랑쟁기6련-01",
+            "equipSpec": "DWS210/이랑-6련",
+            "personName": "서재윤",
+            "days": 1,
+            "startDate": "2026-05-03",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
