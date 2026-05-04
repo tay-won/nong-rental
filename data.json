@@ -108,7 +108,7 @@
             "personName": "허준수",
             "days": 1,
             "startDate": "2026-05-03",
-            "outDone": false,
+            "outDone": true,
             "inDone": true,
             "site": "본소",
             "baseMins": 50,
