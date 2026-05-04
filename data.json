@@ -1789,6 +1789,19 @@
             "site": "본소",
             "baseMins": 60,
             "delivery": false
+          },
+          {
+            "id": 1777883369116.2573,
+            "equipName": "관리기-피복기-03",
+            "equipSpec": "AMC-880SM/피복기(중)",
+            "personName": "월롱면사무소",
+            "days": 2,
+            "startDate": "2026-05-10",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
