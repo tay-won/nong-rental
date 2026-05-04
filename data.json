@@ -1,31 +1,6 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-05-04T05:46:08.977Z",
-        "reason": "개인사정",
-        "equipName": "돌수집기-04",
-        "equipSpec": "SH-L1400B/1400",
-        "personName": "이민성",
-        "days": 3,
-        "startDate": "2026-05-05",
-        "site": "본소",
-        "baseMins": 90,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-04T05:48:20.445Z",
-        "reason": "개인사정",
-        "equipName": "관리기-구굴기(중)-03",
-        "equipSpec": "AMC-1000SM/구굴기(중)",
-        "personName": "마영철",
-        "days": 1,
-        "startDate": "2026-05-06",
-        "site": "북부",
-        "baseMins": 50,
-        "delivery": false
-      }
-    ],
+    "_cancelled": [],
     "2026-05-03": {
       "본소": {
         "workers": {
@@ -815,19 +790,6 @@
             "equipSpec": "KP300A/보통-3련",
             "personName": "전동옥",
             "days": 1,
-            "startDate": "2026-05-05",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 60,
-            "delivery": false
-          },
-          {
-            "id": 1777536559726.0308,
-            "equipName": "원판쟁기6련-03",
-            "equipSpec": "W62-DP/원판-6련",
-            "personName": "김주년",
-            "days": 2,
             "startDate": "2026-05-05",
             "outDone": false,
             "inDone": false,
@@ -2032,6 +1994,19 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
+            "delivery": false
+          },
+          {
+            "id": 1777536559726.0308,
+            "equipName": "원판쟁기6련-03",
+            "equipSpec": "W62-DP/원판-6련",
+            "personName": "김주년",
+            "days": 2,
+            "startDate": "2026-05-10",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
             "delivery": false
           }
         ],
@@ -9190,30 +9165,5 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-05-04T05:46:08.977Z",
-      "reason": "개인사정",
-      "equipName": "돌수집기-04",
-      "equipSpec": "SH-L1400B/1400",
-      "personName": "이민성",
-      "days": 3,
-      "startDate": "2026-05-05",
-      "site": "본소",
-      "baseMins": 90,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-04T05:48:20.445Z",
-      "reason": "개인사정",
-      "equipName": "관리기-구굴기(중)-03",
-      "equipSpec": "AMC-1000SM/구굴기(중)",
-      "personName": "마영철",
-      "days": 1,
-      "startDate": "2026-05-06",
-      "site": "북부",
-      "baseMins": 50,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
