@@ -12,6 +12,18 @@
         "site": "북부",
         "baseMins": 50,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-04T01:30:15.231Z",
+        "reason": "개인사정",
+        "equipName": "승용관리기20HP-02",
+        "equipSpec": "CFM-2000/20HP",
+        "personName": "조창열",
+        "days": 2,
+        "startDate": "2026-05-03",
+        "site": "북부",
+        "baseMins": 140,
+        "delivery": false
       }
     ],
     "2026-05-03": {
@@ -344,19 +356,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1777536355894.068,
-            "equipName": "승용관리기20HP-02",
-            "equipSpec": "CFM-2000/20HP",
-            "personName": "조창열",
-            "days": 2,
-            "startDate": "2026-05-03",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 140,
             "delivery": false
           },
           {
@@ -8941,6 +8940,18 @@
       "startDate": "2026-05-03",
       "site": "북부",
       "baseMins": 50,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-04T01:30:15.231Z",
+      "reason": "개인사정",
+      "equipName": "승용관리기20HP-02",
+      "equipSpec": "CFM-2000/20HP",
+      "personName": "조창열",
+      "days": 2,
+      "startDate": "2026-05-03",
+      "site": "북부",
+      "baseMins": 140,
       "delivery": false
     }
   ]
