@@ -1118,6 +1118,19 @@
             "site": "북부",
             "baseMins": 80,
             "delivery": false
+          },
+          {
+            "id": 1777880477929.4983,
+            "equipName": "비료살포기-01",
+            "equipSpec": "JHT-320H/300kg",
+            "personName": "김두용",
+            "days": 1,
+            "startDate": "2026-05-06",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
