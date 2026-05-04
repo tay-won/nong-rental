@@ -2,27 +2,15 @@
   "state": {
     "_cancelled": [
       {
-        "cancelledAt": "2026-05-04T07:34:04.570Z",
+        "cancelledAt": "2026-05-04T07:41:47.336Z",
         "reason": "개인사정",
-        "equipName": "논두렁조성기(중)-04",
-        "equipSpec": "WJLF750/(중)",
-        "personName": "최연우",
+        "equipName": "관리기-구굴기(중)-03",
+        "equipSpec": "AMC-1000SM/구굴기(중)",
+        "personName": "마영철",
         "days": 1,
-        "startDate": "2026-05-03",
+        "startDate": "2026-05-06",
         "site": "북부",
-        "baseMins": 90,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-04T07:34:08.736Z",
-        "reason": "개인사정",
-        "equipName": "논두렁조성기(중)-04",
-        "equipSpec": "WJLF750/(중)",
-        "personName": "최연우",
-        "days": 1,
-        "startDate": "2026-05-03",
-        "site": "북부",
-        "baseMins": 90,
+        "baseMins": 50,
         "delivery": false
       }
     ],
@@ -1039,19 +1027,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1777688000925.77,
-            "equipName": "관리기-구굴기(중)-03",
-            "equipSpec": "AMC-1000SM/구굴기(중)",
-            "personName": "마영철",
-            "days": 1,
-            "startDate": "2026-05-06",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
             "delivery": false
           },
           {
@@ -9088,27 +9063,15 @@
   "rainy": [],
   "cancelled": [
     {
-      "cancelledAt": "2026-05-04T07:34:04.570Z",
+      "cancelledAt": "2026-05-04T07:41:47.336Z",
       "reason": "개인사정",
-      "equipName": "논두렁조성기(중)-04",
-      "equipSpec": "WJLF750/(중)",
-      "personName": "최연우",
+      "equipName": "관리기-구굴기(중)-03",
+      "equipSpec": "AMC-1000SM/구굴기(중)",
+      "personName": "마영철",
       "days": 1,
-      "startDate": "2026-05-03",
+      "startDate": "2026-05-06",
       "site": "북부",
-      "baseMins": 90,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-04T07:34:08.736Z",
-      "reason": "개인사정",
-      "equipName": "논두렁조성기(중)-04",
-      "equipSpec": "WJLF750/(중)",
-      "personName": "최연우",
-      "days": 1,
-      "startDate": "2026-05-03",
-      "site": "북부",
-      "baseMins": 90,
+      "baseMins": 50,
       "delivery": false
     }
   ]
