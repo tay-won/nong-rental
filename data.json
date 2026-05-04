@@ -3064,7 +3064,7 @@
             "days": 2,
             "startDate": "2026-05-01",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "본소",
             "baseMins": 60,
             "delivery": false
