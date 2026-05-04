@@ -2441,6 +2441,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777874135068.784,
+            "equipName": "굴착기(1톤)-05",
+            "equipSpec": "U-10-5/1TON",
+            "personName": "임종식",
+            "days": 2,
+            "startDate": "2026-05-14",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
