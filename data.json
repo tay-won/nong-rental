@@ -18,7 +18,7 @@
             "days": 1,
             "startDate": "2026-05-03",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "본소",
             "baseMins": 50,
             "delivery": false
@@ -30,7 +30,7 @@
             "personName": "윤철호",
             "days": 1,
             "startDate": "2026-05-03",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 40,
