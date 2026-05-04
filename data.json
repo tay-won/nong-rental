@@ -860,6 +860,19 @@
             "site": "북부",
             "baseMins": 80,
             "delivery": false
+          },
+          {
+            "id": 1777880329400.685,
+            "equipName": "관리기-로터리-07",
+            "equipSpec": "AMC-1000SM/로타리(중)",
+            "personName": "박해연",
+            "days": 1,
+            "startDate": "2026-05-05",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
