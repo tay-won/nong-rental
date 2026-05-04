@@ -533,7 +533,7 @@
             "personName": "유재원",
             "days": 2,
             "startDate": "2026-05-04",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
