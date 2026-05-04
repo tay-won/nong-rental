@@ -1637,19 +1637,6 @@
             "delivery": false
           },
           {
-            "id": 1777272020820.4763,
-            "equipName": "로터베이터2150-01",
-            "equipSpec": "WR2150DGWJ/2150",
-            "personName": "윤충성",
-            "days": 2,
-            "startDate": "2026-05-08",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
             "id": 1777354532350.5208,
             "equipName": "비료동력살포기-03",
             "equipSpec": "MD-7030/입제",
@@ -1873,6 +1860,19 @@
             "equipName": "돌수집기-04",
             "equipSpec": "SH-L1400B/1400",
             "personName": "박병만",
+            "days": 2,
+            "startDate": "2026-05-09",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
+          },
+          {
+            "id": 1777272020820.4763,
+            "equipName": "로터베이터2150-01",
+            "equipSpec": "WR2150DGWJ/2150",
+            "personName": "윤충성",
             "days": 2,
             "startDate": "2026-05-09",
             "outDone": false,
