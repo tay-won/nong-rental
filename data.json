@@ -36,6 +36,18 @@
         "site": "북부",
         "baseMins": 150,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-04T01:31:32.294Z",
+        "reason": "개인사정",
+        "equipName": "비닐수거기-02",
+        "equipSpec": "DH-T3000/1조",
+        "personName": "김윤주",
+        "days": 1,
+        "startDate": "2026-05-04",
+        "site": "북부",
+        "baseMins": 40,
+        "delivery": false
       }
     ],
     "2026-05-03": {
@@ -587,19 +599,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1777687789842.7734,
-            "equipName": "비닐수거기-02",
-            "equipSpec": "DH-T3000/1조",
-            "personName": "김윤주",
-            "days": 1,
-            "startDate": "2026-05-04",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 40,
             "delivery": false
           },
           {
@@ -8963,6 +8962,18 @@
       "startDate": "2026-05-03",
       "site": "북부",
       "baseMins": 150,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-04T01:31:32.294Z",
+      "reason": "개인사정",
+      "equipName": "비닐수거기-02",
+      "equipSpec": "DH-T3000/1조",
+      "personName": "김윤주",
+      "days": 1,
+      "startDate": "2026-05-04",
+      "site": "북부",
+      "baseMins": 40,
       "delivery": false
     }
   ]
