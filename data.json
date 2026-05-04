@@ -36,6 +36,18 @@
         "site": "본소",
         "baseMins": 90,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-04T08:03:11.129Z",
+        "reason": "개인사정",
+        "equipName": "관리기-피복기-02",
+        "equipSpec": "AMC-900SM/피복기(중)",
+        "personName": "권상덕",
+        "days": 2,
+        "startDate": "2026-05-08",
+        "site": "본소",
+        "baseMins": 50,
+        "delivery": false
       }
     ],
     "2026-05-03": {
@@ -1622,19 +1634,6 @@
             "site": "본소",
             "baseMins": 290,
             "delivery": true
-          },
-          {
-            "id": 1777872307644.4565,
-            "equipName": "관리기-피복기-02",
-            "equipSpec": "AMC-900SM/피복기(중)",
-            "personName": "권상덕",
-            "days": 2,
-            "startDate": "2026-05-08",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
           },
           {
             "id": 1777881764642.5833,
@@ -9342,6 +9341,18 @@
       "startDate": "2026-05-07",
       "site": "본소",
       "baseMins": 90,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-04T08:03:11.129Z",
+      "reason": "개인사정",
+      "equipName": "관리기-피복기-02",
+      "equipSpec": "AMC-900SM/피복기(중)",
+      "personName": "권상덕",
+      "days": 2,
+      "startDate": "2026-05-08",
+      "site": "본소",
+      "baseMins": 50,
       "delivery": false
     }
   ]
