@@ -12,6 +12,18 @@
         "site": "북부",
         "baseMins": 50,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-04T08:13:12.457Z",
+        "reason": "개인사정",
+        "equipName": "원판쟁기10련-01",
+        "equipSpec": "W300-DP/원판-10련",
+        "personName": "김성진",
+        "days": 3,
+        "startDate": "2026-05-03",
+        "site": "북부",
+        "baseMins": 90,
+        "delivery": false
       }
     ],
     "2026-05-03": {
@@ -344,19 +356,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 150,
-            "delivery": false
-          },
-          {
-            "id": 1777536405286.1812,
-            "equipName": "원판쟁기10련-01",
-            "equipSpec": "W300-DP/원판-10련",
-            "personName": "김성진",
-            "days": 3,
-            "startDate": "2026-05-03",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
             "delivery": false
           },
           {
@@ -9489,6 +9488,18 @@
       "startDate": "2026-05-03",
       "site": "북부",
       "baseMins": 50,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-04T08:13:12.457Z",
+      "reason": "개인사정",
+      "equipName": "원판쟁기10련-01",
+      "equipSpec": "W300-DP/원판-10련",
+      "personName": "김성진",
+      "days": 3,
+      "startDate": "2026-05-03",
+      "site": "북부",
+      "baseMins": 90,
       "delivery": false
     }
   ]
