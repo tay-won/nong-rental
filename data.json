@@ -1,6 +1,19 @@
 {
   "state": {
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-05-04T05:37:14.962Z",
+        "reason": "개인사정",
+        "equipName": "관리기-휴립기-01",
+        "equipSpec": "AMC-900SM/휴립기(중)",
+        "personName": "윤석준",
+        "days": 1,
+        "startDate": "2026-05-03",
+        "site": "북부",
+        "baseMins": 50,
+        "delivery": false
+      }
+    ],
     "2026-05-03": {
       "본소": {
         "workers": {
@@ -151,19 +164,6 @@
           "nb4": 0
         },
         "entries": [
-          {
-            "id": 1776734815856.5918,
-            "equipName": "관리기-휴립기-01",
-            "equipSpec": "AMC-900SM/휴립기(중)",
-            "personName": "윤석준",
-            "days": 1,
-            "startDate": "2026-05-03",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
           {
             "id": 1776734831281.864,
             "equipName": "굴착기(1톤)-05",
@@ -8970,5 +8970,18 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-05-04T05:37:14.962Z",
+      "reason": "개인사정",
+      "equipName": "관리기-휴립기-01",
+      "equipSpec": "AMC-900SM/휴립기(중)",
+      "personName": "윤석준",
+      "days": 1,
+      "startDate": "2026-05-03",
+      "site": "북부",
+      "baseMins": 50,
+      "delivery": false
+    }
+  ]
 }
