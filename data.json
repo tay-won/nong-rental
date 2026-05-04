@@ -12,6 +12,18 @@
         "site": "본소",
         "baseMins": 50,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-04T08:01:41.414Z",
+        "reason": "기타",
+        "equipName": "관리기-구굴기(소)-01",
+        "equipSpec": "ASC-640/구굴기(소)",
+        "personName": "정용진",
+        "days": 1,
+        "startDate": "2026-05-07",
+        "site": "본소",
+        "baseMins": 50,
+        "delivery": false
       }
     ],
     "2026-05-03": {
@@ -1287,19 +1299,6 @@
             "inDone": false,
             "site": "본소",
             "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1777879146720.188,
-            "equipName": "관리기-구굴기(소)-01",
-            "equipSpec": "ASC-640/구굴기(소)",
-            "personName": "정용진",
-            "days": 1,
-            "startDate": "2026-05-07",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
             "delivery": false
           },
           {
@@ -9303,6 +9302,18 @@
       "equipName": "관리기-로터리-03",
       "equipSpec": "AMC-1000SM/로타리(중)",
       "personName": "이병삼",
+      "days": 1,
+      "startDate": "2026-05-07",
+      "site": "본소",
+      "baseMins": 50,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-04T08:01:41.414Z",
+      "reason": "기타",
+      "equipName": "관리기-구굴기(소)-01",
+      "equipSpec": "ASC-640/구굴기(소)",
+      "personName": "정용진",
       "days": 1,
       "startDate": "2026-05-07",
       "site": "본소",
