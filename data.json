@@ -48,6 +48,18 @@
         "site": "본소",
         "baseMins": 50,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-04T06:11:19.942Z",
+        "reason": "개인사정",
+        "equipName": "관리기-구굴기(중)-02",
+        "equipSpec": "AMC-1000SM/구굴기(중)",
+        "personName": "송광훈",
+        "days": 1,
+        "startDate": "2026-05-14",
+        "site": "본소",
+        "baseMins": 50,
+        "delivery": false
       }
     ],
     "2026-05-03": {
@@ -2519,21 +2531,7 @@
           "bs3": 420,
           "bs4": 420
         },
-        "entries": [
-          {
-            "id": 1777862641743.9888,
-            "equipName": "관리기-구굴기(중)-02",
-            "equipSpec": "AMC-1000SM/구굴기(중)",
-            "personName": "송광훈",
-            "days": 1,
-            "startDate": "2026-05-14",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          }
-        ],
+        "entries": [],
         "delivery": false
       },
       "북부": {
@@ -9377,6 +9375,18 @@
       "personName": "송광훈",
       "days": 2,
       "startDate": "2026-05-12",
+      "site": "본소",
+      "baseMins": 50,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-04T06:11:19.942Z",
+      "reason": "개인사정",
+      "equipName": "관리기-구굴기(중)-02",
+      "equipSpec": "AMC-1000SM/구굴기(중)",
+      "personName": "송광훈",
+      "days": 1,
+      "startDate": "2026-05-14",
       "site": "본소",
       "baseMins": 50,
       "delivery": false
