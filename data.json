@@ -353,7 +353,7 @@
             "personName": "파평면행정복지센터",
             "days": 2,
             "startDate": "2026-05-03",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 150,
