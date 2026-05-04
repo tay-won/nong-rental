@@ -17,7 +17,7 @@
             "personName": "윤철호",
             "days": 1,
             "startDate": "2026-05-03",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
@@ -30,7 +30,7 @@
             "personName": "윤철호",
             "days": 1,
             "startDate": "2026-05-03",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "본소",
             "baseMins": 40,
@@ -43,7 +43,7 @@
             "personName": "강단아",
             "days": 1,
             "startDate": "2026-05-03",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "본소",
             "baseMins": 290,
@@ -56,7 +56,7 @@
             "personName": "국중권",
             "days": 1,
             "startDate": "2026-05-03",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "본소",
             "baseMins": 90,
@@ -69,7 +69,7 @@
             "personName": "김승철",
             "days": 1,
             "startDate": "2026-05-03",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
@@ -82,10 +82,23 @@
             "personName": "김승철",
             "days": 1,
             "startDate": "2026-05-03",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "본소",
             "baseMins": 40,
+            "delivery": false
+          },
+          {
+            "id": 1777414245970.709,
+            "equipName": "관리기-휴립피복기-02",
+            "equipSpec": "AMC-1000SM/휴립피복기(중)",
+            "personName": "신동규",
+            "days": 1,
+            "startDate": "2026-05-03",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
             "delivery": false
           },
           {
@@ -95,7 +108,7 @@
             "personName": "허준수",
             "days": 1,
             "startDate": "2026-05-03",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "본소",
             "baseMins": 290,
@@ -108,7 +121,7 @@
             "personName": "허준수",
             "days": 1,
             "startDate": "2026-05-03",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
@@ -121,7 +134,7 @@
             "personName": "양인석",
             "days": 2,
             "startDate": "2026-05-03",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
@@ -551,6 +564,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777858446571.5935,
+            "equipName": "관리기-피복기-02",
+            "equipSpec": "AMC-900SM/피복기(중)",
+            "personName": "정경모",
+            "days": 1,
+            "startDate": "2026-05-04",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
@@ -848,19 +874,6 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
-          },
-          {
-            "id": 1777414245970.709,
-            "equipName": "관리기-휴립피복기-02",
-            "equipSpec": "AMC-1000SM/휴립피복기(중)",
-            "personName": "신동규",
-            "days": 1,
-            "startDate": "2026-05-06",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
           }
         ],
         "delivery": false
@@ -1119,6 +1132,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777858482741.7996,
+            "equipName": "원판쟁기10련-02",
+            "equipSpec": "W300-DP/원판-10련",
+            "personName": "심재석",
+            "days": 3,
+            "startDate": "2026-05-07",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 90,
+            "delivery": false
           }
         ],
         "delivery": false
@@ -1364,6 +1390,19 @@
             "site": "본소",
             "baseMins": 290,
             "delivery": true
+          },
+          {
+            "id": 1777872307644.4565,
+            "equipName": "관리기-피복기-02",
+            "equipSpec": "AMC-900SM/피복기(중)",
+            "personName": "권상덕",
+            "days": 2,
+            "startDate": "2026-05-08",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
@@ -1980,6 +2019,19 @@
             "site": "본소",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1777862625304.692,
+            "equipName": "관리기-로터리-02",
+            "equipSpec": "AMC-1000SM/로타리(중)",
+            "personName": "송광훈",
+            "days": 2,
+            "startDate": "2026-05-12",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
@@ -2106,7 +2158,21 @@
           "bs3": 420,
           "bs4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1777862641743.9888,
+            "equipName": "관리기-구굴기(중)-02",
+            "equipSpec": "AMC-1000SM/구굴기(중)",
+            "personName": "송광훈",
+            "days": 1,
+            "startDate": "2026-05-14",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
+          }
+        ],
         "delivery": false
       },
       "북부": {
@@ -2491,7 +2557,7 @@
             "days": 3,
             "startDate": "2026-05-01",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "본소",
             "baseMins": 90,
             "delivery": false
@@ -2605,10 +2671,10 @@
             "equipName": "돌수집기-04",
             "equipSpec": "SH-L1400B/1400",
             "personName": "박찬호",
-            "days": 2,
+            "days": 3,
             "startDate": "2026-05-01",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "본소",
             "baseMins": 90,
             "delivery": false
@@ -2673,7 +2739,7 @@
             "days": 2,
             "startDate": "2026-05-01",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "본소",
             "baseMins": 60,
             "delivery": false
@@ -2957,7 +3023,7 @@
             "days": 1,
             "startDate": "2026-05-02",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "본소",
             "baseMins": 90,
             "delivery": false
@@ -2970,7 +3036,7 @@
             "days": 2,
             "startDate": "2026-05-02",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "본소",
             "baseMins": 90,
             "delivery": false
@@ -3137,7 +3203,7 @@
             "days": 3,
             "startDate": "2026-04-30",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "본소",
             "baseMins": 50,
             "delivery": false
