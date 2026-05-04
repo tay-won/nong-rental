@@ -823,19 +823,6 @@
             "delivery": false
           },
           {
-            "id": 1777687932925.1882,
-            "equipName": "양용쟁기(3련)-01",
-            "equipSpec": "KP3300W/양용-3련",
-            "personName": "오세현",
-            "days": 2,
-            "startDate": "2026-05-05",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 80,
-            "delivery": false
-          },
-          {
             "id": 1777880329400.685,
             "equipName": "관리기-로터리-07",
             "equipSpec": "AMC-1000SM/로타리(중)",
@@ -1117,6 +1104,19 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1777687932925.1882,
+            "equipName": "양용쟁기(3련)-01",
+            "equipSpec": "KP3300W/양용-3련",
+            "personName": "오세현",
+            "days": 2,
+            "startDate": "2026-05-06",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 80,
             "delivery": false
           }
         ],
