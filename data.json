@@ -89,19 +89,6 @@
             "delivery": false
           },
           {
-            "id": 1777414245970.709,
-            "equipName": "관리기-휴립피복기-02",
-            "equipSpec": "AMC-1000SM/휴립피복기(중)",
-            "personName": "신동규",
-            "days": 1,
-            "startDate": "2026-05-03",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1777694584224.879,
             "equipName": "관리기-로터리-02",
             "equipSpec": "AMC-1000SM/로타리(중)",
@@ -906,6 +893,19 @@
             "equipName": "관리기-피복기-02",
             "equipSpec": "AMC-900SM/피복기(중)",
             "personName": "이홍우",
+            "days": 1,
+            "startDate": "2026-05-06",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1777414245970.709,
+            "equipName": "관리기-휴립피복기-02",
+            "equipSpec": "AMC-1000SM/휴립피복기(중)",
+            "personName": "신동규",
             "days": 1,
             "startDate": "2026-05-06",
             "outDone": false,
