@@ -1776,6 +1776,19 @@
             "site": "본소",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1777883313680.4395,
+            "equipName": "비료살포기-02",
+            "equipSpec": "JHT-320H/300kg",
+            "personName": "이지훈",
+            "days": 1,
+            "startDate": "2026-05-10",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
