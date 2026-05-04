@@ -823,19 +823,6 @@
             "delivery": false
           },
           {
-            "id": 1777536559726.0308,
-            "equipName": "원판쟁기6련-03",
-            "equipSpec": "W62-DP/원판-6련",
-            "personName": "김주년",
-            "days": 2,
-            "startDate": "2026-05-05",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 60,
-            "delivery": false
-          },
-          {
             "id": 1777536579150.1655,
             "equipName": "관리기-휴립기-03",
             "equipSpec": "AMC-1000SM/휴립기(중)",
@@ -1967,6 +1954,19 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
+            "delivery": false
+          },
+          {
+            "id": 1777536559726.0308,
+            "equipName": "원판쟁기6련-03",
+            "equipSpec": "W62-DP/원판-6련",
+            "personName": "김주년",
+            "days": 2,
+            "startDate": "2026-05-10",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
             "delivery": false
           }
         ],
