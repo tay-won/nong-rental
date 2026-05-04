@@ -520,7 +520,7 @@
             "personName": "김윤주",
             "days": 1,
             "startDate": "2026-05-04",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 40,
