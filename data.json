@@ -483,7 +483,7 @@
             "personName": "정회순",
             "days": 2,
             "startDate": "2026-05-04",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 90,
@@ -643,19 +643,6 @@
           "bs4": 420
         },
         "entries": [
-          {
-            "id": 1776729871435.8347,
-            "equipName": "잔가지파쇄기(대)-01",
-            "equipSpec": "DLK210E/2000kg/h",
-            "personName": "김연서",
-            "days": 1,
-            "startDate": "2026-05-05",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 320,
-            "delivery": true
-          },
           {
             "id": 1776906858791.93,
             "equipName": "소형트랙터25HP-04",
@@ -2706,7 +2693,21 @@
           "bs3": 420,
           "bs4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1776729871435.8347,
+            "equipName": "잔가지파쇄기(대)-02",
+            "equipSpec": "DLK210E/2000kg/h",
+            "personName": "김연서",
+            "days": 1,
+            "startDate": "2026-05-18",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 320,
+            "delivery": true
+          }
+        ],
         "delivery": false
       },
       "북부": {
