@@ -1,55 +1,6 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-05-04T08:01:14.718Z",
-        "reason": "개인사정",
-        "equipName": "관리기-로터리-03",
-        "equipSpec": "AMC-1000SM/로타리(중)",
-        "personName": "이병삼",
-        "days": 1,
-        "startDate": "2026-05-07",
-        "site": "본소",
-        "baseMins": 50,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-04T08:01:41.414Z",
-        "reason": "기타",
-        "equipName": "관리기-구굴기(소)-01",
-        "equipSpec": "ASC-640/구굴기(소)",
-        "personName": "정용진",
-        "days": 1,
-        "startDate": "2026-05-07",
-        "site": "본소",
-        "baseMins": 50,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-04T08:02:20.030Z",
-        "reason": "개인사정",
-        "equipName": "원판쟁기10련-02",
-        "equipSpec": "W300-DP/원판-10련",
-        "personName": "심재석",
-        "days": 3,
-        "startDate": "2026-05-07",
-        "site": "본소",
-        "baseMins": 90,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-04T08:03:11.129Z",
-        "reason": "개인사정",
-        "equipName": "관리기-피복기-02",
-        "equipSpec": "AMC-900SM/피복기(중)",
-        "personName": "권상덕",
-        "days": 2,
-        "startDate": "2026-05-08",
-        "site": "본소",
-        "baseMins": 50,
-        "delivery": false
-      }
-    ],
+    "_cancelled": [],
     "2026-05-03": {
       "본소": {
         "workers": {
@@ -2226,6 +2177,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777881967826.4297,
+            "equipName": "관리기-로터리-01",
+            "equipSpec": "AMC-1000SM/로타리(중)",
+            "personName": "장수종",
+            "days": 1,
+            "startDate": "2026-05-11",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 290,
+            "delivery": true
           }
         ],
         "delivery": false
@@ -9358,54 +9322,5 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-05-04T08:01:14.718Z",
-      "reason": "개인사정",
-      "equipName": "관리기-로터리-03",
-      "equipSpec": "AMC-1000SM/로타리(중)",
-      "personName": "이병삼",
-      "days": 1,
-      "startDate": "2026-05-07",
-      "site": "본소",
-      "baseMins": 50,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-04T08:01:41.414Z",
-      "reason": "기타",
-      "equipName": "관리기-구굴기(소)-01",
-      "equipSpec": "ASC-640/구굴기(소)",
-      "personName": "정용진",
-      "days": 1,
-      "startDate": "2026-05-07",
-      "site": "본소",
-      "baseMins": 50,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-04T08:02:20.030Z",
-      "reason": "개인사정",
-      "equipName": "원판쟁기10련-02",
-      "equipSpec": "W300-DP/원판-10련",
-      "personName": "심재석",
-      "days": 3,
-      "startDate": "2026-05-07",
-      "site": "본소",
-      "baseMins": 90,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-04T08:03:11.129Z",
-      "reason": "개인사정",
-      "equipName": "관리기-피복기-02",
-      "equipSpec": "AMC-900SM/피복기(중)",
-      "personName": "권상덕",
-      "days": 2,
-      "startDate": "2026-05-08",
-      "site": "본소",
-      "baseMins": 50,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
