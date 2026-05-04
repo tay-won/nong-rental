@@ -409,6 +409,19 @@
             "site": "북부",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1777880244320.87,
+            "equipName": "동력운반차-01",
+            "equipSpec": "TKT-600B/궤도",
+            "personName": "오영희",
+            "days": 2,
+            "startDate": "2026-05-03",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 80,
+            "delivery": false
           }
         ],
         "delivery": false
