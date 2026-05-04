@@ -436,6 +436,19 @@
             "site": "북부",
             "baseMins": 80,
             "delivery": false
+          },
+          {
+            "id": 1777858153930.824,
+            "equipName": "붐스프레이어-02",
+            "equipSpec": "BS-2000/600ℓ",
+            "personName": "파평면행정복지센터",
+            "days": 2,
+            "startDate": "2026-05-03",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 150,
+            "delivery": false
           }
         ],
         "delivery": false
