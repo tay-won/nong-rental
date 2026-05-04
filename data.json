@@ -449,6 +449,19 @@
             "site": "북부",
             "baseMins": 150,
             "delivery": false
+          },
+          {
+            "id": 1777858174428.0803,
+            "equipName": "승용관리기20HP-01",
+            "equipSpec": "CFM-2000/20HP",
+            "personName": "파평면행정복지센터",
+            "days": 2,
+            "startDate": "2026-05-03",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 140,
+            "delivery": false
           }
         ],
         "delivery": false
