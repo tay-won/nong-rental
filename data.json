@@ -2717,6 +2717,19 @@
             "site": "본소",
             "baseMins": 320,
             "delivery": true
+          },
+          {
+            "id": 1777875106574.3574,
+            "equipName": "소형트랙터18HP-02",
+            "equipSpec": "XQ1018/18HP",
+            "personName": "김승철",
+            "days": 1,
+            "startDate": "2026-05-17",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
