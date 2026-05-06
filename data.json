@@ -1723,6 +1723,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1778109571746.972,
+            "equipName": "콩예취기-02",
+            "equipSpec": "M1-GS/보행형",
+            "personName": "김명식",
+            "days": 1,
+            "startDate": "2026-05-12",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 70,
+            "delivery": false
           }
         ],
         "delivery": false
