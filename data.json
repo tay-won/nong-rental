@@ -2495,19 +2495,6 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
-          },
-          {
-            "id": 1778059551007.577,
-            "equipName": "관리기-휴립피복기-01",
-            "equipSpec": "AMC-1000SM/휴립피복기(중)",
-            "personName": "김동환",
-            "days": 1,
-            "startDate": "2026-05-20",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
           }
         ],
         "delivery": false
@@ -2655,7 +2642,20 @@
         "delivery": false
       }
     },
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-05-06T09:26:02.123Z",
+        "reason": "기타",
+        "equipName": "관리기-휴립피복기-01",
+        "equipSpec": "AMC-1000SM/휴립피복기(중)",
+        "personName": "김동환",
+        "days": 1,
+        "startDate": "2026-05-20",
+        "site": "본소",
+        "baseMins": 50,
+        "delivery": false
+      }
+    ],
     "2026-05-03": {
       "본소": {
         "workers": {
@@ -9636,5 +9636,18 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-05-06T09:26:02.123Z",
+      "reason": "기타",
+      "equipName": "관리기-휴립피복기-01",
+      "equipSpec": "AMC-1000SM/휴립피복기(중)",
+      "personName": "김동환",
+      "days": 1,
+      "startDate": "2026-05-20",
+      "site": "본소",
+      "baseMins": 50,
+      "delivery": false
+    }
+  ]
 }
