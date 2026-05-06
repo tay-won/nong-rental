@@ -371,6 +371,19 @@
             "site": "본소",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1778034412740.6914,
+            "equipName": "로터베이터1750-04",
+            "equipSpec": "WCR1750MV/1750",
+            "personName": "오기남",
+            "days": 1,
+            "startDate": "2026-05-06",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
