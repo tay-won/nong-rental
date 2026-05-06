@@ -332,6 +332,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1778034365102.6401,
+            "equipName": "파종기-인력(일반)-04",
+            "equipSpec": "HG10A/일반",
+            "personName": "김승철",
+            "days": 1,
+            "startDate": "2026-05-06",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 30,
+            "delivery": false
           }
         ],
         "delivery": false
