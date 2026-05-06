@@ -2347,6 +2347,19 @@
             "site": "북부",
             "baseMins": 290,
             "delivery": true
+          },
+          {
+            "id": 1778109797684.843,
+            "equipName": "로터베이터1150-03",
+            "equipSpec": "DWR115GM/1150",
+            "personName": "김명식",
+            "days": 1,
+            "startDate": "2026-05-18",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 40,
+            "delivery": false
           }
         ],
         "delivery": false
