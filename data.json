@@ -2543,7 +2543,21 @@
           "bs3": 420,
           "bs4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1778048939548.45,
+            "equipName": "관리기-휴립피복기-01",
+            "equipSpec": "AMC-1000SM/휴립피복기(중)",
+            "personName": "김동환",
+            "days": 1,
+            "startDate": "2026-05-21",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
+          }
+        ],
         "delivery": false
       },
       "북부": {
