@@ -1262,6 +1262,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1778033775661.4282,
+            "equipName": "관리기-구굴기(중)-01",
+            "equipSpec": "AMC-1000SM/구굴기(중)",
+            "personName": "장용환",
+            "days": 2,
+            "startDate": "2026-05-08",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
