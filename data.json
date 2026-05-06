@@ -49,19 +49,6 @@
             "delivery": false
           },
           {
-            "id": 1777414245970.709,
-            "equipName": "관리기-휴립피복기-02",
-            "equipSpec": "AMC-1000SM/휴립피복기(중)",
-            "personName": "신동규",
-            "days": 1,
-            "startDate": "2026-05-06",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1778058812903.083,
             "equipName": "파종기-인력(비닐)-01",
             "equipSpec": "HG10A/비닐",
@@ -2470,6 +2457,18 @@
         "startDate": "2026-05-06",
         "site": "본소",
         "baseMins": 90,
+        "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-06T22:46:35.693Z",
+        "reason": "기타",
+        "equipName": "관리기-휴립피복기-02",
+        "equipSpec": "AMC-1000SM/휴립피복기(중)",
+        "personName": "신동규",
+        "days": 1,
+        "startDate": "2026-05-06",
+        "site": "본소",
+        "baseMins": 50,
         "delivery": false
       }
     ],
@@ -9661,6 +9660,18 @@
       "startDate": "2026-05-06",
       "site": "본소",
       "baseMins": 90,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-06T22:46:35.693Z",
+      "reason": "기타",
+      "equipName": "관리기-휴립피복기-02",
+      "equipSpec": "AMC-1000SM/휴립피복기(중)",
+      "personName": "신동규",
+      "days": 1,
+      "startDate": "2026-05-06",
+      "site": "본소",
+      "baseMins": 50,
       "delivery": false
     }
   ]
