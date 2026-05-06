@@ -24,6 +24,18 @@
         "site": "본소",
         "baseMins": 90,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-06T05:33:41.387Z",
+        "reason": "기타",
+        "equipName": "관리기-휴립피복기-01",
+        "equipSpec": "AMC-1000SM/휴립피복기(중)",
+        "personName": "김준노",
+        "days": 3,
+        "startDate": "2026-05-08",
+        "site": "본소",
+        "baseMins": 50,
+        "delivery": false
       }
     ],
     "2026-05-05": {
@@ -1036,19 +1048,6 @@
             "equipSpec": "AMC-1000SM/휴립기(중)",
             "personName": "손상철",
             "days": 1,
-            "startDate": "2026-05-08",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1778045252227.1997,
-            "equipName": "관리기-휴립피복기-01",
-            "equipSpec": "AMC-1000SM/휴립피복기(중)",
-            "personName": "김준노",
-            "days": 3,
             "startDate": "2026-05-08",
             "outDone": false,
             "inDone": false,
@@ -9565,6 +9564,18 @@
       "startDate": "2026-05-06",
       "site": "본소",
       "baseMins": 90,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-06T05:33:41.387Z",
+      "reason": "기타",
+      "equipName": "관리기-휴립피복기-01",
+      "equipSpec": "AMC-1000SM/휴립피복기(중)",
+      "personName": "김준노",
+      "days": 3,
+      "startDate": "2026-05-08",
+      "site": "본소",
+      "baseMins": 50,
       "delivery": false
     }
   ]
