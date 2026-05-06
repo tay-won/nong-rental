@@ -2565,7 +2565,7 @@
             "personName": "황유진",
             "days": 2,
             "startDate": "2026-05-05",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -2604,7 +2604,7 @@
             "personName": "장경순",
             "days": 2,
             "startDate": "2026-05-05",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -2712,6 +2712,19 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1778109059665.117,
+            "equipName": "퇴비살포기(승용)-01",
+            "equipSpec": "HSC-1500W/자주형1000kg",
+            "personName": "기술보급과",
+            "days": 5,
+            "startDate": "2026-05-05",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 140,
             "delivery": false
           }
         ],
