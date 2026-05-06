@@ -2145,8 +2145,8 @@
             "outDone": false,
             "inDone": false,
             "site": "북부",
-            "baseMins": 50,
-            "delivery": false
+            "baseMins": 290,
+            "delivery": true
           }
         ],
         "delivery": false
