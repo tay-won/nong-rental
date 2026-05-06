@@ -55,7 +55,7 @@
             "personName": "전덕수",
             "days": 1,
             "startDate": "2026-05-05",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 330,
