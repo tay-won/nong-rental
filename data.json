@@ -42,7 +42,7 @@
             "personName": "장원순",
             "days": 1,
             "startDate": "2026-05-05",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "본소",
             "baseMins": 90,
@@ -58,8 +58,8 @@
             "outDone": false,
             "inDone": false,
             "site": "본소",
-            "baseMins": 330,
-            "delivery": true
+            "baseMins": 90,
+            "delivery": false
           },
           {
             "id": 1777454070945.5327,
@@ -105,7 +105,7 @@
             "personName": "황유진",
             "days": 2,
             "startDate": "2026-05-05",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -118,7 +118,7 @@
             "personName": "김대연",
             "days": 1,
             "startDate": "2026-05-05",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
@@ -131,7 +131,7 @@
             "personName": "이병삼",
             "days": 1,
             "startDate": "2026-05-05",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -144,7 +144,7 @@
             "personName": "장경순",
             "days": 2,
             "startDate": "2026-05-05",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -170,7 +170,7 @@
             "personName": "전동옥",
             "days": 1,
             "startDate": "2026-05-05",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 60,
@@ -183,7 +183,7 @@
             "personName": "박해연",
             "days": 1,
             "startDate": "2026-05-05",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
@@ -217,8 +217,8 @@
           },
           {
             "id": 1777536611486.5159,
-            "equipName": "비료동력살포기-01",
-            "equipSpec": "SG-6030D/입제",
+            "equipName": "비료동력살포기-04",
+            "equipSpec": "SG-8030/입제",
             "personName": "김수권",
             "days": 1,
             "startDate": "2026-05-05",
@@ -531,45 +531,6 @@
             "equipSpec": "U-10-3/1TON",
             "personName": "이순성",
             "days": 1,
-            "startDate": "2026-05-06",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1778026276780.537,
-            "equipName": "굴착기(1톤)-02",
-            "equipSpec": "U-10-3S/1TON",
-            "personName": "유필희",
-            "days": 1,
-            "startDate": "2026-05-06",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1778026560904.4915,
-            "equipName": "원판쟁기6련-02",
-            "equipSpec": "W62-DP/원판-6련",
-            "personName": "신종순",
-            "days": 1,
-            "startDate": "2026-05-06",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 60,
-            "delivery": false
-          },
-          {
-            "id": 1778026590049.332,
-            "equipName": "원판쟁기8련-04",
-            "equipSpec": "W82-DP/원판-8련",
-            "personName": "계영애",
-            "days": 2,
             "startDate": "2026-05-06",
             "outDone": false,
             "inDone": false,
@@ -2510,20 +2471,7 @@
         "delivery": false
       }
     },
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-05-06T00:14:00.285Z",
-        "reason": "개인사정",
-        "equipName": "원판쟁기8련-01",
-        "equipSpec": "W82-DP/원판-8련",
-        "personName": "장덕근",
-        "days": 2,
-        "startDate": "2026-05-04",
-        "site": "북부",
-        "baseMins": 90,
-        "delivery": false
-      }
-    ],
+    "_cancelled": [],
     "2026-05-03": {
       "본소": {
         "workers": {
@@ -2645,7 +2593,7 @@
             "days": 2,
             "startDate": "2026-05-03",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "본소",
             "baseMins": 50,
             "delivery": false
@@ -2708,7 +2656,7 @@
             "days": 2,
             "startDate": "2026-05-03",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -2760,7 +2708,7 @@
             "days": 2,
             "startDate": "2026-05-03",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -2799,7 +2747,7 @@
             "days": 2,
             "startDate": "2026-05-03",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -2890,7 +2838,7 @@
             "days": 2,
             "startDate": "2026-05-03",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 40,
             "delivery": false
@@ -2903,7 +2851,7 @@
             "days": 2,
             "startDate": "2026-05-03",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 80,
             "delivery": false
@@ -2965,10 +2913,10 @@
             "equipName": "굴착기(1톤)-04",
             "equipSpec": "U-10-5/1TON",
             "personName": "정회순",
-            "days": 1,
+            "days": 2,
             "startDate": "2026-05-04",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "본소",
             "baseMins": 90,
             "delivery": false
@@ -3011,6 +2959,19 @@
         },
         "entries": [
           {
+            "id": 1777021667871.7966,
+            "equipName": "원판쟁기8련-01",
+            "equipSpec": "W82-DP/원판-8련",
+            "personName": "장덕근",
+            "days": 2,
+            "startDate": "2026-05-04",
+            "outDone": true,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
+          },
+          {
             "id": 1777535427801.5137,
             "equipName": "굴착기(1톤)-02",
             "equipSpec": "U-10-3S/1TON",
@@ -3018,7 +2979,7 @@
             "days": 1,
             "startDate": "2026-05-04",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -3057,7 +3018,7 @@
             "days": 1,
             "startDate": "2026-05-04",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
@@ -3093,10 +3054,10 @@
             "equipName": "양용쟁기(3련)-02",
             "equipSpec": "KP3300W/양용-3련",
             "personName": "노일천",
-            "days": 1,
+            "days": 2,
             "startDate": "2026-05-04",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 80,
             "delivery": false
@@ -3653,7 +3614,7 @@
             "days": 3,
             "startDate": "2026-05-02",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "본소",
             "baseMins": 40,
             "delivery": false
@@ -9491,18 +9452,5 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-05-06T00:14:00.285Z",
-      "reason": "개인사정",
-      "equipName": "원판쟁기8련-01",
-      "equipSpec": "W82-DP/원판-8련",
-      "personName": "장덕근",
-      "days": 2,
-      "startDate": "2026-05-04",
-      "site": "북부",
-      "baseMins": 90,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
