@@ -1,5 +1,6 @@
 {
   "state": {
+    "_cancelled": [],
     "2026-05-06": {
       "본소": {
         "workers": {
@@ -287,7 +288,7 @@
             "personName": "김두용",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 60,
@@ -2446,20 +2447,6 @@
         "delivery": false
       }
     },
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-05-06T23:08:14.034Z",
-        "reason": "개인사정",
-        "equipName": "원판쟁기8련-01",
-        "equipSpec": "W82-DP/원판-8련",
-        "personName": "장덕근",
-        "days": 2,
-        "startDate": "2026-05-04",
-        "site": "북부",
-        "baseMins": 90,
-        "delivery": false
-      }
-    ],
     "2026-05-05": {
       "본소": {
         "workers": {
@@ -9676,18 +9663,5 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-05-06T23:08:14.034Z",
-      "reason": "개인사정",
-      "equipName": "원판쟁기8련-01",
-      "equipSpec": "W82-DP/원판-8련",
-      "personName": "장덕근",
-      "days": 2,
-      "startDate": "2026-05-04",
-      "site": "북부",
-      "baseMins": 90,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
