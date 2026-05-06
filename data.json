@@ -1,31 +1,6 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-05-06T23:18:13.231Z",
-        "reason": "개인사정",
-        "equipName": "소형트랙터25HP-04",
-        "equipSpec": "LK2805/25HP",
-        "personName": "홍지헌",
-        "days": 1,
-        "startDate": "2026-05-10",
-        "site": "북부",
-        "baseMins": 290,
-        "delivery": true
-      },
-      {
-        "cancelledAt": "2026-05-06T23:18:15.621Z",
-        "reason": "개인사정",
-        "equipName": "로터베이터1150-02",
-        "equipSpec": "DWR115GM/1150",
-        "personName": "홍지헌",
-        "days": 1,
-        "startDate": "2026-05-10",
-        "site": "북부",
-        "baseMins": 40,
-        "delivery": false
-      }
-    ],
+    "_cancelled": [],
     "2026-05-06": {
       "본소": {
         "workers": {
@@ -1910,6 +1885,19 @@
             "equipSpec": "AR5240SC/2350",
             "personName": "전천식",
             "days": 3,
+            "startDate": "2026-05-13",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
+          },
+          {
+            "id": 1778109662415.146,
+            "equipName": "굴착기(1톤)-02",
+            "equipSpec": "U-10-3S/1TON",
+            "personName": "김용범",
+            "days": 2,
             "startDate": "2026-05-13",
             "outDone": false,
             "inDone": false,
@@ -9792,30 +9780,5 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-05-06T23:18:13.231Z",
-      "reason": "개인사정",
-      "equipName": "소형트랙터25HP-04",
-      "equipSpec": "LK2805/25HP",
-      "personName": "홍지헌",
-      "days": 1,
-      "startDate": "2026-05-10",
-      "site": "북부",
-      "baseMins": 290,
-      "delivery": true
-    },
-    {
-      "cancelledAt": "2026-05-06T23:18:15.621Z",
-      "reason": "개인사정",
-      "equipName": "로터베이터1150-02",
-      "equipSpec": "DWR115GM/1150",
-      "personName": "홍지헌",
-      "days": 1,
-      "startDate": "2026-05-10",
-      "site": "북부",
-      "baseMins": 40,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
