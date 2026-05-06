@@ -1,224 +1,5 @@
 {
   "state": {
-    "2026-05-05": {
-      "본소": {
-        "workers": {
-          "bs1": 420,
-          "bs2": 210,
-          "bs3": 420,
-          "bs4": 420
-        },
-        "entries": [
-          {
-            "id": 1776906858791.93,
-            "equipName": "소형트랙터25HP-04",
-            "equipSpec": "LK2805/25HP",
-            "personName": "안희성",
-            "days": 1,
-            "startDate": "2026-05-05",
-            "outDone": true,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1776906874846.3152,
-            "equipName": "쟁기(2련)-01",
-            "equipSpec": "SW-PN602/소형-2련",
-            "personName": "안희성",
-            "days": 1,
-            "startDate": "2026-05-05",
-            "outDone": true,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 40,
-            "delivery": false
-          },
-          {
-            "id": 1777335568551.4111,
-            "equipName": "돌수집기-03",
-            "equipSpec": "SH-L1400B/1400",
-            "personName": "장원순",
-            "days": 1,
-            "startDate": "2026-05-05",
-            "outDone": true,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1777414347895.0967,
-            "equipName": "굴착기(1톤)-05",
-            "equipSpec": "U-10-5/1TON",
-            "personName": "전덕수",
-            "days": 1,
-            "startDate": "2026-05-05",
-            "outDone": true,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 330,
-            "delivery": true
-          },
-          {
-            "id": 1777454070945.5327,
-            "equipName": "관리기-로터리-03",
-            "equipSpec": "AMC-1000SM/로타리(중)",
-            "personName": "박상언",
-            "days": 1,
-            "startDate": "2026-05-05",
-            "outDone": true,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 290,
-            "delivery": true
-          },
-          {
-            "id": 1777454095815.97,
-            "equipName": "관리기-구굴기(중)-03",
-            "equipSpec": "AMC-900SM/구굴기(중)",
-            "personName": "박상언",
-            "days": 1,
-            "startDate": "2026-05-05",
-            "outDone": true,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          }
-        ],
-        "delivery": false
-      },
-      "북부": {
-        "workers": {
-          "nb1": 420,
-          "nb2": 210,
-          "nb3": 420,
-          "nb4": 420
-        },
-        "entries": [
-          {
-            "id": 1776918877884.3975,
-            "equipName": "굴착기(1톤)-05",
-            "equipSpec": "U-10-5/1TON",
-            "personName": "황유진",
-            "days": 2,
-            "startDate": "2026-05-05",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1777256271730.9375,
-            "equipName": "관리기-피복기-02",
-            "equipSpec": "AMC-900SM/피복기(중)",
-            "personName": "김대연",
-            "days": 1,
-            "startDate": "2026-05-05",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1777277361181.687,
-            "equipName": "굴착기(1톤)-05",
-            "equipSpec": "U-10-5/1TON",
-            "personName": "이병삼",
-            "days": 1,
-            "startDate": "2026-05-05",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1777354492992.8232,
-            "equipName": "로터베이터2150-02",
-            "equipSpec": "WR2150DGWJ/2150",
-            "personName": "장경순",
-            "days": 2,
-            "startDate": "2026-05-05",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1777354689726.087,
-            "equipName": "돌수집기-03",
-            "equipSpec": "SH-L1400B/1400",
-            "personName": "김진용",
-            "days": 2,
-            "startDate": "2026-05-05",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1777536498023.6462,
-            "equipName": "보통쟁기(3련)-01",
-            "equipSpec": "KP300A/보통-3련",
-            "personName": "전동옥",
-            "days": 1,
-            "startDate": "2026-05-05",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 60,
-            "delivery": false
-          },
-          {
-            "id": 1777880329400.685,
-            "equipName": "관리기-로터리-07",
-            "equipSpec": "AMC-1000SM/로타리(중)",
-            "personName": "박해연",
-            "days": 1,
-            "startDate": "2026-05-05",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1777880346952.5178,
-            "equipName": "관리기-로터리-03",
-            "equipSpec": "AMC-1000SM/로타리(중)",
-            "personName": "정상석",
-            "days": 1,
-            "startDate": "2026-05-05",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1777880359856.5933,
-            "equipName": "관리기-휴립기-01",
-            "equipSpec": "AMC-900SM/휴립기(중)",
-            "personName": "정상석",
-            "days": 1,
-            "startDate": "2026-05-05",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          }
-        ],
-        "delivery": false
-      }
-    },
     "2026-05-06": {
       "본소": {
         "workers": {
@@ -253,19 +34,6 @@
             "site": "본소",
             "baseMins": 320,
             "delivery": true
-          },
-          {
-            "id": 1777335608789.9553,
-            "equipName": "굴착기(1톤)-01",
-            "equipSpec": "U-10-3/1TON",
-            "personName": "김신곤",
-            "days": 1,
-            "startDate": "2026-05-06",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 90,
-            "delivery": false
           },
           {
             "id": 1777694748822.0166,
@@ -2656,20 +2424,261 @@
         "delivery": false
       }
     },
+    "2026-05-27": {
+      "본소": {
+        "workers": {
+          "bs1": 420,
+          "bs2": 210,
+          "bs3": 420,
+          "bs4": 420
+        },
+        "entries": [],
+        "delivery": false
+      },
+      "북부": {
+        "workers": {
+          "nb1": 420,
+          "nb2": 420,
+          "nb3": 420,
+          "nb4": 420
+        },
+        "entries": [],
+        "delivery": false
+      }
+    },
     "_cancelled": [
       {
-        "cancelledAt": "2026-05-06T09:26:02.123Z",
+        "cancelledAt": "2026-05-06T22:45:07.795Z",
         "reason": "기타",
-        "equipName": "관리기-휴립피복기-01",
-        "equipSpec": "AMC-1000SM/휴립피복기(중)",
-        "personName": "김동환",
+        "equipName": "굴착기(1톤)-01",
+        "equipSpec": "U-10-3/1TON",
+        "personName": "김신곤",
         "days": 1,
-        "startDate": "2026-05-20",
+        "startDate": "2026-05-06",
         "site": "본소",
-        "baseMins": 50,
+        "baseMins": 90,
         "delivery": false
       }
     ],
+    "2026-05-05": {
+      "본소": {
+        "workers": {
+          "bs1": 420,
+          "bs2": 210,
+          "bs3": 420,
+          "bs4": 420
+        },
+        "entries": [
+          {
+            "id": 1776906858791.93,
+            "equipName": "소형트랙터25HP-04",
+            "equipSpec": "LK2805/25HP",
+            "personName": "안희성",
+            "days": 1,
+            "startDate": "2026-05-05",
+            "outDone": true,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1776906874846.3152,
+            "equipName": "쟁기(2련)-01",
+            "equipSpec": "SW-PN602/소형-2련",
+            "personName": "안희성",
+            "days": 1,
+            "startDate": "2026-05-05",
+            "outDone": true,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 40,
+            "delivery": false
+          },
+          {
+            "id": 1777335568551.4111,
+            "equipName": "돌수집기-03",
+            "equipSpec": "SH-L1400B/1400",
+            "personName": "장원순",
+            "days": 1,
+            "startDate": "2026-05-05",
+            "outDone": true,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 90,
+            "delivery": false
+          },
+          {
+            "id": 1777414347895.0967,
+            "equipName": "굴착기(1톤)-05",
+            "equipSpec": "U-10-5/1TON",
+            "personName": "전덕수",
+            "days": 1,
+            "startDate": "2026-05-05",
+            "outDone": true,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 330,
+            "delivery": true
+          },
+          {
+            "id": 1777454070945.5327,
+            "equipName": "관리기-로터리-03",
+            "equipSpec": "AMC-1000SM/로타리(중)",
+            "personName": "박상언",
+            "days": 1,
+            "startDate": "2026-05-05",
+            "outDone": true,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 290,
+            "delivery": true
+          },
+          {
+            "id": 1777454095815.97,
+            "equipName": "관리기-구굴기(중)-03",
+            "equipSpec": "AMC-900SM/구굴기(중)",
+            "personName": "박상언",
+            "days": 1,
+            "startDate": "2026-05-05",
+            "outDone": true,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
+          }
+        ],
+        "delivery": false
+      },
+      "북부": {
+        "workers": {
+          "nb1": 420,
+          "nb2": 210,
+          "nb3": 420,
+          "nb4": 420
+        },
+        "entries": [
+          {
+            "id": 1776918877884.3975,
+            "equipName": "굴착기(1톤)-05",
+            "equipSpec": "U-10-5/1TON",
+            "personName": "황유진",
+            "days": 2,
+            "startDate": "2026-05-05",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
+          },
+          {
+            "id": 1777256271730.9375,
+            "equipName": "관리기-피복기-02",
+            "equipSpec": "AMC-900SM/피복기(중)",
+            "personName": "김대연",
+            "days": 1,
+            "startDate": "2026-05-05",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1777277361181.687,
+            "equipName": "굴착기(1톤)-05",
+            "equipSpec": "U-10-5/1TON",
+            "personName": "이병삼",
+            "days": 1,
+            "startDate": "2026-05-05",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
+          },
+          {
+            "id": 1777354492992.8232,
+            "equipName": "로터베이터2150-02",
+            "equipSpec": "WR2150DGWJ/2150",
+            "personName": "장경순",
+            "days": 2,
+            "startDate": "2026-05-05",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
+          },
+          {
+            "id": 1777354689726.087,
+            "equipName": "돌수집기-03",
+            "equipSpec": "SH-L1400B/1400",
+            "personName": "김진용",
+            "days": 2,
+            "startDate": "2026-05-05",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
+          },
+          {
+            "id": 1777536498023.6462,
+            "equipName": "보통쟁기(3련)-01",
+            "equipSpec": "KP300A/보통-3련",
+            "personName": "전동옥",
+            "days": 1,
+            "startDate": "2026-05-05",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
+          },
+          {
+            "id": 1777880329400.685,
+            "equipName": "관리기-로터리-07",
+            "equipSpec": "AMC-1000SM/로타리(중)",
+            "personName": "박해연",
+            "days": 1,
+            "startDate": "2026-05-05",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1777880346952.5178,
+            "equipName": "관리기-로터리-03",
+            "equipSpec": "AMC-1000SM/로타리(중)",
+            "personName": "정상석",
+            "days": 1,
+            "startDate": "2026-05-05",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1777880359856.5933,
+            "equipName": "관리기-휴립기-01",
+            "equipSpec": "AMC-900SM/휴립기(중)",
+            "personName": "정상석",
+            "days": 1,
+            "startDate": "2026-05-05",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
+          }
+        ],
+        "delivery": false
+      }
+    },
     "2026-05-03": {
       "본소": {
         "workers": {
@@ -8727,28 +8736,6 @@
         "delivery": false
       }
     },
-    "2026-05-27": {
-      "본소": {
-        "workers": {
-          "bs1": 420,
-          "bs2": 210,
-          "bs3": 420,
-          "bs4": 420
-        },
-        "entries": [],
-        "delivery": false
-      },
-      "북부": {
-        "workers": {
-          "nb1": 420,
-          "nb2": 420,
-          "nb3": 420,
-          "nb4": 420
-        },
-        "entries": [],
-        "delivery": false
-      }
-    },
     "2026-05-28": {
       "본소": {
         "workers": {
@@ -9652,15 +9639,15 @@
   "rainy": [],
   "cancelled": [
     {
-      "cancelledAt": "2026-05-06T09:26:02.123Z",
+      "cancelledAt": "2026-05-06T22:45:07.795Z",
       "reason": "기타",
-      "equipName": "관리기-휴립피복기-01",
-      "equipSpec": "AMC-1000SM/휴립피복기(중)",
-      "personName": "김동환",
+      "equipName": "굴착기(1톤)-01",
+      "equipSpec": "U-10-3/1TON",
+      "personName": "김신곤",
       "days": 1,
-      "startDate": "2026-05-20",
+      "startDate": "2026-05-06",
       "site": "본소",
-      "baseMins": 50,
+      "baseMins": 90,
       "delivery": false
     }
   ]
