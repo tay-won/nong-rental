@@ -577,6 +577,19 @@
             "site": "북부",
             "baseMins": 60,
             "delivery": false
+          },
+          {
+            "id": 1778033618078.3093,
+            "equipName": "굴착기(1.7톤)-02",
+            "equipSpec": "DX17Z-5/2TON",
+            "personName": "유희필",
+            "days": 1,
+            "startDate": "2026-05-06",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 80,
+            "delivery": false
           }
         ],
         "delivery": false
