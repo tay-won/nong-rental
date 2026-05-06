@@ -215,6 +215,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777536611486.5159,
+            "equipName": "비료동력살포기-01",
+            "equipSpec": "SG-6030D/입제",
+            "personName": "김수권",
+            "days": 1,
+            "startDate": "2026-05-05",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 40,
+            "delivery": false
           }
         ],
         "delivery": false
@@ -355,19 +368,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1777536611486.5159,
-            "equipName": "비료동력살포기-04",
-            "equipSpec": "SG-8030/입제",
-            "personName": "김수권",
-            "days": 1,
-            "startDate": "2026-05-06",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 40,
             "delivery": false
           },
           {
