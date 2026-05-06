@@ -2656,8 +2656,8 @@
             "personName": "정상석",
             "days": 1,
             "startDate": "2026-05-05",
-            "outDone": false,
-            "inDone": false,
+            "outDone": true,
+            "inDone": true,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
@@ -2669,8 +2669,8 @@
             "personName": "정상석",
             "days": 1,
             "startDate": "2026-05-05",
-            "outDone": false,
-            "inDone": false,
+            "outDone": true,
+            "inDone": true,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
