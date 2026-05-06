@@ -1,5 +1,6 @@
 {
   "state": {
+    "_cancelled": [],
     "2026-05-06": {
       "본소": {
         "workers": {
@@ -106,7 +107,7 @@
       "북부": {
         "workers": {
           "nb1": 420,
-          "nb2": 420,
+          "nb2": 210,
           "nb3": 420,
           "nb4": 420
         },
@@ -2446,32 +2447,6 @@
         "delivery": false
       }
     },
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-05-06T22:45:07.795Z",
-        "reason": "기타",
-        "equipName": "굴착기(1톤)-01",
-        "equipSpec": "U-10-3/1TON",
-        "personName": "김신곤",
-        "days": 1,
-        "startDate": "2026-05-06",
-        "site": "본소",
-        "baseMins": 90,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-06T22:46:35.693Z",
-        "reason": "기타",
-        "equipName": "관리기-휴립피복기-02",
-        "equipSpec": "AMC-1000SM/휴립피복기(중)",
-        "personName": "신동규",
-        "days": 1,
-        "startDate": "2026-05-06",
-        "site": "본소",
-        "baseMins": 50,
-        "delivery": false
-      }
-    ],
     "2026-05-05": {
       "본소": {
         "workers": {
@@ -9649,30 +9624,5 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-05-06T22:45:07.795Z",
-      "reason": "기타",
-      "equipName": "굴착기(1톤)-01",
-      "equipSpec": "U-10-3/1TON",
-      "personName": "김신곤",
-      "days": 1,
-      "startDate": "2026-05-06",
-      "site": "본소",
-      "baseMins": 90,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-06T22:46:35.693Z",
-      "reason": "기타",
-      "equipName": "관리기-휴립피복기-02",
-      "equipSpec": "AMC-1000SM/휴립피복기(중)",
-      "personName": "신동규",
-      "days": 1,
-      "startDate": "2026-05-06",
-      "site": "본소",
-      "baseMins": 50,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
