@@ -1,19 +1,6 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-05-06T23:12:36.513Z",
-        "reason": "개인사정",
-        "equipName": "비료동력살포기-04",
-        "equipSpec": "SG-8030/입제",
-        "personName": "김수권",
-        "days": 1,
-        "startDate": "2026-05-06",
-        "site": "북부",
-        "baseMins": 40,
-        "delivery": false
-      }
-    ],
+    "_cancelled": [],
     "2026-05-06": {
       "본소": {
         "workers": {
@@ -262,7 +249,7 @@
             "personName": "오세현",
             "days": 2,
             "startDate": "2026-05-06",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 80,
@@ -9715,18 +9702,5 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-05-06T23:12:36.513Z",
-      "reason": "개인사정",
-      "equipName": "비료동력살포기-04",
-      "equipSpec": "SG-8030/입제",
-      "personName": "김수권",
-      "days": 1,
-      "startDate": "2026-05-06",
-      "site": "북부",
-      "baseMins": 40,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
