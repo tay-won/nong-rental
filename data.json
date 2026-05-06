@@ -1055,6 +1055,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1778045442175.9001,
+            "equipName": "굴착기(1.7톤)-01",
+            "equipSpec": "DX17Z-5/2TON",
+            "personName": "유인태",
+            "days": 2,
+            "startDate": "2026-05-08",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 80,
+            "delivery": false
           }
         ],
         "delivery": false
