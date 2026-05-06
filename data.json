@@ -1,6 +1,19 @@
 {
   "state": {
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-05-06T05:20:02.811Z",
+        "reason": "개인사정",
+        "equipName": "관리기-휴립피복기-02",
+        "equipSpec": "AMC-1000SM/휴립피복기(중)",
+        "personName": "신동규",
+        "days": 1,
+        "startDate": "2026-05-06",
+        "site": "본소",
+        "baseMins": 50,
+        "delivery": false
+      }
+    ],
     "2026-05-05": {
       "본소": {
         "workers": {
@@ -282,19 +295,6 @@
             "delivery": false
           },
           {
-            "id": 1777414245970.709,
-            "equipName": "관리기-휴립피복기-02",
-            "equipSpec": "AMC-1000SM/휴립피복기(중)",
-            "personName": "신동규",
-            "days": 1,
-            "startDate": "2026-05-06",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1778040165016.7732,
             "equipName": "파종기-인력(일반)-04",
             "equipSpec": "HG10A/일반",
@@ -326,7 +326,7 @@
       "북부": {
         "workers": {
           "nb1": 420,
-          "nb2": 210,
+          "nb2": 420,
           "nb3": 420,
           "nb4": 420
         },
@@ -9478,5 +9478,18 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-05-06T05:20:02.811Z",
+      "reason": "개인사정",
+      "equipName": "관리기-휴립피복기-02",
+      "equipSpec": "AMC-1000SM/휴립피복기(중)",
+      "personName": "신동규",
+      "days": 1,
+      "startDate": "2026-05-06",
+      "site": "본소",
+      "baseMins": 50,
+      "delivery": false
+    }
+  ]
 }
