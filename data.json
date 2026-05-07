@@ -513,6 +513,19 @@
             "site": "본소",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1778134169128.025,
+            "equipName": "파종기-인력(비닐)-01",
+            "equipSpec": "HG10A/비닐",
+            "personName": "김승철",
+            "days": 1,
+            "startDate": "2026-05-07",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 30,
+            "delivery": false
           }
         ],
         "delivery": false
