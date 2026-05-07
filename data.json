@@ -126,19 +126,6 @@
             "site": "본소",
             "baseMins": 40,
             "delivery": false
-          },
-          {
-            "id": 1778197642423.967,
-            "equipName": "파종기-인력(일반)-05",
-            "equipSpec": "HG10A/일반",
-            "personName": "김광수",
-            "days": 1,
-            "startDate": "2026-05-07",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 30,
-            "delivery": false
           }
         ],
         "delivery": false
@@ -474,6 +461,19 @@
             "inDone": false,
             "site": "본소",
             "baseMins": 80,
+            "delivery": false
+          },
+          {
+            "id": 1778197642423.967,
+            "equipName": "파종기-인력(일반)-05",
+            "equipSpec": "HG10A/일반",
+            "personName": "김광수",
+            "days": 1,
+            "startDate": "2026-05-08",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 30,
             "delivery": false
           }
         ],
