@@ -939,6 +939,19 @@
             "site": "본소",
             "baseMins": 290,
             "delivery": true
+          },
+          {
+            "id": 1778197698072.317,
+            "equipName": "분무기-엔진식(살)-02",
+            "equipSpec": "BCETA-80A/밀차살충제",
+            "personName": "고영하",
+            "days": 1,
+            "startDate": "2026-05-10",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 40,
+            "delivery": false
           }
         ],
         "delivery": false
