@@ -358,19 +358,6 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
-          },
-          {
-            "id": 1778126896230.739,
-            "equipName": "관리기-피복기-01",
-            "equipSpec": "AMC-900SM/피복기(중)",
-            "personName": "김영환",
-            "days": 2,
-            "startDate": "2026-05-06",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
           }
         ],
         "delivery": false
@@ -2761,6 +2748,19 @@
             "days": 2,
             "startDate": "2026-05-05",
             "outDone": true,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1778126896230.739,
+            "equipName": "관리기-피복기-01",
+            "equipSpec": "AMC-900SM/피복기(중)",
+            "personName": "김영환",
+            "days": 2,
+            "startDate": "2026-05-05",
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
