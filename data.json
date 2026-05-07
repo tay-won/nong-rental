@@ -125,19 +125,6 @@
             "site": "본소",
             "baseMins": 90,
             "delivery": false
-          },
-          {
-            "id": 1778124166044.054,
-            "equipName": "분무기-엔진식(살)-02",
-            "equipSpec": "BCETA-80A/밀차살충제",
-            "personName": "성운경",
-            "days": 2,
-            "startDate": "2026-05-06",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 40,
-            "delivery": false
           }
         ],
         "delivery": false
@@ -2508,6 +2495,18 @@
         "startDate": "2026-05-06",
         "site": "본소",
         "baseMins": 50,
+        "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-07T03:22:54.160Z",
+        "reason": "기타",
+        "equipName": "분무기-엔진식(살)-02",
+        "equipSpec": "BCETA-80A/밀차살충제",
+        "personName": "성운경",
+        "days": 2,
+        "startDate": "2026-05-06",
+        "site": "본소",
+        "baseMins": 40,
         "delivery": false
       }
     ],
@@ -9711,6 +9710,18 @@
       "startDate": "2026-05-06",
       "site": "본소",
       "baseMins": 50,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-07T03:22:54.160Z",
+      "reason": "기타",
+      "equipName": "분무기-엔진식(살)-02",
+      "equipSpec": "BCETA-80A/밀차살충제",
+      "personName": "성운경",
+      "days": 2,
+      "startDate": "2026-05-06",
+      "site": "본소",
+      "baseMins": 40,
       "delivery": false
     }
   ]
