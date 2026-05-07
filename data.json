@@ -1,19 +1,6 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-05-07T04:06:53.957Z",
-        "reason": "기타",
-        "equipName": "비료동력살포기-01",
-        "equipSpec": "SG-6030D/입제",
-        "personName": "김수권",
-        "days": 1,
-        "startDate": "2026-05-05",
-        "site": "북부",
-        "baseMins": 40,
-        "delivery": false
-      }
-    ],
+    "_cancelled": [],
     "2026-05-06": {
       "본소": {
         "workers": {
@@ -370,6 +357,19 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
+            "delivery": false
+          },
+          {
+            "id": 1778126853227.4714,
+            "equipName": "관리기-구굴기(소)-02",
+            "equipSpec": "ASC-640/구굴기(소)",
+            "personName": "김영환",
+            "days": 1,
+            "startDate": "2026-05-06",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
             "delivery": false
           }
         ],
@@ -9702,18 +9702,5 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-05-07T04:06:53.957Z",
-      "reason": "기타",
-      "equipName": "비료동력살포기-01",
-      "equipSpec": "SG-6030D/입제",
-      "personName": "김수권",
-      "days": 1,
-      "startDate": "2026-05-05",
-      "site": "북부",
-      "baseMins": 40,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
