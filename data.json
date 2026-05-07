@@ -1212,19 +1212,6 @@
         },
         "entries": [
           {
-            "id": 1777335797582.9575,
-            "equipName": "소형트랙터25HP-02",
-            "equipSpec": "CK250V/25HP",
-            "personName": "안승문",
-            "days": 1,
-            "startDate": "2026-05-10",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1777335805497.7417,
             "equipName": "로터베이터1150-02",
             "equipSpec": "DWR115GM/1150",
@@ -2570,6 +2557,19 @@
             "equipName": "관리기-휴립피복기-01",
             "equipSpec": "AMC-900SM/휴립피복기(중)",
             "personName": "김동환",
+            "days": 1,
+            "startDate": "2026-05-21",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1777335797582.9575,
+            "equipName": "소형트랙터25HP-02",
+            "equipSpec": "CK250V/25HP",
+            "personName": "안승문",
             "days": 1,
             "startDate": "2026-05-21",
             "outDone": false,
