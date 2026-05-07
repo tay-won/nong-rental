@@ -1,6 +1,19 @@
 {
   "state": {
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-05-07T04:04:07.733Z",
+        "reason": "개인사정",
+        "equipName": "원판쟁기8련-01",
+        "equipSpec": "W82-DP/원판-8련",
+        "personName": "장덕근",
+        "days": 2,
+        "startDate": "2026-05-04",
+        "site": "북부",
+        "baseMins": 90,
+        "delivery": false
+      }
+    ],
     "2026-05-06": {
       "본소": {
         "workers": {
@@ -3230,19 +3243,6 @@
           "nb4": 420
         },
         "entries": [
-          {
-            "id": 1777021667871.7966,
-            "equipName": "원판쟁기8련-01",
-            "equipSpec": "W82-DP/원판-8련",
-            "personName": "장덕근",
-            "days": 2,
-            "startDate": "2026-05-04",
-            "outDone": true,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
           {
             "id": 1777535427801.5137,
             "equipName": "굴착기(1톤)-02",
@@ -9702,5 +9702,18 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-05-07T04:04:07.733Z",
+      "reason": "개인사정",
+      "equipName": "원판쟁기8련-01",
+      "equipSpec": "W82-DP/원판-8련",
+      "personName": "장덕근",
+      "days": 2,
+      "startDate": "2026-05-04",
+      "site": "북부",
+      "baseMins": 90,
+      "delivery": false
+    }
+  ]
 }
