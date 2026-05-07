@@ -108,7 +108,7 @@
             "personName": "서재윤",
             "days": 2,
             "startDate": "2026-05-06",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 60,
