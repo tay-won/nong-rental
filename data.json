@@ -466,7 +466,7 @@
             "personName": "김준노",
             "days": 3,
             "startDate": "2026-05-07",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
