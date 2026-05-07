@@ -521,7 +521,7 @@
             "personName": "김승철",
             "days": 1,
             "startDate": "2026-05-07",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "본소",
             "baseMins": 30,
