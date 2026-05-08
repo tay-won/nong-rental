@@ -1,55 +1,6 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-05-08T05:56:55.204Z",
-        "reason": "개인사정",
-        "equipName": "관리기-구굴기(소)-02",
-        "equipSpec": "ASC-640/구굴기(소)",
-        "personName": "김영환",
-        "days": 2,
-        "startDate": "2026-05-05",
-        "site": "본소",
-        "baseMins": 50,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-08T05:56:59.069Z",
-        "reason": "개인사정",
-        "equipName": "관리기-피복기-01",
-        "equipSpec": "AMC-900SM/피복기(중)",
-        "personName": "김영환",
-        "days": 2,
-        "startDate": "2026-05-05",
-        "site": "본소",
-        "baseMins": 50,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-08T05:58:54.615Z",
-        "reason": "개인사정",
-        "equipName": "피복기-인력-03",
-        "equipSpec": "BG-777B/8자",
-        "personName": "안옥분",
-        "days": 1,
-        "startDate": "2026-05-07",
-        "site": "본소",
-        "baseMins": 40,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-08T05:59:37.784Z",
-        "reason": "개인사정",
-        "equipName": "분무기-엔진식(제)-01",
-        "equipSpec": "WPS-80A/밀차제초제",
-        "personName": "손석남",
-        "days": 1,
-        "startDate": "2026-05-08",
-        "site": "본소",
-        "baseMins": 40,
-        "delivery": false
-      }
-    ],
+    "_cancelled": [],
     "2026-05-07": {
       "본소": {
         "workers": {
@@ -729,6 +680,19 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1778220229118.7375,
+            "equipName": "비료동력살포기-01",
+            "equipSpec": "SG-6030D/입제",
+            "personName": "정재정",
+            "days": 3,
+            "startDate": "2026-05-08",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 40,
             "delivery": false
           }
         ],
@@ -10397,54 +10361,5 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-05-08T05:56:55.204Z",
-      "reason": "개인사정",
-      "equipName": "관리기-구굴기(소)-02",
-      "equipSpec": "ASC-640/구굴기(소)",
-      "personName": "김영환",
-      "days": 2,
-      "startDate": "2026-05-05",
-      "site": "본소",
-      "baseMins": 50,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-08T05:56:59.069Z",
-      "reason": "개인사정",
-      "equipName": "관리기-피복기-01",
-      "equipSpec": "AMC-900SM/피복기(중)",
-      "personName": "김영환",
-      "days": 2,
-      "startDate": "2026-05-05",
-      "site": "본소",
-      "baseMins": 50,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-08T05:58:54.615Z",
-      "reason": "개인사정",
-      "equipName": "피복기-인력-03",
-      "equipSpec": "BG-777B/8자",
-      "personName": "안옥분",
-      "days": 1,
-      "startDate": "2026-05-07",
-      "site": "본소",
-      "baseMins": 40,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-08T05:59:37.784Z",
-      "reason": "개인사정",
-      "equipName": "분무기-엔진식(제)-01",
-      "equipSpec": "WPS-80A/밀차제초제",
-      "personName": "손석남",
-      "days": 1,
-      "startDate": "2026-05-08",
-      "site": "본소",
-      "baseMins": 40,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
