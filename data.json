@@ -1737,6 +1737,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1778227796259.1455,
+            "equipName": "굴착기(1톤)-01",
+            "equipSpec": "U-10-3/1TON",
+            "personName": "율곡수목원",
+            "days": 2,
+            "startDate": "2026-05-13",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 330,
+            "delivery": true
           }
         ],
         "delivery": false
