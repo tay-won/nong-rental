@@ -680,6 +680,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1778223740591.6965,
+            "equipName": "비료살포기-01",
+            "equipSpec": "JHT-320H/300kg",
+            "personName": "정재정",
+            "days": 3,
+            "startDate": "2026-05-08",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
