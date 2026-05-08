@@ -1,6 +1,19 @@
 {
   "state": {
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-05-08T23:17:42.712Z",
+        "reason": "개인사정",
+        "equipName": "굴착기(1톤)-02",
+        "equipSpec": "U-10-3S/1TON",
+        "personName": "이세종",
+        "days": 1,
+        "startDate": "2026-05-08",
+        "site": "북부",
+        "baseMins": 90,
+        "delivery": false
+      }
+    ],
     "2026-05-08": {
       "본소": {
         "workers": {
@@ -318,19 +331,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 80,
-            "delivery": false
-          },
-          {
-            "id": 1777536264182.9922,
-            "equipName": "굴착기(1톤)-02",
-            "equipSpec": "U-10-3S/1TON",
-            "personName": "이세종",
-            "days": 1,
-            "startDate": "2026-05-08",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
             "delivery": false
           },
           {
@@ -9937,5 +9937,18 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-05-08T23:17:42.712Z",
+      "reason": "개인사정",
+      "equipName": "굴착기(1톤)-02",
+      "equipSpec": "U-10-3S/1TON",
+      "personName": "이세종",
+      "days": 1,
+      "startDate": "2026-05-08",
+      "site": "북부",
+      "baseMins": 90,
+      "delivery": false
+    }
+  ]
 }
