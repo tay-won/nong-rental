@@ -2675,7 +2675,7 @@
             "equipName": "관리기-구굴기(중)-03",
             "equipSpec": "AMC-1000SM/구굴기(중)",
             "personName": "이재흥",
-            "days": 2,
+            "days": 1,
             "startDate": "2026-05-06",
             "outDone": true,
             "inDone": true,
@@ -2743,7 +2743,7 @@
             "days": 1,
             "startDate": "2026-05-06",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
