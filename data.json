@@ -1671,6 +1671,19 @@
             "site": "북부",
             "baseMins": 80,
             "delivery": false
+          },
+          {
+            "id": 1778201657636.138,
+            "equipName": "원판쟁기4련-01",
+            "equipSpec": "W42-DP/원판-4련",
+            "personName": "이원경",
+            "days": 3,
+            "startDate": "2026-05-13",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
