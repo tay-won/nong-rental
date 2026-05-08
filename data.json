@@ -2019,6 +2019,19 @@
             "site": "북부",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1778224415260.9338,
+            "equipName": "소형트랙터25HP-04",
+            "equipSpec": "LK2805/25HP",
+            "personName": "박용규",
+            "days": 1,
+            "startDate": "2026-05-15",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
