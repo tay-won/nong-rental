@@ -273,7 +273,7 @@
             "personName": "안병직",
             "days": 2,
             "startDate": "2026-05-08",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
