@@ -2797,7 +2797,7 @@
             "days": 1,
             "startDate": "2026-05-05",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -2878,6 +2878,19 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1778223237705.4304,
+            "equipName": "비료동력살포기-01",
+            "equipSpec": "SG-6030D/입제",
+            "personName": "김수권",
+            "days": 1,
+            "startDate": "2026-05-05",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 40,
             "delivery": false
           }
         ],
