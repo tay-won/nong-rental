@@ -978,6 +978,19 @@
             "site": "본소",
             "baseMins": 60,
             "delivery": false
+          },
+          {
+            "id": 1778203462532.098,
+            "equipName": "관리기-로터리-06",
+            "equipSpec": "AMC-1000SM/로타리(중)",
+            "personName": "신향재",
+            "days": 1,
+            "startDate": "2026-05-10",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 290,
+            "delivery": true
           }
         ],
         "delivery": false
