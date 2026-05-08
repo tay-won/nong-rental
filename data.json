@@ -2706,7 +2706,7 @@
             "days": 2,
             "startDate": "2026-05-05",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -2745,7 +2745,7 @@
             "days": 2,
             "startDate": "2026-05-05",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
