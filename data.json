@@ -3253,6 +3253,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1778219799916.345,
+            "equipName": "쟁기(2련)-01",
+            "equipSpec": "SW-PN602/소형-2련",
+            "personName": "안희성",
+            "days": 1,
+            "startDate": "2026-05-05",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 40,
+            "delivery": false
           }
         ],
         "delivery": false
