@@ -2170,7 +2170,21 @@
           "nb3": 420,
           "nb4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1778224439387.4229,
+            "equipName": "로터베이터2350-01",
+            "equipSpec": "AR5240SC/2350",
+            "personName": "강순덕",
+            "days": 3,
+            "startDate": "2026-05-17",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
+          }
+        ],
         "delivery": false
       }
     },
