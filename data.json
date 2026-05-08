@@ -2900,6 +2900,19 @@
             "site": "북부",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1778217909741.9365,
+            "equipName": "퇴비살포기(승용)-01",
+            "equipSpec": "HSC-1500W/자주형1000kg",
+            "personName": "기술보급과",
+            "days": 4,
+            "startDate": "2026-05-05",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 140,
+            "delivery": false
           }
         ],
         "delivery": false
