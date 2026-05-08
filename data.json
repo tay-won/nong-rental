@@ -963,6 +963,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1777356011325.4485,
+            "equipName": "관리기-로터리-08",
+            "equipSpec": "AMC-1000SM/로타리(중)",
+            "personName": "남승우",
+            "days": 1,
+            "startDate": "2026-05-11",
+            "outDone": true,
+            "inDone": true,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
@@ -2528,19 +2541,6 @@
             "delivery": false
           },
           {
-            "id": 1777356011325.4485,
-            "equipName": "관리기-로터리-03",
-            "equipSpec": "AMC-1000SM/로타리(중)",
-            "personName": "남승우",
-            "days": 1,
-            "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
             "id": 1777536635438.1367,
             "equipName": "소형트랙터25HP-04",
             "equipSpec": "LK2805/25HP",
@@ -2717,7 +2717,7 @@
             "days": 1,
             "startDate": "2026-05-06",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
