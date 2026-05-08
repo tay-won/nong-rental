@@ -818,7 +818,19 @@ async function loadData(){
 }
 
 async function saveData(){
-  // 토큰 없으면 저장 안 함 (로그인 전 데이터 덮어쓰기 방지)
+  // 저장 직전 최신 SHA 새로고침
+  if(GH_TOKEN) {
+    try {
+      const res = await fetch(GH_API+'?t='+Date.now(), {
+        headers: { Authorization: 'token '+GH_TOKEN, Accept: 'application/vnd.github.v3+json' }
+      });
+      if(res.ok) {
+        const json = await res.json();
+        ghSha = json.sha;
+      }
+    } catch(e) { console.warn('SHA refresh failed'); }
+  }
+  
   if(!GH_TOKEN) { setSyncUI('idle','로그인 필요'); return; }
   setSyncUI('saving','저장 중…');
   // 범위 제한 없이 전체 state 저장 + 휴무일 포함
@@ -877,7 +889,7 @@ async function saveData(){
       }
     } else {
       // 저장 실패 시 3초 후 재시도
-      setTimeout(() => saveData(), 3000);
+      setTimeout(() => saveData(), 10000);
     }
   }
 }
