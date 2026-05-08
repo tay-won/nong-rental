@@ -1,19 +1,6 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-05-07T23:48:46.257Z",
-        "reason": "기타",
-        "equipName": "비료동력살포기-02",
-        "equipSpec": "MD-7030/입제",
-        "personName": "이지훈",
-        "days": 1,
-        "startDate": "2026-05-10",
-        "site": "본소",
-        "baseMins": 40,
-        "delivery": false
-      }
-    ],
+    "_cancelled": [],
     "2026-05-07": {
       "본소": {
         "workers": {
@@ -3180,7 +3167,7 @@
             "id": 1777874009128.4001,
             "equipName": "퇴비살포기(소)-03",
             "equipSpec": "GW-900H/900KG-퇴비",
-            "personName": "맹구원",
+            "personName": "맹국원",
             "days": 1,
             "startDate": "2026-05-03",
             "outDone": true,
@@ -9767,18 +9754,5 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-05-07T23:48:46.257Z",
-      "reason": "기타",
-      "equipName": "비료동력살포기-02",
-      "equipSpec": "MD-7030/입제",
-      "personName": "이지훈",
-      "days": 1,
-      "startDate": "2026-05-10",
-      "site": "본소",
-      "baseMins": 40,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
