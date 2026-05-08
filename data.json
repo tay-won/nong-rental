@@ -1,6 +1,19 @@
 {
   "state": {
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-05-08T05:56:55.204Z",
+        "reason": "개인사정",
+        "equipName": "관리기-구굴기(소)-02",
+        "equipSpec": "ASC-640/구굴기(소)",
+        "personName": "김영환",
+        "days": 2,
+        "startDate": "2026-05-05",
+        "site": "본소",
+        "baseMins": 50,
+        "delivery": false
+      }
+    ],
     "2026-05-07": {
       "본소": {
         "workers": {
@@ -3189,19 +3202,6 @@
           "bs4": 420
         },
         "entries": [
-          {
-            "id": 1778217831410.6628,
-            "equipName": "관리기-구굴기(소)-02",
-            "equipSpec": "ASC-640/구굴기(소)",
-            "personName": "김영환",
-            "days": 2,
-            "startDate": "2026-05-05",
-            "outDone": true,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          },
           {
             "id": 1778217846426.8528,
             "equipName": "관리기-피복기-01",
@@ -10374,5 +10374,18 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-05-08T05:56:55.204Z",
+      "reason": "개인사정",
+      "equipName": "관리기-구굴기(소)-02",
+      "equipSpec": "ASC-640/구굴기(소)",
+      "personName": "김영환",
+      "days": 2,
+      "startDate": "2026-05-05",
+      "site": "본소",
+      "baseMins": 50,
+      "delivery": false
+    }
+  ]
 }
