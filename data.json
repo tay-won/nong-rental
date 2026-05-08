@@ -1,6 +1,19 @@
 {
   "state": {
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-05-08T00:44:47.039Z",
+        "reason": "개인사정",
+        "equipName": "동력경운기-03",
+        "equipSpec": "DT100N/10HP",
+        "personName": "이치선",
+        "days": 1,
+        "startDate": "2026-05-08",
+        "site": "북부",
+        "baseMins": 40,
+        "delivery": false
+      }
+    ],
     "2026-05-07": {
       "본소": {
         "workers": {
@@ -223,7 +236,7 @@
             "personName": "조창열",
             "days": 2,
             "startDate": "2026-05-07",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -563,19 +576,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1777536848806.924,
-            "equipName": "동력경운기-03",
-            "equipSpec": "DT100N/10HP",
-            "personName": "이치선",
-            "days": 1,
-            "startDate": "2026-05-08",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 40,
             "delivery": false
           },
           {
@@ -9819,5 +9819,18 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-05-08T00:44:47.039Z",
+      "reason": "개인사정",
+      "equipName": "동력경운기-03",
+      "equipSpec": "DT100N/10HP",
+      "personName": "이치선",
+      "days": 1,
+      "startDate": "2026-05-08",
+      "site": "북부",
+      "baseMins": 40,
+      "delivery": false
+    }
+  ]
 }
