@@ -4657,7 +4657,7 @@
             "days": 1,
             "startDate": "2026-04-29",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
@@ -4669,8 +4669,8 @@
             "personName": "황지용",
             "days": 1,
             "startDate": "2026-04-29",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
