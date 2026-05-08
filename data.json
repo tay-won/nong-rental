@@ -1992,6 +1992,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1778201925701.6572,
+            "equipName": "관리기-로터리-02",
+            "equipSpec": "AMC-900SM/로타리(중)",
+            "personName": "박용규",
+            "days": 1,
+            "startDate": "2026-05-15",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
