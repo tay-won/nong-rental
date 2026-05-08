@@ -60,6 +60,18 @@
         "site": "북부",
         "baseMins": 40,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-08T05:38:23.922Z",
+        "reason": "개인사정",
+        "equipName": "소형트랙터25HP-04",
+        "equipSpec": "LK2805/25HP",
+        "personName": "홍지헌",
+        "days": 1,
+        "startDate": "2026-05-10",
+        "site": "북부",
+        "baseMins": 290,
+        "delivery": true
       }
     ],
     "2026-05-07": {
@@ -1141,19 +1153,6 @@
             "site": "북부",
             "baseMins": 60,
             "delivery": false
-          },
-          {
-            "id": 1776918156362.3,
-            "equipName": "소형트랙터25HP-04",
-            "equipSpec": "LK2805/25HP",
-            "personName": "홍지헌",
-            "days": 1,
-            "startDate": "2026-05-10",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 290,
-            "delivery": true
           },
           {
             "id": 1778218692762.1663,
@@ -10032,6 +10031,18 @@
       "site": "북부",
       "baseMins": 40,
       "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-08T05:38:23.922Z",
+      "reason": "개인사정",
+      "equipName": "소형트랙터25HP-04",
+      "equipSpec": "LK2805/25HP",
+      "personName": "홍지헌",
+      "days": 1,
+      "startDate": "2026-05-10",
+      "site": "북부",
+      "baseMins": 290,
+      "delivery": true
     }
   ]
 }
