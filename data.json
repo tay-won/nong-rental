@@ -1,19 +1,6 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-05-08T08:00:22.680Z",
-        "reason": "개인사정",
-        "equipName": "관리기-휴립기-03",
-        "equipSpec": "AMC-1000SM/휴립기(중)",
-        "personName": "남승우",
-        "days": 1,
-        "startDate": "2026-05-07",
-        "site": "북부",
-        "baseMins": 50,
-        "delivery": false
-      }
-    ],
+    "_cancelled": [],
     "2026-05-07": {
       "본소": {
         "workers": {
@@ -288,7 +275,7 @@
             "personName": "심재석",
             "days": 3,
             "startDate": "2026-05-07",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -9859,18 +9846,5 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-05-08T08:00:22.680Z",
-      "reason": "개인사정",
-      "equipName": "관리기-휴립기-03",
-      "equipSpec": "AMC-1000SM/휴립기(중)",
-      "personName": "남승우",
-      "days": 1,
-      "startDate": "2026-05-07",
-      "site": "북부",
-      "baseMins": 50,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
