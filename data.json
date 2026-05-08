@@ -2796,7 +2796,7 @@
             "personName": "황유진",
             "days": 2,
             "startDate": "2026-05-05",
-            "outDone": false,
+            "outDone": true,
             "inDone": true,
             "site": "북부",
             "baseMins": 90,
