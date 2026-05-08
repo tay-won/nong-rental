@@ -1,31 +1,6 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-05-08T00:38:46.600Z",
-        "reason": "개인사정",
-        "equipName": "파종기-인력(비닐)-01",
-        "equipSpec": "HG10A/비닐",
-        "personName": "김승철",
-        "days": 1,
-        "startDate": "2026-05-06",
-        "site": "본소",
-        "baseMins": 30,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-08T00:42:19.447Z",
-        "reason": "개인사정",
-        "equipName": "관리기-구굴기(중)-03",
-        "equipSpec": "AMC-1000SM/구굴기(중)",
-        "personName": "이재흥",
-        "days": 2,
-        "startDate": "2026-05-06",
-        "site": "북부",
-        "baseMins": 50,
-        "delivery": false
-      }
-    ],
+    "_cancelled": [],
     "2026-05-07": {
       "본소": {
         "workers": {
@@ -2575,7 +2550,7 @@
             "personName": "최학순",
             "days": 3,
             "startDate": "2026-05-06",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -9844,30 +9819,5 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-05-08T00:38:46.600Z",
-      "reason": "개인사정",
-      "equipName": "파종기-인력(비닐)-01",
-      "equipSpec": "HG10A/비닐",
-      "personName": "김승철",
-      "days": 1,
-      "startDate": "2026-05-06",
-      "site": "본소",
-      "baseMins": 30,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-08T00:42:19.447Z",
-      "reason": "개인사정",
-      "equipName": "관리기-구굴기(중)-03",
-      "equipSpec": "AMC-1000SM/구굴기(중)",
-      "personName": "이재흥",
-      "days": 2,
-      "startDate": "2026-05-06",
-      "site": "북부",
-      "baseMins": 50,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
