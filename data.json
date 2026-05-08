@@ -1,5 +1,6 @@
 {
   "state": {
+    "_cancelled": [],
     "2026-05-07": {
       "본소": {
         "workers": {
@@ -2289,7 +2290,6 @@
         "delivery": false
       }
     },
-    "_cancelled": [],
     "2026-05-06": {
       "본소": {
         "workers": {
@@ -3233,7 +3233,7 @@
             "id": 1777874009128.4001,
             "equipName": "퇴비살포기(소)-03",
             "equipSpec": "GW-900H/900KG-퇴비",
-            "personName": "맹구원",
+            "personName": "맹국원",
             "days": 1,
             "startDate": "2026-05-03",
             "outDone": true,
