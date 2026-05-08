@@ -1132,6 +1132,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1778203505143.756,
+            "equipName": "관리기-구굴기(중)-02",
+            "equipSpec": "AMC-1000SM/구굴기(중)",
+            "personName": "박성현",
+            "days": 1,
+            "startDate": "2026-05-11",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
