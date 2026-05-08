@@ -236,7 +236,7 @@
             "personName": "조창열",
             "days": 2,
             "startDate": "2026-05-07",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
