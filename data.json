@@ -2006,6 +2006,19 @@
             "site": "북부",
             "baseMins": 290,
             "delivery": true
+          },
+          {
+            "id": 1778224401755.7844,
+            "equipName": "쟁기(2련)-01",
+            "equipSpec": "SW-PN602/소형-2련",
+            "personName": "목일균",
+            "days": 1,
+            "startDate": "2026-05-15",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 40,
+            "delivery": false
           }
         ],
         "delivery": false
