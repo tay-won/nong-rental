@@ -818,63 +818,13 @@ async function loadData(){
 }
 
 async function saveData(){
+  // 토큰 없으면 저장 안 함 (로그인 전 데이터 덮어쓰기 방지)
   if(!GH_TOKEN) { setSyncUI('idle','로그인 필요'); return; }
   setSyncUI('saving','저장 중…');
-
-  // 저장 전 항상 최신 SHA + 원격 데이터 병합 (다기기 동시 접속 대응)
-  try {
-    const rLatest = await fetch(GH_API+'?t='+Date.now(), {
-      headers: { Authorization: 'token '+GH_TOKEN, Accept: 'application/vnd.github.v3+json' }
-    });
-    if(rLatest.ok) {
-      const jLatest = await rLatest.json();
-      const latestSha = jLatest.sha;
-
-      // 원격 SHA가 내가 알던 것과 다르면 → 다른 기기가 먼저 저장한 것
-      if(latestSha !== ghSha) {
-        // 원격 데이터 불러와서 병합 (원격 entries + 내 entries 합치기)
-        try {
-          const remoteStr = decodeURIComponent(escape(atob(jLatest.content.replace(/\n/g,''))));
-          const remoteData = JSON.parse(remoteStr);
-          const remoteState = remoteData.state || remoteData;
-
-          // 병합: 내 state의 entries를 원격에 추가 (중복 id 제거)
-          Object.keys(state).forEach(dk => {
-            if(dk === '_cancelled') return;
-            ['본소','북부'].forEach(site => {
-              if(!state[dk]||!state[dk][site]) return;
-              if(!remoteState[dk]) remoteState[dk] = emptyDay();
-              if(!remoteState[dk][site]) remoteState[dk][site] = {workers:{},entries:[],delivery:false};
-
-              // 원격에 없는 내 entries 추가
-              const remoteIds = new Set((remoteState[dk][site].entries||[]).map(e=>String(e.id)));
-              state[dk][site].entries.forEach(e => {
-                if(!remoteIds.has(String(e.id))) {
-                  remoteState[dk][site].entries.push(e);
-                }
-              });
-              // 내 workers 상태 덮어쓰기 (가장 최근 변경이 우선)
-              remoteState[dk][site].workers = state[dk][site].workers;
-            });
-          });
-
-          // 병합된 state로 교체
-          Object.keys(state).forEach(k => { if(k !== '_cancelled') delete state[k]; });
-          Object.assign(state, remoteState);
-          if(remoteData.holidays) saveHolidays(remoteData.holidays);
-          if(remoteData.rainy) saveRainy(remoteData.rainy);
-        } catch(mergeErr) {
-          // 병합 실패해도 저장은 계속 진행
-        }
-        ghSha = latestSha;
-      }
-    }
-  } catch(e) {
-    // SHA 갱신 실패해도 저장 시도
-  }
-
+  // 범위 제한 없이 전체 state 저장 + 휴무일 포함
+  const trimmed = JSON.parse(JSON.stringify(state));
   const savePayload = {
-    state: JSON.parse(JSON.stringify(state)),
+    state: trimmed,
     holidays: getHolidays(),
     rainy: getRainy(),
     cancelled: state._cancelled || []
@@ -886,8 +836,7 @@ async function saveData(){
     content: content,
     ...(ghSha ? {sha: ghSha} : {})
   };
-
-  try {
+  try{
     const res = await fetch(GH_API, {
       method: 'PUT',
       headers: {
@@ -901,9 +850,35 @@ async function saveData(){
     const json = await res.json();
     ghSha = json.content.sha;
     setSyncUI('ok','저장 완료 · '+new Date().toLocaleTimeString('ko-KR'));
-    renderAll();
   } catch(e){
-    setSyncUI('err','❌ 저장 실패: '+e.message);
+    setSyncUI('err','저장 실패: '+e.message);
+    // SHA 충돌(409)이면 최신 SHA 받아서 재시도
+    if(e.message.includes('409')) {
+      try {
+        const r2 = await fetch(GH_API+'?t='+Date.now(), {
+          headers: { Authorization: 'token '+GH_TOKEN, Accept: 'application/vnd.github.v3+json' }
+        });
+        const j2 = await r2.json();
+        ghSha = j2.sha;
+        // 재시도
+        body.sha = ghSha;
+        const r3 = await fetch(GH_API, {
+          method: 'PUT',
+          headers: { Authorization: 'token '+GH_TOKEN, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        if(r3.ok) {
+          const j3 = await r3.json();
+          ghSha = j3.content.sha;
+          setSyncUI('ok','저장 완료(재시도) · '+new Date().toLocaleTimeString('ko-KR'));
+        }
+      } catch(e2) {
+        setSyncUI('err','저장 실패(재시도): '+e2.message);
+      }
+    } else {
+      // 저장 실패 시 3초 후 재시도
+      setTimeout(() => saveData(), 3000);
+    }
   }
 }
 
@@ -1030,8 +1005,106 @@ function downloadReport(){
 }
 
 
+let isSaving = false;
+let pendingSave = false;
+
 function scheduleSave(){
-  if(!GH_TOKEN) return;if(saveTimer)clearTimeout(saveTimer);setSyncUI('saving','변경됨…');saveTimer=setTimeout(saveData,1000);}
+  if(!GH_TOKEN) return;
+  if(saveTimer) clearTimeout(saveTimer);
+  setSyncUI('saving','변경됨…');
+  saveTimer = setTimeout(doSave, 5000); // 5초 딜레이로 증가
+}
+
+async function doSave(){
+  if(isSaving) {
+    // 저장 중이면 완료 후 재시도
+    pendingSave = true;
+    return;
+  }
+  isSaving = true;
+  pendingSave = false;
+  await saveData();
+  isSaving = false;
+  // 저장 중에 새 변경이 있었으면 다시 저장
+  if(pendingSave) {
+    pendingSave = false;
+    scheduleSave();
+  }
+}
+
+async function saveData(){
+  if(!GH_TOKEN) { setSyncUI('idle','로그인 필요'); return; }
+  setSyncUI('saving','저장 중…');
+
+  // 저장 전 항상 최신 SHA + 원격 데이터 병합
+  try {
+    const rLatest = await fetch(GH_API+'?t='+Date.now(), {
+      headers: { Authorization: 'token '+GH_TOKEN, Accept: 'application/vnd.github.v3+json' }
+    });
+    if(rLatest.ok) {
+      const jLatest = await rLatest.json();
+      if(jLatest.sha !== ghSha) {
+        // 다른 기기가 저장한 게 있음 → 병합
+        try {
+          const remoteStr = decodeURIComponent(escape(atob(jLatest.content.replace(/\n/g,''))));
+          const remoteRaw = JSON.parse(remoteStr);
+          const remoteState = remoteRaw.state || remoteRaw;
+          // 내 entries를 원격에 병합 (id 기준 중복 제거)
+          Object.keys(state).forEach(dk => {
+            if(dk === '_cancelled') return;
+            ['본소','북부'].forEach(site => {
+              if(!state[dk]||!state[dk][site]) return;
+              if(!remoteState[dk]) remoteState[dk] = emptyDay();
+              if(!remoteState[dk][site]) remoteState[dk][site] = {workers:{},entries:[],delivery:false};
+              const remoteIds = new Set((remoteState[dk][site].entries||[]).map(e=>String(e.id)));
+              state[dk][site].entries.forEach(e => {
+                if(!remoteIds.has(String(e.id))) remoteState[dk][site].entries.push(e);
+              });
+              remoteState[dk][site].workers = state[dk][site].workers;
+            });
+          });
+          Object.keys(state).forEach(k => { if(k!=='_cancelled') delete state[k]; });
+          Object.assign(state, remoteState);
+          if(remoteRaw.holidays) saveHolidays(remoteRaw.holidays);
+          if(remoteRaw.rainy) saveRainy(remoteRaw.rainy);
+        } catch(e) { /* 병합 실패 무시 */ }
+        ghSha = jLatest.sha;
+      }
+    }
+  } catch(e) { /* SHA 갱신 실패 무시 */ }
+
+  const savePayload = {
+    state: JSON.parse(JSON.stringify(state)),
+    holidays: getHolidays(),
+    rainy: getRainy(),
+    cancelled: state._cancelled || []
+  };
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(savePayload, null, 2))));
+  const body = {
+    message: 'update '+new Date().toISOString(),
+    content,
+    ...(ghSha ? {sha: ghSha} : {})
+  };
+
+  try {
+    const res = await fetch(GH_API, {
+      method: 'PUT',
+      headers: {
+        Authorization: 'token '+GH_TOKEN,
+        Accept: 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const json = await res.json();
+    ghSha = json.content.sha;
+    setSyncUI('ok','저장 완료 · '+new Date().toLocaleTimeString('ko-KR'));
+    renderAll();
+  } catch(e){
+    setSyncUI('err','❌ 저장 실패: '+e.message);
+  }
+}
 
 // ─── 계산 ───
 function getAvailSite(dk,st){return Object.values(state[dk][st].workers).reduce((a,b)=>a+b,0);}
@@ -2316,7 +2389,6 @@ function openEditModal(startDk, site, idx) {
   // 성명
   document.getElementById('editPersonInp').value = e.personName || '';
 
-  // 시작일 - 화면 표시와 맞추기 위해 +1일로 표시
   const sdEl = document.getElementById('editStartDate');
   if(sdEl) {
     const _dk = (e.startDate || editTarget.startDk).slice(0,10);
