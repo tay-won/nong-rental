@@ -1,6 +1,19 @@
 {
   "state": {
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-05-08T07:27:40.166Z",
+        "reason": "기타",
+        "equipName": "분무기-엔진식(살)-02",
+        "equipSpec": "BCETA-80A/밀차살충제",
+        "personName": "성운경",
+        "days": 2,
+        "startDate": "2026-05-07",
+        "site": "본소",
+        "baseMins": 40,
+        "delivery": false
+      }
+    ],
     "2026-05-07": {
       "본소": {
         "workers": {
@@ -109,19 +122,6 @@
             "days": 1,
             "startDate": "2026-05-07",
             "outDone": true,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 40,
-            "delivery": false
-          },
-          {
-            "id": 1778225242420.8296,
-            "equipName": "분무기-엔진식(살)-02",
-            "equipSpec": "BCETA-80A/밀차살충제",
-            "personName": "성운경",
-            "days": 2,
-            "startDate": "2026-05-07",
-            "outDone": false,
             "inDone": false,
             "site": "본소",
             "baseMins": 40,
@@ -10426,5 +10426,18 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-05-08T07:27:40.166Z",
+      "reason": "기타",
+      "equipName": "분무기-엔진식(살)-02",
+      "equipSpec": "BCETA-80A/밀차살충제",
+      "personName": "성운경",
+      "days": 2,
+      "startDate": "2026-05-07",
+      "site": "본소",
+      "baseMins": 40,
+      "delivery": false
+    }
+  ]
 }
