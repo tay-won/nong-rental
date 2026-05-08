@@ -2183,6 +2183,19 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
+          },
+          {
+            "id": 1778224455067.4128,
+            "equipName": "휴립복토파종기(2조1두둑)-01",
+            "equipSpec": "BG-1260BC/휴립복토(2조1두둑)",
+            "personName": "고종찬",
+            "days": 3,
+            "startDate": "2026-05-17",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
