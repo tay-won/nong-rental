@@ -1259,6 +1259,19 @@
             "site": "북부",
             "baseMins": 40,
             "delivery": false
+          },
+          {
+            "id": 1778201438153.1047,
+            "equipName": "동력제초기(승용)-02",
+            "equipSpec": "SRM1600/승용형",
+            "personName": "이충구",
+            "days": 1,
+            "startDate": "2026-05-11",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 80,
+            "delivery": false
           }
         ],
         "delivery": false
