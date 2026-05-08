@@ -2471,6 +2471,19 @@
             "site": "북부",
             "baseMins": 290,
             "delivery": true
+          },
+          {
+            "id": 1778202074434.6218,
+            "equipName": "로터베이터1500-01",
+            "equipSpec": "AR-150/1500",
+            "personName": "오의석",
+            "days": 1,
+            "startDate": "2026-05-22",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
