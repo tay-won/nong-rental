@@ -2959,10 +2959,10 @@
             "equipName": "관리기-구굴기(소)-02",
             "equipSpec": "ASC-640/구굴기(소)",
             "personName": "김영환",
-            "days": 1,
+            "days": 2,
             "startDate": "2026-05-05",
-            "outDone": false,
-            "inDone": false,
+            "outDone": true,
+            "inDone": true,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
