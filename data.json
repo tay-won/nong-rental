@@ -1,6 +1,19 @@
 {
   "state": {
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-05-08T08:04:45.606Z",
+        "reason": "개인사정",
+        "equipName": "소형트랙터25HP-04",
+        "equipSpec": "LK2805/25HP",
+        "personName": "홍지헌",
+        "days": 1,
+        "startDate": "2026-05-10",
+        "site": "북부",
+        "baseMins": 290,
+        "delivery": true
+      }
+    ],
     "2026-05-07": {
       "본소": {
         "workers": {
@@ -1042,19 +1055,6 @@
           "nb4": 420
         },
         "entries": [
-          {
-            "id": 1776918156362.3,
-            "equipName": "소형트랙터25HP-04",
-            "equipSpec": "LK2805/25HP",
-            "personName": "홍지헌",
-            "days": 1,
-            "startDate": "2026-05-10",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 290,
-            "delivery": true
-          },
           {
             "id": 1776918173496.164,
             "equipName": "로터베이터1150-02",
@@ -9924,5 +9924,18 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-05-08T08:04:45.606Z",
+      "reason": "개인사정",
+      "equipName": "소형트랙터25HP-04",
+      "equipSpec": "LK2805/25HP",
+      "personName": "홍지헌",
+      "days": 1,
+      "startDate": "2026-05-10",
+      "site": "북부",
+      "baseMins": 290,
+      "delivery": true
+    }
+  ]
 }
