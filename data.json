@@ -12,6 +12,18 @@
         "site": "본소",
         "baseMins": 30,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-08T00:42:19.447Z",
+        "reason": "개인사정",
+        "equipName": "관리기-구굴기(중)-03",
+        "equipSpec": "AMC-1000SM/구굴기(중)",
+        "personName": "이재흥",
+        "days": 2,
+        "startDate": "2026-05-06",
+        "site": "북부",
+        "baseMins": 50,
+        "delivery": false
       }
     ],
     "2026-05-07": {
@@ -2552,19 +2564,6 @@
             "startDate": "2026-05-06",
             "outDone": true,
             "inDone": true,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1777880574560.979,
-            "equipName": "관리기-구굴기(중)-03",
-            "equipSpec": "AMC-1000SM/구굴기(중)",
-            "personName": "이재흥",
-            "days": 2,
-            "startDate": "2026-05-06",
-            "outDone": false,
-            "inDone": false,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
@@ -9856,6 +9855,18 @@
       "startDate": "2026-05-06",
       "site": "본소",
       "baseMins": 30,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-08T00:42:19.447Z",
+      "reason": "개인사정",
+      "equipName": "관리기-구굴기(중)-03",
+      "equipSpec": "AMC-1000SM/구굴기(중)",
+      "personName": "이재흥",
+      "days": 2,
+      "startDate": "2026-05-06",
+      "site": "북부",
+      "baseMins": 50,
       "delivery": false
     }
   ]
