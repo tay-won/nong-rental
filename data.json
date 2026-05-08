@@ -184,8 +184,8 @@
             "personName": "강연희",
             "days": 1,
             "startDate": "2026-05-07",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 40,
             "delivery": false
