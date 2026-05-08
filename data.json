@@ -1,6 +1,19 @@
 {
   "state": {
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-05-08T00:38:46.600Z",
+        "reason": "개인사정",
+        "equipName": "파종기-인력(비닐)-01",
+        "equipSpec": "HG10A/비닐",
+        "personName": "김승철",
+        "days": 1,
+        "startDate": "2026-05-06",
+        "site": "본소",
+        "baseMins": 30,
+        "delivery": false
+      }
+    ],
     "2026-05-07": {
       "본소": {
         "workers": {
@@ -2270,19 +2283,6 @@
             "inDone": true,
             "site": "본소",
             "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1778058812903.083,
-            "equipName": "파종기-인력(비닐)-01",
-            "equipSpec": "HG10A/비닐",
-            "personName": "김승철",
-            "days": 1,
-            "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 30,
             "delivery": false
           },
           {
@@ -9793,5 +9793,18 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-05-08T00:38:46.600Z",
+      "reason": "개인사정",
+      "equipName": "파종기-인력(비닐)-01",
+      "equipSpec": "HG10A/비닐",
+      "personName": "김승철",
+      "days": 1,
+      "startDate": "2026-05-06",
+      "site": "본소",
+      "baseMins": 30,
+      "delivery": false
+    }
+  ]
 }
