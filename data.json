@@ -2511,8 +2511,8 @@
             "personName": "김태연",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": false,
-            "inDone": false,
+            "outDone": true,
+            "inDone": true,
             "site": "북부",
             "baseMins": 40,
             "delivery": false
