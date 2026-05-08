@@ -2822,7 +2822,7 @@
             "personName": "김진용",
             "days": 2,
             "startDate": "2026-05-05",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -2917,6 +2917,19 @@
             "inDone": true,
             "site": "북부",
             "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1778223340100.3052,
+            "equipName": "퇴비살포기(승용)-01",
+            "equipSpec": "HSC-1500W/자주형1000kg",
+            "personName": "기술보급과",
+            "days": 4,
+            "startDate": "2026-05-05",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 140,
             "delivery": false
           }
         ],
