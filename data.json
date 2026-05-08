@@ -2458,7 +2458,21 @@
           "nb3": 420,
           "nb4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1778202062848.0366,
+            "equipName": "소형트랙터25HP-04",
+            "equipSpec": "LK2805/25HP",
+            "personName": "오의석",
+            "days": 1,
+            "startDate": "2026-05-22",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 290,
+            "delivery": true
+          }
+        ],
         "delivery": false
       }
     },
