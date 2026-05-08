@@ -1,79 +1,6 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-05-08T05:20:49.741Z",
-        "reason": "개인사정",
-        "equipName": "관리기-로터리-03",
-        "equipSpec": "AMC-1000SM/로타리(중)",
-        "personName": "박상언",
-        "days": 1,
-        "startDate": "2026-05-05",
-        "site": "본소",
-        "baseMins": 290,
-        "delivery": true
-      },
-      {
-        "cancelledAt": "2026-05-08T05:20:54.324Z",
-        "reason": "개인사정",
-        "equipName": "관리기-구굴기(중)-03",
-        "equipSpec": "AMC-900SM/구굴기(중)",
-        "personName": "박상언",
-        "days": 1,
-        "startDate": "2026-05-05",
-        "site": "본소",
-        "baseMins": 50,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-08T05:21:39.132Z",
-        "reason": "개인사정",
-        "equipName": "소형트랙터25HP-04",
-        "equipSpec": "LK2805/25HP",
-        "personName": "안희성",
-        "days": 1,
-        "startDate": "2026-05-05",
-        "site": "본소",
-        "baseMins": 50,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-08T05:21:45.628Z",
-        "reason": "개인사정",
-        "equipName": "쟁기(2련)-01",
-        "equipSpec": "SW-PN602/소형-2련",
-        "personName": "안희성",
-        "days": 1,
-        "startDate": "2026-05-05",
-        "site": "본소",
-        "baseMins": 40,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-08T05:22:44.636Z",
-        "reason": "개인사정",
-        "equipName": "돌수집기-03",
-        "equipSpec": "SH-L1400B/1400",
-        "personName": "장원순",
-        "days": 1,
-        "startDate": "2026-05-05",
-        "site": "본소",
-        "baseMins": 90,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-08T05:22:49.396Z",
-        "reason": "개인사정",
-        "equipName": "굴착기(1톤)-05",
-        "equipSpec": "U-10-5/1TON",
-        "personName": "전덕수",
-        "days": 1,
-        "startDate": "2026-05-05",
-        "site": "본소",
-        "baseMins": 330,
-        "delivery": true
-      }
-    ],
+    "_cancelled": [],
     "2026-05-07": {
       "본소": {
         "workers": {
@@ -2912,6 +2839,19 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 140,
+            "delivery": false
+          },
+          {
+            "id": 1778217949914.8433,
+            "equipName": "관리기-구굴기(소)-02",
+            "equipSpec": "ASC-640/구굴기(소)",
+            "personName": "김영환",
+            "days": 2,
+            "startDate": "2026-05-05",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
             "delivery": false
           }
         ],
@@ -9841,78 +9781,5 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-05-08T05:20:49.741Z",
-      "reason": "개인사정",
-      "equipName": "관리기-로터리-03",
-      "equipSpec": "AMC-1000SM/로타리(중)",
-      "personName": "박상언",
-      "days": 1,
-      "startDate": "2026-05-05",
-      "site": "본소",
-      "baseMins": 290,
-      "delivery": true
-    },
-    {
-      "cancelledAt": "2026-05-08T05:20:54.324Z",
-      "reason": "개인사정",
-      "equipName": "관리기-구굴기(중)-03",
-      "equipSpec": "AMC-900SM/구굴기(중)",
-      "personName": "박상언",
-      "days": 1,
-      "startDate": "2026-05-05",
-      "site": "본소",
-      "baseMins": 50,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-08T05:21:39.132Z",
-      "reason": "개인사정",
-      "equipName": "소형트랙터25HP-04",
-      "equipSpec": "LK2805/25HP",
-      "personName": "안희성",
-      "days": 1,
-      "startDate": "2026-05-05",
-      "site": "본소",
-      "baseMins": 50,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-08T05:21:45.628Z",
-      "reason": "개인사정",
-      "equipName": "쟁기(2련)-01",
-      "equipSpec": "SW-PN602/소형-2련",
-      "personName": "안희성",
-      "days": 1,
-      "startDate": "2026-05-05",
-      "site": "본소",
-      "baseMins": 40,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-08T05:22:44.636Z",
-      "reason": "개인사정",
-      "equipName": "돌수집기-03",
-      "equipSpec": "SH-L1400B/1400",
-      "personName": "장원순",
-      "days": 1,
-      "startDate": "2026-05-05",
-      "site": "본소",
-      "baseMins": 90,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-08T05:22:49.396Z",
-      "reason": "개인사정",
-      "equipName": "굴착기(1톤)-05",
-      "equipSpec": "U-10-5/1TON",
-      "personName": "전덕수",
-      "days": 1,
-      "startDate": "2026-05-05",
-      "site": "본소",
-      "baseMins": 330,
-      "delivery": true
-    }
-  ]
+  "cancelled": []
 }
