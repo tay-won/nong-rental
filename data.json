@@ -1,43 +1,6 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-05-08T23:17:42.712Z",
-        "reason": "개인사정",
-        "equipName": "굴착기(1톤)-02",
-        "equipSpec": "U-10-3S/1TON",
-        "personName": "이세종",
-        "days": 1,
-        "startDate": "2026-05-08",
-        "site": "북부",
-        "baseMins": 90,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-08T23:18:20.808Z",
-        "reason": "개인사정",
-        "equipName": "동력경운기-03",
-        "equipSpec": "DT100N/10HP",
-        "personName": "이치선",
-        "days": 1,
-        "startDate": "2026-05-08",
-        "site": "북부",
-        "baseMins": 40,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-08T23:18:23.272Z",
-        "reason": "개인사정",
-        "equipName": "고구마수확기-01",
-        "equipSpec": "DRK-650/경운기용",
-        "personName": "이치선",
-        "days": 1,
-        "startDate": "2026-05-08",
-        "site": "북부",
-        "baseMins": 50,
-        "delivery": false
-      }
-    ],
+    "_cancelled": [],
     "2026-05-08": {
       "본소": {
         "workers": {
@@ -561,6 +524,19 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1778282607538.377,
+            "equipName": "비료살포기-04",
+            "equipSpec": "JHT-550H/500kg",
+            "personName": "노영순",
+            "days": 1,
+            "startDate": "2026-05-09",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
             "delivery": false
           }
         ],
@@ -10000,42 +9976,5 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-05-08T23:17:42.712Z",
-      "reason": "개인사정",
-      "equipName": "굴착기(1톤)-02",
-      "equipSpec": "U-10-3S/1TON",
-      "personName": "이세종",
-      "days": 1,
-      "startDate": "2026-05-08",
-      "site": "북부",
-      "baseMins": 90,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-08T23:18:20.808Z",
-      "reason": "개인사정",
-      "equipName": "동력경운기-03",
-      "equipSpec": "DT100N/10HP",
-      "personName": "이치선",
-      "days": 1,
-      "startDate": "2026-05-08",
-      "site": "북부",
-      "baseMins": 40,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-08T23:18:23.272Z",
-      "reason": "개인사정",
-      "equipName": "고구마수확기-01",
-      "equipSpec": "DRK-650/경운기용",
-      "personName": "이치선",
-      "days": 1,
-      "startDate": "2026-05-08",
-      "site": "북부",
-      "baseMins": 50,
-      "delivery": false
-    }
-  ]
+  "cancelled": []
 }
