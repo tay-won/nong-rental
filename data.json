@@ -36,6 +36,18 @@
         "site": "본소",
         "baseMins": 50,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-08T05:21:45.628Z",
+        "reason": "개인사정",
+        "equipName": "쟁기(2련)-01",
+        "equipSpec": "SW-PN602/소형-2련",
+        "personName": "안희성",
+        "days": 1,
+        "startDate": "2026-05-05",
+        "site": "본소",
+        "baseMins": 40,
+        "delivery": false
       }
     ],
     "2026-05-07": {
@@ -2698,19 +2710,6 @@
           "bs4": 420
         },
         "entries": [
-          {
-            "id": 1776906874846.3152,
-            "equipName": "쟁기(2련)-01",
-            "equipSpec": "SW-PN602/소형-2련",
-            "personName": "안희성",
-            "days": 1,
-            "startDate": "2026-05-05",
-            "outDone": true,
-            "inDone": true,
-            "site": "본소",
-            "baseMins": 40,
-            "delivery": false
-          },
           {
             "id": 1777335568551.4111,
             "equipName": "돌수집기-03",
@@ -9840,6 +9839,18 @@
       "startDate": "2026-05-05",
       "site": "본소",
       "baseMins": 50,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-08T05:21:45.628Z",
+      "reason": "개인사정",
+      "equipName": "쟁기(2련)-01",
+      "equipSpec": "SW-PN602/소형-2련",
+      "personName": "안희성",
+      "days": 1,
+      "startDate": "2026-05-05",
+      "site": "본소",
+      "baseMins": 40,
       "delivery": false
     }
   ]
