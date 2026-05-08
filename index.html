@@ -1012,66 +1012,21 @@ function scheduleSave(){
   if(!GH_TOKEN) return;
   if(saveTimer) clearTimeout(saveTimer);
   setSyncUI('saving','변경됨…');
-  saveTimer = setTimeout(doSave, 5000); // 5초 딜레이로 증가
+  saveTimer = setTimeout(doSave, 3000);
 }
 
 async function doSave(){
-  if(isSaving) {
-    // 저장 중이면 완료 후 재시도
-    pendingSave = true;
-    return;
-  }
+  if(isSaving) { pendingSave = true; return; }
   isSaving = true;
   pendingSave = false;
   await saveData();
   isSaving = false;
-  // 저장 중에 새 변경이 있었으면 다시 저장
-  if(pendingSave) {
-    pendingSave = false;
-    scheduleSave();
-  }
+  if(pendingSave) { pendingSave = false; scheduleSave(); }
 }
 
 async function saveData(){
   if(!GH_TOKEN) { setSyncUI('idle','로그인 필요'); return; }
   setSyncUI('saving','저장 중…');
-
-  // 저장 전 항상 최신 SHA + 원격 데이터 병합
-  try {
-    const rLatest = await fetch(GH_API+'?t='+Date.now(), {
-      headers: { Authorization: 'token '+GH_TOKEN, Accept: 'application/vnd.github.v3+json' }
-    });
-    if(rLatest.ok) {
-      const jLatest = await rLatest.json();
-      if(jLatest.sha !== ghSha) {
-        // 다른 기기가 저장한 게 있음 → 병합
-        try {
-          const remoteStr = decodeURIComponent(escape(atob(jLatest.content.replace(/\n/g,''))));
-          const remoteRaw = JSON.parse(remoteStr);
-          const remoteState = remoteRaw.state || remoteRaw;
-          // 내 entries를 원격에 병합 (id 기준 중복 제거)
-          Object.keys(state).forEach(dk => {
-            if(dk === '_cancelled') return;
-            ['본소','북부'].forEach(site => {
-              if(!state[dk]||!state[dk][site]) return;
-              if(!remoteState[dk]) remoteState[dk] = emptyDay();
-              if(!remoteState[dk][site]) remoteState[dk][site] = {workers:{},entries:[],delivery:false};
-              const remoteIds = new Set((remoteState[dk][site].entries||[]).map(e=>String(e.id)));
-              state[dk][site].entries.forEach(e => {
-                if(!remoteIds.has(String(e.id))) remoteState[dk][site].entries.push(e);
-              });
-              remoteState[dk][site].workers = state[dk][site].workers;
-            });
-          });
-          Object.keys(state).forEach(k => { if(k!=='_cancelled') delete state[k]; });
-          Object.assign(state, remoteState);
-          if(remoteRaw.holidays) saveHolidays(remoteRaw.holidays);
-          if(remoteRaw.rainy) saveRainy(remoteRaw.rainy);
-        } catch(e) { /* 병합 실패 무시 */ }
-        ghSha = jLatest.sha;
-      }
-    }
-  } catch(e) { /* SHA 갱신 실패 무시 */ }
 
   const savePayload = {
     state: JSON.parse(JSON.stringify(state)),
@@ -1080,30 +1035,47 @@ async function saveData(){
     cancelled: state._cancelled || []
   };
   const content = btoa(unescape(encodeURIComponent(JSON.stringify(savePayload, null, 2))));
-  const body = {
-    message: 'update '+new Date().toISOString(),
-    content,
-    ...(ghSha ? {sha: ghSha} : {})
-  };
 
-  try {
-    const res = await fetch(GH_API, {
-      method: 'PUT',
-      headers: {
-        Authorization: 'token '+GH_TOKEN,
-        Accept: 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    });
-    if(!res.ok) throw new Error('HTTP '+res.status);
-    const json = await res.json();
-    ghSha = json.content.sha;
-    setSyncUI('ok','저장 완료 · '+new Date().toLocaleTimeString('ko-KR'));
-    renderAll();
-  } catch(e){
-    setSyncUI('err','❌ 저장 실패: '+e.message);
+  // 최대 3회 시도 (SHA 충돌 시 최신 SHA 받아서 재시도)
+  for(let i = 0; i < 3; i++){
+    const body = {
+      message: 'update '+new Date().toISOString(),
+      content,
+      ...(ghSha ? {sha: ghSha} : {})
+    };
+    try {
+      const res = await fetch(GH_API, {
+        method: 'PUT',
+        headers: {
+          Authorization: 'token '+GH_TOKEN,
+          Accept: 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      });
+      if(res.ok){
+        const json = await res.json();
+        ghSha = json.content.sha;
+        setSyncUI('ok','저장 완료 · '+new Date().toLocaleTimeString('ko-KR'));
+        return;
+      }
+      // SHA 충돌이면 최신 SHA 받아서 재시도
+      if(res.status === 409 || res.status === 422){
+        const r2 = await fetch(GH_API+'?t='+Date.now(), {
+          headers: { Authorization: 'token '+GH_TOKEN, Accept: 'application/vnd.github.v3+json' }
+        });
+        if(r2.ok){ const j2 = await r2.json(); ghSha = j2.sha; }
+        await new Promise(r=>setTimeout(r, 500));
+        continue;
+      }
+      throw new Error('HTTP '+res.status);
+    } catch(e){
+      if(i < 2){ await new Promise(r=>setTimeout(r,1000)); continue; }
+      setSyncUI('err','❌ 저장 실패: '+e.message);
+      return;
+    }
   }
+  setSyncUI('err','❌ 저장 실패 (충돌)');
 }
 
 // ─── 계산 ───
