@@ -1280,7 +1280,7 @@
             "personName": "남승우",
             "days": 1,
             "startDate": "2026-05-12",
-            "outDone": true,
+            "outDone": false,
             "inDone": true,
             "site": "북부",
             "baseMins": 50,
