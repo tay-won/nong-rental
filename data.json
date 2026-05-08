@@ -2473,7 +2473,7 @@
             "personName": "강두순",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 320,
@@ -2810,7 +2810,7 @@
             "days": 2,
             "startDate": "2026-05-05",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -2849,7 +2849,7 @@
             "days": 2,
             "startDate": "2026-05-05",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
