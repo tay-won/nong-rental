@@ -2524,8 +2524,8 @@
             "personName": "이윤석",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": false,
-            "inDone": false,
+            "outDone": true,
+            "inDone": true,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -2697,6 +2697,19 @@
             "inDone": true,
             "site": "북부",
             "baseMins": 90,
+            "delivery": false
+          },
+          {
+            "id": 1778223489319.9148,
+            "equipName": "관리기-구굴기(소)-03",
+            "equipSpec": "ASC-640/구굴기(소)",
+            "personName": "이재흥",
+            "days": 1,
+            "startDate": "2026-05-06",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
             "delivery": false
           }
         ],
