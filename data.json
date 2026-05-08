@@ -2499,8 +2499,8 @@
             "personName": "이혁용",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 40,
             "delivery": false
@@ -2603,8 +2603,8 @@
             "personName": "정용진",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
