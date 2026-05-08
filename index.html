@@ -971,15 +971,15 @@ function downloadReport(){
   const today = new Date();
   const dateStr = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
-  const files = [
+  const 파일 = [
     {name: `농기계임대현황_일자별부하_${dateStr}.csv`, content: '\uFEFF'+s1},
     {name: `농기계임대현황_임대상세_${dateStr}.csv`,   content: '\uFEFF'+s2},
     {name: `농기계임대현황_기종별집계_${dateStr}.csv`, content: '\uFEFF'+s3},
     {name: `농기계임대현황_근무자현황_${dateStr}.csv`, content: '\uFEFF'+s4},
   ];
 
-  files.forEach(f => {
-    const blob = new Blob([f.content], {type:'text/csv;charset=utf-8'});
+  파일.forEach(f => {
+    const blob = new Blob([f.content], {입력:'text/csv;charset=utf-8'});
     const url = URL.createObjectURL(blob);
     // ── 시트4: 취소 이력 ──
   let s4b = '취소일시,취소사유,장비명,성명,임대기간(일),시작일,사업소,소요시간(분),배송\n';
@@ -1012,7 +1012,7 @@ function scheduleSave(){
   if(!GH_TOKEN) return;
   if(saveTimer) clearTimeout(saveTimer);
   setSyncUI('saving','변경됨…');
-  saveTimer = setTimeout(doSave, 3000);
+  saveTimer = setTimeout(doSave, 8000);
 }
 
 async function doSave(){
