@@ -1,79 +1,6 @@
 {
   "state": {
-    "_cancelled": [
-      {
-        "cancelledAt": "2026-05-08T05:32:24.363Z",
-        "reason": "개인사정",
-        "equipName": "관리기-구굴기(중)-03",
-        "equipSpec": "AMC-1000SM/구굴기(중)",
-        "personName": "이재흥",
-        "days": 2,
-        "startDate": "2026-05-06",
-        "site": "북부",
-        "baseMins": 50,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-08T05:34:53.146Z",
-        "reason": "개인사정",
-        "equipName": "동력경운기-03",
-        "equipSpec": "DT100N/10HP",
-        "personName": "이치선",
-        "days": 1,
-        "startDate": "2026-05-08",
-        "site": "북부",
-        "baseMins": 40,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-08T05:34:56.010Z",
-        "reason": "개인사정",
-        "equipName": "고구마수확기-01",
-        "equipSpec": "DRK-650/경운기용",
-        "personName": "이치선",
-        "days": 1,
-        "startDate": "2026-05-08",
-        "site": "북부",
-        "baseMins": 50,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-08T05:37:44.458Z",
-        "reason": "개인사정",
-        "equipName": "소형트랙터25HP-04",
-        "equipSpec": "LK2805/25HP",
-        "personName": "홍지헌",
-        "days": 1,
-        "startDate": "2026-05-10",
-        "site": "북부",
-        "baseMins": 290,
-        "delivery": true
-      },
-      {
-        "cancelledAt": "2026-05-08T05:38:19.154Z",
-        "reason": "개인사정",
-        "equipName": "로터베이터1150-02",
-        "equipSpec": "DWR115GM/1150",
-        "personName": "홍지헌",
-        "days": 1,
-        "startDate": "2026-05-10",
-        "site": "북부",
-        "baseMins": 40,
-        "delivery": false
-      },
-      {
-        "cancelledAt": "2026-05-08T05:38:23.922Z",
-        "reason": "개인사정",
-        "equipName": "소형트랙터25HP-04",
-        "equipSpec": "LK2805/25HP",
-        "personName": "홍지헌",
-        "days": 1,
-        "startDate": "2026-05-10",
-        "site": "북부",
-        "baseMins": 290,
-        "delivery": true
-      }
-    ],
+    "_cancelled": [],
     "2026-05-07": {
       "본소": {
         "workers": {
@@ -1365,6 +1292,19 @@
             "equipName": "관리기-로터리-08",
             "equipSpec": "AMC-1000SM/로타리(중)",
             "personName": "남승우",
+            "days": 1,
+            "startDate": "2026-05-11",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1778218785630.748,
+            "equipName": "소형트랙터25HP-02",
+            "equipSpec": "CK250V/25HP",
+            "personName": "김광식",
             "days": 1,
             "startDate": "2026-05-11",
             "outDone": false,
@@ -9971,78 +9911,5 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": [
-    {
-      "cancelledAt": "2026-05-08T05:32:24.363Z",
-      "reason": "개인사정",
-      "equipName": "관리기-구굴기(중)-03",
-      "equipSpec": "AMC-1000SM/구굴기(중)",
-      "personName": "이재흥",
-      "days": 2,
-      "startDate": "2026-05-06",
-      "site": "북부",
-      "baseMins": 50,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-08T05:34:53.146Z",
-      "reason": "개인사정",
-      "equipName": "동력경운기-03",
-      "equipSpec": "DT100N/10HP",
-      "personName": "이치선",
-      "days": 1,
-      "startDate": "2026-05-08",
-      "site": "북부",
-      "baseMins": 40,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-08T05:34:56.010Z",
-      "reason": "개인사정",
-      "equipName": "고구마수확기-01",
-      "equipSpec": "DRK-650/경운기용",
-      "personName": "이치선",
-      "days": 1,
-      "startDate": "2026-05-08",
-      "site": "북부",
-      "baseMins": 50,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-08T05:37:44.458Z",
-      "reason": "개인사정",
-      "equipName": "소형트랙터25HP-04",
-      "equipSpec": "LK2805/25HP",
-      "personName": "홍지헌",
-      "days": 1,
-      "startDate": "2026-05-10",
-      "site": "북부",
-      "baseMins": 290,
-      "delivery": true
-    },
-    {
-      "cancelledAt": "2026-05-08T05:38:19.154Z",
-      "reason": "개인사정",
-      "equipName": "로터베이터1150-02",
-      "equipSpec": "DWR115GM/1150",
-      "personName": "홍지헌",
-      "days": 1,
-      "startDate": "2026-05-10",
-      "site": "북부",
-      "baseMins": 40,
-      "delivery": false
-    },
-    {
-      "cancelledAt": "2026-05-08T05:38:23.922Z",
-      "reason": "개인사정",
-      "equipName": "소형트랙터25HP-04",
-      "equipSpec": "LK2805/25HP",
-      "personName": "홍지헌",
-      "days": 1,
-      "startDate": "2026-05-10",
-      "site": "북부",
-      "baseMins": 290,
-      "delivery": true
-    }
-  ]
+  "cancelled": []
 }
