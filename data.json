@@ -12,6 +12,18 @@
         "site": "북부",
         "baseMins": 290,
         "delivery": true
+      },
+      {
+        "cancelledAt": "2026-05-08T00:49:15.606Z",
+        "reason": "개인사정",
+        "equipName": "로터베이터1150-02",
+        "equipSpec": "DWR115GM/1150",
+        "personName": "홍지헌",
+        "days": 1,
+        "startDate": "2026-05-10",
+        "site": "북부",
+        "baseMins": 40,
+        "delivery": false
       }
     ],
     "2026-05-07": {
@@ -990,19 +1002,6 @@
           "nb4": 420
         },
         "entries": [
-          {
-            "id": 1776918173496.164,
-            "equipName": "로터베이터1150-02",
-            "equipSpec": "DWR115GM/1150",
-            "personName": "홍지헌",
-            "days": 1,
-            "startDate": "2026-05-10",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 40,
-            "delivery": false
-          },
           {
             "id": 1777536920302.019,
             "equipName": "굴착기(1톤)-02",
@@ -9857,6 +9856,18 @@
       "site": "북부",
       "baseMins": 290,
       "delivery": true
+    },
+    {
+      "cancelledAt": "2026-05-08T00:49:15.606Z",
+      "reason": "개인사정",
+      "equipName": "로터베이터1150-02",
+      "equipSpec": "DWR115GM/1150",
+      "personName": "홍지헌",
+      "days": 1,
+      "startDate": "2026-05-10",
+      "site": "북부",
+      "baseMins": 40,
+      "delivery": false
     }
   ]
 }
