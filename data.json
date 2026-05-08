@@ -597,7 +597,7 @@
             "personName": "정붕채",
             "days": 1,
             "startDate": "2026-05-08",
-            "outDone": false,
+            "outDone": true,
             "inDone": false,
             "site": "북부",
             "baseMins": 80,
