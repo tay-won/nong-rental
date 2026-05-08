@@ -12,6 +12,18 @@
         "site": "본소",
         "baseMins": 290,
         "delivery": true
+      },
+      {
+        "cancelledAt": "2026-05-08T05:20:54.324Z",
+        "reason": "개인사정",
+        "equipName": "관리기-구굴기(중)-03",
+        "equipSpec": "AMC-900SM/구굴기(중)",
+        "personName": "박상언",
+        "days": 1,
+        "startDate": "2026-05-05",
+        "site": "본소",
+        "baseMins": 50,
+        "delivery": false
       }
     ],
     "2026-05-07": {
@@ -2725,19 +2737,6 @@
             "site": "본소",
             "baseMins": 330,
             "delivery": true
-          },
-          {
-            "id": 1777454095815.97,
-            "equipName": "관리기-구굴기(중)-03",
-            "equipSpec": "AMC-900SM/구굴기(중)",
-            "personName": "박상언",
-            "days": 1,
-            "startDate": "2026-05-05",
-            "outDone": true,
-            "inDone": true,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
           }
         ],
         "delivery": false
@@ -9819,6 +9818,18 @@
       "site": "본소",
       "baseMins": 290,
       "delivery": true
+    },
+    {
+      "cancelledAt": "2026-05-08T05:20:54.324Z",
+      "reason": "개인사정",
+      "equipName": "관리기-구굴기(중)-03",
+      "equipSpec": "AMC-900SM/구굴기(중)",
+      "personName": "박상언",
+      "days": 1,
+      "startDate": "2026-05-05",
+      "site": "본소",
+      "baseMins": 50,
+      "delivery": false
     }
   ]
 }
