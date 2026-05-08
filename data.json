@@ -2551,7 +2551,7 @@
             "days": 1,
             "startDate": "2026-05-06",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -2615,8 +2615,8 @@
             "personName": "한재규",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": false,
-            "inDone": false,
+            "outDone": true,
+            "inDone": true,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
