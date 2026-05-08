@@ -1,6 +1,19 @@
 {
   "state": {
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-05-08T01:22:04.813Z",
+        "reason": "개인사정",
+        "equipName": "원판쟁기8련-04",
+        "equipSpec": "W82-DP/원판-8련",
+        "personName": "계영애",
+        "days": 1,
+        "startDate": "2026-05-06",
+        "site": "본소",
+        "baseMins": 90,
+        "delivery": false
+      }
+    ],
     "2026-05-07": {
       "본소": {
         "workers": {
@@ -2760,19 +2773,6 @@
             "site": "본소",
             "baseMins": 90,
             "delivery": false
-          },
-          {
-            "id": 1778200704599.289,
-            "equipName": "원판쟁기8련-04",
-            "equipSpec": "W82-DP/원판-8련",
-            "personName": "계영애",
-            "days": 1,
-            "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
-            "site": "본소",
-            "baseMins": 90,
-            "delivery": false
           }
         ],
         "delivery": false
@@ -3428,7 +3428,7 @@
             "days": 2,
             "startDate": "2026-05-03",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "본소",
             "baseMins": 50,
             "delivery": false
@@ -3764,7 +3764,7 @@
             "days": 1,
             "startDate": "2026-05-04",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "본소",
             "baseMins": 50,
             "delivery": false
@@ -10230,5 +10230,18 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-05-08T01:22:04.813Z",
+      "reason": "개인사정",
+      "equipName": "원판쟁기8련-04",
+      "equipSpec": "W82-DP/원판-8련",
+      "personName": "계영애",
+      "days": 1,
+      "startDate": "2026-05-06",
+      "site": "본소",
+      "baseMins": 90,
+      "delivery": false
+    }
+  ]
 }
