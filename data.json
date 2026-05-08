@@ -2032,7 +2032,21 @@
           "nb3": 420,
           "nb4": 420
         },
-        "entries": [],
+        "entries": [
+          {
+            "id": 1778227901075.5164,
+            "equipName": "소형트랙터25HP-02",
+            "equipSpec": "CK250V/25HP",
+            "personName": "목일균",
+            "days": 1,
+            "startDate": "2026-05-15",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 290,
+            "delivery": true
+          }
+        ],
         "delivery": false
       }
     },
