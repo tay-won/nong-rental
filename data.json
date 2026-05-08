@@ -2,15 +2,39 @@
   "state": {
     "_cancelled": [
       {
-        "cancelledAt": "2026-05-08T01:22:04.813Z",
-        "reason": "개인사정",
-        "equipName": "원판쟁기8련-04",
-        "equipSpec": "W82-DP/원판-8련",
-        "personName": "계영애",
+        "cancelledAt": "2026-05-07T23:48:46.257Z",
+        "reason": "기타",
+        "equipName": "비료동력살포기-02",
+        "equipSpec": "MD-7030/입제",
+        "personName": "이지훈",
         "days": 1,
-        "startDate": "2026-05-06",
+        "startDate": "2026-05-10",
         "site": "본소",
-        "baseMins": 90,
+        "baseMins": 40,
+        "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-08T01:47:54.814Z",
+        "reason": "개인사정",
+        "equipName": "소형트랙터25HP-02",
+        "equipSpec": "CK250V/25HP",
+        "personName": "안승문",
+        "days": 1,
+        "startDate": "2026-05-10",
+        "site": "본소",
+        "baseMins": 50,
+        "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-08T01:47:56.724Z",
+        "reason": "개인사정",
+        "equipName": "로터베이터1150-02",
+        "equipSpec": "DWR115GM/1150",
+        "personName": "안승문",
+        "days": 1,
+        "startDate": "2026-05-10",
+        "site": "본소",
+        "baseMins": 40,
         "delivery": false
       }
     ],
@@ -171,10 +195,23 @@
             "personName": "배기수",
             "days": 2,
             "startDate": "2026-05-07",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
+            "delivery": false
+          },
+          {
+            "id": 1777356024218.8623,
+            "equipName": "관리기-휴립기-03",
+            "equipSpec": "AMC-1000SM/휴립기(중)",
+            "personName": "남승우",
+            "days": 1,
+            "startDate": "2026-05-07",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
             "delivery": false
           },
           {
@@ -184,7 +221,7 @@
             "personName": "강연희",
             "days": 1,
             "startDate": "2026-05-07",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
@@ -197,7 +234,7 @@
             "personName": "강연희",
             "days": 1,
             "startDate": "2026-05-07",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 40,
@@ -210,7 +247,7 @@
             "personName": "남궁광",
             "days": 1,
             "startDate": "2026-05-07",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -223,7 +260,7 @@
             "personName": "이혁인",
             "days": 1,
             "startDate": "2026-05-07",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -236,7 +273,7 @@
             "personName": "조창열",
             "days": 2,
             "startDate": "2026-05-07",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -249,7 +286,7 @@
             "personName": "이병삼",
             "days": 1,
             "startDate": "2026-05-07",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
@@ -262,7 +299,7 @@
             "personName": "이명호",
             "days": 1,
             "startDate": "2026-05-07",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
@@ -275,7 +312,7 @@
             "personName": "이명호",
             "days": 1,
             "startDate": "2026-05-07",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 40,
@@ -288,7 +325,7 @@
             "personName": "이병삼",
             "days": 1,
             "startDate": "2026-05-07",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
@@ -579,6 +616,32 @@
             "delivery": false
           },
           {
+            "id": 1777536848806.924,
+            "equipName": "동력경운기-03",
+            "equipSpec": "DT100N/10HP",
+            "personName": "이치선",
+            "days": 1,
+            "startDate": "2026-05-08",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 40,
+            "delivery": false
+          },
+          {
+            "id": 1777536858279.5967,
+            "equipName": "고구마수확기-01",
+            "equipSpec": "DRK-650/경운기용",
+            "personName": "이치선",
+            "days": 1,
+            "startDate": "2026-05-08",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
+          },
+          {
             "id": 1777536872118.6355,
             "equipName": "동력운반차-01",
             "equipSpec": "TKT-600B/궤도",
@@ -661,19 +724,6 @@
             "equipName": "관리기-피복기-02",
             "equipSpec": "AMC-900SM/피복기(중)",
             "personName": "권상덕",
-            "days": 2,
-            "startDate": "2026-05-08",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1778201118309.799,
-            "equipName": "관리기-구굴기(중)-01",
-            "equipSpec": "AMC-1000SM/구굴기(중)",
-            "personName": "장용환",
             "days": 2,
             "startDate": "2026-05-08",
             "outDone": false,
@@ -783,45 +833,6 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
-          },
-          {
-            "id": 1778201149639.516,
-            "equipName": "소형트랙터25HP-04",
-            "equipSpec": "LK2805/25HP",
-            "personName": "오진석",
-            "days": 1,
-            "startDate": "2026-05-09",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1778201157824.462,
-            "equipName": "로터베이터1150-02",
-            "equipSpec": "DWR115GM/1150",
-            "personName": "오진석",
-            "days": 1,
-            "startDate": "2026-05-09",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 40,
-            "delivery": false
-          },
-          {
-            "id": 1778201174816.1008,
-            "equipName": "비닐수거기-01",
-            "equipSpec": "DH-T3000/1조",
-            "personName": "이형일",
-            "days": 1,
-            "startDate": "2026-05-09",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 40,
-            "delivery": false
           }
         ],
         "delivery": false
@@ -836,32 +847,6 @@
           "bs4": 420
         },
         "entries": [
-          {
-            "id": 1777335797582.9575,
-            "equipName": "소형트랙터25HP-02",
-            "equipSpec": "CK250V/25HP",
-            "personName": "박성현",
-            "days": 1,
-            "startDate": "2026-05-10",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1777335805497.7417,
-            "equipName": "로터베이터1150-02",
-            "equipSpec": "DWR115GM/1150",
-            "personName": "박성현",
-            "days": 1,
-            "startDate": "2026-05-10",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 40,
-            "delivery": false
-          },
           {
             "id": 1777335829517.0288,
             "equipName": "소형트랙터25HP-01",
@@ -978,19 +963,6 @@
             "site": "본소",
             "baseMins": 60,
             "delivery": false
-          },
-          {
-            "id": 1778203462532.098,
-            "equipName": "관리기-로터리-06",
-            "equipSpec": "AMC-1000SM/로타리(중)",
-            "personName": "신향재",
-            "days": 1,
-            "startDate": "2026-05-10",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 290,
-            "delivery": true
           }
         ],
         "delivery": false
@@ -1003,6 +975,32 @@
           "nb4": 420
         },
         "entries": [
+          {
+            "id": 1776918156362.3,
+            "equipName": "소형트랙터25HP-04",
+            "equipSpec": "LK2805/25HP",
+            "personName": "홍지헌",
+            "days": 1,
+            "startDate": "2026-05-10",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 290,
+            "delivery": true
+          },
+          {
+            "id": 1776918173496.164,
+            "equipName": "로터베이터1150-02",
+            "equipSpec": "DWR115GM/1150",
+            "personName": "홍지헌",
+            "days": 1,
+            "startDate": "2026-05-10",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 40,
+            "delivery": false
+          },
           {
             "id": 1777536920302.019,
             "equipName": "굴착기(1톤)-02",
@@ -1132,19 +1130,6 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
-          },
-          {
-            "id": 1778203505143.756,
-            "equipName": "관리기-구굴기(중)-02",
-            "equipSpec": "AMC-1000SM/구굴기(중)",
-            "personName": "박성현",
-            "days": 1,
-            "startDate": "2026-05-11",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 50,
-            "delivery": false
           }
         ],
         "delivery": false
@@ -1233,71 +1218,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1777356011325.4485,
-            "equipName": "관리기-로터리-08",
-            "equipSpec": "AMC-1000SM/로타리(중)",
-            "personName": "남승우",
-            "days": 1,
-            "startDate": "2026-05-11",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1778201395344.5256,
-            "equipName": "소형트랙터25HP-02",
-            "equipSpec": "CK250V/25HP",
-            "personName": "김광식",
-            "days": 1,
-            "startDate": "2026-05-11",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1778201407468.3667,
-            "equipName": "로터베이터1150-02",
-            "equipSpec": "DWR115GM/1150",
-            "personName": "김광식",
-            "days": 1,
-            "startDate": "2026-05-11",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 40,
-            "delivery": false
-          },
-          {
-            "id": 1778201438153.1047,
-            "equipName": "동력제초기(승용)-02",
-            "equipSpec": "SRM1600/승용형",
-            "personName": "이충구",
-            "days": 1,
-            "startDate": "2026-05-11",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 80,
-            "delivery": false
-          },
-          {
-            "id": 1778201456919.3513,
-            "equipName": "굴착기(1.7톤)-02",
-            "equipSpec": "DX17Z-5/2TON",
-            "personName": "허진규",
-            "days": 2,
-            "startDate": "2026-05-11",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 80,
             "delivery": false
           }
         ],
@@ -1440,84 +1360,6 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
-          },
-          {
-            "id": 1777356024218.8623,
-            "equipName": "관리기-휴립기-03",
-            "equipSpec": "AMC-1000SM/휴립기(중)",
-            "personName": "남승우",
-            "days": 1,
-            "startDate": "2026-05-12",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1778201481785.7385,
-            "equipName": "콩예취기-02",
-            "equipSpec": "M1-GS/보행형",
-            "personName": "김명식",
-            "days": 1,
-            "startDate": "2026-05-12",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 70,
-            "delivery": false
-          },
-          {
-            "id": 1778201497512.464,
-            "equipName": "소형트랙터25HP-04",
-            "equipSpec": "LK2805/25HP",
-            "personName": "심승일",
-            "days": 1,
-            "startDate": "2026-05-12",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1778201505900.006,
-            "equipName": "로터베이터1150-01",
-            "equipSpec": "DWR115GM/1150",
-            "personName": "심승일",
-            "days": 1,
-            "startDate": "2026-05-12",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 40,
-            "delivery": false
-          },
-          {
-            "id": 1778201533493.705,
-            "equipName": "소형트랙터25HP-04",
-            "equipSpec": "LK2805/25HP",
-            "personName": "최정열",
-            "days": 2,
-            "startDate": "2026-05-12",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1778201543283.8254,
-            "equipName": "로터베이터1150-02",
-            "equipSpec": "DWR115GM/1150",
-            "personName": "최정열",
-            "days": 2,
-            "startDate": "2026-05-12",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 40,
-            "delivery": false
           }
         ],
         "delivery": false
@@ -1659,45 +1501,6 @@
             "site": "북부",
             "baseMins": 90,
             "delivery": false
-          },
-          {
-            "id": 1778201612626.3994,
-            "equipName": "굴착기(1.7톤)-02",
-            "equipSpec": "DX17Z-5/2TON",
-            "personName": "김용범",
-            "days": 2,
-            "startDate": "2026-05-13",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 80,
-            "delivery": false
-          },
-          {
-            "id": 1778201639465.9275,
-            "equipName": "굴착기(1.7톤)-01",
-            "equipSpec": "DX17Z-5/2TON",
-            "personName": "율곡수목원",
-            "days": 2,
-            "startDate": "2026-05-13",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 80,
-            "delivery": false
-          },
-          {
-            "id": 1778201657636.138,
-            "equipName": "원판쟁기4련-01",
-            "equipSpec": "W42-DP/원판-4련",
-            "personName": "이원경",
-            "days": 3,
-            "startDate": "2026-05-13",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 60,
-            "delivery": false
           }
         ],
         "delivery": false
@@ -1766,7 +1569,7 @@
             "id": 1777880904695.3289,
             "equipName": "관리기-구굴기(중)-03",
             "equipSpec": "AMC-1000SM/구굴기(중)",
-            "personName": "박용규",
+            "personName": "송광훈",
             "days": 1,
             "startDate": "2026-05-14",
             "outDone": false,
@@ -1786,58 +1589,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1778201818730.0156,
-            "equipName": "소형트랙터25HP-02",
-            "equipSpec": "CK250V/25HP",
-            "personName": "송광훈",
-            "days": 1,
-            "startDate": "2026-05-14",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1778201832226.6084,
-            "equipName": "쟁기(2련)-01",
-            "equipSpec": "SW-PN602/소형-2련",
-            "personName": "박용규",
-            "days": 1,
-            "startDate": "2026-05-14",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 40,
-            "delivery": false
-          },
-          {
-            "id": 1778201855077.818,
-            "equipName": "소형트랙터25HP-01",
-            "equipSpec": "CK250V/25HP",
-            "personName": "박희호",
-            "days": 1,
-            "startDate": "2026-05-14",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1778201864998.9597,
-            "equipName": "로터베이터1150-02",
-            "equipSpec": "DWR115GM/1150",
-            "personName": "박희호",
-            "days": 1,
-            "startDate": "2026-05-14",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 40,
             "delivery": false
           }
         ],
@@ -1967,60 +1718,7 @@
           "nb3": 420,
           "nb4": 420
         },
-        "entries": [
-          {
-            "id": 1778201891533.29,
-            "equipName": "소형트랙터25HP-02",
-            "equipSpec": "CK250V/25HP",
-            "personName": "목일균",
-            "days": 1,
-            "startDate": "2026-05-15",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 290,
-            "delivery": true
-          },
-          {
-            "id": 1778201901345.2812,
-            "equipName": "쟁기(2련)-01",
-            "equipSpec": "SW-PN602/소형-2련",
-            "personName": "목일균",
-            "days": 1,
-            "startDate": "2026-05-15",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 40,
-            "delivery": false
-          },
-          {
-            "id": 1778201917025.6191,
-            "equipName": "소형트랙터25HP-04",
-            "equipSpec": "LK2805/25HP",
-            "personName": "박용규",
-            "days": 1,
-            "startDate": "2026-05-15",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1778201925701.6572,
-            "equipName": "관리기-로터리-02",
-            "equipSpec": "AMC-900SM/로타리(중)",
-            "personName": "박용규",
-            "days": 1,
-            "startDate": "2026-05-15",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          }
-        ],
+        "entries": [],
         "delivery": false
       }
     },
@@ -2144,21 +1842,7 @@
           "nb3": 420,
           "nb4": 420
         },
-        "entries": [
-          {
-            "id": 1778201955137.1272,
-            "equipName": "로터베이터2350-01",
-            "equipSpec": "AR5240SC/2350",
-            "personName": "강순덕",
-            "days": 3,
-            "startDate": "2026-05-17",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          }
-        ],
+        "entries": [],
         "delivery": false
       }
     },
@@ -2207,34 +1891,7 @@
           "nb3": 420,
           "nb4": 420
         },
-        "entries": [
-          {
-            "id": 1778201971735.4104,
-            "equipName": "소형트랙터25HP-04",
-            "equipSpec": "LK2805/25HP",
-            "personName": "김명식",
-            "days": 1,
-            "startDate": "2026-05-18",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 290,
-            "delivery": true
-          },
-          {
-            "id": 1778201979821.161,
-            "equipName": "로터베이터1150-01",
-            "equipSpec": "DWR115GM/1150",
-            "personName": "김명식",
-            "days": 1,
-            "startDate": "2026-05-18",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 40,
-            "delivery": false
-          }
-        ],
+        "entries": [],
         "delivery": false
       }
     },
@@ -2283,21 +1940,7 @@
           "nb3": 420,
           "nb4": 420
         },
-        "entries": [
-          {
-            "id": 1778202004223.678,
-            "equipName": "관리기-휴립피복기-03",
-            "equipSpec": "AMC-1000SM/휴립피복기(중)",
-            "personName": "김종인",
-            "days": 1,
-            "startDate": "2026-05-19",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 290,
-            "delivery": true
-          }
-        ],
+        "entries": [],
         "delivery": false
       }
     },
@@ -2372,34 +2015,7 @@
           "nb3": 420,
           "nb4": 420
         },
-        "entries": [
-          {
-            "id": 1778202024345.2751,
-            "equipName": "소형트랙터25HP-04",
-            "equipSpec": "LK2805/25HP",
-            "personName": "황지용",
-            "days": 1,
-            "startDate": "2026-05-20",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 290,
-            "delivery": true
-          },
-          {
-            "id": 1778202031794.6204,
-            "equipName": "로터베이터1150-01",
-            "equipSpec": "DWR115GM/1150",
-            "personName": "황지용",
-            "days": 1,
-            "startDate": "2026-05-20",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 40,
-            "delivery": false
-          }
-        ],
+        "entries": [],
         "delivery": false
       }
     },
@@ -2461,21 +2077,7 @@
           "nb3": 420,
           "nb4": 420
         },
-        "entries": [
-          {
-            "id": 1778202048166.6401,
-            "equipName": "굴착기(1.7톤)-01",
-            "equipSpec": "DX17Z-5/2TON",
-            "personName": "이충구",
-            "days": 1,
-            "startDate": "2026-05-21",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 320,
-            "delivery": true
-          }
-        ],
+        "entries": [],
         "delivery": false
       }
     },
@@ -2497,47 +2099,7 @@
           "nb3": 420,
           "nb4": 420
         },
-        "entries": [
-          {
-            "id": 1778202062848.0366,
-            "equipName": "소형트랙터25HP-04",
-            "equipSpec": "LK2805/25HP",
-            "personName": "오의석",
-            "days": 1,
-            "startDate": "2026-05-22",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 290,
-            "delivery": true
-          },
-          {
-            "id": 1778202074434.6218,
-            "equipName": "로터베이터1500-01",
-            "equipSpec": "AR-150/1500",
-            "personName": "오의석",
-            "days": 1,
-            "startDate": "2026-05-22",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 60,
-            "delivery": false
-          },
-          {
-            "id": 1778202090432.411,
-            "equipName": "관리기-로터리-05",
-            "equipSpec": "AMC-1000SM/로타리(중)",
-            "personName": "오의석",
-            "days": 1,
-            "startDate": "2026-05-22",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          }
-        ],
+        "entries": [],
         "delivery": false
       }
     },
@@ -2603,21 +2165,7 @@
           "nb3": 420,
           "nb4": 420
         },
-        "entries": [
-          {
-            "id": 1778202112174.267,
-            "equipName": "관리기-로터리-07",
-            "equipSpec": "AMC-1000SM/로타리(중)",
-            "personName": "황선희",
-            "days": 1,
-            "startDate": "2026-05-25",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 290,
-            "delivery": true
-          }
-        ],
+        "entries": [],
         "delivery": false
       }
     },
@@ -2736,6 +2284,19 @@
             "delivery": false
           },
           {
+            "id": 1778058812903.083,
+            "equipName": "파종기-인력(비닐)-01",
+            "equipSpec": "HG10A/비닐",
+            "personName": "김승철",
+            "days": 1,
+            "startDate": "2026-05-06",
+            "outDone": true,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 30,
+            "delivery": false
+          },
+          {
             "id": 1778058848756.0027,
             "equipName": "논두렁조성기(소)-01",
             "equipSpec": "WJLF380/(소)",
@@ -2799,19 +2360,6 @@
             "site": "본소",
             "baseMins": 90,
             "delivery": false
-          },
-          {
-            "id": 1778203340246.5781,
-            "equipName": "파종기-인력(일반)-04",
-            "equipSpec": "HG10A/일반",
-            "personName": "김승철",
-            "days": 1,
-            "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
-            "site": "본소",
-            "baseMins": 30,
-            "delivery": false
           }
         ],
         "delivery": false
@@ -2831,8 +2379,8 @@
             "personName": "강두순",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 320,
             "delivery": true
@@ -2844,8 +2392,8 @@
             "personName": "이혁용",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 290,
             "delivery": true
@@ -2857,8 +2405,34 @@
             "personName": "이혁용",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 40,
+            "delivery": false
+          },
+          {
+            "id": 1777356011325.4485,
+            "equipName": "관리기-로터리-03",
+            "equipSpec": "AMC-1000SM/로타리(중)",
+            "personName": "남승우",
+            "days": 1,
+            "startDate": "2026-05-06",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1777536611486.5159,
+            "equipName": "비료동력살포기-04",
+            "equipSpec": "SG-8030/입제",
+            "personName": "김수권",
+            "days": 1,
+            "startDate": "2026-05-06",
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 40,
             "delivery": false
@@ -2870,8 +2444,8 @@
             "personName": "김태연",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
@@ -2883,8 +2457,8 @@
             "personName": "김태연",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 40,
             "delivery": false
@@ -2896,8 +2470,8 @@
             "personName": "이윤석",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -2909,8 +2483,8 @@
             "personName": "조규영",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 60,
             "delivery": false
@@ -2922,8 +2496,8 @@
             "personName": "조규영",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -2935,8 +2509,8 @@
             "personName": "정용진",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
@@ -2948,7 +2522,7 @@
             "personName": "엄영섭",
             "days": 2,
             "startDate": "2026-05-06",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
@@ -2961,7 +2535,7 @@
             "personName": "오세현",
             "days": 2,
             "startDate": "2026-05-06",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 80,
@@ -2974,8 +2548,8 @@
             "personName": "김두용",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 60,
             "delivery": false
@@ -2987,8 +2561,21 @@
             "personName": "한재규",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
+          },
+          {
+            "id": 1777880574560.979,
+            "equipName": "관리기-구굴기(중)-03",
+            "equipSpec": "AMC-1000SM/구굴기(중)",
+            "personName": "이재흥",
+            "days": 2,
+            "startDate": "2026-05-06",
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
@@ -3000,7 +2587,7 @@
             "personName": "최학순",
             "days": 3,
             "startDate": "2026-05-06",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
             "baseMins": 90,
@@ -3013,60 +2600,8 @@
             "personName": "이순성",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1778200836276.5745,
-            "equipName": "원판쟁기6련-02",
-            "equipSpec": "W62-DP/원판-6련",
-            "personName": "신종순",
-            "days": 1,
-            "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
-            "site": "북부",
-            "baseMins": 60,
-            "delivery": false
-          },
-          {
-            "id": 1778200853327.344,
-            "equipName": "굴착기(1톤)-02",
-            "equipSpec": "U-10-3S/1TON",
-            "personName": "유희필",
-            "days": 1,
-            "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
-            "site": "북부",
-            "baseMins": 90,
-            "delivery": false
-          },
-          {
-            "id": 1778200884794.7288,
-            "equipName": "관리기-구굴기(소)-03",
-            "equipSpec": "ASC-640/구굴기(소)",
-            "personName": "이재흥",
-            "days": 1,
-            "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1778200915730.3655,
-            "equipName": "논두렁조성기(소)-04",
-            "equipSpec": "WJLF380/(소)",
-            "personName": "정찬남",
-            "days": 1,
-            "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -3180,8 +2715,8 @@
             "personName": "황유진",
             "days": 2,
             "startDate": "2026-05-05",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -3193,8 +2728,8 @@
             "personName": "김대연",
             "days": 1,
             "startDate": "2026-05-05",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
@@ -3206,8 +2741,8 @@
             "personName": "이병삼",
             "days": 1,
             "startDate": "2026-05-05",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -3219,8 +2754,8 @@
             "personName": "장경순",
             "days": 2,
             "startDate": "2026-05-05",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -3232,8 +2767,8 @@
             "personName": "김진용",
             "days": 2,
             "startDate": "2026-05-05",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -3245,8 +2780,8 @@
             "personName": "전동옥",
             "days": 1,
             "startDate": "2026-05-05",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 60,
             "delivery": false
@@ -3258,8 +2793,8 @@
             "personName": "박해연",
             "days": 1,
             "startDate": "2026-05-05",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
@@ -3271,8 +2806,8 @@
             "personName": "정상석",
             "days": 1,
             "startDate": "2026-05-05",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
@@ -3284,62 +2819,10 @@
             "personName": "정상석",
             "days": 1,
             "startDate": "2026-05-05",
-            "outDone": true,
-            "inDone": true,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1777536611486.5159,
-            "equipName": "비료동력살포기-04",
-            "equipSpec": "SG-8030/입제",
-            "personName": "김수권",
-            "days": 1,
-            "startDate": "2026-05-05",
-            "outDone": true,
-            "inDone": true,
-            "site": "북부",
-            "baseMins": 40,
-            "delivery": false
-          },
-          {
-            "id": 1778200564660.038,
-            "equipName": "관리기-구굴기(소)-02",
-            "equipSpec": "ASC-640/구굴기(소)",
-            "personName": "김영환",
-            "days": 2,
-            "startDate": "2026-05-05",
-            "outDone": true,
-            "inDone": true,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1778200578947.4954,
-            "equipName": "관리기-피복기-01",
-            "equipSpec": "AMC-900SM/피복기(중)",
-            "personName": "김영환",
-            "days": 2,
-            "startDate": "2026-05-05",
-            "outDone": true,
-            "inDone": true,
-            "site": "북부",
-            "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1778200650701.4932,
-            "equipName": "퇴비살포기(승용)-01",
-            "equipSpec": "HSC-1500W/자주형1000kg",
-            "personName": "기술보급과",
-            "days": 4,
-            "startDate": "2026-05-05",
-            "outDone": true,
+            "outDone": false,
             "inDone": false,
             "site": "북부",
-            "baseMins": 140,
+            "baseMins": 50,
             "delivery": false
           }
         ],
@@ -3467,7 +2950,7 @@
             "days": 2,
             "startDate": "2026-05-03",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "본소",
             "baseMins": 50,
             "delivery": false
@@ -3543,7 +3026,7 @@
             "days": 3,
             "startDate": "2026-05-03",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 290,
             "delivery": true
@@ -3556,7 +3039,7 @@
             "days": 3,
             "startDate": "2026-05-03",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 40,
             "delivery": false
@@ -3569,7 +3052,7 @@
             "days": 3,
             "startDate": "2026-05-03",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 290,
             "delivery": true
@@ -3686,7 +3169,7 @@
             "days": 3,
             "startDate": "2026-05-03",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 40,
             "delivery": false
@@ -3695,7 +3178,7 @@
             "id": 1777874009128.4001,
             "equipName": "퇴비살포기(소)-03",
             "equipSpec": "GW-900H/900KG-퇴비",
-            "personName": "맹국원",
+            "personName": "맹구원",
             "days": 1,
             "startDate": "2026-05-03",
             "outDone": true,
@@ -3803,7 +3286,7 @@
             "days": 1,
             "startDate": "2026-05-04",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "본소",
             "baseMins": 50,
             "delivery": false
@@ -3833,6 +3316,19 @@
         },
         "entries": [
           {
+            "id": 1777021667871.7966,
+            "equipName": "원판쟁기8련-01",
+            "equipSpec": "W82-DP/원판-8련",
+            "personName": "장덕근",
+            "days": 2,
+            "startDate": "2026-05-04",
+            "outDone": true,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 90,
+            "delivery": false
+          },
+          {
             "id": 1777535427801.5137,
             "equipName": "굴착기(1톤)-02",
             "equipSpec": "U-10-3S/1TON",
@@ -3840,7 +3336,7 @@
             "days": 1,
             "startDate": "2026-05-04",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -3853,7 +3349,7 @@
             "days": 2,
             "startDate": "2026-05-04",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
@@ -3866,7 +3362,7 @@
             "days": 2,
             "startDate": "2026-05-04",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
@@ -3879,7 +3375,7 @@
             "days": 1,
             "startDate": "2026-05-04",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
@@ -3892,7 +3388,7 @@
             "days": 2,
             "startDate": "2026-05-04",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
@@ -3905,7 +3401,7 @@
             "days": 2,
             "startDate": "2026-05-04",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 40,
             "delivery": false
@@ -3915,10 +3411,10 @@
             "equipName": "양용쟁기(3련)-02",
             "equipSpec": "KP3300W/양용-3련",
             "personName": "노일천",
-            "days": 1,
+            "days": 2,
             "startDate": "2026-05-04",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "북부",
             "baseMins": 80,
             "delivery": false
@@ -4475,7 +3971,7 @@
             "days": 3,
             "startDate": "2026-05-02",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "본소",
             "baseMins": 40,
             "delivery": false
@@ -8381,7 +7877,7 @@
             "days": 14,
             "startDate": "2026-04-21",
             "outDone": true,
-            "inDone": true,
+            "inDone": false,
             "site": "본소",
             "baseMins": 80,
             "delivery": false
@@ -10271,15 +9767,39 @@
   "rainy": [],
   "cancelled": [
     {
-      "cancelledAt": "2026-05-08T01:22:04.813Z",
-      "reason": "개인사정",
-      "equipName": "원판쟁기8련-04",
-      "equipSpec": "W82-DP/원판-8련",
-      "personName": "계영애",
+      "cancelledAt": "2026-05-07T23:48:46.257Z",
+      "reason": "기타",
+      "equipName": "비료동력살포기-02",
+      "equipSpec": "MD-7030/입제",
+      "personName": "이지훈",
       "days": 1,
-      "startDate": "2026-05-06",
+      "startDate": "2026-05-10",
       "site": "본소",
-      "baseMins": 90,
+      "baseMins": 40,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-08T01:47:54.814Z",
+      "reason": "개인사정",
+      "equipName": "소형트랙터25HP-02",
+      "equipSpec": "CK250V/25HP",
+      "personName": "안승문",
+      "days": 1,
+      "startDate": "2026-05-10",
+      "site": "본소",
+      "baseMins": 50,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-08T01:47:56.724Z",
+      "reason": "개인사정",
+      "equipName": "로터베이터1150-02",
+      "equipSpec": "DWR115GM/1150",
+      "personName": "안승문",
+      "days": 1,
+      "startDate": "2026-05-10",
+      "site": "본소",
+      "baseMins": 40,
       "delivery": false
     }
   ]
