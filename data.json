@@ -275,8 +275,8 @@
             "personName": "이병삼",
             "days": 1,
             "startDate": "2026-05-07",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
