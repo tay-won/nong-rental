@@ -2434,8 +2434,8 @@
             "personName": "강두순",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": false,
-            "inDone": false,
+            "outDone": true,
+            "inDone": true,
             "site": "북부",
             "baseMins": 320,
             "delivery": true
@@ -2668,8 +2668,8 @@
             "personName": "계영애",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": false,
-            "inDone": false,
+            "outDone": true,
+            "inDone": true,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
