@@ -1,6 +1,67 @@
 {
   "state": {
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-05-07T23:48:46.257Z",
+        "reason": "기타",
+        "equipName": "비료동력살포기-02",
+        "equipSpec": "MD-7030/입제",
+        "personName": "이지훈",
+        "days": 1,
+        "startDate": "2026-05-10",
+        "site": "본소",
+        "baseMins": 40,
+        "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-08T01:47:54.814Z",
+        "reason": "개인사정",
+        "equipName": "소형트랙터25HP-02",
+        "equipSpec": "CK250V/25HP",
+        "personName": "안승문",
+        "days": 1,
+        "startDate": "2026-05-10",
+        "site": "본소",
+        "baseMins": 50,
+        "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-08T01:47:56.724Z",
+        "reason": "개인사정",
+        "equipName": "로터베이터1150-02",
+        "equipSpec": "DWR115GM/1150",
+        "personName": "안승문",
+        "days": 1,
+        "startDate": "2026-05-10",
+        "site": "본소",
+        "baseMins": 40,
+        "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-08T01:51:08.978Z",
+        "reason": "개인사정",
+        "equipName": "굴착기(1.7톤)-02",
+        "equipSpec": "DX17Z-5/2TON",
+        "personName": "박정선",
+        "days": 1,
+        "startDate": "2026-05-08",
+        "site": "본소",
+        "baseMins": 80,
+        "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-08T02:25:42.838Z",
+        "reason": "기타",
+        "equipName": "관리기-피복기-01",
+        "equipSpec": "AMC-900SM/피복기(중)",
+        "personName": "안옥분",
+        "days": 1,
+        "startDate": "2026-05-07",
+        "site": "본소",
+        "baseMins": 290,
+        "delivery": true
+      }
+    ],
     "2026-05-07": {
       "본소": {
         "workers": {
@@ -2398,7 +2459,7 @@
             "days": 2,
             "startDate": "2026-05-06",
             "outDone": true,
-            "inDone": false,
+            "inDone": true,
             "site": "본소",
             "baseMins": 60,
             "delivery": false
@@ -2422,7 +2483,7 @@
       "북부": {
         "workers": {
           "nb1": 420,
-          "nb2": 210,
+          "nb2": 420,
           "nb3": 420,
           "nb4": 420
         },
@@ -9820,5 +9881,66 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-05-07T23:48:46.257Z",
+      "reason": "기타",
+      "equipName": "비료동력살포기-02",
+      "equipSpec": "MD-7030/입제",
+      "personName": "이지훈",
+      "days": 1,
+      "startDate": "2026-05-10",
+      "site": "본소",
+      "baseMins": 40,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-08T01:47:54.814Z",
+      "reason": "개인사정",
+      "equipName": "소형트랙터25HP-02",
+      "equipSpec": "CK250V/25HP",
+      "personName": "안승문",
+      "days": 1,
+      "startDate": "2026-05-10",
+      "site": "본소",
+      "baseMins": 50,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-08T01:47:56.724Z",
+      "reason": "개인사정",
+      "equipName": "로터베이터1150-02",
+      "equipSpec": "DWR115GM/1150",
+      "personName": "안승문",
+      "days": 1,
+      "startDate": "2026-05-10",
+      "site": "본소",
+      "baseMins": 40,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-08T01:51:08.978Z",
+      "reason": "개인사정",
+      "equipName": "굴착기(1.7톤)-02",
+      "equipSpec": "DX17Z-5/2TON",
+      "personName": "박정선",
+      "days": 1,
+      "startDate": "2026-05-08",
+      "site": "본소",
+      "baseMins": 80,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-08T02:25:42.838Z",
+      "reason": "기타",
+      "equipName": "관리기-피복기-01",
+      "equipSpec": "AMC-900SM/피복기(중)",
+      "personName": "안옥분",
+      "days": 1,
+      "startDate": "2026-05-07",
+      "site": "본소",
+      "baseMins": 290,
+      "delivery": true
+    }
+  ]
 }
