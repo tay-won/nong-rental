@@ -707,6 +707,19 @@
             "site": "본소",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1778225190077.745,
+            "equipName": "분무기-엔진식(살)-01",
+            "equipSpec": "HS-70AD/밀차살충제",
+            "personName": "성운경",
+            "days": 1,
+            "startDate": "2026-05-09",
+            "outDone": false,
+            "inDone": false,
+            "site": "본소",
+            "baseMins": 40,
+            "delivery": false
           }
         ],
         "delivery": false
