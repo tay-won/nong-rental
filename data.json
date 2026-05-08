@@ -2499,8 +2499,8 @@
             "personName": "남승우",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
@@ -2681,8 +2681,8 @@
             "personName": "이순성",
             "days": 1,
             "startDate": "2026-05-06",
-            "outDone": true,
-            "inDone": true,
+            "outDone": false,
+            "inDone": false,
             "site": "북부",
             "baseMins": 90,
             "delivery": false
