@@ -2769,8 +2769,8 @@
             "personName": "박해연",
             "days": 1,
             "startDate": "2026-05-05",
-            "outDone": false,
-            "inDone": false,
+            "outDone": true,
+            "inDone": true,
             "site": "북부",
             "baseMins": 50,
             "delivery": false
@@ -2808,8 +2808,8 @@
             "personName": "김수권",
             "days": 1,
             "startDate": "2026-05-05",
-            "outDone": false,
-            "inDone": false,
+            "outDone": true,
+            "inDone": true,
             "site": "북부",
             "baseMins": 40,
             "delivery": false
