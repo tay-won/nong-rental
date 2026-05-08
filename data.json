@@ -72,6 +72,18 @@
         "site": "본소",
         "baseMins": 40,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-08T04:51:49.121Z",
+        "reason": "기타",
+        "equipName": "분무기-엔진식(제)-01",
+        "equipSpec": "WPS-80A/밀차제초제",
+        "personName": "손석남",
+        "days": 1,
+        "startDate": "2026-05-08",
+        "site": "본소",
+        "baseMins": 40,
+        "delivery": false
       }
     ],
     "2026-05-07": {
@@ -469,19 +481,6 @@
             "inDone": false,
             "site": "본소",
             "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1777694838464.7031,
-            "equipName": "분무기-엔진식(제)-01",
-            "equipSpec": "WPS-80A/밀차제초제",
-            "personName": "손석남",
-            "days": 1,
-            "startDate": "2026-05-08",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 40,
             "delivery": false
           },
           {
@@ -9949,6 +9948,18 @@
       "personName": "안옥분",
       "days": 1,
       "startDate": "2026-05-07",
+      "site": "본소",
+      "baseMins": 40,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-08T04:51:49.121Z",
+      "reason": "기타",
+      "equipName": "분무기-엔진식(제)-01",
+      "equipSpec": "WPS-80A/밀차제초제",
+      "personName": "손석남",
+      "days": 1,
+      "startDate": "2026-05-08",
       "site": "본소",
       "baseMins": 40,
       "delivery": false
