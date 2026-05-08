@@ -1518,6 +1518,19 @@
             "site": "북부",
             "baseMins": 70,
             "delivery": false
+          },
+          {
+            "id": 1778218906085.8667,
+            "equipName": "소형트랙터25HP-04",
+            "equipSpec": "LK2805/25HP",
+            "personName": "심승일",
+            "days": 1,
+            "startDate": "2026-05-12",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 50,
+            "delivery": false
           }
         ],
         "delivery": false
