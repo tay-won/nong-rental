@@ -36,6 +36,18 @@
         "site": "본소",
         "baseMins": 40,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-08T01:51:08.978Z",
+        "reason": "개인사정",
+        "equipName": "굴착기(1.7톤)-02",
+        "equipSpec": "DX17Z-5/2TON",
+        "personName": "박정선",
+        "days": 1,
+        "startDate": "2026-05-08",
+        "site": "본소",
+        "baseMins": 80,
+        "delivery": false
       }
     ],
     "2026-05-07": {
@@ -511,19 +523,6 @@
             "inDone": false,
             "site": "본소",
             "baseMins": 30,
-            "delivery": false
-          },
-          {
-            "id": 1778205060890.5723,
-            "equipName": "굴착기(1.7톤)-02",
-            "equipSpec": "DX17Z-5/2TON",
-            "personName": "박정선",
-            "days": 1,
-            "startDate": "2026-05-08",
-            "outDone": false,
-            "inDone": false,
-            "site": "본소",
-            "baseMins": 80,
             "delivery": false
           }
         ],
@@ -9892,6 +9891,18 @@
       "startDate": "2026-05-10",
       "site": "본소",
       "baseMins": 40,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-08T01:51:08.978Z",
+      "reason": "개인사정",
+      "equipName": "굴착기(1.7톤)-02",
+      "equipSpec": "DX17Z-5/2TON",
+      "personName": "박정선",
+      "days": 1,
+      "startDate": "2026-05-08",
+      "site": "본소",
+      "baseMins": 80,
       "delivery": false
     }
   ]
