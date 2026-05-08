@@ -12,6 +12,18 @@
         "site": "북부",
         "baseMins": 90,
         "delivery": false
+      },
+      {
+        "cancelledAt": "2026-05-08T06:56:46.824Z",
+        "reason": "개인사정",
+        "equipName": "비료동력살포기-04",
+        "equipSpec": "SG-8030/입제",
+        "personName": "김수권",
+        "days": 1,
+        "startDate": "2026-05-06",
+        "site": "북부",
+        "baseMins": 40,
+        "delivery": false
       }
     ],
     "2026-05-07": {
@@ -2477,19 +2489,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 50,
-            "delivery": false
-          },
-          {
-            "id": 1777536611486.5159,
-            "equipName": "비료동력살포기-04",
-            "equipSpec": "SG-8030/입제",
-            "personName": "김수권",
-            "days": 1,
-            "startDate": "2026-05-06",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 40,
             "delivery": false
           },
           {
@@ -9883,6 +9882,18 @@
       "startDate": "2026-05-04",
       "site": "북부",
       "baseMins": 90,
+      "delivery": false
+    },
+    {
+      "cancelledAt": "2026-05-08T06:56:46.824Z",
+      "reason": "개인사정",
+      "equipName": "비료동력살포기-04",
+      "equipSpec": "SG-8030/입제",
+      "personName": "김수권",
+      "days": 1,
+      "startDate": "2026-05-06",
+      "site": "북부",
+      "baseMins": 40,
       "delivery": false
     }
   ]
