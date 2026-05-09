@@ -848,6 +848,19 @@
             "site": "북부",
             "baseMins": 50,
             "delivery": false
+          },
+          {
+            "id": 1778293681109.9204,
+            "equipName": "비료살포기-02",
+            "equipSpec": "JHT-320H/300kg",
+            "personName": "최규정",
+            "days": 1,
+            "startDate": "2026-05-10",
+            "outDone": false,
+            "inDone": false,
+            "site": "북부",
+            "baseMins": 60,
+            "delivery": false
           }
         ],
         "delivery": false
