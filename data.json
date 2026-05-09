@@ -1,6 +1,19 @@
 {
   "state": {
-    "_cancelled": [],
+    "_cancelled": [
+      {
+        "cancelledAt": "2026-05-09T02:25:30.451Z",
+        "reason": "기타",
+        "equipName": "관리기-로터리-06",
+        "equipSpec": "AMC-1000SM/로타리(중)",
+        "personName": "이정대",
+        "days": 1,
+        "startDate": "2026-05-09",
+        "site": "북부",
+        "baseMins": 50,
+        "delivery": false
+      }
+    ],
     "2026-05-08": {
       "본소": {
         "workers": {
@@ -589,19 +602,6 @@
             "inDone": false,
             "site": "북부",
             "baseMins": 40,
-            "delivery": false
-          },
-          {
-            "id": 1778293458489.078,
-            "equipName": "관리기-로터리-06",
-            "equipSpec": "AMC-1000SM/로타리(중)",
-            "personName": "이정대",
-            "days": 1,
-            "startDate": "2026-05-09",
-            "outDone": false,
-            "inDone": false,
-            "site": "북부",
-            "baseMins": 50,
             "delivery": false
           }
         ],
@@ -10517,5 +10517,18 @@
     "2026-04-11"
   ],
   "rainy": [],
-  "cancelled": []
+  "cancelled": [
+    {
+      "cancelledAt": "2026-05-09T02:25:30.451Z",
+      "reason": "기타",
+      "equipName": "관리기-로터리-06",
+      "equipSpec": "AMC-1000SM/로타리(중)",
+      "personName": "이정대",
+      "days": 1,
+      "startDate": "2026-05-09",
+      "site": "북부",
+      "baseMins": 50,
+      "delivery": false
+    }
+  ]
 }
