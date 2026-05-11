@@ -620,6 +620,38 @@ let GH_TOKEN = '';
 const GH_REPO = 'tay-won/nong-rental';
 const GH_API='https://api.github.com/repos/'+GH_REPO+'/contents/data.json';
 
+// Supabase 설정
+const SB_URL = 'https://wddtagovsimavguvlrzr.supabase.co';
+const SB_KEY = 'sb_publishable_7lAcbxdOEZQUGk3ioBMP3w_G7Ejh-uf';
+const SB_API = SB_URL+'/rest/v1/nong_rental';
+
+async function sbLoad() {
+  const res = await fetch(SB_API+'?id=eq.main&select=data', {
+    headers: {
+      'apikey': SB_KEY,
+      'Authorization': 'Bearer '+SB_KEY,
+      'Content-Type': 'application/json'
+    }
+  });
+  if(!res.ok) throw new Error('HTTP '+res.status);
+  const rows = await res.json();
+  return rows.length > 0 ? rows[0].data : null;
+}
+
+async function sbSave(payload) {
+  const res = await fetch(SB_API+'?id=eq.main', {
+    method: 'PATCH',
+    headers: {
+      'apikey': SB_KEY,
+      'Authorization': 'Bearer '+SB_KEY,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify({ data: payload, updated_at: new Date().toISOString() })
+  });
+  if(!res.ok) throw new Error('HTTP '+res.status);
+}
+
 // ── 휴무일 관리 ──
 function getHolidays() {
   return JSON.parse(localStorage.getItem('holidays_' + GH_REPO) || '[]');
@@ -742,148 +774,80 @@ function setSyncUI(mode,msg){document.getElementById('sdot').className='sdot '+m
 async function loadData(){
   if(!checkToken()) return;
   setSyncUI('saving','불러오는 중…');
-  // 토큰 모달이 열려있으면 로딩 오버레이 표시 안 함
-  const tokenModalOpen = !document.getElementById('tokenModal').classList.contains('hidden');
-  if(!tokenModalOpen) document.getElementById('loadingOverlay').classList.remove('hidden');
+  document.getElementById('loadingOverlay').classList.remove('hidden');
   try{
-    const res = await fetch(GH_API+'?t='+Date.now(), {
-      headers: {
-        Authorization: 'token '+GH_TOKEN,
-        Accept: 'application/vnd.github.v3+json'
-      }
-    });
-    if(res.status === 404){
+    const raw = await sbLoad();
+    if(!raw || Object.keys(raw).length === 0){
       initState();
-      ghSha = null;
       setSyncUI('ok','첫 실행 — 입력 후 자동 저장됩니다');
-    } else if(res.ok){
-      const json = await res.json();
-      ghSha = json.sha;
-      // base64 디코딩
-      const jsonStr = decodeURIComponent(escape(atob(json.content.replace(/\n/g,''))));
-      const raw = JSON.parse(jsonStr);
-      // 새 포맷(state+holidays) vs 구 포맷 호환
+    } else {
       let decoded, savedHolidays = [];
-      if(raw && raw.state && typeof raw.state === 'object') {
+      if(raw.state && typeof raw.state === 'object'){
         decoded = raw.state;
         savedHolidays = raw.holidays || [];
-      } else if(raw && typeof raw === 'object') {
-        decoded = raw;
       } else {
-        decoded = {};
+        decoded = raw;
       }
-
-      // 휴무일 복원
       if(savedHolidays.length > 0) saveHolidays(savedHolidays);
-      // 우천 복원
       if(raw.rainy && raw.rainy.length > 0) saveRainy(raw.rainy);
-      // 취소 이력 복원
       if(raw.cancelled && Array.isArray(raw.cancelled)) state._cancelled = raw.cancelled;
-
-      // 빈 상태로 초기화 후 복원
       initState();
       Object.keys(decoded).forEach(dk => {
         ensureDay(dk);
         ['본소','북부'].forEach(st => {
           if(!decoded[dk] || !decoded[dk][st]) return;
           const src = decoded[dk][st];
-          // workers 복원
-          if(src.workers){
-            Object.keys(src.workers).forEach(wid => {
-              state[dk][st].workers[wid] = src.workers[wid];
-            });
-          }
-          // entries 복원
-          if(Array.isArray(src.entries)){
-            state[dk][st].entries = src.entries;
-          }
-          // delivery 복원
-          if(src.delivery !== undefined){
-            state[dk][st].delivery = src.delivery;
-          }
+          if(src.workers) Object.keys(src.workers).forEach(wid => { state[dk][st].workers[wid] = src.workers[wid]; });
+          if(Array.isArray(src.entries)) state[dk][st].entries = src.entries;
+          if(src.delivery !== undefined) state[dk][st].delivery = src.delivery;
         });
       });
       setSyncUI('ok','동기화 완료 · '+new Date().toLocaleTimeString('ko-KR'));
-    } else {
-      throw new Error('HTTP '+res.status);
     }
   } catch(e){
     setSyncUI('err','불러오기 실패: '+e.message);
   } finally {
     document.getElementById('loadingOverlay').classList.add('hidden');
     renderAll();
-    // 레이아웃 완성 후 3일 컬럼 재렌더 (높이 계산)
     setTimeout(() => renderTriDayPanel(), 300);
   }
 }
 
+let isSaving = false;
+let pendingSave = false;
+
+function scheduleSave(){
+  if(!GH_TOKEN) return;
+  if(saveTimer) clearTimeout(saveTimer);
+  setSyncUI('saving','변경됨…');
+  saveTimer = setTimeout(doSave, 3000);
+}
+
+async function doSave(){
+  if(isSaving){ pendingSave = true; return; }
+  isSaving = true;
+  pendingSave = false;
+  await saveData();
+  isSaving = false;
+  if(pendingSave){ pendingSave = false; scheduleSave(); }
+}
+
 async function saveData(){
-  // 토큰 없으면 저장 안 함 (로그인 전 데이터 덮어쓰기 방지)
-  if(!GH_TOKEN) { setSyncUI('idle','로그인 필요'); return; }
+  if(!GH_TOKEN){ setSyncUI('idle','로그인 필요'); return; }
   setSyncUI('saving','저장 중…');
-  // 범위 제한 없이 전체 state 저장 + 휴무일 포함
-  const trimmed = JSON.parse(JSON.stringify(state));
   const savePayload = {
-    state: trimmed,
+    state: JSON.parse(JSON.stringify(state)),
     holidays: getHolidays(),
     rainy: getRainy(),
     cancelled: state._cancelled || []
   };
-  const jsonStr = JSON.stringify(savePayload, null, 2);
-  const content = btoa(unescape(encodeURIComponent(jsonStr)));
-  const body = {
-    message: 'update '+new Date().toISOString(),
-    content: content,
-    ...(ghSha ? {sha: ghSha} : {})
-  };
   try{
-    const res = await fetch(GH_API, {
-      method: 'PUT',
-      headers: {
-        Authorization: 'token '+GH_TOKEN,
-        Accept: 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    });
-    if(!res.ok) throw new Error('HTTP '+res.status);
-    const json = await res.json();
-    ghSha = json.content.sha;
+    await sbSave(savePayload);
     setSyncUI('ok','저장 완료 · '+new Date().toLocaleTimeString('ko-KR'));
   } catch(e){
-    setSyncUI('err','저장 실패: '+e.message);
-    // SHA 충돌(409)이면 최신 SHA 받아서 재시도
-    if(e.message.includes('409')) {
-      try {
-        const r2 = await fetch(GH_API+'?t='+Date.now(), {
-          headers: { Authorization: 'token '+GH_TOKEN, Accept: 'application/vnd.github.v3+json' }
-        });
-        const j2 = await r2.json();
-        ghSha = j2.sha;
-        // 재시도
-        body.sha = ghSha;
-        const r3 = await fetch(GH_API, {
-          method: 'PUT',
-          headers: { Authorization: 'token '+GH_TOKEN, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
-          body: JSON.stringify(body)
-        });
-        if(r3.ok) {
-          const j3 = await r3.json();
-          ghSha = j3.content.sha;
-          setSyncUI('ok','저장 완료(재시도) · '+new Date().toLocaleTimeString('ko-KR'));
-        }
-      } catch(e2) {
-        setSyncUI('err','저장 실패(재시도): '+e2.message);
-      }
-    } else {
-      // 저장 실패 시 3초 후 재시도
-      setTimeout(() => saveData(), 3000);
-    }
+    setSyncUI('err','❌ 저장 실패: '+e.message);
   }
 }
-
-
-// ═══ 엑셀 리포트 다운로드 ═══
 function downloadReport(){
   const DATES = getDates();
   const DKEYS = getDkeys();
@@ -1546,7 +1510,7 @@ if(_savedAuth) {
 }
 
 document.getElementById('headerSub')&&(document.getElementById('headerSub').textContent='파주시 농업기계임대사업소 · '+t.getFullYear()+'년 '+(t.getMonth()+1)+'월 '+t.getDate()+'일');
-loadData();
+// loadData는 위 if(_savedAuth) 블록에서만 호출
 
 
 // ══════════════════════════════════════════════
@@ -2291,13 +2255,9 @@ function openEditModal(startDk, site, idx) {
   // 성명
   document.getElementById('editPersonInp').value = e.personName || '';
 
+  // 시작일 - 문자열 직접 설정 (YYYY-MM-DD 그대로)
   const sdEl = document.getElementById('editStartDate');
-  if(sdEl) {
-    const _dk = (e.startDate || editTarget.startDk).slice(0,10);
-    const [_y,_m,_d] = _dk.split('-').map(Number);
-    const _disp = new Date(_y, _m-1, _d+1);
-    sdEl.value = _disp.getFullYear()+'-'+String(_disp.getMonth()+1).padStart(2,'0')+'-'+String(_disp.getDate()).padStart(2,'0');
-  }
+  if(sdEl) sdEl.value = (e.startDate || editTarget.startDk).slice(0, 10);
 
   // 임대기간
   editDays = e.days;
@@ -2512,13 +2472,19 @@ function saveEdit() {
   if(!entry) return;
 
   const deliveryMins = editDelivery ? 240 : 0;
+  // 날짜 읽기: input value가 비어있거나 안 바뀌면 원본 유지
   const sdEl2 = document.getElementById('editStartDate');
   const sdVal = sdEl2 ? sdEl2.value : '';
+  // input[type=date].value는 항상 YYYY-MM-DD 형식 반환
+  // 빈 값이거나 원본과 같으면 startDk 사용
   let newStartDate = startDk;
-  if(sdVal && sdVal.length === 10) {
-    const [_y,_m,_d] = sdVal.split('-').map(Number);
-    const _save = new Date(_y, _m-1, _d-1);
-    newStartDate = _save.getFullYear()+'-'+String(_save.getMonth()+1).padStart(2,'0')+'-'+String(_save.getDate()).padStart(2,'0');
+  if(sdVal && sdVal !== startDk) {
+    // 브라우저가 UTC로 파싱해서 하루 빠지므로 +1일 보정
+    const parts = sdVal.split('-').map(Number);
+    const corrected = new Date(parts[0], parts[1]-1, parts[2]+1);
+    newStartDate = corrected.getFullYear()+'-'
+      +String(corrected.getMonth()+1).padStart(2,'0')+'-'
+      +String(corrected.getDate()).padStart(2,'0');
   }
 
   entry.equipName  = editEquip.n;
