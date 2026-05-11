@@ -719,9 +719,8 @@ let selMachine=null, selHalf=false, selQty=1;
 
 function today(){const d=new Date();d.setHours(0,0,0,0);return d;}
 function getDates(){return Array.from({length:22},(_,i)=>{const d=new Date(today());d.setDate(today().getDate()+dateOffset+i);return d;});}
-function getDkeys(){return getDates().map(d=>toLocalDk(d));}
-function toLocalDk(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
-function isToday(d){return toLocalDk(d)===toLocalDk(today());}
+function getDkeys(){return getDates().map(d=>d.toISOString().slice(0,10));}
+function isToday(d){return d.toISOString().slice(0,10)===today().toISOString().slice(0,10);}
 function fmtDate(d){return (d.getMonth()+1)+'/'+d.getDate();}
 
 // state[dk][site] = { workers:{}, entries:[{name,half,qty,mins}] }
@@ -737,149 +736,85 @@ function ensureDay(dk){if(!state[dk])state[dk]=emptyDay();}
 function initState(){getDkeys().forEach(dk=>ensureDay(dk));  state._cancelled = [];
 }
 
-// ─── GitHub ───
+// ─── Supabase ───
+const SB_URL='https://wddtagovsimavguvlrzr.supabase.co';
+const SB_KEY='sb_publishable_7lAcbxdOEZQUGk3ioBMP3w_G7Ejh-uf';
+const SB_API=SB_URL+'/rest/v1/nong_rental';
+const SB_HDR={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json'};
+
 function setSyncUI(mode,msg){document.getElementById('sdot').className='sdot '+mode;document.getElementById('stxt').textContent=msg;}
 
 async function loadData(){
   if(!checkToken()) return;
   setSyncUI('saving','불러오는 중…');
-  // 토큰 모달이 열려있으면 로딩 오버레이 표시 안 함
-  const tokenModalOpen = !document.getElementById('tokenModal').classList.contains('hidden');
-  if(!tokenModalOpen) document.getElementById('loadingOverlay').classList.remove('hidden');
+  document.getElementById('loadingOverlay').classList.remove('hidden');
   try{
-    const res = await fetch(GH_API+'?t='+Date.now(), {
-      headers: {
-        Authorization: 'token '+GH_TOKEN,
-        Accept: 'application/vnd.github.v3+json'
-      }
-    });
-    if(res.status === 404){
+    const res = await fetch(SB_API+'?id=eq.main&select=data', {headers:SB_HDR});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const rows = await res.json();
+    const raw = rows.length > 0 ? rows[0].data : null;
+    if(!raw || Object.keys(raw).length === 0){
       initState();
-      ghSha = null;
       setSyncUI('ok','첫 실행 — 입력 후 자동 저장됩니다');
-    } else if(res.ok){
-      const json = await res.json();
-      ghSha = json.sha;
-      // base64 디코딩
-      const jsonStr = decodeURIComponent(escape(atob(json.content.replace(/\n/g,''))));
-      const raw = JSON.parse(jsonStr);
-      // 새 포맷(state+holidays) vs 구 포맷 호환
+    } else {
       let decoded, savedHolidays = [];
-      if(raw && raw.state && typeof raw.state === 'object') {
+      if(raw.state && typeof raw.state === 'object'){
         decoded = raw.state;
         savedHolidays = raw.holidays || [];
-      } else if(raw && typeof raw === 'object') {
-        decoded = raw;
       } else {
-        decoded = {};
+        decoded = raw;
       }
-
-      // 휴무일 복원
       if(savedHolidays.length > 0) saveHolidays(savedHolidays);
-      // 우천 복원
       if(raw.rainy && raw.rainy.length > 0) saveRainy(raw.rainy);
-      // 취소 이력 복원
       if(raw.cancelled && Array.isArray(raw.cancelled)) state._cancelled = raw.cancelled;
-
-      // 빈 상태로 초기화 후 복원
       initState();
       Object.keys(decoded).forEach(dk => {
         ensureDay(dk);
         ['본소','북부'].forEach(st => {
-          if(!decoded[dk] || !decoded[dk][st]) return;
-          const src = decoded[dk][st];
-          // workers 복원
-          if(src.workers){
-            Object.keys(src.workers).forEach(wid => {
-              state[dk][st].workers[wid] = src.workers[wid];
-            });
-          }
-          // entries 복원
-          if(Array.isArray(src.entries)){
-            state[dk][st].entries = src.entries;
-          }
-          // delivery 복원
-          if(src.delivery !== undefined){
-            state[dk][st].delivery = src.delivery;
-          }
+          if(!decoded[dk]||!decoded[dk][st]) return;
+          const src=decoded[dk][st];
+          if(src.workers) Object.keys(src.workers).forEach(wid=>{state[dk][st].workers[wid]=src.workers[wid];});
+          if(Array.isArray(src.entries)) state[dk][st].entries=src.entries;
+          if(src.delivery!==undefined) state[dk][st].delivery=src.delivery;
         });
       });
       setSyncUI('ok','동기화 완료 · '+new Date().toLocaleTimeString('ko-KR'));
-    } else {
-      throw new Error('HTTP '+res.status);
     }
   } catch(e){
     setSyncUI('err','불러오기 실패: '+e.message);
   } finally {
     document.getElementById('loadingOverlay').classList.add('hidden');
     renderAll();
-    // 레이아웃 완성 후 3일 컬럼 재렌더 (높이 계산)
-    setTimeout(() => renderTriDayPanel(), 300);
+    setTimeout(()=>renderTriDayPanel(),300);
   }
 }
 
+let isSaving=false, pendingSave=false;
+
 async function saveData(){
-  // 토큰 없으면 저장 안 함 (로그인 전 데이터 덮어쓰기 방지)
-  if(!GH_TOKEN) { setSyncUI('idle','로그인 필요'); return; }
+  if(!GH_TOKEN){setSyncUI('idle','로그인 필요');return;}
+  if(isSaving){pendingSave=true;return;}
+  isSaving=true;
   setSyncUI('saving','저장 중…');
-  // 범위 제한 없이 전체 state 저장 + 휴무일 포함
-  const trimmed = JSON.parse(JSON.stringify(state));
-  const savePayload = {
-    state: trimmed,
-    holidays: getHolidays(),
-    rainy: getRainy(),
-    cancelled: state._cancelled || []
-  };
-  const jsonStr = JSON.stringify(savePayload, null, 2);
-  const content = btoa(unescape(encodeURIComponent(jsonStr)));
-  const body = {
-    message: 'update '+new Date().toISOString(),
-    content: content,
-    ...(ghSha ? {sha: ghSha} : {})
+  const payload={
+    state:JSON.parse(JSON.stringify(state)),
+    holidays:getHolidays(),
+    rainy:getRainy(),
+    cancelled:state._cancelled||[]
   };
   try{
-    const res = await fetch(GH_API, {
-      method: 'PUT',
-      headers: {
-        Authorization: 'token '+GH_TOKEN,
-        Accept: 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
+    const res=await fetch(SB_API+'?id=eq.main',{
+      method:'PATCH',
+      headers:{...SB_HDR,'Prefer':'return=minimal'},
+      body:JSON.stringify({data:payload,updated_at:new Date().toISOString()})
     });
     if(!res.ok) throw new Error('HTTP '+res.status);
-    const json = await res.json();
-    ghSha = json.content.sha;
     setSyncUI('ok','저장 완료 · '+new Date().toLocaleTimeString('ko-KR'));
   } catch(e){
-    setSyncUI('err','저장 실패: '+e.message);
-    // SHA 충돌(409)이면 최신 SHA 받아서 재시도
-    if(e.message.includes('409')) {
-      try {
-        const r2 = await fetch(GH_API+'?t='+Date.now(), {
-          headers: { Authorization: 'token '+GH_TOKEN, Accept: 'application/vnd.github.v3+json' }
-        });
-        const j2 = await r2.json();
-        ghSha = j2.sha;
-        // 재시도
-        body.sha = ghSha;
-        const r3 = await fetch(GH_API, {
-          method: 'PUT',
-          headers: { Authorization: 'token '+GH_TOKEN, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
-          body: JSON.stringify(body)
-        });
-        if(r3.ok) {
-          const j3 = await r3.json();
-          ghSha = j3.content.sha;
-          setSyncUI('ok','저장 완료(재시도) · '+new Date().toLocaleTimeString('ko-KR'));
-        }
-      } catch(e2) {
-        setSyncUI('err','저장 실패(재시도): '+e2.message);
-      }
-    } else {
-      // 저장 실패 시 3초 후 재시도
-      setTimeout(() => saveData(), 3000);
-    }
+    setSyncUI('err','❌ 저장 실패: '+e.message);
+  } finally {
+    isSaving=false;
+    if(pendingSave){pendingSave=false;saveData();}
   }
 }
 
@@ -1006,6 +941,8 @@ function downloadReport(){
 }
 
 
+function scheduleSave(){
+  if(!GH_TOKEN) return;if(saveTimer)clearTimeout(saveTimer);setSyncUI('saving','변경됨…');saveTimer=setTimeout(saveData,1000);}
 
 // ─── 계산 ───
 function getAvailSite(dk,st){return Object.values(state[dk][st].workers).reduce((a,b)=>a+b,0);}
@@ -1053,11 +990,11 @@ function openDatePicker() {
   // 최소 날짜: 시작일 + 4일 (4일 이상만)
   const minDate = new Date(dk);
   minDate.setDate(minDate.getDate() + 1);
-  picker.min = toLocalDk(minDate);
+  picker.min = minDate.toISOString().slice(0,10);
   // 최대 날짜: 시작일 + 30일
   const maxDate = new Date(dk);
   maxDate.setDate(maxDate.getDate() + 30);
-  picker.max = toLocalDk(maxDate);
+  picker.max = maxDate.toISOString().slice(0,10);
   picker.value = '';
   picker.style.display = 'block';
   picker.focus();
@@ -1116,7 +1053,7 @@ function shiftDates(delta) {
   dateOffset = Math.max(-30, Math.min(30, dateOffset));
   // curIdx 재조정: 오늘이 범위 내에 있으면 오늘로, 아니면 0
   const dkeys = getDkeys();
-  const todayDk = toLocalDk(today());
+  const todayDk = today().toISOString().slice(0,10);
   const todayIdx = dkeys.indexOf(todayDk);
   curIdx = todayIdx >= 0 ? todayIdx : 0;
   renderAll();
@@ -1146,7 +1083,7 @@ function getEquipStatus(equipName, siteName) {
       // 입고일 계산 (원래 스케줄 기준)
       const inDate = new Date(e.startDate);
       inDate.setDate(inDate.getDate() + e.days - 1);
-      const inDk = toLocalDk(inDate);
+      const inDk = inDate.toISOString().slice(0,10);
 
       // 정비중: 오늘이 입고일 (실제 입고 여부와 무관)
       if(inDk === dk) return '정비중';
@@ -1178,9 +1115,9 @@ function renderInoutCols() {
     // 날짜 계산 (탭 범위 밖이어도 실제 날짜 사용)
     const d = new Date(DATES[idx]);
     d.setDate(d.getDate() + offset);
-    const dk = toLocalDk(d);
+    const dk = d.toISOString().slice(0,10);
 
-    const isToday2 = dk === toLocalDk(today());
+    const isToday2 = dk === today().toISOString().slice(0,10);
     const isHol = holidays.includes(dk);
     const dateStr = (d.getMonth()+1)+'/'+d.getDate()+'('+DOW2[d.getDay()]+')';
     const hdrColor = isToday2 ? 'var(--accent)' : (isHol ? 'var(--red)' : 'var(--muted)');
@@ -1193,7 +1130,7 @@ function renderInoutCols() {
         state[startDk][site].entries.forEach(e => {
           const inDate = new Date(e.startDate);
           inDate.setDate(inDate.getDate() + e.days - 1);
-          const inDk  = toLocalDk(inDate);
+          const inDk  = inDate.toISOString().slice(0,10);
           const outDk = e.startDate;
 
           const needOut = outDk === dk && !e.outDone;
@@ -1277,7 +1214,7 @@ function renderDateTabs(){
     const st = getStatus(pct);
     const isHol = holidays.includes(dk);
     const isRain = rainyDays.includes(dk);
-    const isYesterday = dk === toLocalDk(new Date(today().getTime()-86400000));
+    const isYesterday = dk === new Date(today().getTime()-86400000).toISOString().slice(0,10);
     return '<div class="dtab'+(i===curIdx?' active':'')+(isHol?' holiday':isRain?' rainy':'')
       +'" onclick="setIdx('+i+')" style="position:relative">'
       +(isToday(d)?'<div class="tl">TODAY</div>':isYesterday?'<div class="tl" style="color:var(--muted)">어제</div>':'')
@@ -1301,7 +1238,7 @@ function renderAll(){
   const _isHolCur = getHolidays().includes(_dkCur);
   const _holBtnStyle = 'margin-left:8px;padding:2px 8px;background:transparent;border:1px solid ' + (_isHolCur ? '#ef4444' : '#2e3350') + ';border-radius:8px;color:' + (_isHolCur ? '#ef4444' : '#64748b') + ';font-size:10px;cursor:pointer';
   document.getElementById('dateBar').innerHTML =
-    '📅 ' + d.getFullYear() + '년 ' + (d.getMonth()+1) + '월 ' + d.getDate() + '일 (' + DOW[d.getDay()] + '요일)' + (isToday(d) ? ' — 오늘' : (dk === toLocalDk(new Date(today().getTime()-86400000)) ? ' — 어제' : ''))
+    '📅 ' + d.getFullYear() + '년 ' + (d.getMonth()+1) + '월 ' + d.getDate() + '일 (' + DOW[d.getDay()] + '요일)' + (isToday(d) ? ' — 오늘' : (dk === new Date(today().getTime()-86400000).toISOString().slice(0,10) ? ' — 어제' : ''))
     + (_isHolCur ? ' <span style="color:#ef4444;font-size:11px">🔴 휴무일</span>' : '')
     + ' <button onclick="toggleHoliday(\'' + _dkCur + '\')" style="' + _holBtnStyle + '">' + (_isHolCur ? '휴무 해제' : '휴무 지정') + '</button>'
     + (!isToday(d) ? ' <button onclick="resetDates()" style="margin-left:6px;padding:2px 8px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);border-radius:8px;color:var(--accent);font-size:10px;cursor:pointer">오늘로</button>' : '')
@@ -1641,11 +1578,11 @@ function openDatePicker() {
   // 최소 날짜: 시작일 + 4일 (4일 이상만)
   const minDate = new Date(dk);
   minDate.setDate(minDate.getDate() + 1);
-  picker.min = toLocalDk(minDate);
+  picker.min = minDate.toISOString().slice(0,10);
   // 최대 날짜: 시작일 + 30일
   const maxDate = new Date(dk);
   maxDate.setDate(maxDate.getDate() + 30);
-  picker.max = toLocalDk(maxDate);
+  picker.max = maxDate.toISOString().slice(0,10);
   picker.value = '';
   picker.style.display = 'block';
   picker.focus();
@@ -1739,9 +1676,9 @@ function addEntry() {
 
   // 기간에 걸친 날짜들도 ensure
   for (let i = 1; i < selDays; i++) {
-    const d = new Date(startDate+'T12:00:00');
+    const d = new Date(startDate);
     d.setDate(d.getDate() + i);
-    const dki = toLocalDk(d);
+    const dki = d.toISOString().slice(0,10);
     ensureDay(dki);
   }
 
@@ -1780,14 +1717,14 @@ function getUsedSite(dk, site) {
         // 휴무일 배송: 전날 120분 + 다음날 120분
         let prevDay = new Date(startDk);
         prevDay.setDate(prevDay.getDate() - 1);
-        while(holidays.includes(toLocalDk(prevDay)))
+        while(holidays.includes(prevDay.toISOString().slice(0,10)))
           prevDay.setDate(prevDay.getDate() - 1);
         let nextDay = new Date(startDk);
         nextDay.setDate(nextDay.getDate() + 1);
-        while(holidays.includes(toLocalDk(nextDay)))
+        while(holidays.includes(nextDay.toISOString().slice(0,10)))
           nextDay.setDate(nextDay.getDate() + 1);
-        if(toLocalDk(prevDay) === dk) total += 120;
-        if(toLocalDk(nextDay) === dk) total += 120;
+        if(prevDay.toISOString().slice(0,10) === dk) total += 120;
+        if(nextDay.toISOString().slice(0,10) === dk) total += 120;
       } else {
         // 일반 배송: 해당일 240분
         if(startDk === dk) total += 240;
@@ -1800,20 +1737,20 @@ function getUsedSite(dk, site) {
 function getEffectiveOutDate(entry, holidays) {
   // 출고일(시작일)이 휴무면 전날 근무일로
   let d = new Date(entry.startDate);
-  while(holidays.includes(toLocalDk(d))) {
+  while(holidays.includes(d.toISOString().slice(0,10))) {
     d.setDate(d.getDate() - 1);
   }
-  return toLocalDk(d);
+  return d.toISOString().slice(0,10);
 }
 
 function getEffectiveInDate(entry, holidays) {
   // 입고일 = 시작일 + (days-1), 휴무면 다음 근무일로
   let d = new Date(entry.startDate);
   d.setDate(d.getDate() + entry.days - 1);
-  while(holidays.includes(toLocalDk(d))) {
+  while(holidays.includes(d.toISOString().slice(0,10))) {
     d.setDate(d.getDate() + 1);
   }
-  return toLocalDk(d);
+  return d.toISOString().slice(0,10);
 }
 
 // 목록 소요시간 표시용 (원래 날짜 기준)
@@ -1846,7 +1783,7 @@ function calcMinsForLoad(entry, targetDk) {
   // 마지막날 계산 (입고일)
   let lastDate = new Date(startDk);
   lastDate.setDate(lastDate.getDate() + entry.days - 1);
-  const lastDk = toLocalDk(lastDate);
+  const lastDk = lastDate.toISOString().slice(0,10);
   const isLastHoliday = holidays.includes(lastDk);
 
   // 출고 effective 날짜 (시작일이 휴무면 전날)
@@ -1917,7 +1854,7 @@ function renderTriDayPanel() {
   [-1,0,1].forEach(offset => {
     const dd = new Date(d);
     dd.setDate(dd.getDate() + offset);
-    const colDk = toLocalDk(dd);
+    const colDk = dd.toISOString().slice(0,10);
     const label = (dd.getMonth()+1)+'/'+ dd.getDate()+'('+DOW2[dd.getDay()]+')';
     const isHol = holidays.includes(colDk);
     const isTod = offset===0;
@@ -1930,10 +1867,10 @@ function renderTriDayPanel() {
       targetSites.forEach(site => {
         if(!state[startDk]||!state[startDk][site]) return;
         state[startDk][site].entries.forEach((e,ei) => {
-          const diff = Math.round((new Date(colDk+'T12:00:00')-new Date((e.startDate||'')+'T12:00:00'))/86400000);
-          const inDkD = new Date((e.startDate||'')+'T12:00:00');
+          const diff = Math.round((new Date(colDk)-new Date(e.startDate))/86400000);
+          const inDkD = new Date(e.startDate);
           inDkD.setDate(inDkD.getDate()+e.days-1);
-          const inDk = toLocalDk(inDkD);
+          const inDk = inDkD.toISOString().slice(0,10);
           const isOut = diff===0;
           const isIn  = inDk===colDk;
           const isPastOut = e.outDone&&!e.inDone&&isIn;
@@ -2052,7 +1989,7 @@ function openInoutPopup() {
   const cols = [-1, 0, 1].map(offset => {
     const d = new Date(selD);
     d.setDate(d.getDate() + offset);
-    const dk = toLocalDk(d);
+    const dk = d.toISOString().slice(0,10);
     return { dk, d: new Date(d), offset };
   });
 
@@ -2077,7 +2014,7 @@ function openInoutPopup() {
         const outDk   = e.startDate; // 출고일 = 시작일
         const inDate  = new Date(e.startDate);
         inDate.setDate(inDate.getDate() + e.days - 1);
-        const inDk    = toLocalDk(inDate); // 입고일
+        const inDk    = inDate.toISOString().slice(0,10); // 입고일
 
         // 이 entry가 3일 범위와 관련 있는지 판단
         const outInRange = colDks.includes(outDk);
@@ -2405,10 +2342,10 @@ function openEditDatePicker() {
   const picker = document.getElementById('editReturnDatePicker');
   const minDate = new Date(dk);
   minDate.setDate(minDate.getDate() + 1);
-  picker.min = toLocalDk(minDate);
+  picker.min = minDate.toISOString().slice(0,10);
   const maxDate = new Date(dk);
   maxDate.setDate(maxDate.getDate() + 30);
-  picker.max = toLocalDk(maxDate);
+  picker.max = maxDate.toISOString().slice(0,10);
   picker.value = '';
   picker.style.display = 'block';
   picker.focus(); picker.click();
