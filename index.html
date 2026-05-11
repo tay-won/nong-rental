@@ -503,7 +503,6 @@ select:focus{border-color:var(--accent)}
     <div style="display:flex;gap:6px;align-items:center">
       <button onclick="downloadReport()" style="padding:4px 12px;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);border-radius:14px;color:#22c55e;font-family:'Noto Sans KR',sans-serif;font-size:11px;cursor:pointer">📊 엑셀</button>
       <button onclick="openInoutPopup()" style="padding:4px 12px;background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.3);border-radius:14px;color:var(--blue);font-family:'Noto Sans KR',sans-serif;font-size:11px;cursor:pointer">📋 입출고</button>
-      <button onclick="migrateFromGithub()" id="migrateBtn" style="padding:4px 12px;background:rgba(99,102,241,.2);border:1px solid rgba(99,102,241,.4);border-radius:14px;color:var(--accent);font-family:'Noto Sans KR',sans-serif;font-size:11px;cursor:pointer;font-weight:700">🔄 GitHub→Supabase 이전</button>
       <button onclick="clearToken()" style="padding:4px 12px;background:transparent;border:1px solid var(--border);border-radius:14px;color:var(--muted);font-family:'Noto Sans KR',sans-serif;font-size:11px;cursor:pointer">🔒 로그아웃</button>
     </div>
   </div>
@@ -621,38 +620,6 @@ let GH_TOKEN = '';
 const GH_REPO = 'tay-won/nong-rental';
 const GH_API='https://api.github.com/repos/'+GH_REPO+'/contents/data.json';
 
-// Supabase 설정
-const SB_URL = 'https://wddtagovsimavguvlrzr.supabase.co';
-const SB_KEY = 'sb_publishable_7lAcbxdOEZQUGk3ioBMP3w_G7Ejh-uf';
-const SB_API = SB_URL+'/rest/v1/nong_rental';
-
-async function sbLoad() {
-  const res = await fetch(SB_API+'?id=eq.main&select=data', {
-    headers: {
-      'apikey': SB_KEY,
-      'Authorization': 'Bearer '+SB_KEY,
-      'Content-Type': 'application/json'
-    }
-  });
-  if(!res.ok) throw new Error('HTTP '+res.status);
-  const rows = await res.json();
-  return rows.length > 0 ? rows[0].data : null;
-}
-
-async function sbSave(payload) {
-  const res = await fetch(SB_API+'?id=eq.main', {
-    method: 'PATCH',
-    headers: {
-      'apikey': SB_KEY,
-      'Authorization': 'Bearer '+SB_KEY,
-      'Content-Type': 'application/json',
-      'Prefer': 'return=minimal'
-    },
-    body: JSON.stringify({ data: payload, updated_at: new Date().toISOString() })
-  });
-  if(!res.ok) throw new Error('HTTP '+res.status);
-}
-
 // ── 휴무일 관리 ──
 function getHolidays() {
   return JSON.parse(localStorage.getItem('holidays_' + GH_REPO) || '[]');
@@ -752,7 +719,7 @@ let selMachine=null, selHalf=false, selQty=1;
 
 function today(){const d=new Date();d.setHours(0,0,0,0);return d;}
 function getDates(){return Array.from({length:22},(_,i)=>{const d=new Date(today());d.setDate(today().getDate()+dateOffset+i);return d;});}
-function getDkeys(){return getDates().map(d=>d.toISOString().slice(0,10));}
+function getDkeys(){return getDates().map(d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'));}
 function isToday(d){return d.toISOString().slice(0,10)===today().toISOString().slice(0,10);}
 function fmtDate(d){return (d.getMonth()+1)+'/'+d.getDate();}
 
@@ -775,41 +742,77 @@ function setSyncUI(mode,msg){document.getElementById('sdot').className='sdot '+m
 async function loadData(){
   if(!checkToken()) return;
   setSyncUI('saving','불러오는 중…');
-  document.getElementById('loadingOverlay').classList.remove('hidden');
+  // 토큰 모달이 열려있으면 로딩 오버레이 표시 안 함
+  const tokenModalOpen = !document.getElementById('tokenModal').classList.contains('hidden');
+  if(!tokenModalOpen) document.getElementById('loadingOverlay').classList.remove('hidden');
   try{
-    const raw = await sbLoad();
-    if(!raw || Object.keys(raw).length === 0){
+    const res = await fetch(GH_API+'?t='+Date.now(), {
+      headers: {
+        Authorization: 'token '+GH_TOKEN,
+        Accept: 'application/vnd.github.v3+json'
+      }
+    });
+    if(res.status === 404){
       initState();
+      ghSha = null;
       setSyncUI('ok','첫 실행 — 입력 후 자동 저장됩니다');
-    } else {
+    } else if(res.ok){
+      const json = await res.json();
+      ghSha = json.sha;
+      // base64 디코딩
+      const jsonStr = decodeURIComponent(escape(atob(json.content.replace(/\n/g,''))));
+      const raw = JSON.parse(jsonStr);
+      // 새 포맷(state+holidays) vs 구 포맷 호환
       let decoded, savedHolidays = [];
-      if(raw.state && typeof raw.state === 'object'){
+      if(raw && raw.state && typeof raw.state === 'object') {
         decoded = raw.state;
         savedHolidays = raw.holidays || [];
-      } else {
+      } else if(raw && typeof raw === 'object') {
         decoded = raw;
+      } else {
+        decoded = {};
       }
+
+      // 휴무일 복원
       if(savedHolidays.length > 0) saveHolidays(savedHolidays);
+      // 우천 복원
       if(raw.rainy && raw.rainy.length > 0) saveRainy(raw.rainy);
+      // 취소 이력 복원
       if(raw.cancelled && Array.isArray(raw.cancelled)) state._cancelled = raw.cancelled;
+
+      // 빈 상태로 초기화 후 복원
       initState();
       Object.keys(decoded).forEach(dk => {
         ensureDay(dk);
         ['본소','북부'].forEach(st => {
           if(!decoded[dk] || !decoded[dk][st]) return;
           const src = decoded[dk][st];
-          if(src.workers) Object.keys(src.workers).forEach(wid => { state[dk][st].workers[wid] = src.workers[wid]; });
-          if(Array.isArray(src.entries)) state[dk][st].entries = src.entries;
-          if(src.delivery !== undefined) state[dk][st].delivery = src.delivery;
+          // workers 복원
+          if(src.workers){
+            Object.keys(src.workers).forEach(wid => {
+              state[dk][st].workers[wid] = src.workers[wid];
+            });
+          }
+          // entries 복원
+          if(Array.isArray(src.entries)){
+            state[dk][st].entries = src.entries;
+          }
+          // delivery 복원
+          if(src.delivery !== undefined){
+            state[dk][st].delivery = src.delivery;
+          }
         });
       });
       setSyncUI('ok','동기화 완료 · '+new Date().toLocaleTimeString('ko-KR'));
+    } else {
+      throw new Error('HTTP '+res.status);
     }
   } catch(e){
     setSyncUI('err','불러오기 실패: '+e.message);
   } finally {
     document.getElementById('loadingOverlay').classList.add('hidden');
     renderAll();
+    // 레이아웃 완성 후 3일 컬럼 재렌더 (높이 계산)
     setTimeout(() => renderTriDayPanel(), 300);
   }
 }
@@ -1002,41 +1005,8 @@ function downloadReport(){
 }
 
 
-let isSaving = false;
-let pendingSave = false;
-
 function scheduleSave(){
-  if(!GH_TOKEN) return;
-  if(saveTimer) clearTimeout(saveTimer);
-  setSyncUI('saving','변경됨…');
-  saveTimer = setTimeout(doSave, 3000);
-}
-
-async function doSave(){
-  if(isSaving){ pendingSave = true; return; }
-  isSaving = true;
-  pendingSave = false;
-  await saveData();
-  isSaving = false;
-  if(pendingSave){ pendingSave = false; scheduleSave(); }
-}
-
-async function saveData(){
-  if(!GH_TOKEN){ setSyncUI('idle','로그인 필요'); return; }
-  setSyncUI('saving','저장 중…');
-  const savePayload = {
-    state: JSON.parse(JSON.stringify(state)),
-    holidays: getHolidays(),
-    rainy: getRainy(),
-    cancelled: state._cancelled || []
-  };
-  try{
-    await sbSave(savePayload);
-    setSyncUI('ok','저장 완료 · '+new Date().toLocaleTimeString('ko-KR'));
-  } catch(e){
-    setSyncUI('err','❌ 저장 실패: '+e.message);
-  }
-}
+  if(!GH_TOKEN) return;if(saveTimer)clearTimeout(saveTimer);setSyncUI('saving','변경됨…');saveTimer=setTimeout(saveData,1000);}
 
 // ─── 계산 ───
 function getAvailSite(dk,st){return Object.values(state[dk][st].workers).reduce((a,b)=>a+b,0);}
@@ -2308,29 +2278,6 @@ function formatLocalDate(dateStr) {
   return y+'년 '+parseInt(m)+'월 '+parseInt(d)+'일';
 }
 
-
-// GitHub → Supabase 데이터 이전 (1회용)
-async function migrateFromGithub() {
-  if(!confirm('GitHub data.json의 데이터를 Supabase로 이전합니다.\n기존 Supabase 데이터는 덮어씌워집니다.\n계속하시겠습니까?')) return;
-  const btn = document.getElementById('migrateBtn');
-  if(btn) btn.textContent = '이전 중…';
-  try {
-    const res = await fetch(GH_API+'?t='+Date.now(), {
-      headers: { Authorization: 'token '+GH_TOKEN, Accept: 'application/vnd.github.v3+json' }
-    });
-    if(!res.ok) throw new Error('GitHub 읽기 실패');
-    const json = await res.json();
-    const jsonStr = decodeURIComponent(escape(atob(json.content.replace(/\n/g,''))));
-    const raw = JSON.parse(jsonStr);
-    await sbSave(raw);
-    if(btn) btn.style.display = 'none';
-    alert('✅ Supabase 이전 완료! 페이지를 새로고침합니다.');
-    location.reload();
-  } catch(e) {
-    alert('❌ 이전 실패: '+e.message);
-    if(btn) btn.textContent = '🔄 GitHub→Supabase 이전';
-  }
-}
 
 function openEditModal(startDk, site, idx) {
   const e = state[startDk][site].entries[idx];
