@@ -1538,8 +1538,9 @@ function filterDD() {
       : status === '출고예정'
       ? '<span style="margin-left:6px;font-size:9px;padding:1px 5px;border-radius:4px;background:rgba(96,165,250,.2);color:var(--blue);font-weight:700">📦 출고예정</span>'
       : '';
+    const snBadge = `<span style="font-size:10px;font-weight:900;margin-right:4px;color:${e.site==='본소'?'var(--본소)':'var(--북부)'}">${e.site==='본소'?'S':'N'}</span>`;
     return `<div class="dd-item" onclick='selectEquip(${JSON.stringify(e)})'>
-      <span class="dd-name">${e.n} ${statusBadge}</span>
+      <span class="dd-name">${snBadge}${e.n} ${statusBadge}</span>
       <span class="dd-mins" style="font-size:10px;color:var(--muted)">${e.s}</span>
     </div>`;
   }).join('') || '<div style="padding:12px;text-align:center;color:var(--muted);font-size:12px">검색 결과 없음</div>';
@@ -2417,8 +2418,9 @@ function filterEditDD() {
       : status === '출고예정'
       ? '<span style="margin-left:6px;font-size:9px;padding:1px 5px;border-radius:4px;background:rgba(96,165,250,.2);color:var(--blue);font-weight:700">📦 출고예정</span>'
       : '';
+    const snBadge2 = `<span style="font-size:10px;font-weight:900;margin-right:4px;color:${e.site==='본소'?'var(--본소)':'var(--북부)'}">${e.site==='본소'?'S':'N'}</span>`;
     return `<div class="dd-item" onclick='selectEditEquip(${JSON.stringify(e)})'>
-      <span class="dd-name">${e.n} ${statusBadge}</span>
+      <span class="dd-name">${snBadge2}${e.n} ${statusBadge}</span>
       <span class="dd-mins" style="font-size:10px;color:var(--muted)">${e.s}</span>
     </div>`;
   }).join('') || '<div style="padding:12px;text-align:center;color:var(--muted);font-size:12px">검색 결과 없음</div>';
