@@ -2452,13 +2452,9 @@ function saveEdit() {
   // input[type=date].value는 항상 YYYY-MM-DD 형식 반환
   // 빈 값이거나 원본과 같으면 startDk 사용
   let newStartDate = startDk;
-  if(sdVal && sdVal !== startDk) {
-    // 브라우저가 UTC로 파싱해서 하루 빠지므로 +1일 보정
-    const parts = sdVal.split('-').map(Number);
-    const corrected = new Date(parts[0], parts[1]-1, parts[2]+1);
-    newStartDate = corrected.getFullYear()+'-'
-      +String(corrected.getMonth()+1).padStart(2,'0')+'-'
-      +String(corrected.getDate()).padStart(2,'0');
+  if(sdVal && sdVal.length === 10) {
+    // sdVal은 YYYY-MM-DD 문자열 그대로 사용 (로컬 기준이므로 보정 불필요)
+    newStartDate = sdVal;
   }
 
   entry.equipName  = editEquip.n;
