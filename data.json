@@ -2302,7 +2302,7 @@
             "equipName": "퇴비살포기(중)-01",
             "equipSpec": "HM-3000/3.5TON-퇴비",
             "personName": "기술보급과",
-            "days": 4,
+            "days": 3,
             "startDate": "2026-05-08",
             "outDone": true,
             "inDone": false,
