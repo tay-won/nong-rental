@@ -2230,7 +2230,14 @@ function openEditModal(startDk, site, idx) {
 
   // 시작일 - 문자열 직접 설정 (YYYY-MM-DD 그대로)
   const sdEl = document.getElementById('editStartDate');
-  if(sdEl) sdEl.value = (e.startDate || editTarget.startDk).slice(0, 10);
+  if(sdEl) {
+    // T12:00:00 추가로 UTC 파싱 오프셋 방지
+    const startDkStr = (e.startDate || editTarget.startDk).slice(0, 10);
+    sdEl.value = startDkStr;
+    // input[type=date]가 UTC로 파싱하는 브라우저 대응: valueAsDate로 직접 설정
+    const [_y,_m,_d] = startDkStr.split('-').map(Number);
+    sdEl.valueAsDate = new Date(Date.UTC(_y, _m-1, _d));
+  }
 
   // 임대기간
   editDays = e.days;
@@ -2453,8 +2460,9 @@ function saveEdit() {
   // 빈 값이거나 원본과 같으면 startDk 사용
   let newStartDate = startDk;
   if(sdVal && sdVal.length === 10) {
-    // sdVal은 YYYY-MM-DD 문자열 그대로 사용 (로컬 기준이므로 보정 불필요)
-    newStartDate = sdVal;
+    // valueAsDate는 UTC 기준이므로 UTC 날짜 그대로 문자열로 사용
+    const d = new Date(sdVal + 'T00:00:00Z');
+    newStartDate = d.getUTCFullYear()+'-'+String(d.getUTCMonth()+1).padStart(2,'0')+'-'+String(d.getUTCDate()).padStart(2,'0');
   }
 
   entry.equipName  = editEquip.n;
