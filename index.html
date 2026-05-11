@@ -1171,7 +1171,7 @@ function renderInoutCols() {
           ${curSite==='전체'?`<span style="font-size:9px;padding:0 3px;border-radius:3px;background:rgba(100,116,139,.2);color:var(--muted)">${t.site}</span>`:''}
         </div>
         <div style="display:flex;align-items:center;gap:3px;flex-wrap:wrap">
-          <span style="color:var(--dim);font-size:10px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${e.equipName}${e.delivery?' 🚚':''}</span>
+          <span style="color:var(--dim);font-size:10px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${e.site==='본소'?'<span style="font-size:9px;font-weight:900;color:var(--본소);margin-right:3px">S</span>':'<span style="font-size:9px;font-weight:900;color:var(--북부);margin-right:3px">N</span>'}${e.equipName}${e.delivery?' 🚚':''}</span>
         </div>
         <div style="display:flex;gap:4px;margin-top:3px">
           ${t.needOut?`<label style="display:inline-flex;align-items:center;gap:2px;cursor:pointer;font-size:10px">
@@ -1357,7 +1357,7 @@ function renderSelList(){
         <span class="sel-cb">입고</span>
       </label>` : `<span style="min-width:38px"></span>`}
       <span class="sel-days" style="flex-shrink:0">${daysLabel}</span>
-      <span class="sel-equip" style="flex:1">${e.equipName}${e.delivery?' 🚚':''}</span>
+      <span class="sel-equip" style="flex:1">${st==='본소'?'<span style="font-size:9px;font-weight:900;color:var(--본소);margin-right:3px">S</span>':'<span style="font-size:9px;font-weight:900;color:var(--북부);margin-right:3px">N</span>'}${e.equipName}${e.delivery?' 🚚':''}</span>
       ${curSite==='전체'?`<span style="font-size:9px;padding:1px 5px;border-radius:4px;background:rgba(100,116,139,.2);color:var(--muted);flex-shrink:0">${st}</span>`:''}
       <span class="sel-mins">${totalMins}분</span>
       <button class="btn-edit" onclick="openEditModal('${startDk}','${st}',${idx2})" title="수정">✏️</button>
@@ -1905,7 +1905,7 @@ function renderTriDayPanel() {
           ${r.isOut?`<label style="display:inline-flex;align-items:center;gap:2px;cursor:pointer;flex-shrink:0"><input type="checkbox" ${r.e.outDone?'checked':''} onchange="toggleEntryCheckInline('${r.startDk}','${r.site}',${r.ei},'out',this.checked)" style="width:13px;height:13px"><span style="color:#60a5fa;font-size:10px">출고</span></label>`:'<span style="width:40px"></span>'}
           ${r.isIn?`<label style="display:inline-flex;align-items:center;gap:2px;cursor:pointer;flex-shrink:0"><input type="checkbox" ${r.e.inDone?'checked':''} onchange="toggleEntryCheckInline('${r.startDk}','${r.site}',${r.ei},'in',this.checked)" style="width:13px;height:13px"><span style="color:#34d399;font-size:10px">입고</span></label>`:'<span style="width:40px"></span>'}
           <span style="color:#64748b;font-size:10px;flex-shrink:0">${r.e.days}일</span>
-          <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#e2e8f0;font-size:11px">${r.e.equipName||''}${r.e.delivery?' 🚚':''}</span>
+          <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#e2e8f0;font-size:11px">${r.site==='본소'?'<span style="font-size:9px;font-weight:900;color:var(--본소);margin-right:3px">S</span>':'<span style="font-size:9px;font-weight:900;color:var(--북부);margin-right:3px">N</span>'}${r.e.equipName||''}${r.e.delivery?' 🚚':''}</span>
           <span style="color:#64748b;font-size:10px;flex-shrink:0">${calcMinsForDate(r.e,colDk)}분</span>
           <button onclick="openEditModal('${r.startDk}','${r.site}',${r.ei})" style="width:18px;height:18px;background:transparent;border:1px solid #334155;border-radius:4px;color:#94a3b8;font-size:10px;cursor:pointer;flex-shrink:0;padding:0">✏️</button>
           <button onclick="delEntry('${r.site}',${r.ei},'${r.startDk}')" style="width:18px;height:18px;background:transparent;border:1px solid #334155;border-radius:4px;color:#94a3b8;font-size:11px;cursor:pointer;flex-shrink:0;padding:0">✕</button>
