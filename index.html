@@ -620,38 +620,6 @@ let GH_TOKEN = '';
 const GH_REPO = 'tay-won/nong-rental';
 const GH_API='https://api.github.com/repos/'+GH_REPO+'/contents/data.json';
 
-// Supabase 설정
-const SB_URL = 'https://wddtagovsimavguvlrzr.supabase.co';
-const SB_KEY = 'sb_publishable_7lAcbxdOEZQUGk3ioBMP3w_G7Ejh-uf';
-const SB_API = SB_URL+'/rest/v1/nong_rental';
-
-async function sbLoad() {
-  const res = await fetch(SB_API+'?id=eq.main&select=data', {
-    headers: {
-      'apikey': SB_KEY,
-      'Authorization': 'Bearer '+SB_KEY,
-      'Content-Type': 'application/json'
-    }
-  });
-  if(!res.ok) throw new Error('HTTP '+res.status);
-  const rows = await res.json();
-  return rows.length > 0 ? rows[0].data : null;
-}
-
-async function sbSave(payload) {
-  const res = await fetch(SB_API+'?id=eq.main', {
-    method: 'PATCH',
-    headers: {
-      'apikey': SB_KEY,
-      'Authorization': 'Bearer '+SB_KEY,
-      'Content-Type': 'application/json',
-      'Prefer': 'return=minimal'
-    },
-    body: JSON.stringify({ data: payload, updated_at: new Date().toISOString() })
-  });
-  if(!res.ok) throw new Error('HTTP '+res.status);
-}
-
 // ── 휴무일 관리 ──
 function getHolidays() {
   return JSON.parse(localStorage.getItem('holidays_' + GH_REPO) || '[]');
@@ -751,7 +719,7 @@ let selMachine=null, selHalf=false, selQty=1;
 
 function today(){const d=new Date();d.setHours(0,0,0,0);return d;}
 function getDates(){return Array.from({length:22},(_,i)=>{const d=new Date(today());d.setDate(today().getDate()+dateOffset+i);return d;});}
-function getDkeys(){return getDates().map(d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'));}
+function getDkeys(){return getDates().map(d=>toLocalDk(d));}
 function toLocalDk(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function isToday(d){return toLocalDk(d)===toLocalDk(today());}
 function fmtDate(d){return (d.getMonth()+1)+'/'+d.getDate();}
@@ -775,80 +743,148 @@ function setSyncUI(mode,msg){document.getElementById('sdot').className='sdot '+m
 async function loadData(){
   if(!checkToken()) return;
   setSyncUI('saving','불러오는 중…');
-  document.getElementById('loadingOverlay').classList.remove('hidden');
+  // 토큰 모달이 열려있으면 로딩 오버레이 표시 안 함
+  const tokenModalOpen = !document.getElementById('tokenModal').classList.contains('hidden');
+  if(!tokenModalOpen) document.getElementById('loadingOverlay').classList.remove('hidden');
   try{
-    const raw = await sbLoad();
-    if(!raw || Object.keys(raw).length === 0){
+    const res = await fetch(GH_API+'?t='+Date.now(), {
+      headers: {
+        Authorization: 'token '+GH_TOKEN,
+        Accept: 'application/vnd.github.v3+json'
+      }
+    });
+    if(res.status === 404){
       initState();
+      ghSha = null;
       setSyncUI('ok','첫 실행 — 입력 후 자동 저장됩니다');
-    } else {
+    } else if(res.ok){
+      const json = await res.json();
+      ghSha = json.sha;
+      // base64 디코딩
+      const jsonStr = decodeURIComponent(escape(atob(json.content.replace(/\n/g,''))));
+      const raw = JSON.parse(jsonStr);
+      // 새 포맷(state+holidays) vs 구 포맷 호환
       let decoded, savedHolidays = [];
-      if(raw.state && typeof raw.state === 'object'){
+      if(raw && raw.state && typeof raw.state === 'object') {
         decoded = raw.state;
         savedHolidays = raw.holidays || [];
-      } else {
+      } else if(raw && typeof raw === 'object') {
         decoded = raw;
+      } else {
+        decoded = {};
       }
+
+      // 휴무일 복원
       if(savedHolidays.length > 0) saveHolidays(savedHolidays);
+      // 우천 복원
       if(raw.rainy && raw.rainy.length > 0) saveRainy(raw.rainy);
+      // 취소 이력 복원
       if(raw.cancelled && Array.isArray(raw.cancelled)) state._cancelled = raw.cancelled;
+
+      // 빈 상태로 초기화 후 복원
       initState();
       Object.keys(decoded).forEach(dk => {
         ensureDay(dk);
         ['본소','북부'].forEach(st => {
           if(!decoded[dk] || !decoded[dk][st]) return;
           const src = decoded[dk][st];
-          if(src.workers) Object.keys(src.workers).forEach(wid => { state[dk][st].workers[wid] = src.workers[wid]; });
-          if(Array.isArray(src.entries)) state[dk][st].entries = src.entries;
-          if(src.delivery !== undefined) state[dk][st].delivery = src.delivery;
+          // workers 복원
+          if(src.workers){
+            Object.keys(src.workers).forEach(wid => {
+              state[dk][st].workers[wid] = src.workers[wid];
+            });
+          }
+          // entries 복원
+          if(Array.isArray(src.entries)){
+            state[dk][st].entries = src.entries;
+          }
+          // delivery 복원
+          if(src.delivery !== undefined){
+            state[dk][st].delivery = src.delivery;
+          }
         });
       });
       setSyncUI('ok','동기화 완료 · '+new Date().toLocaleTimeString('ko-KR'));
+    } else {
+      throw new Error('HTTP '+res.status);
     }
   } catch(e){
     setSyncUI('err','불러오기 실패: '+e.message);
   } finally {
     document.getElementById('loadingOverlay').classList.add('hidden');
     renderAll();
+    // 레이아웃 완성 후 3일 컬럼 재렌더 (높이 계산)
     setTimeout(() => renderTriDayPanel(), 300);
   }
 }
 
-let isSaving = false;
-let pendingSave = false;
-
-function scheduleSave(){
-  if(!GH_TOKEN) return;
-  if(saveTimer) clearTimeout(saveTimer);
-  setSyncUI('saving','변경됨…');
-  saveTimer = setTimeout(doSave, 3000);
-}
-
-async function doSave(){
-  if(isSaving){ pendingSave = true; return; }
-  isSaving = true;
-  pendingSave = false;
-  await saveData();
-  isSaving = false;
-  if(pendingSave){ pendingSave = false; scheduleSave(); }
-}
-
 async function saveData(){
-  if(!GH_TOKEN){ setSyncUI('idle','로그인 필요'); return; }
+  // 토큰 없으면 저장 안 함 (로그인 전 데이터 덮어쓰기 방지)
+  if(!GH_TOKEN) { setSyncUI('idle','로그인 필요'); return; }
   setSyncUI('saving','저장 중…');
+  // 범위 제한 없이 전체 state 저장 + 휴무일 포함
+  const trimmed = JSON.parse(JSON.stringify(state));
   const savePayload = {
-    state: JSON.parse(JSON.stringify(state)),
+    state: trimmed,
     holidays: getHolidays(),
     rainy: getRainy(),
     cancelled: state._cancelled || []
   };
+  const jsonStr = JSON.stringify(savePayload, null, 2);
+  const content = btoa(unescape(encodeURIComponent(jsonStr)));
+  const body = {
+    message: 'update '+new Date().toISOString(),
+    content: content,
+    ...(ghSha ? {sha: ghSha} : {})
+  };
   try{
-    await sbSave(savePayload);
+    const res = await fetch(GH_API, {
+      method: 'PUT',
+      headers: {
+        Authorization: 'token '+GH_TOKEN,
+        Accept: 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const json = await res.json();
+    ghSha = json.content.sha;
     setSyncUI('ok','저장 완료 · '+new Date().toLocaleTimeString('ko-KR'));
   } catch(e){
-    setSyncUI('err','❌ 저장 실패: '+e.message);
+    setSyncUI('err','저장 실패: '+e.message);
+    // SHA 충돌(409)이면 최신 SHA 받아서 재시도
+    if(e.message.includes('409')) {
+      try {
+        const r2 = await fetch(GH_API+'?t='+Date.now(), {
+          headers: { Authorization: 'token '+GH_TOKEN, Accept: 'application/vnd.github.v3+json' }
+        });
+        const j2 = await r2.json();
+        ghSha = j2.sha;
+        // 재시도
+        body.sha = ghSha;
+        const r3 = await fetch(GH_API, {
+          method: 'PUT',
+          headers: { Authorization: 'token '+GH_TOKEN, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        if(r3.ok) {
+          const j3 = await r3.json();
+          ghSha = j3.content.sha;
+          setSyncUI('ok','저장 완료(재시도) · '+new Date().toLocaleTimeString('ko-KR'));
+        }
+      } catch(e2) {
+        setSyncUI('err','저장 실패(재시도): '+e2.message);
+      }
+    } else {
+      // 저장 실패 시 3초 후 재시도
+      setTimeout(() => saveData(), 3000);
+    }
   }
 }
+
+
+// ═══ 엑셀 리포트 다운로드 ═══
 function downloadReport(){
   const DATES = getDates();
   const DKEYS = getDkeys();
@@ -970,8 +1006,6 @@ function downloadReport(){
 }
 
 
-function scheduleSave(){
-  if(!GH_TOKEN) return;if(saveTimer)clearTimeout(saveTimer);setSyncUI('saving','변경됨…');saveTimer=setTimeout(saveData,1000);}
 
 // ─── 계산 ───
 function getAvailSite(dk,st){return Object.values(state[dk][st].workers).reduce((a,b)=>a+b,0);}
@@ -1019,11 +1053,11 @@ function openDatePicker() {
   // 최소 날짜: 시작일 + 4일 (4일 이상만)
   const minDate = new Date(dk);
   minDate.setDate(minDate.getDate() + 1);
-  picker.min = minDate.getFullYear()+'-'+String(minDate.getMonth()+1).padStart(2,'0')+'-'+String(minDate.getDate()).padStart(2,'0');
+  picker.min = toLocalDk(minDate);
   // 최대 날짜: 시작일 + 30일
   const maxDate = new Date(dk);
   maxDate.setDate(maxDate.getDate() + 30);
-  picker.max = maxDate.getFullYear()+'-'+String(maxDate.getMonth()+1).padStart(2,'0')+'-'+String(maxDate.getDate()).padStart(2,'0');
+  picker.max = toLocalDk(maxDate);
   picker.value = '';
   picker.style.display = 'block';
   picker.focus();
@@ -1112,7 +1146,7 @@ function getEquipStatus(equipName, siteName) {
       // 입고일 계산 (원래 스케줄 기준)
       const inDate = new Date(e.startDate);
       inDate.setDate(inDate.getDate() + e.days - 1);
-      const inDk = inDate.getFullYear()+'-'+String(inDate.getMonth()+1).padStart(2,'0')+'-'+String(inDate.getDate()).padStart(2,'0');
+      const inDk = toLocalDk(inDate);
 
       // 정비중: 오늘이 입고일 (실제 입고 여부와 무관)
       if(inDk === dk) return '정비중';
@@ -1144,7 +1178,7 @@ function renderInoutCols() {
     // 날짜 계산 (탭 범위 밖이어도 실제 날짜 사용)
     const d = new Date(DATES[idx]);
     d.setDate(d.getDate() + offset);
-    const dk = d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    const dk = toLocalDk(d);
 
     const isToday2 = dk === toLocalDk(today());
     const isHol = holidays.includes(dk);
@@ -1159,7 +1193,7 @@ function renderInoutCols() {
         state[startDk][site].entries.forEach(e => {
           const inDate = new Date(e.startDate);
           inDate.setDate(inDate.getDate() + e.days - 1);
-          const inDk  = inDate.getFullYear()+'-'+String(inDate.getMonth()+1).padStart(2,'0')+'-'+String(inDate.getDate()).padStart(2,'0');
+          const inDk  = toLocalDk(inDate);
           const outDk = e.startDate;
 
           const needOut = outDk === dk && !e.outDone;
@@ -1320,8 +1354,8 @@ function renderSelList(){
     Object.keys(state).forEach(startDk => {
       if(!state[startDk]||!state[startDk][st]) return;
       state[startDk][st].entries.forEach((e, idx2) => {
-        const start   = new Date((e.startDate||'')+'T12:00:00');
-        const target  = new Date(dk+'T12:00:00');
+        const start   = new Date(e.startDate);
+        const target  = new Date(dk);
         const diff    = Math.round((target - start) / 86400000);
         const lastDay = e.days - 1;
 
@@ -1511,7 +1545,7 @@ if(_savedAuth) {
 }
 
 document.getElementById('headerSub')&&(document.getElementById('headerSub').textContent='파주시 농업기계임대사업소 · '+t.getFullYear()+'년 '+(t.getMonth()+1)+'월 '+t.getDate()+'일');
-// loadData는 위 if(_savedAuth) 블록에서만 호출
+loadData();
 
 
 // ══════════════════════════════════════════════
@@ -1607,11 +1641,11 @@ function openDatePicker() {
   // 최소 날짜: 시작일 + 4일 (4일 이상만)
   const minDate = new Date(dk);
   minDate.setDate(minDate.getDate() + 1);
-  picker.min = minDate.getFullYear()+'-'+String(minDate.getMonth()+1).padStart(2,'0')+'-'+String(minDate.getDate()).padStart(2,'0');
+  picker.min = toLocalDk(minDate);
   // 최대 날짜: 시작일 + 30일
   const maxDate = new Date(dk);
   maxDate.setDate(maxDate.getDate() + 30);
-  picker.max = maxDate.getFullYear()+'-'+String(maxDate.getMonth()+1).padStart(2,'0')+'-'+String(maxDate.getDate()).padStart(2,'0');
+  picker.max = toLocalDk(maxDate);
   picker.value = '';
   picker.style.display = 'block';
   picker.focus();
@@ -1705,9 +1739,9 @@ function addEntry() {
 
   // 기간에 걸친 날짜들도 ensure
   for (let i = 1; i < selDays; i++) {
-    const d = new Date(startDate);
+    const d = new Date(startDate+'T12:00:00');
     d.setDate(d.getDate() + i);
-    const dki = d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    const dki = toLocalDk(d);
     ensureDay(dki);
   }
 
@@ -1746,14 +1780,14 @@ function getUsedSite(dk, site) {
         // 휴무일 배송: 전날 120분 + 다음날 120분
         let prevDay = new Date(startDk);
         prevDay.setDate(prevDay.getDate() - 1);
-        while(holidays.includes(prevDay.getFullYear()+'-'+String(prevDay.getMonth()+1).padStart(2,'0')+'-'+String(prevDay.getDate()).padStart(2,'0')))
+        while(holidays.includes(toLocalDk(prevDay)))
           prevDay.setDate(prevDay.getDate() - 1);
         let nextDay = new Date(startDk);
         nextDay.setDate(nextDay.getDate() + 1);
-        while(holidays.includes(nextDay.getFullYear()+'-'+String(nextDay.getMonth()+1).padStart(2,'0')+'-'+String(nextDay.getDate()).padStart(2,'0')))
+        while(holidays.includes(toLocalDk(nextDay)))
           nextDay.setDate(nextDay.getDate() + 1);
-        if(prevDay.getFullYear()+'-'+String(prevDay.getMonth()+1).padStart(2,'0')+'-'+String(prevDay.getDate()).padStart(2,'0') === dk) total += 120;
-        if(nextDay.getFullYear()+'-'+String(nextDay.getMonth()+1).padStart(2,'0')+'-'+String(nextDay.getDate()).padStart(2,'0') === dk) total += 120;
+        if(toLocalDk(prevDay) === dk) total += 120;
+        if(toLocalDk(nextDay) === dk) total += 120;
       } else {
         // 일반 배송: 해당일 240분
         if(startDk === dk) total += 240;
@@ -1766,20 +1800,20 @@ function getUsedSite(dk, site) {
 function getEffectiveOutDate(entry, holidays) {
   // 출고일(시작일)이 휴무면 전날 근무일로
   let d = new Date(entry.startDate);
-  while(holidays.includes(d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'))) {
+  while(holidays.includes(toLocalDk(d))) {
     d.setDate(d.getDate() - 1);
   }
-  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  return toLocalDk(d);
 }
 
 function getEffectiveInDate(entry, holidays) {
   // 입고일 = 시작일 + (days-1), 휴무면 다음 근무일로
   let d = new Date(entry.startDate);
   d.setDate(d.getDate() + entry.days - 1);
-  while(holidays.includes(d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'))) {
+  while(holidays.includes(toLocalDk(d))) {
     d.setDate(d.getDate() + 1);
   }
-  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  return toLocalDk(d);
 }
 
 // 목록 소요시간 표시용 (원래 날짜 기준)
@@ -1812,7 +1846,7 @@ function calcMinsForLoad(entry, targetDk) {
   // 마지막날 계산 (입고일)
   let lastDate = new Date(startDk);
   lastDate.setDate(lastDate.getDate() + entry.days - 1);
-  const lastDk = lastDate.getFullYear()+'-'+String(lastDate.getMonth()+1).padStart(2,'0')+'-'+String(lastDate.getDate()).padStart(2,'0');
+  const lastDk = toLocalDk(lastDate);
   const isLastHoliday = holidays.includes(lastDk);
 
   // 출고 effective 날짜 (시작일이 휴무면 전날)
@@ -1883,7 +1917,7 @@ function renderTriDayPanel() {
   [-1,0,1].forEach(offset => {
     const dd = new Date(d);
     dd.setDate(dd.getDate() + offset);
-    const colDk = dd.getFullYear()+'-'+String(dd.getMonth()+1).padStart(2,'0')+'-'+String(dd.getDate()).padStart(2,'0');
+    const colDk = toLocalDk(dd);
     const label = (dd.getMonth()+1)+'/'+ dd.getDate()+'('+DOW2[dd.getDay()]+')';
     const isHol = holidays.includes(colDk);
     const isTod = offset===0;
@@ -1899,7 +1933,7 @@ function renderTriDayPanel() {
           const diff = Math.round((new Date(colDk+'T12:00:00')-new Date((e.startDate||'')+'T12:00:00'))/86400000);
           const inDkD = new Date((e.startDate||'')+'T12:00:00');
           inDkD.setDate(inDkD.getDate()+e.days-1);
-          const inDk = inDkD.getFullYear()+'-'+String(inDkD.getMonth()+1).padStart(2,'0')+'-'+String(inDkD.getDate()).padStart(2,'0');
+          const inDk = toLocalDk(inDkD);
           const isOut = diff===0;
           const isIn  = inDk===colDk;
           const isPastOut = e.outDone&&!e.inDone&&isIn;
@@ -2018,7 +2052,7 @@ function openInoutPopup() {
   const cols = [-1, 0, 1].map(offset => {
     const d = new Date(selD);
     d.setDate(d.getDate() + offset);
-    const dk = d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    const dk = toLocalDk(d);
     return { dk, d: new Date(d), offset };
   });
 
@@ -2039,11 +2073,11 @@ function openInoutPopup() {
     targetSites.forEach(site => {
       if(!state[startDk]||!state[startDk][site]) return;
       state[startDk][site].entries.forEach(e => {
-        const start   = new Date((e.startDate||'')+'T12:00:00');
+        const start   = new Date(e.startDate);
         const outDk   = e.startDate; // 출고일 = 시작일
-        const inDate  = new Date((e.startDate||'')+'T12:00:00');
+        const inDate  = new Date(e.startDate);
         inDate.setDate(inDate.getDate() + e.days - 1);
-        const inDk    = inDate.getFullYear()+'-'+String(inDate.getMonth()+1).padStart(2,'0')+'-'+String(inDate.getDate()).padStart(2,'0'); // 입고일
+        const inDk    = toLocalDk(inDate); // 입고일
 
         // 이 entry가 3일 범위와 관련 있는지 판단
         const outInRange = colDks.includes(outDk);
@@ -2371,10 +2405,10 @@ function openEditDatePicker() {
   const picker = document.getElementById('editReturnDatePicker');
   const minDate = new Date(dk);
   minDate.setDate(minDate.getDate() + 1);
-  picker.min = minDate.getFullYear()+'-'+String(minDate.getMonth()+1).padStart(2,'0')+'-'+String(minDate.getDate()).padStart(2,'0');
+  picker.min = toLocalDk(minDate);
   const maxDate = new Date(dk);
   maxDate.setDate(maxDate.getDate() + 30);
-  picker.max = maxDate.getFullYear()+'-'+String(maxDate.getMonth()+1).padStart(2,'0')+'-'+String(maxDate.getDate()).padStart(2,'0');
+  picker.max = toLocalDk(maxDate);
   picker.value = '';
   picker.style.display = 'block';
   picker.focus(); picker.click();
