@@ -2235,9 +2235,12 @@ function openEditModal(startDk, site, idx) {
 
   // 시작일 - 문자열 직접 설정 (YYYY-MM-DD 그대로)
   const startDkStr = (e.startDate || editTarget.startDk).slice(0, 10);
-  document.getElementById('editStartDate').value = startDkStr;
+  // 저장된 날짜는 -1일이므로 표시할 때 +1일
   const [_ey,_em,_ed] = startDkStr.split('-').map(Number);
-  document.getElementById('editStartDateDisplay').textContent = _ey+'년 '+_em+'월 '+_ed+'일';
+  const _dispDate = new Date(_ey, _em-1, _ed+1);
+  const _dispStr = _dispDate.getFullYear()+'-'+String(_dispDate.getMonth()+1).padStart(2,'0')+'-'+String(_dispDate.getDate()).padStart(2,'0');
+  document.getElementById('editStartDate').value = _dispStr;
+  document.getElementById('editStartDateDisplay').textContent = _dispDate.getFullYear()+'년 '+(_dispDate.getMonth()+1)+'월 '+_dispDate.getDate()+'일';
 
   // 임대기간
   editDays = e.days;
@@ -2464,7 +2467,13 @@ function saveEdit() {
   const deliveryMins = editDelivery ? 240 : 0;
   const sdEl2 = document.getElementById('editStartDate');
   const sdVal = sdEl2 ? sdEl2.value : '';
-  let newStartDate = (sdVal && sdVal.length === 10) ? sdVal : startDk;
+  // 표시된 날짜는 +1일이므로 저장할 때 -1일
+  let newStartDate = startDk;
+  if(sdVal && sdVal.length === 10) {
+    const [_sy,_sm,_sd] = sdVal.split('-').map(Number);
+    const _saveDate = new Date(_sy, _sm-1, _sd-1);
+    newStartDate = _saveDate.getFullYear()+'-'+String(_saveDate.getMonth()+1).padStart(2,'0')+'-'+String(_saveDate.getDate()).padStart(2,'0');
+  }
 
   entry.equipName  = editEquip.n;
   entry.equipSpec  = editEquip.s || '';
