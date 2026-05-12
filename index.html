@@ -2469,11 +2469,11 @@ function saveEdit() {
 
   // 시작일이 바뀌면 다른 날짜 키로 이동
   if(newStartDate !== startDk) {
-    ensureDay(newStartDate);
-    if(!state[newStartDate][site]) state[newStartDate][site] = {workers:{}, entries:[]};
-    // 새 날짜로 이동
-    state[newStartDate][site].entries.push(entry);
+    // 원래 위치에서 먼저 제거
     state[startDk][site].entries.splice(idx, 1);
+    // 새 날짜로 이동
+    ensureDay(newStartDate);
+    state[newStartDate][site].entries.push(entry);
   }
 
   if(saveTimer) clearTimeout(saveTimer);
