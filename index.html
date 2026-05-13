@@ -638,6 +638,7 @@ function toggleHoliday(dk) {
   if (idx === -1) holidays.push(dk);
   else holidays.splice(idx, 1);
   saveHolidays(holidays);
+  saveData();
   renderAll();
 }
 
