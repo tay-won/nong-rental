@@ -638,7 +638,6 @@ function toggleHoliday(dk) {
   if (idx === -1) holidays.push(dk);
   else holidays.splice(idx, 1);
   saveHolidays(holidays);
-  saveData();
   renderAll();
 }
 
@@ -749,90 +748,6 @@ const SB_KEY='sb_publishable_7lAcbxdOEZQUGk3ioBMP3w_G7Ejh-uf';
 const SB_API=SB_URL+'/rest/v1/nong_rental';
 const SB_HDR={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json'};
 
-
-const SB_ENTRIES = SB_URL+'/rest/v1/nong_rental_entries';
-
-// entry 저장 (INSERT)
-async function sbInsertEntry(entry, site, startDk) {
-  // 기존 데이터 호환: startDate는 표시날짜-1일로 저장
-  const sdParts = (entry.startDate || startDk).split('-').map(Number);
-  const sdSave = new Date(sdParts[0], sdParts[1]-1, sdParts[2]-1);
-  const sdStr = sdSave.getFullYear()+'-'+String(sdSave.getMonth()+1).padStart(2,'0')+'-'+String(sdSave.getDate()).padStart(2,'0');
-  const row = {
-    id: entry.id,
-    site: site,
-    start_date: sdStr,
-    equip_name: entry.equipName || '',
-    equip_spec: entry.equipSpec || '',
-    person_name: entry.personName || '',
-    days: entry.days || 1,
-    base_mins: entry.baseMins || 0,
-    delivery: entry.delivery || false,
-    out_done: entry.outDone || false,
-    in_done: entry.inDone || false,
-    is_deleted: false,
-    updated_at: new Date().toISOString()
-  };
-  const res = await fetch(SB_ENTRIES, {
-    method: 'POST',
-    headers: {...SB_HDR, 'Prefer': 'return=minimal'},
-    body: JSON.stringify(row)
-  });
-  if(!res.ok) { const t=await res.text(); console.error('insert error:', t); }
-}
-
-// entry 수정 (UPDATE)
-async function sbUpdateEntry(entry, site, startDk) {
-  // 기존 데이터 호환: startDate는 표시날짜-1일로 저장
-  const sdParts2 = (entry.startDate || startDk).split('-').map(Number);
-  const sdSave2 = new Date(sdParts2[0], sdParts2[1]-1, sdParts2[2]-1);
-  const sdStr2 = sdSave2.getFullYear()+'-'+String(sdSave2.getMonth()+1).padStart(2,'0')+'-'+String(sdSave2.getDate()).padStart(2,'0');
-  const row = {
-    site: site,
-    start_date: sdStr2,
-    equip_name: entry.equipName || '',
-    equip_spec: entry.equipSpec || '',
-    person_name: entry.personName || '',
-    days: entry.days || 1,
-    base_mins: entry.baseMins || 0,
-    delivery: entry.delivery || false,
-    out_done: entry.outDone || false,
-    in_done: entry.inDone || false,
-    is_deleted: false,
-    updated_at: new Date().toISOString()
-  };
-  await fetch(SB_ENTRIES+'?id=eq.'+Number(entry.id).toFixed(2), {
-    method: 'PATCH',
-    headers: {...SB_HDR, 'Prefer': 'return=minimal'},
-    body: JSON.stringify(row)
-  });
-}
-
-// entry 삭제 (soft delete)
-async function sbDeleteEntry(entryId) {
-  await fetch(SB_ENTRIES+'?id=eq.'+Number(entryId).toFixed(2), {
-    method: 'PATCH',
-    headers: {...SB_HDR, 'Prefer': 'return=minimal'},
-    body: JSON.stringify({is_deleted: true, updated_at: new Date().toISOString()})
-  });
-}
-
-// 체크 업데이트
-async function sbCheckEntry(entryId, outDone, inDone) {
-  await fetch(SB_ENTRIES+'?id=eq.'+Number(entryId).toFixed(2), {
-    method: 'PATCH',
-    headers: {...SB_HDR, 'Prefer': 'return=minimal'},
-    body: JSON.stringify({out_done: outDone, in_done: inDone, updated_at: new Date().toISOString()})
-  });
-}
-
-// 전체 entries 불러오기
-async function sbLoadEntries() {
-  const res = await fetch(SB_ENTRIES+'?is_deleted=eq.false&select=*', {headers: SB_HDR});
-  if(!res.ok) return [];
-  return await res.json();
-}
-
 function setSyncUI(mode,msg){document.getElementById('sdot').className='sdot '+mode;document.getElementById('stxt').textContent=msg;}
 
 async function loadData(){
@@ -865,7 +780,7 @@ async function loadData(){
           if(!decoded[dk]||!decoded[dk][st]) return;
           const src=decoded[dk][st];
           if(src.workers) Object.keys(src.workers).forEach(wid=>{state[dk][st].workers[wid]=src.workers[wid];});
-          // entries는 nong_rental_entries 테이블에서만 로드
+          if(Array.isArray(src.entries)) state[dk][st].entries=src.entries;
           if(src.delivery!==undefined) state[dk][st].delivery=src.delivery;
         });
       });
@@ -875,34 +790,6 @@ async function loadData(){
     setSyncUI('err','불러오기 실패: '+e.message);
   } finally {
     document.getElementById('loadingOverlay').classList.add('hidden');
-    // entries 테이블에서 개별 데이터 로드 (state보다 우선)
-    const entries = await sbLoadEntries();
-    if(entries.length > 0) {
-      // entries로 state 덮어쓰기
-      entries.forEach(e => {
-        const dk = e.start_date;
-        const st = e.site;
-        if(!dk || !st) return;
-        ensureDay(dk);
-        // 이미 있으면 업데이트, 없으면 추가
-        const existing = state[dk][st].entries.findIndex(x => String(x.id) === String(e.id));
-        const entry = {
-          id: e.id,
-          equipName: e.equip_name,
-          equipSpec: e.equip_spec,
-          personName: e.person_name,
-          days: e.days,
-          startDate: e.start_date,
-          baseMins: e.base_mins,
-          delivery: e.delivery,
-          outDone: e.out_done,
-          inDone: e.in_done,
-          site: e.site
-        };
-        if(existing >= 0) state[dk][st].entries[existing] = entry;
-        else state[dk][st].entries.push(entry);
-      });
-    }
     await loadChecks();
     renderAll();
     setTimeout(()=>renderTriDayPanel(),300);
@@ -916,25 +803,11 @@ async function saveData(){
   if(isSaving){pendingSave=true;return;}
   isSaving=true;
   setSyncUI('saving','저장 중…');
-  // entries는 nong_rental_entries 테이블에서 관리 - state에서 제외하고 저장
-  const stateWithoutEntries = {};
-  Object.keys(state).forEach(dk => {
-    if(dk === '_cancelled') return;
-    stateWithoutEntries[dk] = {};
-    ['본소','북부'].forEach(st => {
-      if(!state[dk]||!state[dk][st]) return;
-      stateWithoutEntries[dk][st] = {
-        workers: state[dk][st].workers,
-        delivery: state[dk][st].delivery,
-        entries: [] // entries 제외
-      };
-    });
-  });
   const payload={
-    state: stateWithoutEntries,
-    holidays: getHolidays(),
-    rainy: getRainy(),
-    cancelled: state._cancelled||[]
+    state:JSON.parse(JSON.stringify(state)),
+    holidays:getHolidays(),
+    rainy:getRainy(),
+    cancelled:state._cancelled||[]
   };
   try{
     const res=await fetch(SB_API+'?id=eq.main',{
@@ -1516,7 +1389,8 @@ function toggleEntryCheckInline(startDk, site, idx, type, val) {
   if(!entry) return;
   if(type === 'out') entry.outDone = val;
   else entry.inDone = val;
-  sbCheckEntry(entry.id, entry.outDone, entry.inDone);
+  // 체크는 개별 저장 (전체 state 덮어쓰기 방지)
+  saveCheck(entry.id, entry.outDone, entry.inDone);
   renderSelList();
   renderGauge();
   renderDateTabs();
@@ -1906,15 +1780,14 @@ function addEntry() {
 
   // 기간에 걸친 날짜들도 ensure
   for (let i = 1; i < selDays; i++) {
-    const d = new Date(startDate+'T12:00:00');
+    const d = new Date(startDate);
     d.setDate(d.getDate() + i);
-    const dki = toLocalDk(d);
+    const dki = d.toISOString().slice(0,10);
     ensureDay(dki);
   }
 
-  // entry 단위로 Supabase 저장 + 전체 state도 백업
-  sbInsertEntry(entry, site, dk);
-  scheduleSave();
+  if (saveTimer) clearTimeout(saveTimer);
+  saveData();
 
   // 입력창 초기화
   selEquip = null; selDays = 1; selDelivery = false;
@@ -2428,7 +2301,7 @@ function toggleEntryCheckPopup(startDk, site, entryId, type, val) {
   if(!entry) return;
   if(type === 'out') entry.outDone = val;
   else entry.inDone = val;
-  sbCheckEntry(entry.id, entry.outDone, entry.inDone);
+  saveCheck(entry.id, entry.outDone, entry.inDone);
   renderAll();
   openInoutPopup();
 }
@@ -2544,13 +2417,12 @@ function confirmCancel(reason) {
     baseMins: e.baseMins,
     delivery: e.delivery || false
   });
-  // entry 단위로 Supabase 삭제
-  sbDeleteEntry(e.id);
   // 실제 삭제
   state[startDk][site].entries.splice(idx, 1);
   cancelTarget = null;
   document.getElementById('cancelModal').classList.add('hidden');
-  scheduleSave();
+  if(saveTimer) clearTimeout(saveTimer);
+  saveData();
   renderAll();
 }
 
@@ -2713,14 +2585,15 @@ function saveEdit() {
 
   // 시작일이 바뀌면 다른 날짜 키로 이동
   if(newStartDate !== startDk) {
+    // 원래 위치에서 먼저 제거
     state[startDk][site].entries.splice(idx, 1);
+    // 새 날짜로 이동
     ensureDay(newStartDate);
     state[newStartDate][site].entries.push(entry);
   }
 
-  // entry 단위로 Supabase 업데이트
-  sbUpdateEntry(entry, site, newStartDate);
-  scheduleSave();
+  if(saveTimer) clearTimeout(saveTimer);
+  saveData();
   closeEditModal();
   renderAll();
   setTimeout(()=>renderTriDayPanel(), 100);
