@@ -670,7 +670,6 @@ function saveToken() {
   document.getElementById('tokenModal').classList.add('hidden');
   document.getElementById('loadingOverlay').classList.remove('hidden');
   err.style.display = 'none';
-  loadData();
 }
 function clearToken() {
   localStorage.removeItem('gh_auth');
