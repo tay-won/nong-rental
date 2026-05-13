@@ -1470,14 +1470,15 @@ async function loadChecks() {
     const rows = await res.json();
     // 체크 데이터를 state에 반영
     const checkMap = {};
-    rows.forEach(r => { checkMap[String(r.entry_id)] = r; });
+    rows.forEach(r => { checkMap[Math.round(r.entry_id*100)] = r; });
     Object.keys(state).forEach(dk => {
       ['본소','북부'].forEach(st => {
         if(!state[dk]||!state[dk][st]) return;
         state[dk][st].entries.forEach(e => {
-          if(checkMap[String(e.id)]) {
-            e.outDone = checkMap[String(e.id)].out_done;
-            e.inDone  = checkMap[String(e.id)].in_done;
+          const key = Math.round(e.id*100);
+          if(checkMap[key]) {
+            e.outDone = checkMap[key].out_done;
+            e.inDone  = checkMap[key].in_done;
           }
         });
       });
