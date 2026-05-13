@@ -2395,6 +2395,7 @@ function applyEditDate(val) {
 }
 function closeEditModal() {
   document.getElementById('editModal').classList.add('hidden');
+  document.getElementById('editStartDatePicker').value = '';
   editTarget = null;
 }
 
