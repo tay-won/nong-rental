@@ -635,7 +635,7 @@ function saveHolidays(arr) {
 function toggleHoliday(dk) {
   const holidays = getHolidays();
   const idx = holidays.indexOf(dk);
-  if (idx === 1) holidays.push(dk);
+  if (idx === -1) holidays.push(dk);
   else holidays.splice(idx, 1);
   saveHolidays(holidays);
   renderAll();
@@ -1266,7 +1266,7 @@ function renderWorkers(){
   const showSites=curSite==='전체'?SITES:[curSite];
   document.getElementById('workerBlocks').innerHTML=showSites.map(st=>{
     const av=getAvailSite(dk,st);
-    const workers=WDEF[st].map(w=>'<div class="worker-item"><div class="wname type-'+w.type+'">'+w.name+' <span style="font-size:9px;opacity:.5">'+w.type+'</span></div><select onchange="state[\''+dk+'\'][\''+st+'\'].workers[\''+w.id+'\']=+this.value;scheduleSave();renderAll()">'+SCHED.map(o=>'<option value="'+o.value+'"'+(state[dk][st].workers[w.id]===o.value?' selected':'')+'>'+o.label+'</option>').join('')+'</select></div>').join('');
+    const workers=WDEF[st].map(w=>'<div class="worker-item"><div class="wname type-'+w.입력+'">'+w.name+' <span style="font-size:9px;opacity:.5">'+w.입력+'</span></div><select onchange="state[\''+dk+'\'][\''+st+'\'].workers[\''+w.id+'\']=+this.value;scheduleSave();renderAll()">'+SCHED.map(o=>'<option value="'+o.value+'"'+(state[dk][st].workers[w.id]===o.value?' selected':'')+'>'+o.label+'</option>').join('')+'</select></div>').join('');
     return '<div class="site-block"><div class="site-hdr"><span class="site-lbl '+st+'">'+st+'</span><span class="site-avail">'+av+'분 ('+(av/60).toFixed(1)+'h)</span></div><div class="worker-grid">'+workers+'</div></div>';
   }).join('');
   const avail=getAvail(dk,curSite);
