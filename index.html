@@ -639,7 +639,6 @@ function toggleHoliday(dk) {
   else holidays.splice(idx, 1);
   saveHolidays(holidays);
   saveData();
-  await loadChecks();
   renderAll();
 }
 
