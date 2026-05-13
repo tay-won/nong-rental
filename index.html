@@ -1221,7 +1221,8 @@ function renderDateTabs(){
     const isHol = holidays.includes(dk);
     const isRain = rainyDays.includes(dk);
     const isYesterday = dk === toLocalDk(new Date(today().getTime()-86400000));
-    const s = getDayStats(dk, curSite);
+    let s = {outTotal:0,inTotal:0,delOut:0,delIn:0,outRemain:0,inRemain:0,delOutRemain:0,delInRemain:0};
+    try { s = getDayStats(dk, curSite); } catch(e) {}
     const countHtml = '<div style="font-size:7px;color:var(--muted);margin-top:2px;line-height:1.4">'
       +'<span style="color:#60a5fa">출'+s.outTotal+'</span> <span style="color:#34d399">입'+s.inTotal+'</span>'
       +(s.delOut||s.delIn ? ' <span style="color:#f59e0b">🚚'+s.delOut+'/'+s.delIn+'</span>' : '')
