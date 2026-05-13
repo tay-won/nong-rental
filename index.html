@@ -801,7 +801,7 @@ async function sbUpdateEntry(entry, site, startDk) {
     is_deleted: false,
     updated_at: new Date().toISOString()
   };
-  await fetch(SB_ENTRIES+'?id=eq.'+entry.id, {
+  await fetch(SB_ENTRIES+'?id=eq.'+Number(entry.id).toFixed(2), {
     method: 'PATCH',
     headers: {...SB_HDR, 'Prefer': 'return=minimal'},
     body: JSON.stringify(row)
@@ -810,7 +810,7 @@ async function sbUpdateEntry(entry, site, startDk) {
 
 // entry 삭제 (soft delete)
 async function sbDeleteEntry(entryId) {
-  await fetch(SB_ENTRIES+'?id=eq.'+entryId, {
+  await fetch(SB_ENTRIES+'?id=eq.'+Number(entryId).toFixed(2), {
     method: 'PATCH',
     headers: {...SB_HDR, 'Prefer': 'return=minimal'},
     body: JSON.stringify({is_deleted: true, updated_at: new Date().toISOString()})
@@ -819,7 +819,7 @@ async function sbDeleteEntry(entryId) {
 
 // 체크 업데이트
 async function sbCheckEntry(entryId, outDone, inDone) {
-  await fetch(SB_ENTRIES+'?id=eq.'+entryId, {
+  await fetch(SB_ENTRIES+'?id=eq.'+Number(entryId).toFixed(2), {
     method: 'PATCH',
     headers: {...SB_HDR, 'Prefer': 'return=minimal'},
     body: JSON.stringify({out_done: outDone, in_done: inDone, updated_at: new Date().toISOString()})
