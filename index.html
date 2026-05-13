@@ -2015,13 +2015,7 @@ function renderTriDayPanel() {
       <div style="padding:8px 12px;background:${hdrBg};border-bottom:1px solid #334155;display:flex;justify-content:space-between;align-items:center">
         <span style="font-size:${isTod?'16':'12'}px;font-weight:${isTod?'900':'700'};color:${hdrColor};letter-spacing:${isTod?'-0.3px':'0'}">${label}${isHol?' 🔴':''}</span>
         <span style="font-size:10px;color:#64748b">
-          <span style="color:#60a5fa">출${outN}</span>/<span style="color:#34d399">입${inN}</span>
-          ${(()=>{
-            const _del = rows.filter(r=>r.e.delivery);
-            const _dOut = _del.filter(r=>r.isOut&&!r.e.outDone).length;
-            const _dIn  = _del.filter(r=>r.isIn&&!r.e.inDone).length;
-            return (_dOut||_dIn)?` <span style="color:#f59e0b">🚚${_dOut}/${_dIn}</span>`:'';
-          })()}
+          <span style="color:#60a5fa">출${outN}</span>/<span style="color:#34d399">입${inN}</span>${rows.filter(r=>r.e.delivery&&r.isOut&&!r.e.outDone).length||rows.filter(r=>r.e.delivery&&r.isIn&&!r.e.inDone).length?` <span style="color:#f59e0b">🚚${rows.filter(r=>r.e.delivery&&r.isOut&&!r.e.outDone).length}/${rows.filter(r=>r.e.delivery&&r.isIn&&!r.e.inDone).length}</span>`:''}
         </span>
       </div>
 
