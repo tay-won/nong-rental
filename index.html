@@ -2634,6 +2634,49 @@ window.addEventListener('resize', () => {
   window._resizeTimer = setTimeout(() => renderTriDayPanel(), 150);
 });
 
+async function saveCheck(entryId, outDone, inDone) {
+  const SB_CHK = SB_URL+'/rest/v1/nong_rental_checks';
+  try {
+    const chk = await fetch(SB_CHK+'?entry_id=eq.'+entryId, {headers: SB_HDR});
+    const existing = await chk.json();
+    if(existing.length > 0) {
+      await fetch(SB_CHK+'?entry_id=eq.'+entryId, {
+        method: 'PATCH',
+        headers: {...SB_HDR, 'Prefer': 'return=minimal'},
+        body: JSON.stringify({out_done: outDone, in_done: inDone, updated_at: new Date().toISOString()})
+      });
+    } else {
+      await fetch(SB_CHK, {
+        method: 'POST',
+        headers: {...SB_HDR, 'Prefer': 'return=minimal'},
+        body: JSON.stringify({entry_id: entryId, out_done: outDone, in_done: inDone, updated_at: new Date().toISOString()})
+      });
+    }
+  } catch(e) { console.error('saveCheck error:', e); }
+}
+
+async function loadChecks() {
+  const SB_CHK = SB_URL+'/rest/v1/nong_rental_checks?select=entry_id,out_done,in_done';
+  try {
+    const res = await fetch(SB_CHK, {headers: SB_HDR});
+    if(!res.ok) return;
+    const rows = await res.json();
+    const checkMap = {};
+    rows.forEach(r => { checkMap[String(r.entry_id)] = r; });
+    Object.keys(state).forEach(dk => {
+      ['본소','북부'].forEach(st => {
+        if(!state[dk]||!state[dk][st]) return;
+        state[dk][st].entries.forEach(e => {
+          if(checkMap[String(e.id)]) {
+            e.outDone = checkMap[String(e.id)].out_done;
+            e.inDone  = checkMap[String(e.id)].in_done;
+          }
+        });
+      });
+    });
+  } catch(e) { console.error('loadChecks error:', e); }
+}
+
 </script>
 </body>
 </html
