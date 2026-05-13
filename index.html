@@ -1400,13 +1400,15 @@ function toggleEntryCheckInline(startDk, site, idx, 입력, val) {
 
 async function saveCheck(entryId, outDone, inDone) {
   const SB_CHK = SB_URL+'/rest/v1/nong_rental_checks';
+  // entry_id를 문자열로 변환 (Number 정밀도 문제 해결)
+  const entryIdStr = String(entryId);
   try {
     // 먼저 있는지 확인
-    const chk = await fetch(SB_CHK+'?entry_id=eq.'+entryId, {headers: SB_HDR});
+    const chk = await fetch(SB_CHK+'?entry_id=eq.'+entryIdStr, {headers: SB_HDR});
     const existing = await chk.json();
     if(existing.length > 0) {
       // update
-      await fetch(SB_CHK+'?entry_id=eq.'+entryId, {
+      await fetch(SB_CHK+'?entry_id=eq.'+entryIdStr, {
         method: 'PATCH',
         headers: {...SB_HDR, 'Prefer': 'return=minimal'},
         body: JSON.stringify({out_done: outDone, in_done: inDone, updated_at: new Date().toISOString()})
@@ -1416,7 +1418,7 @@ async function saveCheck(entryId, outDone, inDone) {
       await fetch(SB_CHK, {
         method: 'POST',
         headers: {...SB_HDR, 'Prefer': 'return=minimal'},
-        body: JSON.stringify({entry_id: entryId, out_done: outDone, in_done: inDone, updated_at: new Date().toISOString()})
+        body: JSON.stringify({entry_id: entryIdStr, out_done: outDone, in_done: inDone, updated_at: new Date().toISOString()})
       });
     }
   } catch(e) {
@@ -1468,14 +1470,14 @@ async function loadChecks() {
     const res = await fetch(SB_CHK, {headers: SB_HDR});
     if(!res.ok) return;
     const rows = await res.json();
-    // 체크 데이터를 state에 반영
+    // 체크 데이터를 state에 반영 (문자열 매칭으로 정밀도 문제 해결)
     const checkMap = {};
-    rows.forEach(r => { checkMap[Math.round(r.entry_id*100)] = r; });
+    rows.forEach(r => { checkMap[String(r.entry_id)] = r; });
     Object.keys(state).forEach(dk => {
       ['본소','북부'].forEach(st => {
         if(!state[dk]||!state[dk][st]) return;
         state[dk][st].entries.forEach(e => {
-          const key = Math.round(e.id*100);
+          const key = String(e.id);
           if(checkMap[key]) {
             e.outDone = checkMap[key].out_done;
             e.inDone  = checkMap[key].in_done;
@@ -2640,11 +2642,12 @@ window.addEventListener('resize', () => {
 
 async function saveCheck(entryId, outDone, inDone) {
   const SB_CHK = SB_URL+'/rest/v1/nong_rental_checks';
+  const entryIdStr = String(entryId);
   try {
-    const chk = await fetch(SB_CHK+'?entry_id=eq.'+entryId, {headers: SB_HDR});
+    const chk = await fetch(SB_CHK+'?entry_id=eq.'+entryIdStr, {headers: SB_HDR});
     const existing = await chk.json();
     if(existing.length > 0) {
-      await fetch(SB_CHK+'?entry_id=eq.'+entryId, {
+      await fetch(SB_CHK+'?entry_id=eq.'+entryIdStr, {
         method: 'PATCH',
         headers: {...SB_HDR, 'Prefer': 'return=minimal'},
         body: JSON.stringify({out_done: outDone, in_done: inDone, updated_at: new Date().toISOString()})
@@ -2653,7 +2656,7 @@ async function saveCheck(entryId, outDone, inDone) {
       await fetch(SB_CHK, {
         method: 'POST',
         headers: {...SB_HDR, 'Prefer': 'return=minimal'},
-        body: JSON.stringify({entry_id: entryId, out_done: outDone, in_done: inDone, updated_at: new Date().toISOString()})
+        body: JSON.stringify({entry_id: entryIdStr, out_done: outDone, in_done: inDone, updated_at: new Date().toISOString()})
       });
     }
   } catch(e) { console.error('saveCheck error:', e); }
