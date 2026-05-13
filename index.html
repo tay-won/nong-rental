@@ -1781,9 +1781,9 @@ function addEntry() {
 
   // 기간에 걸친 날짜들도 ensure
   for (let i = 1; i < selDays; i++) {
-    const d = new Date(startDate+'T12:00:00');
+    const d = new Date(startDate);
     d.setDate(d.getDate() + i);
-    const dki = toLocalDk(d);
+    const dki = d.toISOString().slice(0,10);
     ensureDay(dki);
   }
 
