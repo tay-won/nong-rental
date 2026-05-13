@@ -754,10 +754,14 @@ const SB_ENTRIES = SB_URL+'/rest/v1/nong_rental_entries';
 
 // entry 저장 (INSERT)
 async function sbInsertEntry(entry, site, startDk) {
+  // 기존 데이터 호환: startDate는 표시날짜-1일로 저장
+  const sdParts = (entry.startDate || startDk).split('-').map(Number);
+  const sdSave = new Date(sdParts[0], sdParts[1]-1, sdParts[2]-1);
+  const sdStr = sdSave.getFullYear()+'-'+String(sdSave.getMonth()+1).padStart(2,'0')+'-'+String(sdSave.getDate()).padStart(2,'0');
   const row = {
     id: entry.id,
     site: site,
-    start_date: entry.startDate || startDk,
+    start_date: sdStr,
     equip_name: entry.equipName || '',
     equip_spec: entry.equipSpec || '',
     person_name: entry.personName || '',
@@ -779,9 +783,13 @@ async function sbInsertEntry(entry, site, startDk) {
 
 // entry 수정 (UPDATE)
 async function sbUpdateEntry(entry, site, startDk) {
+  // 기존 데이터 호환: startDate는 표시날짜-1일로 저장
+  const sdParts2 = (entry.startDate || startDk).split('-').map(Number);
+  const sdSave2 = new Date(sdParts2[0], sdParts2[1]-1, sdParts2[2]-1);
+  const sdStr2 = sdSave2.getFullYear()+'-'+String(sdSave2.getMonth()+1).padStart(2,'0')+'-'+String(sdSave2.getDate()).padStart(2,'0');
   const row = {
     site: site,
-    start_date: entry.startDate || startDk,
+    start_date: sdStr2,
     equip_name: entry.equipName || '',
     equip_spec: entry.equipSpec || '',
     person_name: entry.personName || '',
@@ -908,11 +916,25 @@ async function saveData(){
   if(isSaving){pendingSave=true;return;}
   isSaving=true;
   setSyncUI('saving','저장 중…');
+  // entries는 nong_rental_entries 테이블에서 관리 - state에서 제외하고 저장
+  const stateWithoutEntries = {};
+  Object.keys(state).forEach(dk => {
+    if(dk === '_cancelled') return;
+    stateWithoutEntries[dk] = {};
+    ['본소','북부'].forEach(st => {
+      if(!state[dk]||!state[dk][st]) return;
+      stateWithoutEntries[dk][st] = {
+        workers: state[dk][st].workers,
+        delivery: state[dk][st].delivery,
+        entries: [] // entries 제외
+      };
+    });
+  });
   const payload={
-    state:JSON.parse(JSON.stringify(state)),
-    holidays:getHolidays(),
-    rainy:getRainy(),
-    cancelled:state._cancelled||[]
+    state: stateWithoutEntries,
+    holidays: getHolidays(),
+    rainy: getRainy(),
+    cancelled: state._cancelled||[]
   };
   try{
     const res=await fetch(SB_API+'?id=eq.main',{
