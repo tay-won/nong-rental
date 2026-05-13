@@ -857,7 +857,7 @@ async function loadData(){
           if(!decoded[dk]||!decoded[dk][st]) return;
           const src=decoded[dk][st];
           if(src.workers) Object.keys(src.workers).forEach(wid=>{state[dk][st].workers[wid]=src.workers[wid];});
-          if(Array.isArray(src.entries)) state[dk][st].entries=src.entries;
+          // entries는 nong_rental_entries 테이블에서만 로드
           if(src.delivery!==undefined) state[dk][st].delivery=src.delivery;
         });
       });
