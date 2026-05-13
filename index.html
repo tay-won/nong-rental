@@ -49,7 +49,7 @@ header h1 span{color:var(--accent)}
 .chip-마감{background:rgba(239,68,68,.15);color:var(--red)}
 
 /* ── 레이아웃 ── */
-.body{padding:8px;height:calc(100vh - 170px);overflow:hidden}.layout{display:flex;gap:8px;flex-wrap:지금rap;align-items:stretch;height:100%}
+.body{padding:8px;height:calc(100vh - 170px);overflow:hidden}.layout{display:flex;gap:8px;flex-wrap:nowrap;align-items:stretch;height:100%}
 .col-left{width:240px;min-width:240px;flex-shrink:0;display:flex;flex-direction:column;gap:8px;overflow-y:auto}
 .col-right{flex:1;min-width:0;display:flex;flex-direction:column;gap:0;height:100%;overflow:hidden}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:13px}
@@ -112,7 +112,7 @@ select:focus{border-color:var(--accent)}
 .dropdown::-webkit-scrollbar{width:3px}.dropdown::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 .dd-item{display:flex;justify-content:space-between;align-items:center;padding:9px 12px;cursor:pointer;transition:background .15s;font-size:12px}
 .dd-item:hover{background:rgba(99,102,241,.1)}
-.dd-item .dd-name{flex:1;min-width:0;white-space:지금rap;overflow:hidden;text-overflow:ellipsis}
+.dd-item .dd-name{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .dd-item .dd-mins{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);flex-shrink:0;margin-left:8px}
 .dd-filter{padding:8px 10px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--card)}
 .dd-filter input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'Noto Sans KR',sans-serif;font-size:12px;padding:5px 8px;outline:none}
@@ -121,53 +121,53 @@ select:focus{border-color:var(--accent)}
 /* ③ 선택된 기종 입력 행 */
 .input-row{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin-bottom:10px;display:none}
 .input-row.visible{display:block}
-.input-row-name{font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;white-space:지금rap;overflow:hidden;text-overflow:ellipsis}
+.input-row-name{font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .input-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .half-toggle{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:5px 10px;border:1px solid var(--border);border-radius:7px;background:var(--bg);transition:all .2s}
 .half-toggle:hover{border-color:var(--yellow)}
-.half-toggle.：{border-color:var(--yellow);background:rgba(245,158,11,.1)}
+.half-toggle.on{border-color:var(--yellow);background:rgba(245,158,11,.1)}
 .half-toggle input{display:none}
 .half-toggle-box{width:14px;height:14px;border:1px solid var(--border);border-radius:3px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:900;color:transparent;transition:all .2s;flex-shrink:0}
-.half-toggle.： .half-toggle-box{background:var(--yellow);border-color:var(--yellow);color:#000}
-.half-toggle-txt{font-size:11px;color:var(--muted);transition:color .2s;white-space:지금rap}
-.half-toggle.： .half-toggle-txt{color:var(--yellow)}
-.half-mins{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);white-space:지금rap}
-.half-mins.：{color:var(--yellow)}
+.half-toggle.on .half-toggle-box{background:var(--yellow);border-color:var(--yellow);color:#000}
+.half-toggle-txt{font-size:11px;color:var(--muted);transition:color .2s;white-space:nowrap}
+.half-toggle.on .half-toggle-txt{color:var(--yellow)}
+.half-mins{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);white-space:nowrap}
+.half-mins.on{color:var(--yellow)}
 .cnt-ctrl{display:flex;align-items:center;gap:4px}
 .btn-c{width:28px;height:28px;border-radius:7px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;line-height:1}
 .btn-c:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 .cnt-val{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;color:#fff;width:28px;text-align:center}
-.btn-add{padding:6px 16px;background:var(--accent);border:none;border-radius:7px;color:#fff;font-family:'Noto Sans KR',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;white-space:지금rap;margin-left:auto}
+.btn-add{padding:6px 16px;background:var(--accent);border:none;border-radius:7px;color:#fff;font-family:'Noto Sans KR',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap;margin-left:auto}
 .btn-add:hover{background:#5254d4}
 .btn-add:active{transform:scale(.97)}
 
 /* ④ 선택 기종 목록 */
 .sel-list{display:flex;flex-direction:column;gap:5px;max-height:300px;overflow-y:auto;padding-right:2px}
 .sel-list::-webkit-scrollbar{width:3px}.sel-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-.sel-item{display:flex;align-items:center;gap:5px;padding:5px 8px;border-radius:7px;cursor:grab;flex-wrap:지금rap;border-left:3px solid transparent}
+.sel-item{display:flex;align-items:center;gap:5px;padding:5px 8px;border-radius:7px;cursor:grab;flex-wrap:nowrap;border-left:3px solid transparent}
 .sel-item.done{opacity:.55}
 .sel-item.type-in{background:rgba(100,116,139,.15);border-left-color:#64748b}
-.sel-item.type-1 일 전{background:rgba(234,179,8,.08);border-left-color:#eab308}
+.sel-item.type-1day{background:rgba(234,179,8,.08);border-left-color:#eab308}
 .sel-item.type-out{background:rgba(34,197,94,.08);border-left-color:#22c55e}
 .sel-item.dragging{opacity:.4;background:rgba(99,102,241,.15);cursor:grabbing}
 .sel-item.drag-over{border-top:2px solid var(--accent)}
-.sel-equip{font-size:12px;font-weight:600;color:var(--text);flex:1;min-width:0;white-space:지금rap;overflow:hidden;text-overflow:ellipsis}
-.sel-person{font-size:11px;color:var(--dim);white-space:지금rap;flex-shrink:0}
-.sel-days{font-size:10px;color:var(--muted);white-space:지금rap;flex-shrink:0;min-width:22px}
+.sel-equip{font-size:12px;font-weight:600;color:var(--text);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sel-person{font-size:11px;color:var(--dim);white-space:nowrap;flex-shrink:0}
+.sel-days{font-size:10px;color:var(--muted);white-space:nowrap;flex-shrink:0;min-width:22px}
 .sel-chk{display:flex;align-items:center;gap:2px;cursor:pointer;flex-shrink:0}
 .sel-chk input{display:none}
-.sel-cb{font-size:10px;padding:2px 6px;border-radius:4px;border:1px solid var(--border);color:var(--muted);background:var(--bg);transition:all .15s;white-space:지금rap}
+.sel-cb{font-size:10px;padding:2px 6px;border-radius:4px;border:1px solid var(--border);color:var(--muted);background:var(--bg);transition:all .15s;white-space:nowrap}
 .sel-chk.out-chk input:checked~.sel-cb{background:var(--blue);border-color:var(--blue);color:#fff}
 .sel-chk.in-chk input:checked~.sel-cb{background:var(--green);border-color:var(--green);color:#fff}
-.sel-mins{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--muted);white-space:지금rap;flex-shrink:0;min-width:30px;text-align:right}
+.sel-mins{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--muted);white-space:nowrap;flex-shrink:0;min-width:30px;text-align:right}
 .move-btn{width:20px;height:20px;border-radius:4px;border:1px solid var(--border);background:var(--bg);color:var(--muted);font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0;line-height:1}
 .move-btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 .sel-item.full{border-left:3px solid var(--accent)}
 .sel-item.half{border-left:3px solid var(--yellow)}
 .sel-item-info{flex:1;min-width:0}
-.sel-item-name{font-size:12px;font-weight:500;color:var(--text);white-space:지금rap;overflow:hidden;text-overflow:ellipsis}
+.sel-item-name{font-size:12px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sel-item-meta{font-size:10px;color:var(--muted);margin-top:1px}
-.sel-item-meta .꼬리표{display:inline-block;padding:0px 5px;border-radius:4px;font-size:9px;font-weight:700;margin-right:3px}
+.sel-item-meta .tag{display:inline-block;padding:0px 5px;border-radius:4px;font-size:9px;font-weight:700;margin-right:3px}
 .tag-full{background:rgba(99,102,241,.15);color:var(--accent)}
 .tag-half{background:rgba(245,158,11,.15);color:var(--yellow)}
 .tag-site{background:rgba(100,116,139,.15);color:var(--muted)}
@@ -184,7 +184,7 @@ select:focus{border-color:var(--accent)}
 .loading-overlay{position:fixed;inset:0;background:rgba(15,17,23,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:500;gap:14px}
 .loading-overlay.hidden{display:none}
 .spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
-@keyframes spin{까지{transform:rotate(360deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
 .loading-txt{font-size:13px;color:var(--dim)}
 @media(max-width:600px){.worker-grid{grid-template-columns:1fr 1fr}.stats-row{grid-template-columns:repeat(3,1fr)}.input-controls{gap:6px}}
 
@@ -218,7 +218,7 @@ select:focus{border-color:var(--accent)}
 /* 출고/입고 체크 */
 .inout-ctrl{display:flex;gap:10px}
 .chk-label{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;font-size:12px;color:var(--text)}
-.chk-label input[입력=checkbox]{display:none}
+.chk-label input[type=checkbox]{display:none}
 .chk-box{width:16px;height:16px;border:1px solid var(--border);border-radius:4px;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
 .chk-box::after{content:'✓';font-size:11px;font-weight:900;color:transparent;transition:color .15s}
 .chk-label input:checked ~ .chk-box{background:var(--green);border-color:var(--green)}
@@ -286,34 +286,34 @@ select:focus{border-color:var(--accent)}
   .popup-header .btn-print,.popup-header .btn-close-popup{display:none!important}
   #popupCols table{border-collapse:collapse!important}
   #popupCols td,#popupCols th{border:1px solid #999!important;color:#000!important;background:white!important;font-size:11px!important}
-  #popupCols input[입력=checkbox]{display:inline!important}
+  #popupCols input[type=checkbox]{display:inline!important}
 }
 @media(max-width:600px){.popup-cols{grid-template-columns:1fr}}
 
 /* ── 배송 체크박스 ── */
 .delivery-bar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-bottom:8px;cursor:pointer;transition:all .2s;user-select:none}
 .delivery-bar:hover{border-color:var(--yellow)}
-.delivery-bar.：{border-color:var(--yellow);background:rgba(245,158,11,.08)}
-.delivery-bar input[입력=checkbox]{display:none}
+.delivery-bar.on{border-color:var(--yellow);background:rgba(245,158,11,.08)}
+.delivery-bar input[type=checkbox]{display:none}
 .delivery-chk-box{width:18px;height:18px;border:2px solid var(--border);border-radius:4px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:transparent;transition:all .2s;flex-shrink:0}
-.delivery-bar.： .delivery-chk-box{background:var(--yellow);border-color:var(--yellow);color:#000}
+.delivery-bar.on .delivery-chk-box{background:var(--yellow);border-color:var(--yellow);color:#000}
 .delivery-label{font-size:13px;font-weight:700;color:var(--dim);flex:1;transition:color .2s}
-.delivery-bar.： .delivery-label{color:var(--yellow)}
+.delivery-bar.on .delivery-label{color:var(--yellow)}
 .delivery-mins{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);transition:color .2s}
-.delivery-bar.： .delivery-mins{color:var(--yellow)}
+.delivery-bar.on .delivery-mins{color:var(--yellow)}
 
 /* 배송 체크박스 */
 .delivery-toggle{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:5px 10px;border:1px solid var(--border);border-radius:7px;background:var(--bg);transition:all .2s;margin-left:6px}
 .delivery-toggle:hover{border-color:var(--yellow)}
-.delivery-toggle.：{border-color:var(--yellow);background:rgba(245,158,11,.1)}
+.delivery-toggle.on{border-color:var(--yellow);background:rgba(245,158,11,.1)}
 .delivery-toggle input{display:none}
 .delivery-chk-sq{width:15px;height:15px;border:2px solid var(--border);border-radius:3px;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;position:relative}
 .delivery-chk-sq::after{content:'✓';font-size:10px;font-weight:900;color:transparent;transition:color .15s}
-.delivery-toggle.： .delivery-chk-sq{background:var(--yellow);border-color:var(--yellow)}
-.delivery-toggle.： .delivery-chk-sq::after{color:#000}
+.delivery-toggle.on .delivery-chk-sq{background:var(--yellow);border-color:var(--yellow)}
+.delivery-toggle.on .delivery-chk-sq::after{color:#000}
 .delivery-box{font-size:13px}
-.delivery-txt{font-size:11px;color:var(--muted);transition:color .2s;white-space:지금rap}
-.delivery-toggle.： .delivery-txt{color:var(--yellow);font-weight:700}
+.delivery-txt{font-size:11px;color:var(--muted);transition:color .2s;white-space:nowrap}
+.delivery-toggle.on .delivery-txt{color:var(--yellow);font-weight:700}
 
 .btn-edit{width:22px;height:22px;border-radius:5px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
 .btn-edit:hover{background:var(--accent);border-color:var(--accent);color:#fff}
@@ -329,7 +329,7 @@ select:focus{border-color:var(--accent)}
 .tri-col-hdr.tri-holiday{color:var(--red)}
 .tri-entry{padding:5px 8px;border-bottom:1px solid var(--border);font-size:10px}
 .tri-entry:last-child{border-bottom:none}
-.tri-entry-name{color:var(--text);font-weight:600;white-space:지금rap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.tri-entry-name{color:var(--text);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .tri-entry-person{color:var(--muted);font-size:9px}
 .tri-chks{display:flex;gap:4px;margin-top:3px;flex-wrap:wrap}
 .tri-chk{display:inline-flex;align-items:center;gap:2px;cursor:pointer;font-size:10px}
@@ -367,14 +367,14 @@ select:focus{border-color:var(--accent)}
 .tri-item{display:flex;align-items:center;gap:4px;padding:5px 8px;border-bottom:1px solid var(--border);font-size:11px}
 .tri-item:last-child{border-bottom:none}
 .tri-item.ti-in{border-left:3px solid var(--muted);background:rgba(100,116,139,.06)}
-.tri-item.ti-1 일 전{border-left:3px solid #eab308;background:rgba(234,179,8,.06)}
+.tri-item.ti-1day{border-left:3px solid #eab308;background:rgba(234,179,8,.06)}
 .tri-item.ti-out{border-left:3px solid var(--green);background:rgba(34,197,94,.06)}
-.tri-item-person{font-weight:700;color:#fff;white-space:지금rap;min-width:40px;flex-shrink:0}
+.tri-item-person{font-weight:700;color:#fff;white-space:nowrap;min-width:40px;flex-shrink:0}
 .tri-item-chks{display:flex;gap:3px;flex-shrink:0}
 .tri-item-chk{display:inline-flex;align-items:center;gap:2px;cursor:pointer;font-size:10px}
 .tri-item-chk input{width:11px;height:11px;cursor:pointer}
 .tri-item-days{font-size:9px;color:var(--muted);flex-shrink:0}
-.tri-item-equip{flex:1;color:var(--dim);white-space:지금rap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.tri-item-equip{flex:1;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .tri-item-mins{font-family:"JetBrains Mono",monospace;font-size:9px;color:var(--muted);flex-shrink:0}
 .tri-item-btns{display:flex;gap:2px;flex-shrink:0}
 .tri-reset{width:100%;padding:5px;background:transparent;border:none;color:var(--muted);font-size:10px;cursor:pointer;text-align:center;font-family:"Noto Sans KR",sans-serif;border-top:1px solid var(--border)}
@@ -413,10 +413,10 @@ select:focus{border-color:var(--accent)}
     <div style="margin-bottom:10px">
       <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px">장비명</label>
       <div class="search-wrap" id="editSearchWrap">
-        <input 입력="text" class="search-inp" id="editSearchInp" placeholder="검색…" readonly onclick="openEditDD()" autocomplete="off" style="margin-bottom:0">
+        <input type="text" class="search-inp" id="editSearchInp" placeholder="검색…" readonly onclick="openEditDD()" autocomplete="off" style="margin-bottom:0">
         <span class="search-arrow">▼</span>
         <div class="dropdown" id="editDropdown">
-          <div class="dd-filter"><input 입력="text" id="editDdFilter" placeholder="검색…" oninput="filterEditDD()" onclick="event.stopPropagation()"></div>
+          <div class="dd-filter"><input type="text" id="editDdFilter" placeholder="검색…" oninput="filterEditDD()" onclick="event.stopPropagation()"></div>
           <div id="editDdList"></div>
         </div>
       </div>
@@ -424,28 +424,28 @@ select:focus{border-color:var(--accent)}
     <!-- 성명 -->
     <div style="margin-bottom:10px">
       <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px">성명</label>
-      <input 입력="text" id="editPersonInp" class="person-inp" placeholder="성명 입력" style="width:100%">
+      <input type="text" id="editPersonInp" class="person-inp" placeholder="성명 입력" style="width:100%">
     </div>
     <!-- 시작일 -->
     <div style="margin-bottom:10px">
       <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px">임대 시작일</label>
       <div style="display:flex;gap:8px;align-items:center">
         <div id="editStartDateDisplay" style="flex:1;padding:8px 12px;background:var(--bg);border:1px solid var(--border);border-radius:7px;color:var(--text);font-size:13px;font-family:'Noto Sans KR',sans-serif">–</div>
-        <input 입력="date" id="editStartDatePicker" style="position:absolute;visibility:hidden;width:1px;height:1px" min="2026-01-01" max="2027-12-31" onchange="applyEditDate(this.value)">
+        <input type="date" id="editStartDatePicker" style="position:absolute;visibility:hidden;width:1px;height:1px" min="2026-01-01" max="2027-12-31" onchange="applyEditDate(this.value)">
         <button onclick="try{document.getElementById('editStartDatePicker').showPicker()}catch(e){}" style="padding:6px 12px;background:var(--surface);border:1px solid var(--border);border-radius:7px;color:var(--dim);font-size:12px;cursor:pointer;font-family:'Noto Sans KR',sans-serif">📅 변경</button>
       </div>
-      <input 입력="hidden" id="editStartDate" value="">
+      <input type="hidden" id="editStartDate" value="">
     </div>
     <!-- 임대기간 -->
     <div style="margin-bottom:10px">
       <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:5px">임대기간</label>
-      <div style="display:flex;align-items:center;gap:6px;flex-wrap:지금rap">
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:nowrap">
         <div class="days-ctrl">
           <button class="day-btn" onclick="setEditDays(1)" id="editDayBtn1">1일</button>
           <button class="day-btn" onclick="setEditDays(2)" id="editDayBtn2">2일</button>
           <button class="day-btn" onclick="setEditDays(3)" id="editDayBtn3">3일</button>
           <button class="day-btn" onclick="openEditDatePicker()" id="editDayBtnX">📅 직접</button>
-          <input 입력="date" id="editReturnDatePicker" style="display:none" onchange="setEditDaysByDate(this.value)">
+          <input type="date" id="editReturnDatePicker" style="display:none" onchange="setEditDaysByDate(this.value)">
         </div>
         <div class="delivery-toggle" id="editDeliveryToggle" onclick="toggleEditDelivery()">
           <span class="delivery-chk-sq" id="editDeliveryChkSq"></span>
@@ -483,7 +483,7 @@ select:focus{border-color:var(--accent)}
   <div class="token-box">
     <h2>🚜 농기계 임대 현황</h2>
     <p>파주시 농업기계임대사업소</p>
-    <input 입력="password" class="token-inp" id="tokenInp" placeholder="비밀번호 입력" onkeydown="if(event.key==='Enter')saveToken()">
+    <input type="password" class="token-inp" id="tokenInp" placeholder="비밀번호 입력" onkeydown="if(event.key==='Enter')saveToken()">
     <button class="btn-token-save" onclick="saveToken()">접속</button>
     <div id="loginError" style="color:var(--red);font-size:12px;text-align:center;margin-top:8px;display:none">비밀번호가 틀렸습니다</div>
   </div>
@@ -518,7 +518,7 @@ select:focus{border-color:var(--accent)}
   <div id="dateBar" style="font-size:12px;font-weight:700;color:var(--accent);text-align:center;flex:1">오늘</div>
   
 </div>
-  <div id="dateBar" style="font-size:12px;font-weight:700;color:var(--accent);flex:1;text-align:center;cursor:기본"></div>
+  <div id="dateBar" style="font-size:12px;font-weight:700;color:var(--accent);flex:1;text-align:center;cursor:default"></div>
   
 </div></div>
 
@@ -583,21 +583,21 @@ select:focus{border-color:var(--accent)}
       <div id="inlineInputPanel" style="background:var(--card);border-bottom:2px solid var(--accent);padding:10px 16px">
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
           <div class="search-wrap" id="searchWrap" style="flex:1;min-width:180px;margin-bottom:0">
-            <input 입력="text" class="search-inp" id="searchInp" placeholder="● 장비명 검색…" readonly onclick="openDD()" autocomplete="off" style="margin-bottom:0">
+            <input type="text" class="search-inp" id="searchInp" placeholder="● 장비명 검색…" readonly onclick="openDD()" autocomplete="off" style="margin-bottom:0">
             <span class="search-arrow">▼</span>
             <div class="dropdown" id="dropdown">
-              <div class="dd-filter"><input 입력="text" id="ddFilter" placeholder="검색…" oninput="filterDD()" onclick="event.stopPropagation()"></div>
+              <div class="dd-filter"><input type="text" id="ddFilter" placeholder="검색…" oninput="filterDD()" onclick="event.stopPropagation()"></div>
               <div id="ddList"></div>
             </div>
           </div>
           <div id="inputRow" style="display:none;align-items:center;gap:8px;flex-wrap:wrap">
-            <input 입력="text" id="personNameInp" class="person-inp" placeholder="성명" autocomplete="off" style="width:80px">
+            <input type="text" id="personNameInp" class="person-inp" placeholder="성명" autocomplete="off" style="width:80px">
             <div class="days-ctrl">
               <button class="day-btn" onclick="setDays(1)" id="dayBtn1">1일</button>
               <button class="day-btn" onclick="setDays(2)" id="dayBtn2">2일</button>
               <button class="day-btn" onclick="setDays(3)" id="dayBtn3">3일</button>
               <button class="day-btn" onclick="openDatePicker()" id="dayBtnX">📅 직접</button>
-              <input 입력="date" id="returnDatePicker" style="display:none" onchange="setDaysByDate(this.value)">
+              <input type="date" id="returnDatePicker" style="display:none" onchange="setDaysByDate(this.value)">
             </div>
             <div class="delivery-toggle" id="deliveryToggle" onclick="toggleDelivery()">
               <span class="delivery-chk-sq" id="deliveryChkSq"></span>
@@ -633,21 +633,11 @@ function saveHolidays(arr) {
   localStorage.setItem('holidays_' + GH_REPO, JSON.stringify(arr));
 }
 function toggleHoliday(dk) {
-  // 이미 함수가 dk(예: "2024-05-13")를 인자로 받고 있으므로 새로 선언할 필요가 없습니다.
-  if (!state[dk]) {
-    state[dk] = { 
-      "본소": { isHoliday: false, entries: [] }, 
-      "북부": { isHoliday: false, entries: [] } 
-    };
-  }
-
-  // 해당 날짜의 휴무 상태를 반전시킵니다.
-  const currentStatus = !state[dk]["본소"].isHoliday;
-  state[dk]["본소"].isHoliday = currentStatus;
-  state[dk]["북부"].isHoliday = currentStatus;
-
-  if (saveTimer) clearTimeout(saveTimer);
-  saveData();
+  const holidays = getHolidays();
+  const idx = holidays.indexOf(dk);
+  if (idx === -1) holidays.push(dk);
+  else holidays.splice(idx, 1);
+  saveHolidays(holidays);
   renderAll();
 }
 
@@ -720,8 +710,8 @@ const MACHINES=[
 const MMAP={};MACHINES.forEach(m=>MMAP[m.n]=m.m);
 
 const WDEF={
-  '본소':[{id:'bs1',name:'임기제 1',입력:'임기제'},{id:'bs2',name:'임기제 2',입력:'임기제'},{id:'bs3',name:'기간제 1',입력:'기간제'},{id:'bs4',name:'기간제 2',입력:'기간제'}],
-  '북부':[{id:'nb1',name:'임기제 1',입력:'임기제'},{id:'nb2',name:'임기제 2',입력:'임기제'},{id:'nb3',name:'기간제 1',입력:'기간제'},{id:'nb4',name:'기간제 2',입력:'기간제'}],
+  '본소':[{id:'bs1',name:'임기제 1',type:'임기제'},{id:'bs2',name:'임기제 2',type:'임기제'},{id:'bs3',name:'기간제 1',type:'기간제'},{id:'bs4',name:'기간제 2',type:'기간제'}],
+  '북부':[{id:'nb1',name:'임기제 1',type:'임기제'},{id:'nb2',name:'임기제 2',type:'임기제'},{id:'nb3',name:'기간제 1',type:'기간제'},{id:'nb4',name:'기간제 2',type:'기간제'}],
 };
 const EQUIP_LIST = {"본소": [{"n": "배송", "s": "", "m": 240}, {"n": "감자비닐피복파종기-01", "s": "RDK-SP11/감자비닐피복(1조)", "m": 50}, {"n": "고구마수확기-01", "s": "DRK-650/1조", "m": 50}, {"n": "고구마수확기-02", "s": "DRK-650/1조", "m": 50}, {"n": "고구마수확기-03", "s": "DRK-650/1조", "m": 50}, {"n": "고추세척기-01", "s": "SHC-1000N/고추", "m": 40}, {"n": "고추세척기-02", "s": "SHC-1000N/고추", "m": 40}, {"n": "관리기-구굴기(소)-01", "s": "ASC-640/구굴기(소)", "m": 50}, {"n": "관리기-구굴기(소)-02", "s": "ASC-640/구굴기(소)", "m": 50}, {"n": "관리기-구굴기(소)-03", "s": "ASC-640/구굴기(소)", "m": 50}, {"n": "관리기-구굴기(중)-01", "s": "AMC-880SM/구굴기(중)", "m": 50}, {"n": "관리기-구굴기(중)-02", "s": "AMC-1000SM/구굴기(중)", "m": 50}, {"n": "관리기-구굴기(중)-03", "s": "AMC-900SM/구굴기(중)", "m": 50}, {"n": "관리기-구굴기(중)-04", "s": "AMC-900SM/구굴기(중)", "m": 50}, {"n": "관리기-구굴기(중)-05", "s": "AMC-1000SM/구굴기(중)", "m": 50}, {"n": "관리기-구굴기(중)-05", "s": "AMC-900SM/구굴기(중)", "m": 50}, {"n": "관리기-로터리-01", "s": "AMC-1000SM/로타리(중)", "m": 50}, {"n": "관리기-로터리-01", "s": "AMC-900SM/로타리(중)", "m": 50}, {"n": "관리기-로터리-02", "s": "AMC-1000SM/로타리(중)", "m": 50}, {"n": "관리기-로터리-03", "s": "AMC-1000SM/로타리(중)", "m": 50}, {"n": "관리기-로터리-04", "s": "AMC-1000SM/로타리(중)", "m": 50}, {"n": "관리기-로터리-05", "s": "AMC-1000SM/로타리(중)", "m": 50}, {"n": "관리기-로터리-06", "s": "AMC-1000SM/로타리(중)", "m": 50}, {"n": "관리기-로터리-06", "s": "AMC-900SM/로타리(중)", "m": 50}, {"n": "관리기-쟁기-01", "s": "AMC-900SM/쟁기(중)", "m": 50}, {"n": "관리기-쟁기-02", "s": "AMC-900SM/쟁기(중)", "m": 50}, {"n": "관리기-제초기-01", "s": "AMC-880SM/제초기(중)", "m": 50}, {"n": "관리기-제초기-03", "s": "AMC-900SM/제초기(중)", "m": 50}, {"n": "관리기-피복기-01", "s": "AMC-900SM/피복기(중)", "m": 50}, {"n": "관리기-피복기-02", "s": "AMC-900SM/피복기(중)", "m": 50}, {"n": "관리기-피복기-03", "s": "AMC-1000SM/피복기(중)", "m": 50}, {"n": "관리기-피복기-03", "s": "AMC-880SM/피복기(중)", "m": 50}, {"n": "관리기-휴립기-01", "s": "AMC-1000SM/휴립기(중)", "m": 50}, {"n": "관리기-휴립기-02", "s": "AMC-1000SM/휴립기(중)", "m": 50}, {"n": "관리기-휴립기-03", "s": "AMC-1000SM/휴립기(중)", "m": 50}, {"n": "관리기-휴립기-04", "s": "AMC-1000SM/휴립기(중)", "m": 50}, {"n": "관리기-휴립피복기-01", "s": "AMC-1000SM/휴립피복기(중)", "m": 50}, {"n": "관리기-휴립피복기-01", "s": "AMC-900SM/휴립피복기(중)", "m": 50}, {"n": "관리기-휴립피복기-02", "s": "AMC-1000SM/휴립피복기(중)", "m": 50}, {"n": "관리기-휴립피복기-03", "s": "AMC-1000SM/휴립피복기(중)", "m": 50}, {"n": "굴착기(1.7톤)-01", "s": "DX17Z-5/2TON", "m": 80}, {"n": "굴착기(1.7톤)-02", "s": "DX17Z-5/2TON", "m": 80}, {"n": "논두렁조성기(대)-01", "s": "TANTAN-K5/(대)", "m": 90}, {"n": "논두렁조성기(소)-01", "s": "WJLF380/(소)", "m": 90}, {"n": "논두렁조성기(소)-02", "s": "WJLF380/(소)", "m": 90}, {"n": "논두렁조성기(소)-03", "s": "WJLF380/(소)", "m": 90}, {"n": "논두렁조성기(소)-04", "s": "WJLF380/(소)", "m": 90}, {"n": "논두렁조성기(소)-05", "s": "WJLF380/(소)", "m": 90}, {"n": "논두렁조성기(중)-01", "s": "WJLF750/(중)", "m": 90}, {"n": "논두렁조성기(중)-02", "s": "WJLF750/(중)", "m": 90}, {"n": "논두렁조성기(중)-03", "s": "WJLF750/(중)", "m": 90}, {"n": "굴착기(1톤)-01", "s": "U-10-3/1TON", "m": 90}, {"n": "굴착기(1톤)-02", "s": "U-10-3/1TON", "m": 90}, {"n": "굴착기(1톤)-03", "s": "U-10-3S/1TON", "m": 90}, {"n": "굴착기(1톤)-04", "s": "U-10-5/1TON", "m": 90}, {"n": "굴착기(1톤)-05", "s": "U-10-5/1TON", "m": 90}, {"n": "덩굴파쇄기(보행)-01", "s": "HRT802/보행형", "m": 60}, {"n": "덩굴파쇄기(보행)-02", "s": "HRT802/보행형", "m": 60}, {"n": "덩굴파쇄기(보행)-03", "s": "HRT802/보행형", "m": 60}, {"n": "돌수집기-01", "s": "GWD-1400T/1400", "m": 90}, {"n": "돌수집기-02", "s": "DR-1400T/1400", "m": 90}, {"n": "돌수집기-03", "s": "SH-L1400B/1400", "m": 90}, {"n": "돌수집기-04", "s": "SH-L1400B/1400", "m": 90}, {"n": "동력경운기-01", "s": "DT100N/10HP", "m": 40}, {"n": "동력경운기-02", "s": "DT100N/10HP", "m": 40}, {"n": "동력경운기-03", "s": "DT100N/10HP", "m": 40}, {"n": "동력운반차-01", "s": "TKT-600B/궤도", "m": 80}, {"n": "동력파종기1750-01", "s": "HG600A/1750(3조)", "m": 80}, {"n": "동력파종기1950-01", "s": "HG600A/1950(3조)", "m": 80}, {"n": "동력파종기2150-01", "s": "HG600A/2150(3조)", "m": 80}, {"n": "땅속작물수확기1000(진동식)-01", "s": "HD-C1000G/1000-진동식", "m": 60}, {"n": "땅속작물수확기1000(체인식)-01", "s": "SH-900S/1000-체인식", "m": 60}, {"n": "땅속작물수확기1000(체인식)-02", "s": "HD-DSH1000G/1000-체인식", "m": 60}, {"n": "땅속작물수확기1000-01", "s": "HD-DSH1000G/1000-체인식", "m": 60}, {"n": "땅속작물수확기1400(진동식)-01", "s": "HD-C1400G/1400-진동식", "m": 60}, {"n": "땅속작물수확기1400(체인식)-01", "s": "HD-DSH1400G/1400-체인식", "m": 60}, {"n": "땅속작물수확기1400-01", "s": "HD-C1400G/1400-진동식", "m": 60}, {"n": "땅속작물수확기1500(체인식)-01", "s": "SH-1500BN/1500-체인식", "m": 60}, {"n": "땅속작물수확기1600(진동식)-01", "s": "HD-D1600G/1600-진동식", "m": 60}, {"n": "로터베이터1150-01", "s": "DWR115GM/1150", "m": 40}, {"n": "로터베이터1150-02", "s": "DWR115GM/1150", "m": 40}, {"n": "로터베이터1150-03", "s": "DWR115GM/1150", "m": 40}, {"n": "로터베이터1550-01", "s": "WR1550MV/1550", "m": 60}, {"n": "로터베이터1750-01", "s": "WJ175A/1750", "m": 60}, {"n": "로터베이터1750-02", "s": "WR1750DGW/1750", "m": 60}, {"n": "로터베이터1750-03", "s": "WR1750DGW/1750", "m": 60}, {"n": "로터베이터1750-04", "s": "WCR1750MV/1750", "m": 60}, {"n": "로터베이터1950-01", "s": "WJ195B/1950", "m": 60}, {"n": "로터베이터1950-02", "s": "WJ195B/1950", "m": 60}, {"n": "로터베이터1950-03", "s": "WCR1950DGW/1950", "m": 60}, {"n": "로터베이터2150-01", "s": "WR2150DGWJ/2150", "m": 90}, {"n": "로터베이터2150-02", "s": "WR2150DGWJ/2150", "m": 90}, {"n": "로터베이터2150-03", "s": "WCR2150DGW/2150", "m": 90}, {"n": "마늘파종기-01", "s": "CH-06/6조", "m": 50}, {"n": "못자리성형기1750-01", "s": "DS-B003/1750-못자리", "m": 90}, {"n": "못자리성형기2150-01", "s": "DS-B003/2150-못자리", "m": 110}, {"n": "무논정지기2200-01", "s": "WJS220/2200", "m": 90}, {"n": "무논정지기2200-02", "s": "WJS220/2200", "m": 90}, {"n": "무논정지기2200-03", "s": "SW2200SKH/2200", "m": 90}, {"n": "배토기1750-01", "s": "DOA-220/1750(2조)", "m": 90}, {"n": "배토기1950-01", "s": "DOA-220/1950(2조)", "m": 90}, {"n": "분무기-배낭식(살)-01", "s": "BY-HP2625/살충제", "m": 40}, {"n": "분무기-배낭식(제)-01", "s": "BY-HP2625/제초제", "m": 40}, {"n": "분무기-엔진식(살)-01", "s": "HS-70AD/밀차살충제", "m": 40}, {"n": "분무기-엔진식(살)-02", "s": "BCETA-80A/밀차살충제", "m": 40}, {"n": "분무기-엔진식(제)-01", "s": "WPS-80A/밀차제초제", "m": 40}, {"n": "비닐수거기-01", "s": "DH-T3000/1조", "m": 40}, {"n": "비료동력살포기-01", "s": "SG-6030D/입제", "m": 40}, {"n": "비료동력살포기-02", "s": "MD-7030/입제", "m": 40}, {"n": "비료동력살포기-03", "s": "MD-7030/입제", "m": 40}, {"n": "비료살포기-01", "s": "JHT-320H/300kg", "m": 60}, {"n": "비료살포기-02", "s": "JHT-320H/300kg", "m": 60}, {"n": "비료살포기-03", "s": "JHT-550/500kg", "m": 60}, {"n": "비료살포기-04", "s": "JHT-550/500kg", "m": 60}, {"n": "석회살포기-01", "s": "IOD-750A/500KG-석회", "m": 70}, {"n": "소형트랙터18HP-01", "s": "XQ1018/18HP", "m": 50}, {"n": "소형트랙터18HP-02", "s": "XQ1018/18HP", "m": 50}, {"n": "소형트랙터25HP-01", "s": "CK250V/25HP", "m": 50}, {"n": "소형트랙터25HP-02", "s": "CK250V/25HP", "m": 50}, {"n": "소형트랙터25HP-03", "s": "CK250V/25HP", "m": 50}, {"n": "소형트랙터25HP-04", "s": "LK2805/25HP", "m": 50}, {"n": "원판쟁기10련-01", "s": "W300-DP/원판-10련", "m": 90}, {"n": "원판쟁기10련-02", "s": "W300-DP/원판-10련", "m": 90}, {"n": "원판쟁기10련-03", "s": "W300-DP/원판-10련", "m": 90}, {"n": "원판쟁기4련-01", "s": "W42-DP/원판-4련", "m": 60}, {"n": "원판쟁기6련-01", "s": "W62-DP/원판-6련", "m": 60}, {"n": "원판쟁기6련-02", "s": "W62-DP/원판-6련", "m": 60}, {"n": "원판쟁기6련-03", "s": "W62-DP/원판-6련", "m": 60}, {"n": "원판쟁기8련-01", "s": "W82-DP/원판-8련", "m": 90}, {"n": "원판쟁기8련-02", "s": "W82-DP/원판-8련", "m": 90}, {"n": "원판쟁기8련-03", "s": "W82-DP/원판-8련", "m": 90}, {"n": "원판쟁기8련-04", "s": "W82-DP/원판-8련", "m": 90}, {"n": "육묘상자정렬기-01", "s": "MDD300/600~1500", "m": 60}, {"n": "육묘적재이송기-01", "s": "MDJI1400/400~1,500", "m": 80}, {"n": "육묘적재이송기-02", "s": "MDJI1400/400~1,500", "m": 80}, {"n": "이랑쟁기6련-01", "s": "DWS210/이랑-6련", "m": 60}, {"n": "잔가지파쇄기(대)-01", "s": "DLK210E/2000kg/h", "m": 80}, {"n": "잔가지파쇄기(대)-02", "s": "DLK210E/2000kg/h", "m": 80}, {"n": "잔가지파쇄기(대)-03", "s": "DLK210TRC/2000kg/h", "m": 80}, {"n": "잔가지파쇄기(대)-04", "s": "DLK210E/2000kg/h", "m": 80}, {"n": "잔가지파쇄기(소)-01", "s": "DLK15-CR/1300kg/h", "m": 80}, {"n": "잔가지파쇄기(소)-02", "s": "PRJ-315ED/궤도형", "m": 80}, {"n": "잔가지파쇄기(소)-03", "s": "PRJ-315ED/궤도형", "m": 80}, {"n": "잔가지파쇄기(소)-04", "s": "PRJ-315ED/궤도형", "m": 80}, {"n": "잔가지파쇄기(소)-05", "s": "PRJ-315ED/궤도형", "m": 80}, {"n": "잡곡예취기-01", "s": "HSM-E224/잡곡", "m": 80}, {"n": "잡곡예취기-02", "s": "HSM-E224/잡곡", "m": 80}, {"n": "잡곡정선기-01", "s": "SB-200GI/900", "m": 50}, {"n": "잡곡탈곡기-01", "s": "HSMBTH/깨", "m": 110}, {"n": "잡곡탈곡기-02", "s": "HSMBTH/깨", "m": 110}, {"n": "잡곡탈곡기-03", "s": "HSMBTH/깨", "m": 110}, {"n": "잡곡탈곡기-04", "s": "HSMBTH2/깨", "m": 110}, {"n": "잡곡탈곡기-05", "s": "HSMBTH2/깨", "m": 110}, {"n": "잡곡탈곡기-06", "s": "HSMBTH2/깨", "m": 110}, {"n": "잡곡탈곡기-07", "s": "HSMBTH2/깨", "m": 110}, {"n": "잡곡탈곡기-08", "s": "HSMBTH2/깨", "m": 110}, {"n": "쟁기(2련)-01", "s": "SW-PN602/소형-2련", "m": 40}, {"n": "적심기-01", "s": "IPV-1200/1조", "m": 40}, {"n": "적심기-02", "s": "IPV-1200/1조", "m": 40}, {"n": "중경제초기1500-01", "s": "GM1500-L400A/1500", "m": 60}, {"n": "중경제초기1800-01", "s": "GM1800-L550A/1800", "m": 60}, {"n": "채소이식기(반자동)-01", "s": "PH1A/반자동", "m": 60}, {"n": "채소이식기(반자동)-02", "s": "PH1A/반자동", "m": 60}, {"n": "채소이식기(자동)-01", "s": "SKP-100-KR/자동", "m": 60}, {"n": "콩선별기-01", "s": "BHB-2007/설치형", "m": 50}, {"n": "콩예취기-01", "s": "M1-GS/보행형", "m": 70}, {"n": "콩예취기-02", "s": "M1-GS/보행형", "m": 70}, {"n": "콩정선기-01", "s": "BH-30/900", "m": 40}, {"n": "콩정선기-02", "s": "BH-30/900", "m": 40}, {"n": "콩정선기-03", "s": "BH-30/900", "m": 40}, {"n": "콩정선기-04", "s": "BH-30/900", "m": 40}, {"n": "탈곡기(궤도)-01", "s": "ESP-R10/궤도", "m": 110}, {"n": "탈곡기(궤도)-02", "s": "ESP-R10/궤도", "m": 110}, {"n": "탈곡기(궤도)-03", "s": "DBT600H/궤도", "m": 110}, {"n": "탈곡기(궤도)-04", "s": "DBT600H/궤도", "m": 110}, {"n": "탈곡기(궤도)-05", "s": "PBTA1200/궤도", "m": 110}, {"n": "탈곡기(궤도)-06", "s": "DBT650H/궤도", "m": 110}, {"n": "탈곡기(모터)-01", "s": "ESP-2/전기", "m": 60}, {"n": "탈곡기(모터)-02", "s": "ESP-2/전기", "m": 60}, {"n": "탈곡기(모터)-03", "s": "ESP-2/전기", "m": 60}, {"n": "탈곡기(모터)-04", "s": "JO-19621125/전기", "m": 60}, {"n": "탈곡기(모터)-04", "s": "ESP-2/전기", "m": 60}, {"n": "탈곡기(모터)-05", "s": "ESP-2/전기", "m": 60}, {"n": "탈곡기(소)-01", "s": "ESP-1/(소)", "m": 90}, {"n": "탈곡기(소)-02", "s": "ESP-1/(소)", "m": 90}, {"n": "탈곡기(소)-03", "s": "ESP-1/(소)", "m": 90}, {"n": "탈곡기(소)-04", "s": "ESP-1/(소)", "m": 90}, {"n": "탈곡기(소)-05", "s": "ESP-1/(소)", "m": 90}, {"n": "탈곡기(중)-01", "s": "SBK-14000T/(중)", "m": 120}, {"n": "탈곡기(중)-02", "s": "ESP-100P/(중)", "m": 120}, {"n": "탈곡기(중)-03", "s": "ESP-100P/(중)", "m": 120}, {"n": "탈곡기(중)-04", "s": "ESP-100P/(중)", "m": 120}, {"n": "탈곡기(중)-05", "s": "ESP-100P/(중)", "m": 120}, {"n": "탈곡기(중)-06", "s": "ESP-100P/(중)", "m": 120}, {"n": "탈곡기(중)-07", "s": "ESP-100P/(중)", "m": 120}, {"n": "탈곡기(중)-08", "s": "ESP-100P/(중)", "m": 120}, {"n": "탈곡기(중)-09", "s": "ESP-100P/(중)", "m": 120}, {"n": "탈곡기(중)-10", "s": "SBK-14000T/(중)", "m": 120}, {"n": "퇴비살포기(소)-01", "s": "GW-500H/500KG-퇴비", "m": 90}, {"n": "퇴비살포기(소)-02", "s": "GW-900H/900KG-퇴비", "m": 90}, {"n": "트랙터부착용구굴기-01", "s": "OM312/구굴기", "m": 60}, {"n": "트랙터부착용구굴기-02", "s": "OM312/구굴기", "m": 60}, {"n": "파종기-인력(비닐)-01", "s": "HG10A/비닐", "m": 30}, {"n": "파종기-인력(비닐)-02", "s": "HG10A/비닐", "m": 30}, {"n": "파종기-인력(비닐)-03", "s": "HG10A/비닐", "m": 30}, {"n": "파종기-인력(일반)-01", "s": "HG10A/일반", "m": 30}, {"n": "파종기-인력(일반)-02", "s": "HG10A/일반", "m": 30}, {"n": "파종기-인력(일반)-03", "s": "HG10A/일반", "m": 30}, {"n": "파종기-인력(일반)-04", "s": "HG10A/일반", "m": 30}, {"n": "파종기-인력(일반)-05", "s": "HG10A/일반", "m": 30}, {"n": "피복기-인력-01", "s": "BG-777B/8자", "m": 40}, {"n": "피복기-인력-02", "s": "BG-777B/8자", "m": 40}, {"n": "피복기-인력-03", "s": "BG-777B/8자", "m": 40}, {"n": "피복기-인력-04", "s": "BG-777B/8자", "m": 40}, {"n": "피복기-인력-05", "s": "BG-777B/8자", "m": 40}, {"n": "휴립복토기-01", "s": "WJ2-300/휴립복토(1조)", "m": 60}, {"n": "휴립복토파종기(2조)-01", "s": "BG-800BCT/휴립복토(2조)", "m": 60}, {"n": "휴립복토파종기(2조)-02", "s": "BG-800BCT/휴립복토(2조)", "m": 60}, {"n": "휴립복토파종기(2조)-03", "s": "BG-1580BC/휴립복토(2조)", "m": 60}, {"n": "휴립피복기-01", "s": "WJCM-2000/휴립피복(2조)", "m": 60}, {"n": "휴립피복기2조-01", "s": "WJCM-2000/휴립피복(2조)", "m": 60}, {"n": "휴립피복기2조-02", "s": "WJCM-2000/휴립피복(2조)", "m": 60}], "북부": [{"n": "배송", "s": "", "m": 240}, {"n": "구굴기30-02", "s": "OM312/30", "m": 50}, {"n": "감자비닐피복파종기-01", "s": "RDK-SP11/감자비닐피복(1조)", "m": 50}, {"n": "감자파종기-01", "s": "KG-PH9000/감자파종(2조)", "m": 50}, {"n": "감자파종기-04", "s": "DRP-2000R/감자파종(2조)", "m": 50}, {"n": "감자파종기-06", "s": "DRP-2000R/감자파종(2조)", "m": 50}, {"n": "고구마수확기-01", "s": "DRK-650/경운기용", "m": 50}, {"n": "고구마수확기-02", "s": "DRK-650/경운기용", "m": 50}, {"n": "고구마수확기-03", "s": "DRK-650/경운기용", "m": 50}, {"n": "고구마수확기-04", "s": "DRK-650/경운기용", "m": 50}, {"n": "고추세척기-01", "s": "SHC-1000N/고추", "m": 40}, {"n": "고추세척기-02", "s": "SHC-1000N/고추", "m": 40}, {"n": "관리기-구굴기(소)-01", "s": "ASC-640/구굴기(소)", "m": 50}, {"n": "관리기-구굴기(소)-02", "s": "ASC-640/구굴기(소)", "m": 50}, {"n": "관리기-구굴기(소)-03", "s": "ASC-640/구굴기(소)", "m": 50}, {"n": "관리기-구굴기(소)-04", "s": "ASC-640/구굴기(소)", "m": 50}, {"n": "관리기-구굴기(소)-05", "s": "ASC-640/구굴기(소)", "m": 50}, {"n": "관리기-구굴기(중)-01", "s": "AMC-1000SM/구굴기(중)", "m": 50}, {"n": "관리기-구굴기(중)-02", "s": "AMC-900SM/구굴기(중)", "m": 50}, {"n": "관리기-구굴기(중)-03", "s": "AMC-1000SM/구굴기(중)", "m": 50}, {"n": "관리기-로터리-01", "s": "AMC-1000SM/로타리(중)", "m": 50}, {"n": "관리기-로터리-02", "s": "AMC-900SM/로타리(중)", "m": 50}, {"n": "관리기-로터리-03", "s": "AMC-1000SM/로타리(중)", "m": 50}, {"n": "관리기-로터리-04", "s": "AMC-1000SM/로타리(중)", "m": 50}, {"n": "관리기-로터리-05", "s": "AMC-1000SM/로타리(중)", "m": 50}, {"n": "관리기-로터리-06", "s": "AMC-1000SM/로타리(중)", "m": 50}, {"n": "관리기-로터리-07", "s": "AMC-1000SM/로타리(중)", "m": 50}, {"n": "관리기-로터리-08", "s": "AMC-1000SM/로타리(중)", "m": 50}, {"n": "관리기-쟁기-01", "s": "AMC-900SM/쟁기(중)", "m": 50}, {"n": "관리기-제초기-01", "s": "AMC-900SM/제초기(중)", "m": 50}, {"n": "관리기-제초기-02", "s": "AMC-900SM/제초기(중)", "m": 50}, {"n": "관리기-제초기-03", "s": "AMC-900SM/제초기(중)", "m": 50}, {"n": "관리기-피복기-01", "s": "AMC-900SM/피복기(중)", "m": 50}, {"n": "관리기-피복기-02", "s": "AMC-900SM/피복기(중)", "m": 50}, {"n": "관리기-휴립기-01", "s": "AMC-900SM/휴립기(중)", "m": 50}, {"n": "관리기-휴립기-02", "s": "AMC-1000SM/휴립기(중)", "m": 50}, {"n": "관리기-휴립기-03", "s": "AMC-1000SM/휴립기(중)", "m": 50}, {"n": "관리기-휴립피복기-01", "s": "AMC-900SM/휴립피복기(중)", "m": 50}, {"n": "관리기-휴립피복기-02", "s": "AMC-1000SM/휴립피복기(중)", "m": 50}, {"n": "관리기-휴립피복기-03", "s": "AMC-1000SM/휴립피복기(중)", "m": 50}, {"n": "구굴기30-01", "s": "OM312/30", "m": 50}, {"n": "굴착기(1.7톤)-01", "s": "DX17Z-5/2TON", "m": 80}, {"n": "굴착기(1.7톤)-02", "s": "DX17Z-5/2TON", "m": 80}, {"n": "논두렁조성기(대)-01", "s": "TANTAN-K5/(대)", "m": 90}, {"n": "논두렁조성기(대)-02", "s": "TANTAN-K5/(대)", "m": 90}, {"n": "논두렁조성기(대)-03", "s": "TANTAN-K5/(대)", "m": 90}, {"n": "논두렁조성기(소)-01", "s": "WJLF380/(소)", "m": 90}, {"n": "논두렁조성기(소)-02", "s": "WJLF380/(소)", "m": 90}, {"n": "논두렁조성기(소)-03", "s": "WJLF380/(소)", "m": 90}, {"n": "논두렁조성기(소)-04", "s": "WJLF380/(소)", "m": 90}, {"n": "논두렁조성기(소)-05", "s": "WJLF380/(소)", "m": 90}, {"n": "논두렁조성기(중)-01", "s": "WJLF750/(중)", "m": 90}, {"n": "논두렁조성기(중)-02", "s": "WJLF750/(중)", "m": 90}, {"n": "논두렁조성기(중)-03", "s": "WJLF750/(중)", "m": 90}, {"n": "논두렁조성기(중)-04", "s": "WJLF750/(중)", "m": 90}, {"n": "농산물선별기-01", "s": "JK-GS4M/900", "m": 40}, {"n": "굴착기(1톤)-01", "s": "U-10-3/1TON", "m": 90}, {"n": "굴착기(1톤)-02", "s": "U-10-3S/1TON", "m": 90}, {"n": "굴착기(1톤)-03", "s": "U-10-3S/1TON", "m": 90}, {"n": "굴착기(1톤)-04", "s": "U-10-5/1TON", "m": 90}, {"n": "굴착기(1톤)-05", "s": "U-10-5/1TON", "m": 90}, {"n": "다목적파종기-01", "s": "GDS-10DMS/10조", "m": 90}, {"n": "덩굴파쇄기(보행)-01", "s": "HRT802/보행형", "m": 60}, {"n": "덩굴파쇄기(보행)-02", "s": "HRT802/보행형", "m": 60}, {"n": "덩굴파쇄기(보행)-03", "s": "HRT802/보행형", "m": 60}, {"n": "덩굴파쇄기(보행)-04", "s": "HRT802/보행형", "m": 60}, {"n": "돌수집기-01", "s": "GWD-1400T/1400", "m": 90}, {"n": "돌수집기-02", "s": "GWD-1400T/1400", "m": 90}, {"n": "돌수집기-03", "s": "SH-L1400B/1400", "m": 90}, {"n": "돌수집기-04", "s": "SH-L1400B/1400", "m": 90}, {"n": "돌파쇄기-01", "s": "JYSC-1000/100cm", "m": 60}, {"n": "동력경운기-01", "s": "DT100N/10HP", "m": 40}, {"n": "동력경운기-02", "s": "DT100N/10HP", "m": 40}, {"n": "동력경운기-03", "s": "DT100N/10HP", "m": 40}, {"n": "동력살분무기(살)-01", "s": "L3EDA/액제", "m": 40}, {"n": "동력살분무기(살)-02", "s": "L3PSA/액제", "m": 40}, {"n": "동력살분무기(살)-03", "s": "L3EDA/액제", "m": 40}, {"n": "동력살분무기(제)-01", "s": "L3PSA/액제", "m": 40}, {"n": "동력운반차-01", "s": "TKT-600B/궤도", "m": 80}, {"n": "동력제초기(보행)-01", "s": "SGM71B/보행형", "m": 60}, {"n": "동력제초기(승용)-01", "s": "BM21/승용형", "m": 80}, {"n": "동력제초기(승용)-02", "s": "SRM1600/승용형", "m": 80}, {"n": "동력파종기1750-01", "s": "HG600A/1750(3조)", "m": 80}, {"n": "동력파종기1950-01", "s": "HG600A/1950(3조)", "m": 80}, {"n": "동력파종기2150-01", "s": "HG600A/2150(3조)", "m": 80}, {"n": "동력파종기2350-01", "s": "HG500A/2350(4조)", "m": 80}, {"n": "동력파종기2350-02", "s": "HG500A/2350(4조)", "m": 80}, {"n": "땅속작물수확기(장기)-06", "s": "SH-T1400/1400-체인식", "m": 60}, {"n": "땅속작물수확기1000(진동식)-01", "s": "HD-C1000G/1000-진동식", "m": 60}, {"n": "땅속작물수확기1000(체인식)-01", "s": "HD-DSH1000G/1000-체인식", "m": 60}, {"n": "땅속작물수확기1000(체인식)-02", "s": "HD-DSH1000G/1000-체인식", "m": 60}, {"n": "땅속작물수확기1000(체인식)-03", "s": "SH-900S/1000-체인식", "m": 60}, {"n": "땅속작물수확기1300(체인식)-01", "s": "HADA-MH1300D/1300-체인식", "m": 60}, {"n": "땅속작물수확기1400(진동식)-01", "s": "HD-C1400G/1400-진동식", "m": 60}, {"n": "땅속작물수확기1400(진동식)-02", "s": "HD-C1400G/1400-진동식", "m": 60}, {"n": "땅속작물수확기1400(체인식)-01", "s": "HD-DSH1400G/1400-체인식", "m": 60}, {"n": "땅속작물수확기1400(체인식)-02", "s": "HD-DSH1400G/1400-체인식", "m": 60}, {"n": "땅속작물수확기1400(체인식)-03", "s": "HD-DSH1400G/1400-체인식", "m": 60}, {"n": "땅속작물수확기1500(체인식)-01", "s": "SH-1500BN/1500-체인식", "m": 60}, {"n": "땅속작물수확기1600(진동식)-01", "s": "HD-D1600G/1600-진동식", "m": 60}, {"n": "땅속작물수확기1600(진동식)-02", "s": "HD-D1600G/1600-진동식", "m": 60}, {"n": "로터베이터1500-01", "s": "AR-150/1500", "m": 60}, {"n": "로터베이터1150-01", "s": "DWR115GM/1150", "m": 40}, {"n": "로터베이터1150-02", "s": "DWR115GM/1150", "m": 40}, {"n": "로터베이터1150-03", "s": "DWR115GM/1150", "m": 40}, {"n": "로터베이터1550-01", "s": "WR1550MV/1550", "m": 60}, {"n": "로터베이터1750-01", "s": "WJ175A/1750", "m": 60}, {"n": "로터베이터1750-02", "s": "WR1750DGW/1750", "m": 60}, {"n": "로터베이터1750-03", "s": "WR1750DGW/1750", "m": 60}, {"n": "로터베이터1750-04", "s": "DW175GM/1750", "m": 60}, {"n": "로터베이터1950-01", "s": "WJ195B/1950", "m": 60}, {"n": "로터베이터1950-02", "s": "WR1950DGWJ/1950", "m": 60}, {"n": "로터베이터1950-03", "s": "DWR195GLJ/1950", "m": 60}, {"n": "로터베이터1950-04", "s": "WR195DGW/1950", "m": 60}, {"n": "로터베이터2150-01", "s": "WR2150DGWJ/2150", "m": 90}, {"n": "로터베이터2150-02", "s": "WR2150DGWJ/2150", "m": 90}, {"n": "로터베이터2150-03", "s": "WR2150DGW/2150", "m": 90}, {"n": "로터베이터2350-01", "s": "AR5240SC/2350", "m": 90}, {"n": "로터베이터2350-02", "s": "AR5240SC/2350", "m": 90}, {"n": "마늘수확기-경운기-01", "s": "BKG-950/경운기용", "m": 50}, {"n": "마늘파종기-01", "s": "CH-06/6조", "m": 50}, {"n": "마늘파종기-트랙터-01", "s": "HADA-GPS9T/마늘파종(9조)", "m": 50}, {"n": "못자리성형기1750-01", "s": "DS-B003/1750-못자리", "m": 90}, {"n": "못자리성형기2150-01", "s": "DS-B003/2150-못자리", "m": 110}, {"n": "못자리성형기2150-02", "s": "DS-B003/2150-못자리", "m": 110}, {"n": "무논정지기2200-01", "s": "WJS220/2200", "m": 90}, {"n": "무논정지기2400-01", "s": "WJS240/2400", "m": 90}, {"n": "발근기-01", "s": "MT-G1800/1800", "m": 50}, {"n": "발근기-02", "s": "MT-G1800/1800", "m": 50}, {"n": "배토기1750-01", "s": "DOA-220/1750(2조)", "m": 90}, {"n": "배토기1950-01", "s": "DOA-220/1950(2조)", "m": 90}, {"n": "보통쟁기(3련)-01", "s": "KP300A/보통-3련", "m": 60}, {"n": "분무기-배낭식(살)-01", "s": "BY-HP2625/베낭식-살충제", "m": 40}, {"n": "분무기-배낭식(제)-01", "s": "BY-HP2625/배낭식-제초제", "m": 40}, {"n": "분무기-엔진식(살)-01", "s": "GX200T2/살충제", "m": 40}, {"n": "분무기-엔진식(살)-02", "s": "BCEAT-80A/살충제", "m": 40}, {"n": "분무기-엔진식(제)-01", "s": "HS-70AD/제초제", "m": 40}, {"n": "붐스프레이어-01", "s": "BS-2000/600ℓ", "m": 150}, {"n": "붐스프레이어-02", "s": "BS-2000/600ℓ", "m": 150}, {"n": "비닐수거기-01", "s": "DH-T3000/1조", "m": 40}, {"n": "비닐수거기-02", "s": "DH-T3000/1조", "m": 40}, {"n": "비료동력살포기-01", "s": "SG-6030D/입제", "m": 40}, {"n": "비료동력살포기-02", "s": "MD-7030/입제", "m": 40}, {"n": "비료동력살포기-03", "s": "MD-7030/입제", "m": 40}, {"n": "비료동력살포기-04", "s": "SG-8030/입제", "m": 40}, {"n": "비료살포기-01", "s": "JHT-320H/300kg", "m": 60}, {"n": "비료살포기-02", "s": "JHT-320H/300kg", "m": 60}, {"n": "비료살포기-03", "s": "DP-2500H1/500kg", "m": 60}, {"n": "비료살포기-04", "s": "JHT-550H/500kg", "m": 60}, {"n": "비료살포기-05", "s": "JHT-550/500kg", "m": 60}, {"n": "석회살포기-01", "s": "IOD-750A/500KG-석회", "m": 70}, {"n": "소형트랙터18HP-01", "s": "XQ1018/18HP", "m": 50}, {"n": "소형트랙터18HP-02", "s": "XQ1018/18HP", "m": 50}, {"n": "소형트랙터25HP-01", "s": "CK250V/25HP", "m": 50}, {"n": "소형트랙터25HP-02", "s": "CK250V/25HP", "m": 50}, {"n": "소형트랙터25HP-03", "s": "CK250V/25HP", "m": 50}, {"n": "소형트랙터25HP-04", "s": "LK2805/25HP", "m": 50}, {"n": "승용관리기20HP-01", "s": "CFM-2000/20HP", "m": 140}, {"n": "승용관리기20HP-02", "s": "CFM-2000/20HP", "m": 140}, {"n": "심경쟁기(5련)-01", "s": "WHDP500/심경-5련", "m": 60}, {"n": "심경쟁기(5련)-02", "s": "WHDP500/심경-5련", "m": 60}, {"n": "심경쟁기(5련)-03", "s": "DSS5/심경-5련(유압)", "m": 60}, {"n": "심경쟁기(7련)-01", "s": "SDS-P7/심경-7련(유압)", "m": 60}, {"n": "심토파쇄기1456-01", "s": "BBK1456L/비반가1456", "m": 130}, {"n": "심토파쇄기1456-02", "s": "BBK1456L/비반가1456", "m": 130}, {"n": "심토파쇄기1606-01", "s": "RDK1606S/비반가1606", "m": 130}, {"n": "심토파쇄기1606-02", "s": "BBK1606/비반가1606", "m": 130}, {"n": "심토파쇄기1808-01", "s": "BBK1808/비반가1808", "m": 130}, {"n": "심토파쇄기2008-01", "s": "BBK2008/비반가2008", "m": 130}, {"n": "심토파쇄기2210-01", "s": "RDK2210/비반가2210", "m": 130}, {"n": "심토파쇄기2210-02", "s": "RDK2210/비반가2210", "m": 130}, {"n": "양용쟁기(3련)-01", "s": "KP3300W/양용-3련", "m": 80}, {"n": "양용쟁기(3련)-02", "s": "KP3300W/양용-3련", "m": 80}, {"n": "양용쟁기(4련)-01", "s": "KP4400W/양용-4련", "m": 80}, {"n": "양용쟁기(4련)-02", "s": "KP4500W/양용-4련", "m": 80}, {"n": "옥수수파종기-01", "s": "PLANTER3/4조", "m": 90}, {"n": "원판쟁기10련-01", "s": "W300-DP/원판-10련", "m": 90}, {"n": "원판쟁기10련-02", "s": "W300-DP/원판-10련", "m": 90}, {"n": "원판쟁기10련-03", "s": "W300-DP/원판-10련", "m": 90}, {"n": "원판쟁기10련-04", "s": "W300-DP/원판-10련", "m": 90}, {"n": "원판쟁기10련-05", "s": "W300-DP/원판-10련", "m": 90}, {"n": "원판쟁기4련-01", "s": "W42-DP/원판-4련", "m": 60}, {"n": "원판쟁기6련-01", "s": "W62-DP/원판-6련", "m": 60}, {"n": "원판쟁기6련-02", "s": "W62-DP/원판-6련", "m": 60}, {"n": "원판쟁기6련-03", "s": "W62-DP/원판-6련", "m": 60}, {"n": "원판쟁기8련-01", "s": "W82-DP/원판-8련", "m": 90}, {"n": "원판쟁기8련-02", "s": "W82-DP/원판-8련", "m": 90}, {"n": "원판쟁기8련-03", "s": "W82-DP/원판-8련", "m": 90}, {"n": "원판쟁기8련-04", "s": "W82-DP/원판-8련", "m": 90}, {"n": "육묘상자정렬기-01", "s": "MDD300/600~1500", "m": 60}, {"n": "육묘적재이송기-01", "s": "MDJI1400/400~1,500", "m": 80}, {"n": "육묘적재이송기-02", "s": "MDJI1400/400~1,500", "m": 80}, {"n": "육묘적재이송기-03", "s": "MDJI1400/400~1,500", "m": 80}, {"n": "이랑쟁기6련-01", "s": "DWS210/이랑-6련", "m": 60}, {"n": "이랑쟁기6련-02", "s": "DWS210/이랑-6련", "m": 60}, {"n": "이랑쟁기9련-01", "s": "DWS260/이랑-9련", "m": 80}, {"n": "잔가지파쇄기(대)-01", "s": "DLK210E/2000kg/h", "m": 80}, {"n": "잔가지파쇄기(대)-02", "s": "DLK210E/2000kg/h", "m": 80}, {"n": "잔가지파쇄기(대)-03", "s": "DLK210E/2000kg/h", "m": 80}, {"n": "잔가지파쇄기(대)-04", "s": "DLK210E/2000kg/h", "m": 80}, {"n": "잔가지파쇄기(소)-01", "s": "DLK12TRC-H/1300kg/h", "m": 80}, {"n": "잔가지파쇄기(소)-02", "s": "DLK15TRC-H/1300kg/h", "m": 80}, {"n": "잡곡예취기-01", "s": "HSM-BE224/2조식", "m": 80}, {"n": "잡곡예취기-02", "s": "HSM-BE224/2조식", "m": 80}, {"n": "잡곡정선기-01", "s": "SB-200GI/900", "m": 50}, {"n": "잡곡탈곡기-01", "s": "HSMBTH/깨", "m": 110}, {"n": "잡곡탈곡기-02", "s": "HSMBTH/깨", "m": 110}, {"n": "잡곡탈곡기-03", "s": "HSMBTH/깨", "m": 110}, {"n": "잡곡탈곡기-04", "s": "HSMBTH/깨", "m": 110}, {"n": "잡곡탈곡기-05", "s": "HSMBTH2/깨", "m": 110}, {"n": "잡곡탈곡기-06", "s": "HSMBTH2/깨", "m": 110}, {"n": "잡곡탈곡기-07", "s": "HSMBTH2/깨", "m": 110}, {"n": "잡곡탈곡기-08", "s": "HSMBTH2/깨", "m": 110}, {"n": "쟁기(2련)-01", "s": "SW-PN602/소형-2련", "m": 40}, {"n": "적심기-01", "s": "IPV-1200/1조", "m": 40}, {"n": "적심기-02", "s": "IPV-1200/1조", "m": 40}, {"n": "적심기-03", "s": "IPV-1200/1조", "m": 40}, {"n": "적심기-04", "s": "IPV-1200/1조", "m": 40}, {"n": "줄기절단기-01", "s": "SH-1500MC/150", "m": 70}, {"n": "줄기절단기-02", "s": "HADA-STD1400/150", "m": 70}, {"n": "중경제초기1500-01", "s": "GM1500-L400A/1500", "m": 60}, {"n": "중경제초기1500-02", "s": "GM1500-L400A/1500", "m": 60}, {"n": "중경제초기1800-01", "s": "GM1800-L550A/1800", "m": 60}, {"n": "중경제초기1800-02", "s": "GM1800-L550A/1800", "m": 60}, {"n": "채소이식기(반자동)-01", "s": "PH1A/반자동", "m": 60}, {"n": "채소이식기(반자동)-02", "s": "PH1A/반자동", "m": 60}, {"n": "채소이식기(자동)-01", "s": "SKP-100W-KR/자동", "m": 60}, {"n": "채소이식기(자동)-02", "s": "PF1/자동", "m": 60}, {"n": "채소이식기(자동)-03", "s": "PF1S/자동", "m": 60}, {"n": "콩예취기-01", "s": "M1-GS/보행형", "m": 70}, {"n": "콩예취기-02", "s": "M1-GS/보행형", "m": 70}, {"n": "콩예취기-03", "s": "ABH-100H/보행형", "m": 70}, {"n": "콩정선기-01", "s": "BH-30/900", "m": 40}, {"n": "콩정선기-02", "s": "BH-30/900", "m": 40}, {"n": "콩정선기-03", "s": "BH-30/900", "m": 40}, {"n": "콩정선기-04", "s": "BH-30/900", "m": 40}, {"n": "탈곡기(궤도)-01", "s": "ESP-R10/궤도", "m": 110}, {"n": "탈곡기(궤도)-02", "s": "ESP-R10/궤도", "m": 110}, {"n": "탈곡기(궤도)-03", "s": "DBT600H/궤도", "m": 110}, {"n": "탈곡기(궤도)-04", "s": "DBT600H/궤도", "m": 110}, {"n": "탈곡기(궤도)-05", "s": "DBT650H/궤도", "m": 110}, {"n": "탈곡기(궤도)-06", "s": "PBTA1200/궤도", "m": 110}, {"n": "탈곡기(모터)-01", "s": "ESP-2/전기", "m": 60}, {"n": "탈곡기(모터)-02", "s": "ESP-2/전기", "m": 60}, {"n": "탈곡기(모터)-03", "s": "ESP-2/전기", "m": 60}, {"n": "탈곡기(모터)-04", "s": "JO-19621125/전기", "m": 60}, {"n": "탈곡기(대)-01", "s": "ESP-1000/(대)", "m": 150}, {"n": "탈곡기(대)-02", "s": "ESP-1000/(대)", "m": 150}, {"n": "탈곡기(대)-03", "s": "ESP-1000/(대)", "m": 150}, {"n": "탈곡기(소)-01", "s": "ESP-1/(소)", "m": 90}, {"n": "탈곡기(소)-02", "s": "ESP-1/(소)", "m": 90}, {"n": "탈곡기(소)-03", "s": "ESP-1/(소)", "m": 90}, {"n": "탈곡기(중)-01", "s": "SBK-14000T/(중)", "m": 120}, {"n": "탈곡기(중)-02", "s": "ESP-100P/(중)", "m": 120}, {"n": "탈곡기(중)-03", "s": "ESP-100P/(중)", "m": 120}, {"n": "탈곡기(중)-04", "s": "ESP-100P/(중)", "m": 120}, {"n": "탈곡기(중)-05", "s": "ESP-100P/(중)", "m": 120}, {"n": "탈곡기(중)-06", "s": "ESP-100P/(중)", "m": 120}, {"n": "탈곡기(중)-07", "s": "ESP-100P/(중)", "m": 120}, {"n": "탈곡기(중)-08", "s": "ESP-100P/(중)", "m": 120}, {"n": "탈곡기(중)-09", "s": "ESP-100P/(중)", "m": 120}, {"n": "탈곡기(중)-10", "s": "SBK-14000T/(중)", "m": 120}, {"n": "퇴비살포기(대)-01", "s": "TS-45H/4.5TON-퇴비", "m": 150}, {"n": "퇴비살포기(대)-02", "s": "TS-45H/4.5TON-퇴비", "m": 150}, {"n": "퇴비살포기(소)-01", "s": "GW-500H/500KG-퇴비", "m": 90}, {"n": "퇴비살포기(소)-02", "s": "GW-500H/500KG-퇴비", "m": 90}, {"n": "퇴비살포기(소)-03", "s": "GW-900H/900KG-퇴비", "m": 90}, {"n": "퇴비살포기(소)-04", "s": "GW-900H/900KG-퇴비", "m": 90}, {"n": "퇴비살포기(소)-05", "s": "GW-900H/900KG-퇴비", "m": 90}, {"n": "퇴비살포기(승용)-01", "s": "HSC-1500W/자주형1000kg", "m": 140}, {"n": "퇴비살포기(승용)-02", "s": "HSC-1500W/자주형1000kg", "m": 140}, {"n": "퇴비살포기(중)-01", "s": "HM-3000/3.5TON-퇴비", "m": 150}, {"n": "퇴비살포기(중)-02", "s": "HM-3000/3.5TON-퇴비", "m": 150}, {"n": "파종기-인력(비닐)-01", "s": "HG10A/비닐", "m": 30}, {"n": "파종기-인력(비닐)-02", "s": "HG10A/비닐", "m": 30}, {"n": "파종기-인력(일반)-01", "s": "HG10A/일반", "m": 30}, {"n": "파종기-인력(일반)-02", "s": "HG10A/일반", "m": 30}, {"n": "파종기-인력(일반)-03", "s": "HG10A/일반", "m": 30}, {"n": "파종기-인력(일반)-04", "s": "HG10A/일반", "m": 30}, {"n": "파종기-인력(일반)-05", "s": "HG10A/일반", "m": 30}, {"n": "평탄쟁기-01", "s": "FDS-R6/평탄-6련", "m": 60}, {"n": "평탄쟁기-02", "s": "FDS-R6/평탄-6련", "m": 60}, {"n": "피복기-인력-01", "s": "BG-777B/8자", "m": 40}, {"n": "피복기-인력-03", "s": "BG-777B/8자", "m": 40}, {"n": "피복기-인력-04", "s": "BG-777B/8자", "m": 40}, {"n": "피복기-인력-05", "s": "BG-777B/8자", "m": 40}, {"n": "피복기-인력-06", "s": "BG-777B/8자", "m": 40}, {"n": "휴립복토기-01", "s": "WJ2-300/휴립복토(1조)", "m": 60}, {"n": "휴립복토파종기(2조)-01", "s": "BG-800BCT/휴립복토(2조)", "m": 60}, {"n": "휴립복토파종기(2조)-02", "s": "BG-800BCT/휴립복토(2조)", "m": 60}, {"n": "휴립복토파종기(2조1두둑)-01", "s": "BG-1260BC/휴립복토(2조1두둑)", "m": 60}, {"n": "휴립복토파종기(2조2두둑)-01", "s": "BG-1580BC/휴립복토(2조2두둑)", "m": 60}, {"n": "휴립복토파종기(2조2두둑)-02", "s": "BG-1580BC/휴립복토(2조2두둑)", "m": 60}, {"n": "휴립복토파종기(4조2두둑)-01", "s": "BG-2400BC/휴립복토(4조2두둑)", "m": 80}, {"n": "휴립피복기1조-01", "s": "BG-600B/휴립피복(1조)", "m": 60}, {"n": "휴립피복기2조-01", "s": "WJCM-2000/휴립피복(2조)", "m": 60}, {"n": "휴립피복기2조-02", "s": "WJCM-2000/휴립피복(2조)", "m": 60}, {"n": "휴립피복기2조-03", "s": "WJCM-2000/휴립피복(2조)", "m": 60}]};
 const SCHED=[{label:'정상근무 (7h)',value:420},{label:'반일 오전 (3.5h)',value:210},{label:'반일 오후 (3.5h)',value:210},{label:'휴가 / 결근 (0h)',value:0}];
@@ -766,7 +756,7 @@ async function loadData(){
   document.getElementById('loadingOverlay').classList.remove('hidden');
   try{
     const res = await fetch(SB_API+'?id=eq.main&select=data', {headers:SB_HDR});
-    if(!res.ok) throw new 오류('HTTP '+res.status);
+    if(!res.ok) throw new Error('HTTP '+res.status);
     const rows = await res.json();
     const raw = rows.length > 0 ? rows[0].data : null;
     if(!raw || Object.keys(raw).length === 0){
@@ -825,7 +815,7 @@ async function saveData(){
       headers:{...SB_HDR,'Prefer':'return=minimal'},
       body:JSON.stringify({data:payload,updated_at:new Date().toISOString()})
     });
-    if(!res.ok) throw new 오류('HTTP '+res.status);
+    if(!res.ok) throw new Error('HTTP '+res.status);
     setSyncUI('ok','저장 완료 · '+new Date().toLocaleTimeString('ko-KR'));
   } catch(e){
     setSyncUI('err','❌ 저장 실패: '+e.message);
@@ -924,15 +914,15 @@ function downloadReport(){
   const today = new Date();
   const dateStr = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
-  const 파일 = [
+  const files = [
     {name: `농기계임대현황_일자별부하_${dateStr}.csv`, content: '\uFEFF'+s1},
     {name: `농기계임대현황_임대상세_${dateStr}.csv`,   content: '\uFEFF'+s2},
     {name: `농기계임대현황_기종별집계_${dateStr}.csv`, content: '\uFEFF'+s3},
     {name: `농기계임대현황_근무자현황_${dateStr}.csv`, content: '\uFEFF'+s4},
   ];
 
-  파일.forEach(f => {
-    const blob = new Blob([f.content], {입력:'text/csv;charset=utf-8'});
+  files.forEach(f => {
+    const blob = new Blob([f.content], {type:'text/csv;charset=utf-8'});
     const url = URL.createObjectURL(blob);
     // ── 시트4: 취소 이력 ──
   let s4b = '취소일시,취소사유,장비명,성명,임대기간(일),시작일,사업소,소요시간(분),배송\n';
@@ -1050,15 +1040,15 @@ function updateDeliveryUI() {
   const dk = getDkeys()[curIdx];
   const site = curSite === '전체' ? '본소' : curSite;
   ensureDay(dk);
-  const ： = state[dk][site].delivery || false;
+  const on = state[dk][site].delivery || false;
   const bar = document.getElementById('deliveryBar');
   const box = document.getElementById('deliveryChkBox');
   const mins = document.getElementById('deliveryMins');
   if(!bar) return;
-  bar.classList.toggle('on', ：);
-  box.style.color = ： ? '#000' : 'transparent';
-  box.style.background = ： ? 'var(--yellow)' : 'var(--bg)';
-  box.style.borderColor = ： ? 'var(--yellow)' : 'var(--border)';
+  bar.classList.toggle('on', on);
+  box.style.color = on ? '#000' : 'transparent';
+  box.style.background = on ? 'var(--yellow)' : 'var(--bg)';
+  box.style.borderColor = on ? 'var(--yellow)' : 'var(--border)';
   mins.textContent = '240분';
 }
 
@@ -1132,7 +1122,7 @@ function renderInoutCols() {
     // 날짜 계산 (탭 범위 밖이어도 실제 날짜 사용)
     const d = new Date(DATES[idx]);
     d.setDate(d.getDate() + offset);
-    const dk = new Date(d.getTime() - (d.getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
+    const dk = d.toISOString().slice(0,10);
 
     const isToday2 = dk === today().toISOString().slice(0,10);
     const isHol = holidays.includes(dk);
@@ -1157,20 +1147,20 @@ function renderInoutCols() {
           if(!needOut && !needIn && !needInPastOut) return;
 
           // 타입
-          let 입력 = 'type-out';
-          if(needIn || needInPastOut) 입력 = (e.days===1 && needOut) ? 'type-1 일 전' : 'type-in';
+          let type = 'type-out';
+          if(needIn || needInPastOut) type = (e.days===1 && needOut) ? 'type-1day' : 'type-in';
 
-          tasks.push({e, site, startDk, outDk, inDk, needOut, needIn: needIn||needInPastOut, 입력});
+          tasks.push({e, site, startDk, outDk, inDk, needOut, needIn: needIn||needInPastOut, type});
         });
       });
     });
 
     // 정렬
-    const order = {'type-in':0,'type-1 일 전':1,'type-out':2};
+    const order = {'type-in':0,'type-1day':1,'type-out':2};
     tasks.sort((a,b) => {
-      if(order[a.입력]!==order[b.입력]) return order[a.입력]-order[b.입력];
-      if(a.입력==='type-in' && a.e.days!==b.e.days) return b.e.days-a.e.days;
-      if(a.입력==='type-out' && a.e.days!==b.e.days) return a.e.days-b.e.days;
+      if(order[a.type]!==order[b.type]) return order[a.type]-order[b.type];
+      if(a.type==='type-in' && a.e.days!==b.e.days) return b.e.days-a.e.days;
+      if(a.type==='type-out' && a.e.days!==b.e.days) return a.e.days-b.e.days;
       return (a.e.personName||'').localeCompare(b.e.personName||'','ko');
     });
 
@@ -1179,9 +1169,9 @@ function renderInoutCols() {
 
     let rowsHtml = tasks.map(t => {
       const e = t.entry || t.e;
-      const bgMap = {'type-in':'rgba(100,116,139,.1)','type-1 일 전':'rgba(234,179,8,.07)','type-out':'rgba(34,197,94,.07)'};
-      const borderMap = {'type-in':'#64748b','type-1 일 전':'#eab308','type-out':'#22c55e'};
-      return `<div style="padding:5px 8px;border-bottom:1px solid var(--border);border-left:2px solid ${borderMap[t.입력]};background:${bgMap[t.입력]};font-size:11px">
+      const bgMap = {'type-in':'rgba(100,116,139,.1)','type-1day':'rgba(234,179,8,.07)','type-out':'rgba(34,197,94,.07)'};
+      const borderMap = {'type-in':'#64748b','type-1day':'#eab308','type-out':'#22c55e'};
+      return `<div style="padding:5px 8px;border-bottom:1px solid var(--border);border-left:2px solid ${borderMap[t.type]};background:${bgMap[t.type]};font-size:11px">
         <div style="display:flex;align-items:center;gap:4px;margin-bottom:2px">
           <span style="font-weight:700;color:#fff;font-size:11px">${e.personName}</span>
           <span style="font-size:9px;color:var(--muted)">${e.days}일</span>
@@ -1276,7 +1266,7 @@ function renderWorkers(){
   const showSites=curSite==='전체'?SITES:[curSite];
   document.getElementById('workerBlocks').innerHTML=showSites.map(st=>{
     const av=getAvailSite(dk,st);
-    const workers=WDEF[st].map(w=>'<div class="worker-item"><div class="wname type-'+w.입력+'">'+w.name+' <span style="font-size:9px;opacity:.5">'+w.입력+'</span></div><select onchange="state[\''+dk+'\'][\''+st+'\'].workers[\''+w.id+'\']=+this.value;scheduleSave();renderAll()">'+SCHED.map(o=>'<option value="'+o.value+'"'+(state[dk][st].workers[w.id]===o.value?' selected':'')+'>'+o.label+'</option>').join('')+'</select></div>').join('');
+    const workers=WDEF[st].map(w=>'<div class="worker-item"><div class="wname type-'+w.type+'">'+w.name+' <span style="font-size:9px;opacity:.5">'+w.type+'</span></div><select onchange="state[\''+dk+'\'][\''+st+'\'].workers[\''+w.id+'\']=+this.value;scheduleSave();renderAll()">'+SCHED.map(o=>'<option value="'+o.value+'"'+(state[dk][st].workers[w.id]===o.value?' selected':'')+'>'+o.label+'</option>').join('')+'</select></div>').join('');
     return '<div class="site-block"><div class="site-hdr"><span class="site-lbl '+st+'">'+st+'</span><span class="site-avail">'+av+'분 ('+(av/60).toFixed(1)+'h)</span></div><div class="worker-grid">'+workers+'</div></div>';
   }).join('');
   const avail=getAvail(dk,curSite);
@@ -1325,12 +1315,12 @@ function renderSelList(){
         if(!canOut && !canIn) return;
 
         // 타입 분류
-        let 입력;
-        if(e.days===1 && canOut && canIn) 입력 = 'type-1 일 전';  // 1일 임대 (노란)
-        else if(canIn && !canOut)          입력 = 'type-in';    // 입고 (회색)
-        else                               입력 = 'type-out';   // 출고 (초록)
+        let type;
+        if(e.days===1 && canOut && canIn) type = 'type-1day';  // 1일 임대 (노란)
+        else if(canIn && !canOut)          type = 'type-in';    // 입고 (회색)
+        else                               type = 'type-out';   // 출고 (초록)
 
-        items.push({e, st, startDk, idx: idx2, canOut, canIn, 입력});
+        items.push({e, st, startDk, idx: idx2, canOut, canIn, type});
       });
     });
   });
@@ -1338,15 +1328,15 @@ function renderSelList(){
   // 정렬
   items.sort((a, b) => {
     // 그룹 순서: 입고(0) → 1일(1) → 출고(2)
-    const order = {'type-in':0,'type-1 일 전':1,'type-out':2};
-    if(order[a.입력] !== order[b.입력]) return order[a.입력] - order[b.입력];
+    const order = {'type-in':0,'type-1day':1,'type-out':2};
+    if(order[a.type] !== order[b.type]) return order[a.type] - order[b.type];
 
     // 입고: 기간 긴 순
-    if(a.입력==='type-in') {
+    if(a.type==='type-in') {
       if(a.e.days !== b.e.days) return b.e.days - a.e.days;
     }
     // 출고: 기간 짧은 순
-    if(a.입력==='type-out') {
+    if(a.type==='type-out') {
       if(a.e.days !== b.e.days) return a.e.days - b.e.days;
     }
     // 성명 가나다
@@ -1355,13 +1345,13 @@ function renderSelList(){
 
   // 렌더링
   let h = '';
-  items.forEach(({e, st, startDk, idx: idx2, canOut, canIn, 입력}) => {
+  items.forEach(({e, st, startDk, idx: idx2, canOut, canIn, type}) => {
     const entries = state[startDk][st].entries;
     const isFirst = idx2===0, isLast = idx2===entries.length-1;
     const totalMins = calcMinsForDate(e, dk);
     const daysLabel = e.days+'일';
 
-    h += `<div class="sel-item ${입력} ${e.outDone&&e.inDone?'done':''}"
+    h += `<div class="sel-item ${type} ${e.outDone&&e.inDone?'done':''}"
       draggable="true" data-site="${st}" data-startdk="${startDk}" data-idx="${idx2}"
       ondragstart="dragStart(event)" ondragover="dragOver(event)"
       ondrop="dragDrop(event)" ondragend="dragEnd(event)">
@@ -1393,11 +1383,11 @@ function renderSelList(){
 }
 
 
-function toggleEntryCheckInline(startDk, site, idx, 입력, val) {
+function toggleEntryCheckInline(startDk, site, idx, type, val) {
   if(!state[startDk] || !state[startDk][site]) return;
   const entry = state[startDk][site].entries[idx];
   if(!entry) return;
-  if(입력 === 'out') entry.outDone = val;
+  if(type === 'out') entry.outDone = val;
   else entry.inDone = val;
   // 체크는 개별 저장 (전체 state 덮어쓰기 방지)
   saveCheck(entry.id, entry.outDone, entry.inDone);
@@ -1772,7 +1762,7 @@ function addEntry() {
   const totalBaseMins = selEquip.m + deliveryMins;
 
   const entry = {
-    id: Date.지금() + Math.random(),
+    id: Date.now() + Math.random(),
     equipName: selEquip.n,
     equipSpec: selEquip.s,
     personName: person,
@@ -1938,13 +1928,13 @@ function collectInoutForDate(dk) {
         const diff = Math.round((target - start) / 86400000);
         const lastDay = e.days - 1;
         if(diff === 0 && !e.outDone) {
-          results.push({ entry: e, 입력: 'out', dayNum: 1 });
+          results.push({ entry: e, type: 'out', dayNum: 1 });
         }
         if(e.days === 1 && diff === 0 && e.outDone && !e.inDone) {
-          results.push({ entry: e, 입력: 'in', dayNum: 1 });
+          results.push({ entry: e, type: 'in', dayNum: 1 });
         }
         if(e.days > 1 && diff === lastDay && !e.inDone) {
-          results.push({ entry: e, 입력: 'in', dayNum: e.days });
+          results.push({ entry: e, type: 'in', dayNum: e.days });
         }
       });
     });
@@ -2105,7 +2095,7 @@ function openInoutPopup() {
   const cols = [-1, 0, 1].map(offset => {
     const d = new Date(selD);
     d.setDate(d.getDate() + offset);
-    const dk = new Date(d.getTime() - (d.getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
+    const dk = d.toISOString().slice(0,10);
     return { dk, d: new Date(d), offset };
   });
 
@@ -2305,11 +2295,11 @@ function openInoutPopup() {
 }
 
 
-function toggleEntryCheckPopup(startDk, site, entryId, 입력, val) {
+function toggleEntryCheckPopup(startDk, site, entryId, type, val) {
   if(!state[startDk] || !state[startDk][site]) return;
   const entry = state[startDk][site].entries.find(e => String(e.id) === String(entryId));
   if(!entry) return;
-  if(입력 === 'out') entry.outDone = val;
+  if(type === 'out') entry.outDone = val;
   else entry.inDone = val;
   saveCheck(entry.id, entry.outDone, entry.inDone);
   renderAll();
