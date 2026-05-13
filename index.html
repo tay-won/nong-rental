@@ -49,7 +49,7 @@ header h1 span{color:var(--accent)}
 .chip-마감{background:rgba(239,68,68,.15);color:var(--red)}
 
 /* ── 레이아웃 ── */
-.body{padding:8px;height:calc(100vh - 170px);overflow:hidden}.layout{display:flex;gap:8px;flex-wrap:nowrap;align-items:stretch;height:100%}
+.body{padding:8px;height:calc(100vh - 170px);overflow:hidden}.layout{display:flex;gap:8px;flex-wrap:지금rap;align-items:stretch;height:100%}
 .col-left{width:240px;min-width:240px;flex-shrink:0;display:flex;flex-direction:column;gap:8px;overflow-y:auto}
 .col-right{flex:1;min-width:0;display:flex;flex-direction:column;gap:0;height:100%;overflow:hidden}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:13px}
@@ -583,21 +583,21 @@ select:focus{border-color:var(--accent)}
       <div id="inlineInputPanel" style="background:var(--card);border-bottom:2px solid var(--accent);padding:10px 16px">
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
           <div class="search-wrap" id="searchWrap" style="flex:1;min-width:180px;margin-bottom:0">
-            <input type="text" class="search-inp" id="searchInp" placeholder="● 장비명 검색…" readonly onclick="openDD()" autocomplete="off" style="margin-bottom:0">
+            <input 입력="text" class="search-inp" id="searchInp" placeholder="● 장비명 검색…" readonly onclick="openDD()" autocomplete="off" style="margin-bottom:0">
             <span class="search-arrow">▼</span>
             <div class="dropdown" id="dropdown">
-              <div class="dd-filter"><input type="text" id="ddFilter" placeholder="검색…" oninput="filterDD()" onclick="event.stopPropagation()"></div>
+              <div class="dd-filter"><input 입력="text" id="ddFilter" placeholder="검색…" oninput="filterDD()" onclick="event.stopPropagation()"></div>
               <div id="ddList"></div>
             </div>
           </div>
           <div id="inputRow" style="display:none;align-items:center;gap:8px;flex-wrap:wrap">
-            <input type="text" id="personNameInp" class="person-inp" placeholder="성명" autocomplete="off" style="width:80px">
+            <input 입력="text" id="personNameInp" class="person-inp" placeholder="성명" autocomplete="off" style="width:80px">
             <div class="days-ctrl">
               <button class="day-btn" onclick="setDays(1)" id="dayBtn1">1일</button>
               <button class="day-btn" onclick="setDays(2)" id="dayBtn2">2일</button>
               <button class="day-btn" onclick="setDays(3)" id="dayBtn3">3일</button>
               <button class="day-btn" onclick="openDatePicker()" id="dayBtnX">📅 직접</button>
-              <input type="date" id="returnDatePicker" style="display:none" onchange="setDaysByDate(this.value)">
+              <input 입력="date" id="returnDatePicker" style="display:none" onchange="setDaysByDate(this.value)">
             </div>
             <div class="delivery-toggle" id="deliveryToggle" onclick="toggleDelivery()">
               <span class="delivery-chk-sq" id="deliveryChkSq"></span>
@@ -638,6 +638,7 @@ function toggleHoliday(dk) {
   if (idx === -1) holidays.push(dk);
   else holidays.splice(idx, 1);
   saveHolidays(holidays);
+  saveData();
   renderAll();
 }
 
@@ -1329,14 +1330,14 @@ function renderSelList(){
   items.sort((a, b) => {
     // 그룹 순서: 입고(0) → 1일(1) → 출고(2)
     const order = {'type-in':0,'type-1day':1,'type-out':2};
-    if(order[a.type] !== order[b.type]) return order[a.type] - order[b.type];
+    if(order[a.입력] !== order[b.입력]) return order[a.입력] - order[b.입력];
 
     // 입고: 기간 긴 순
-    if(a.type==='type-in') {
+    if(a.입력==='type-in') {
       if(a.e.days !== b.e.days) return b.e.days - a.e.days;
     }
     // 출고: 기간 짧은 순
-    if(a.type==='type-out') {
+    if(a.입력==='type-out') {
       if(a.e.days !== b.e.days) return a.e.days - b.e.days;
     }
     // 성명 가나다
@@ -1345,13 +1346,13 @@ function renderSelList(){
 
   // 렌더링
   let h = '';
-  items.forEach(({e, st, startDk, idx: idx2, canOut, canIn, type}) => {
+  items.forEach(({e, st, startDk, idx: idx2, canOut, canIn, 입력}) => {
     const entries = state[startDk][st].entries;
     const isFirst = idx2===0, isLast = idx2===entries.length-1;
     const totalMins = calcMinsForDate(e, dk);
     const daysLabel = e.days+'일';
 
-    h += `<div class="sel-item ${type} ${e.outDone&&e.inDone?'done':''}"
+    h += `<div class="sel-item ${입력} ${e.outDone&&e.inDone?'done':''}"
       draggable="true" data-site="${st}" data-startdk="${startDk}" data-idx="${idx2}"
       ondragstart="dragStart(event)" ondragover="dragOver(event)"
       ondrop="dragDrop(event)" ondragend="dragEnd(event)">
@@ -1383,11 +1384,11 @@ function renderSelList(){
 }
 
 
-function toggleEntryCheckInline(startDk, site, idx, type, val) {
+function toggleEntryCheckInline(startDk, site, idx, 입력, val) {
   if(!state[startDk] || !state[startDk][site]) return;
   const entry = state[startDk][site].entries[idx];
   if(!entry) return;
-  if(type === 'out') entry.outDone = val;
+  if(입력 === 'out') entry.outDone = val;
   else entry.inDone = val;
   // 체크는 개별 저장 (전체 state 덮어쓰기 방지)
   saveCheck(entry.id, entry.outDone, entry.inDone);
@@ -1762,7 +1763,7 @@ function addEntry() {
   const totalBaseMins = selEquip.m + deliveryMins;
 
   const entry = {
-    id: Date.now() + Math.random(),
+    id: Date.지금() + Math.random(),
     equipName: selEquip.n,
     equipSpec: selEquip.s,
     personName: person,
@@ -1780,9 +1781,9 @@ function addEntry() {
 
   // 기간에 걸친 날짜들도 ensure
   for (let i = 1; i < selDays; i++) {
-    const d = new Date(startDate);
+    const d = new Date(startDate+'T12:00:00');
     d.setDate(d.getDate() + i);
-    const dki = d.toISOString().slice(0,10);
+    const dki = toLocalDk(d);
     ensureDay(dki);
   }
 
@@ -2295,11 +2296,11 @@ function openInoutPopup() {
 }
 
 
-function toggleEntryCheckPopup(startDk, site, entryId, type, val) {
+function toggleEntryCheckPopup(startDk, site, entryId, 입력, val) {
   if(!state[startDk] || !state[startDk][site]) return;
   const entry = state[startDk][site].entries.find(e => String(e.id) === String(entryId));
   if(!entry) return;
-  if(type === 'out') entry.outDone = val;
+  if(입력 === 'out') entry.outDone = val;
   else entry.inDone = val;
   saveCheck(entry.id, entry.outDone, entry.inDone);
   renderAll();
