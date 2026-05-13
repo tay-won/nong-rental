@@ -789,6 +789,7 @@ async function loadData(){
     setSyncUI('err','불러오기 실패: '+e.message);
   } finally {
     document.getElementById('loadingOverlay').classList.add('hidden');
+    await loadChecks();
     renderAll();
     setTimeout(()=>renderTriDayPanel(),300);
   }
@@ -1380,12 +1381,60 @@ function toggleEntryCheckInline(startDk, site, idx, type, val) {
   if(!entry) return;
   if(type === 'out') entry.outDone = val;
   else entry.inDone = val;
-  if(saveTimer) clearTimeout(saveTimer);
-  saveData();
+  // 체크는 개별 저장 (전체 state 덮어쓰기 방지)
+  saveCheck(entry.id, entry.outDone, entry.inDone);
   renderSelList();
   renderGauge();
   renderDateTabs();
-  
+  renderTriDayPanel();
+}
+
+async function saveCheck(entryId, outDone, inDone) {
+  const SB_CHK = SB_URL+'/rest/v1/nong_rental_checks';
+  try {
+    // upsert: entry_id가 있으면 update, 없으면 insert
+    const res = await fetch(SB_CHK, {
+      method: 'POST',
+      headers: {...SB_HDR, 'Prefer': 'resolution=merge-duplicates'},
+      body: JSON.stringify({
+        entry_id: entryId,
+        out_done: outDone,
+        in_done: inDone,
+        updated_at: new Date().toISOString()
+      })
+    });
+    if(!res.ok) {
+      // 실패하면 전체 저장으로 fallback
+      saveData();
+    }
+  } catch(e) {
+    saveData();
+  }
+}
+
+async function loadChecks() {
+  const SB_CHK = SB_URL+'/rest/v1/nong_rental_checks?select=entry_id,out_done,in_done';
+  try {
+    const res = await fetch(SB_CHK, {headers: SB_HDR});
+    if(!res.ok) return;
+    const rows = await res.json();
+    // 체크 데이터를 state에 반영
+    const checkMap = {};
+    rows.forEach(r => { checkMap[r.entry_id] = r; });
+    Object.keys(state).forEach(dk => {
+      ['본소','북부'].forEach(st => {
+        if(!state[dk]||!state[dk][st]) return;
+        state[dk][st].entries.forEach(e => {
+          if(checkMap[e.id]) {
+            e.outDone = checkMap[e.id].out_done;
+            e.inDone  = checkMap[e.id].in_done;
+          }
+        });
+      });
+    });
+  } catch(e) {
+    console.error('loadChecks error:', e);
+  }
 }
 
 
@@ -2201,8 +2250,7 @@ function toggleEntryCheckPopup(startDk, site, entryId, type, val) {
   if(!entry) return;
   if(type === 'out') entry.outDone = val;
   else entry.inDone = val;
-  if(saveTimer) clearTimeout(saveTimer);
-  saveData();
+  saveCheck(entry.id, entry.outDone, entry.inDone);
   renderAll();
   openInoutPopup();
 }
