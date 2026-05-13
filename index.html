@@ -633,11 +633,21 @@ function saveHolidays(arr) {
   localStorage.setItem('holidays_' + GH_REPO, JSON.stringify(arr));
 }
 function toggleHoliday(dk) {
-  const holidays = getHolidays();
-  const idx = holidays.indexOf(dk);
-  if (idx === -1) holidays.push(dk);
-  else holidays.splice(idx, 1);
-  saveHolidays(holidays);
+  // 이미 함수가 dk(예: "2024-05-13")를 인자로 받고 있으므로 새로 선언할 필요가 없습니다.
+  if (!state[dk]) {
+    state[dk] = { 
+      "본소": { isHoliday: false, entries: [] }, 
+      "북부": { isHoliday: false, entries: [] } 
+    };
+  }
+
+  // 해당 날짜의 휴무 상태를 반전시킵니다.
+  const currentStatus = !state[dk]["본소"].isHoliday;
+  state[dk]["본소"].isHoliday = currentStatus;
+  state[dk]["북부"].isHoliday = currentStatus;
+
+  if (saveTimer) clearTimeout(saveTimer);
+  saveData();
   renderAll();
 }
 
