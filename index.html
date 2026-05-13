@@ -1753,7 +1753,11 @@ function addEntry() {
   document.getElementById('personNameInp').style.borderColor = '';
 
   const dk = getDkeys()[curIdx];
-  const startDate = dk;
+  // 렌더링 시 +1일 보정이 있으므로, 저장 시 -1일로 조정
+  const [_y, _m, _d] = dk.split('-').map(Number);
+  const _saveDate = new Date(_y, _m-1, _d-1);
+  const startDate = _saveDate.getFullYear()+'-'+String(_saveDate.getMonth()+1).padStart(2,'0')+'-'+String(_saveDate.getDate()).padStart(2,'0');
+  
   const site = inputSite || (curSite === '전체' ? '본소' : curSite);
   const outDone = false;
   const inDone  = false;
@@ -1781,9 +1785,9 @@ function addEntry() {
 
   // 기간에 걸친 날짜들도 ensure
   for (let i = 1; i < selDays; i++) {
-    const d = new Date(startDate);
+    const d = new Date(startDate + 'T00:00:00');
     d.setDate(d.getDate() + i);
-    const dki = d.toISOString().slice(0,10);
+    const dki = toLocalDk(d);
     ensureDay(dki);
   }
 
