@@ -1220,7 +1220,12 @@ function renderDateTabs(){
     const st = getStatus(pct);
     const isHol = holidays.includes(dk);
     const isRain = rainyDays.includes(dk);
-    const isYesterday = dk === new Date(today().getTime()-86400000).toISOString().slice(0,10);
+    const isYesterday = dk === toLocalDk(new Date(today().getTime()-86400000));
+    const s = getDayStats(dk, curSite);
+    const countHtml = '<div style="font-size:7px;color:var(--muted);margin-top:2px;line-height:1.4">'
+      +'<span style="color:#60a5fa">출'+s.outTotal+'</span> <span style="color:#34d399">입'+s.inTotal+'</span>'
+      +(s.delOut||s.delIn ? ' <span style="color:#f59e0b">🚚'+s.delOut+'/'+s.delIn+'</span>' : '')
+      +'</div>';
     return '<div class="dtab'+(i===curIdx?' active':'')+(isHol?' holiday':isRain?' rainy':'')
       +'" onclick="setIdx('+i+')" style="position:relative">'
       +(isToday(d)?'<div class="tl">TODAY</div>':isYesterday?'<div class="tl" style="color:var(--muted)">어제</div>':'')
@@ -1231,6 +1236,7 @@ function renderDateTabs(){
         : isRain
         ? '<div class="holiday-badge" style="background:rgba(96,165,250,.15);color:#60a5fa;border-color:rgba(96,165,250,.4)">🌧️</div>'
         : '<div class="chip chip-'+st+'">'+pct+'%</div>')
+      +countHtml
       +'</div>';
   }).join('');
 }
@@ -1415,6 +1421,40 @@ async function saveCheck(entryId, outDone, inDone) {
   }
 }
 
+
+// 날짜별 출고/입고/배송 카운트 계산
+function getDayStats(dk, site) {
+  const targetSites = site === '전체' ? ['본소','북부'] : [site];
+  let outTotal=0, inTotal=0, delOut=0, delIn=0;
+  let outRemain=0, inRemain=0, delOutRemain=0, delInRemain=0;
+
+  Object.keys(state).forEach(startDk => {
+    targetSites.forEach(st => {
+      if(!state[startDk]||!state[startDk][st]) return;
+      state[startDk][st].entries.forEach(e => {
+        const inDkD = new Date((e.startDate||'')+'T12:00:00');
+        inDkD.setDate(inDkD.getDate()+e.days-1);
+        const inDk = inDkD.getFullYear()+'-'+String(inDkD.getMonth()+1).padStart(2,'0')+'-'+String(inDkD.getDate()).padStart(2,'0');
+        const isOut = e.startDate === dk;
+        const isIn  = inDk === dk;
+        if(!isOut && !isIn) return;
+
+        // 총 접수 건수
+        if(isOut) outTotal++;
+        if(isIn)  inTotal++;
+        if(isOut && e.delivery) delOut++;
+        if(isIn  && e.delivery) delIn++;
+
+        // 잔여 건수
+        if(isOut && !e.outDone) outRemain++;
+        if(isIn  && !e.inDone)  inRemain++;
+        if(isOut && e.delivery && !e.outDone) delOutRemain++;
+        if(isIn  && e.delivery && !e.inDone)  delInRemain++;
+      });
+    });
+  });
+  return {outTotal, inTotal, delOut, delIn, outRemain, inRemain, delOutRemain, delInRemain};
+}
 async function loadChecks() {
   const SB_CHK = SB_URL+'/rest/v1/nong_rental_checks?select=entry_id,out_done,in_done';
   try {
@@ -1973,7 +2013,15 @@ function renderTriDayPanel() {
     <div style="background:#1e293b;border:${isTod?'2px solid #818cf8':'1px solid #334155'};border-radius:10px;overflow:hidden;display:flex;flex-direction:column;min-height:200px;${isTod?'box-shadow:0 0 0 2px rgba(129,140,248,.2)':''}">
       <div style="padding:8px 12px;background:${hdrBg};border-bottom:1px solid #334155;display:flex;justify-content:space-between;align-items:center">
         <span style="font-size:${isTod?'16':'12'}px;font-weight:${isTod?'900':'700'};color:${hdrColor};letter-spacing:${isTod?'-0.3px':'0'}">${label}${isHol?' 🔴':''}</span>
-        <span style="font-size:10px;color:#64748b">출고${outN}/입고${inN}</span>
+        <span style="font-size:10px;color:#64748b">
+          <span style="color:#60a5fa">출${outN}</span>/<span style="color:#34d399">입${inN}</span>
+          ${(()=>{
+            const _del = rows.filter(r=>r.e.delivery);
+            const _dOut = _del.filter(r=>r.isOut&&!r.e.outDone).length;
+            const _dIn  = _del.filter(r=>r.isIn&&!r.e.inDone).length;
+            return (_dOut||_dIn)?` <span style="color:#f59e0b">🚚${_dOut}/${_dIn}</span>`:'';
+          })()}
+        </span>
       </div>
 
       <div style="flex:1;overflow-y:auto">${rowsHtml}</div>
