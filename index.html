@@ -1392,23 +1392,26 @@ function toggleEntryCheckInline(startDk, site, idx, type, val) {
 async function saveCheck(entryId, outDone, inDone) {
   const SB_CHK = SB_URL+'/rest/v1/nong_rental_checks';
   try {
-    // upsert: entry_id가 있으면 update, 없으면 insert
-    const res = await fetch(SB_CHK, {
-      method: 'POST',
-      headers: {...SB_HDR, 'Prefer': 'resolution=merge-duplicates'},
-      body: JSON.stringify({
-        entry_id: entryId,
-        out_done: outDone,
-        in_done: inDone,
-        updated_at: new Date().toISOString()
-      })
-    });
-    if(!res.ok) {
-      // 실패하면 전체 저장으로 fallback
-      saveData();
+    // 먼저 있는지 확인
+    const chk = await fetch(SB_CHK+'?entry_id=eq.'+entryId, {headers: SB_HDR});
+    const existing = await chk.json();
+    if(existing.length > 0) {
+      // update
+      await fetch(SB_CHK+'?entry_id=eq.'+entryId, {
+        method: 'PATCH',
+        headers: {...SB_HDR, 'Prefer': 'return=minimal'},
+        body: JSON.stringify({out_done: outDone, in_done: inDone, updated_at: new Date().toISOString()})
+      });
+    } else {
+      // insert
+      await fetch(SB_CHK, {
+        method: 'POST',
+        headers: {...SB_HDR, 'Prefer': 'return=minimal'},
+        body: JSON.stringify({entry_id: entryId, out_done: outDone, in_done: inDone, updated_at: new Date().toISOString()})
+      });
     }
   } catch(e) {
-    saveData();
+    console.error('saveCheck error:', e);
   }
 }
 
@@ -1420,14 +1423,14 @@ async function loadChecks() {
     const rows = await res.json();
     // 체크 데이터를 state에 반영
     const checkMap = {};
-    rows.forEach(r => { checkMap[r.entry_id] = r; });
+    rows.forEach(r => { checkMap[String(r.entry_id)] = r; });
     Object.keys(state).forEach(dk => {
       ['본소','북부'].forEach(st => {
         if(!state[dk]||!state[dk][st]) return;
         state[dk][st].entries.forEach(e => {
-          if(checkMap[e.id]) {
-            e.outDone = checkMap[e.id].out_done;
-            e.inDone  = checkMap[e.id].in_done;
+          if(checkMap[String(e.id)]) {
+            e.outDone = checkMap[String(e.id)].out_done;
+            e.inDone  = checkMap[String(e.id)].in_done;
           }
         });
       });
