@@ -791,9 +791,10 @@ async function loadData(){
     setSyncUI('err','불러오기 실패: '+e.message);
   } finally {
     document.getElementById('loadingOverlay').classList.add('hidden');
-    await loadChecks();
-    renderAll();
-    setTimeout(()=>renderTriDayPanel(),300);
+  }
+  await loadChecks();
+  renderAll();
+  setTimeout(()=>renderTriDayPanel(),300);
   }
 }
 
