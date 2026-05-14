@@ -1841,7 +1841,13 @@ function getUsedSite(dk, site) {
 // 소요시간 계산 (목록 표시 + 부하율 둘 다 사용)
 function calcMinsForDate(entry, targetDk) {
   const holidays = getHolidays();
-  const start = new Date(entry.startDate);
+  
+  // entry.startDate는 저장용(-1일)이므로 표시용(+1일)으로 변환
+  let startDate = new Date(entry.startDate);
+  startDate.setDate(startDate.getDate() + 1);
+  const startDkDisplay = startDate.toISOString().slice(0,10);
+  
+  const start = new Date(startDkDisplay);
   const target = new Date(targetDk);
   const diff = Math.round((target - start) / 86400000);
   const lastDay = entry.days - 1;
@@ -1849,26 +1855,25 @@ function calcMinsForDate(entry, targetDk) {
   const isOriginalOut = diff === 0;
   const isOriginalIn = (entry.days === 1 && diff === 0) || (entry.days > 1 && diff === lastDay);
 
-  // 출고일/입고일이 휴무인지 확인
-  const startDk = entry.startDate;
-  const isStartHoliday = holidays.includes(startDk);
+  // 출고일/입고일이 휴무인지 확인 (표시용 날짜로)
+  const isStartHoliday = holidays.includes(startDkDisplay);
   
-  let lastDate = new Date(startDk);
+  let lastDate = new Date(startDkDisplay);
   lastDate.setDate(lastDate.getDate() + entry.days - 1);
-  const lastDk = lastDate.toISOString().slice(0,10);
-  const isLastHoliday = holidays.includes(lastDk);
+  const lastDkDisplay = lastDate.toISOString().slice(0,10);
+  const isLastHoliday = holidays.includes(lastDkDisplay);
 
   let mins = 0;
 
   if(entry.days === 1) {
     if(isStartHoliday) {
       // 1일 임대인데 휴무일 → 전날 50% + 다음날 50%
-      let prevDay = new Date(startDk);
+      let prevDay = new Date(startDkDisplay);
       prevDay.setDate(prevDay.getDate() - 1);
       while(holidays.includes(prevDay.toISOString().slice(0,10))) {
         prevDay.setDate(prevDay.getDate() - 1);
       }
-      let nextDay = new Date(startDk);
+      let nextDay = new Date(startDkDisplay);
       nextDay.setDate(nextDay.getDate() + 1);
       while(holidays.includes(nextDay.toISOString().slice(0,10))) {
         nextDay.setDate(nextDay.getDate() + 1);
@@ -1895,7 +1900,7 @@ function calcMinsForDate(entry, targetDk) {
     if(isOriginalOut) {
       if(isStartHoliday) {
         // 출고일이 휴무 → 전날로 이동
-        let prevDay = new Date(startDk);
+        let prevDay = new Date(startDkDisplay);
         prevDay.setDate(prevDay.getDate() - 1);
         while(holidays.includes(prevDay.toISOString().slice(0,10))) {
           prevDay.setDate(prevDay.getDate() - 1);
@@ -1915,7 +1920,7 @@ function calcMinsForDate(entry, targetDk) {
     if(isOriginalIn) {
       if(isLastHoliday) {
         // 입고일이 휴무 → 다음날로 이동
-        let nextDay = new Date(lastDk);
+        let nextDay = new Date(lastDkDisplay);
         nextDay.setDate(nextDay.getDate() + 1);
         while(holidays.includes(nextDay.toISOString().slice(0,10))) {
           nextDay.setDate(nextDay.getDate() + 1);
