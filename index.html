@@ -1326,11 +1326,8 @@ function renderSelList(){
     Object.keys(state).forEach(startDk => {
       if(!state[startDk]||!state[startDk][st]) return;
       state[startDk][st].entries.forEach((e, idx2) => {
-        // startDate는 저장용(-1일)이므로 표시용으로 변환
-        let startDisplay = new Date(e.startDate);
-        startDisplay.setDate(startDisplay.getDate() + 1);
-        
-        const start   = startDisplay;
+        // startDate는 이미 표시용 날짜
+        const start   = new Date(e.startDate);
         const target  = new Date(dk);
         const diff    = Math.round((target - start) / 86400000);
         const lastDay = e.days - 1;
@@ -1779,10 +1776,8 @@ function addEntry() {
   document.getElementById('personNameInp').style.borderColor = '';
 
   const dk = getDkeys()[curIdx];
-  // 렌더링 시 +1일 보정이 있으므로, 저장 시 -1일로 조정
-  const [_y, _m, _d] = dk.split('-').map(Number);
-  const _saveDate = new Date(_y, _m-1, _d-1);
-  const startDate = _saveDate.getFullYear()+'-'+String(_saveDate.getMonth()+1).padStart(2,'0')+'-'+String(_saveDate.getDate()).padStart(2,'0');
+  // 표시된 날짜를 그대로 사용 (이미 표시용)
+  const startDate = dk;
   
   const site = inputSite || (curSite === '전체' ? '본소' : curSite);
   const outDone = false;
@@ -1869,10 +1864,8 @@ function calcMinsForDate(entry, targetDk) {
   // baseMins가 없거나 0이면 기본값 50분 사용
   const baseMins = entry.baseMins || 50;
   
-  // entry.startDate는 저장용(-1일)이므로 표시용(+1일)으로 변환
-  let startDate = new Date(entry.startDate);
-  startDate.setDate(startDate.getDate() + 1);
-  const startDkDisplay = startDate.toISOString().slice(0,10);
+  // entry.startDate를 그대로 사용 (이미 표시용 날짜)
+  const startDkDisplay = entry.startDate;
   
   const start = new Date(startDkDisplay);
   const target = new Date(targetDk);
@@ -1908,17 +1901,14 @@ function calcMinsForDate(entry, targetDk) {
       
       if(prevDay.toISOString().slice(0,10) === targetDk) {
         mins += baseMins / 2;
-        if(entry.delivery === true) mins += 120; // 배송: 출고일
       }
       if(nextDay.toISOString().slice(0,10) === targetDk) {
         mins += baseMins / 2;
-        if(entry.delivery === true) mins += 120; // 배송: 입고일
       }
     } else {
       // 일반 1일 임대
       if(isOriginalOut) {
         mins = baseMins;
-        if(entry.delivery === true) mins += 240; // 배송: 1일 임대
       }
     }
   } else {
@@ -1934,12 +1924,10 @@ function calcMinsForDate(entry, targetDk) {
         }
         if(prevDay.toISOString().slice(0,10) === targetDk) {
           mins += baseMins / 2;
-          if(entry.delivery === true) mins += 120;
         }
       } else {
         // 일반 출고
         mins += baseMins / 2;
-        if(entry.delivery === true) mins += 120;
       }
     }
     
@@ -1954,12 +1942,10 @@ function calcMinsForDate(entry, targetDk) {
         }
         if(nextDay.toISOString().slice(0,10) === targetDk) {
           mins += baseMins / 2;
-          if(entry.delivery === true) mins += 120;
         }
       } else {
         // 일반 입고
         mins += baseMins / 2;
-        if(entry.delivery === true) mins += 120;
       }
     }
   }
@@ -2026,10 +2012,8 @@ function renderTriDayPanel() {
       targetSites.forEach(site => {
         if(!state[startDk]||!state[startDk][site]) return;
         state[startDk][site].entries.forEach((e,ei) => {
-          // startDate는 저장용(-1일)이므로 표시용으로 변환
-          let startDisplay = new Date(e.startDate);
-          startDisplay.setDate(startDisplay.getDate() + 1);
-          const startDkDisplay = startDisplay.toISOString().slice(0,10);
+          // startDate는 이미 표시용 날짜
+          const startDkDisplay = e.startDate;
           
           const diff = Math.round((new Date(colDk)-new Date(startDkDisplay))/86400000);
           const inDkD = new Date(startDkDisplay);
@@ -2394,11 +2378,9 @@ function openEditModal(startDk, site, idx) {
 
   // 시작일 - 문자열 직접 설정 (YYYY-MM-DD 그대로)
   const startDkStr = (e.startDate || editTarget.startDk).slice(0, 10);
-  // 저장된 날짜는 -1일이므로 표시할 때 +1일
-  const [_ey,_em,_ed] = startDkStr.split('-').map(Number);
-  const _dispDate = new Date(_ey, _em-1, _ed+1);
-  const _dispStr = _dispDate.getFullYear()+'-'+String(_dispDate.getMonth()+1).padStart(2,'0')+'-'+String(_dispDate.getDate()).padStart(2,'0');
-  document.getElementById('editStartDate').value = _dispStr;
+  // 저장된 날짜를 그대로 사용 (이미 표시용)
+  document.getElementById('editStartDate').value = startDkStr;
+  const _dispDate = new Date(startDkStr);
   document.getElementById('editStartDateDisplay').textContent = _dispDate.getFullYear()+'년 '+(_dispDate.getMonth()+1)+'월 '+_dispDate.getDate()+'일';
 
   // 임대기간
@@ -2627,12 +2609,10 @@ function saveEdit() {
   const deliveryMins = editDelivery ? 240 : 0;
   const sdEl2 = document.getElementById('editStartDate');
   const sdVal = sdEl2 ? sdEl2.value : '';
-  // 표시된 날짜는 +1일이므로 저장할 때 -1일
+  // 표시된 날짜를 그대로 저장 (이미 표시용)
   let newStartDate = startDk;
   if(sdVal && sdVal.length === 10) {
-    const [_sy,_sm,_sd] = sdVal.split('-').map(Number);
-    const _saveDate = new Date(_sy, _sm-1, _sd-1);
-    newStartDate = _saveDate.getFullYear()+'-'+String(_saveDate.getMonth()+1).padStart(2,'0')+'-'+String(_saveDate.getDate()).padStart(2,'0');
+    newStartDate = sdVal;
   }
 
   entry.equipName  = editEquip.n;
