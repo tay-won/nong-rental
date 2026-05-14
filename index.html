@@ -785,26 +785,6 @@ async function loadData(){
           if(src.delivery!==undefined) state[dk][st].delivery=src.delivery;
         });
       });
-      
-      // baseMins 복구: 0이거나 없는 항목들을 장비 목록에서 찾아서 설정
-      Object.keys(state).forEach(dk => {
-        ['본소','북부'].forEach(st => {
-          if(!state[dk] || !state[dk][st] || !state[dk][st].entries) return;
-          state[dk][st].entries.forEach(e => {
-            if(!e.baseMins || e.baseMins === 0) {
-              // 장비 목록에서 찾기
-              const equipList = st === '본소' ? EQUIPS : EQUIPS_NORTH;
-              const found = equipList.find(eq => eq.n === e.equipName);
-              if(found) {
-                const deliveryMins = e.delivery ? 240 : 0;
-                e.baseMins = found.m + deliveryMins;
-                console.log(`[복구] ${dk} ${st} ${e.personName} ${e.equipName}: baseMins=${e.baseMins}`);
-              }
-            }
-          });
-        });
-      });
-      
       setSyncUI('ok','동기화 완료 · '+new Date().toLocaleTimeString('ko-KR'));
     }
   } catch(e){
@@ -1326,7 +1306,6 @@ function renderSelList(){
     Object.keys(state).forEach(startDk => {
       if(!state[startDk]||!state[startDk][st]) return;
       state[startDk][st].entries.forEach((e, idx2) => {
-        // startDate를 그대로 사용
         const start   = new Date(e.startDate);
         const target  = new Date(dk);
         const diff    = Math.round((target - start) / 86400000);
@@ -1776,8 +1755,10 @@ function addEntry() {
   document.getElementById('personNameInp').style.borderColor = '';
 
   const dk = getDkeys()[curIdx];
-  // 날짜를 있는 그대로 저장
-  const startDate = dk;
+  // 렌더링 시 +1일 보정이 있으므로, 저장 시 -1일로 조정
+  const [_y, _m, _d] = dk.split('-').map(Number);
+  const _saveDate = new Date(_y, _m-1, _d-1);
+  const startDate = _saveDate.getFullYear()+'-'+String(_saveDate.getMonth()+1).padStart(2,'0')+'-'+String(_saveDate.getDate()).padStart(2,'0');
   
   const site = inputSite || (curSite === '전체' ? '본소' : curSite);
   const outDone = false;
@@ -1801,8 +1782,8 @@ function addEntry() {
     delivery: selDelivery,
   };
 
-  ensureDay(startDate);
-  state[startDate][site].entries.push(entry);
+  ensureDay(dk);
+  state[dk][site].entries.push(entry);
 
   // 기간에 걸친 날짜들도 ensure
   for (let i = 1; i < selDays; i++) {
@@ -1832,128 +1813,114 @@ function addEntry() {
 
 // ── 정비시간 계산 재정의 ──
 function getUsedSite(dk, site) {
-  // 단순화: 목록에 표시되는 항목들을 그대로 합산
+  // 부하율: calcMinsForLoad (effective 날짜 기준, 휴무일 반영)
   let total = 0;
-  let debugInfo = [];
-  
   Object.keys(state).forEach(startDk => {
     if(!state[startDk] || !state[startDk][site]) return;
     state[startDk][site].entries.forEach(e => {
-      const mins = calcMinsForDate(e, dk);
-      if(mins > 0) {
-        debugInfo.push({
-          name: e.personName, 
-          equip: e.equipName, 
-          mins: mins,
-          startDk: startDk
-        });
-        total += mins;
-      }
+      total += calcMinsForLoad(e, dk);
     });
+    // 배송 소요시간
+    if(state[startDk][site].delivery) {
+      const holidays = getHolidays();
+      const isHol = holidays.includes(startDk);
+      if(isHol) {
+        // 휴무일 배송: 전날 120분 + 다음날 120분
+        let prevDay = new Date(startDk);
+        prevDay.setDate(prevDay.getDate() - 1);
+        while(holidays.includes(prevDay.toISOString().slice(0,10)))
+          prevDay.setDate(prevDay.getDate() - 1);
+        let nextDay = new Date(startDk);
+        nextDay.setDate(nextDay.getDate() + 1);
+        while(holidays.includes(nextDay.toISOString().slice(0,10)))
+          nextDay.setDate(nextDay.getDate() + 1);
+        if(prevDay.toISOString().slice(0,10) === dk) total += 120;
+        if(nextDay.toISOString().slice(0,10) === dk) total += 120;
+      } else {
+        // 일반 배송: 해당일 240분
+        if(startDk === dk) total += 240;
+      }
+    }
   });
-  
-  console.log(`[getUsedSite] ${dk} ${site}: total=${total}, entries=`, debugInfo);
   return total;
 }
 
+function getEffectiveOutDate(entry, holidays) {
+  // 출고일(시작일)이 휴무면 전날 근무일로
+  let d = new Date(entry.startDate);
+  while(holidays.includes(d.toISOString().slice(0,10))) {
+    d.setDate(d.getDate() - 1);
+  }
+  return d.toISOString().slice(0,10);
+}
 
-// 소요시간 계산 (목록 표시 + 부하율 둘 다 사용)
+function getEffectiveInDate(entry, holidays) {
+  // 입고일 = 시작일 + (days-1), 휴무면 다음 근무일로
+  let d = new Date(entry.startDate);
+  d.setDate(d.getDate() + entry.days - 1);
+  while(holidays.includes(d.toISOString().slice(0,10))) {
+    d.setDate(d.getDate() + 1);
+  }
+  return d.toISOString().slice(0,10);
+}
+
+// 목록 소요시간 표시용 (원래 날짜 기준)
 function calcMinsForDate(entry, targetDk) {
-  const holidays = getHolidays();
-  
-  // baseMins가 없거나 0이면 기본값 50분 사용
-  const baseMins = entry.baseMins || 50;
-  
-  // entry.startDate를 그대로 사용
-  const startDkDisplay = entry.startDate;
-  
-  const start = new Date(startDkDisplay);
+  const start = new Date(entry.startDate);
   const target = new Date(targetDk);
   const diff = Math.round((target - start) / 86400000);
   const lastDay = entry.days - 1;
 
   const isOriginalOut = diff === 0;
-  const isOriginalIn = (entry.days === 1 && diff === 0) || (entry.days > 1 && diff === lastDay);
+  const isOriginalIn  = (entry.days === 1 && diff === 0) || (entry.days > 1 && diff === lastDay);
 
-  // 출고일/입고일이 휴무인지 확인 (표시용 날짜로)
-  const isStartHoliday = holidays.includes(startDkDisplay);
-  
-  let lastDate = new Date(startDkDisplay);
+  if(entry.days === 1) {
+    if(isOriginalOut) return entry.baseMins;
+  } else {
+    let mins = 0;
+    if(isOriginalOut) mins += entry.baseMins / 2;
+    if(isOriginalIn)  mins += entry.baseMins / 2;
+    return mins;
+  }
+  return 0;
+}
+
+// 부하율 전용 (effective 날짜 기준, 휴무일 반영)
+function calcMinsForLoad(entry, targetDk) {
+  const holidays = getHolidays();
+  const startDk = entry.startDate;
+  const isStartHoliday = holidays.includes(startDk);
+
+  // 마지막날 계산 (입고일)
+  let lastDate = new Date(startDk);
   lastDate.setDate(lastDate.getDate() + entry.days - 1);
-  const lastDkDisplay = lastDate.toISOString().slice(0,10);
-  const isLastHoliday = holidays.includes(lastDkDisplay);
+  const lastDk = lastDate.toISOString().slice(0,10);
+  const isLastHoliday = holidays.includes(lastDk);
+
+  // 출고 effective 날짜 (시작일이 휴무면 전날)
+  const effectiveOut = getEffectiveOutDate(entry, holidays);
+  // 입고 effective 날짜 (입고일이 휴무면 다음날)
+  const effectiveIn  = getEffectiveInDate(entry, holidays);
 
   let mins = 0;
 
   if(entry.days === 1) {
     if(isStartHoliday) {
-      // 1일 임대인데 휴무일 → 전날 50% + 다음날 50%
-      let prevDay = new Date(startDkDisplay);
-      prevDay.setDate(prevDay.getDate() - 1);
-      while(holidays.includes(prevDay.toISOString().slice(0,10))) {
-        prevDay.setDate(prevDay.getDate() - 1);
-      }
-      let nextDay = new Date(startDkDisplay);
-      nextDay.setDate(nextDay.getDate() + 1);
-      while(holidays.includes(nextDay.toISOString().slice(0,10))) {
-        nextDay.setDate(nextDay.getDate() + 1);
-      }
-      
-      if(prevDay.toISOString().slice(0,10) === targetDk) {
-        mins += baseMins / 2;
-      }
-      if(nextDay.toISOString().slice(0,10) === targetDk) {
-        mins += baseMins / 2;
-      }
+      // 1일 임대인데 휴무일 → 출고는 전날(반타임), 입고는 다음날(반타임)
+      if(effectiveOut === targetDk) mins += entry.baseMins / 2;
+      if(effectiveIn  === targetDk) mins += entry.baseMins / 2;
     } else {
-      // 일반 1일 임대
-      if(isOriginalOut) {
-        mins = baseMins;
-      }
+      // 일반 1일 임대 → 당일 전타임
+      if(effectiveOut === targetDk) mins += entry.baseMins;
     }
   } else {
-    // 2일 이상 임대
-    // 출고
-    if(isOriginalOut) {
-      if(isStartHoliday) {
-        // 출고일이 휴무 → 전날로 이동
-        let prevDay = new Date(startDkDisplay);
-        prevDay.setDate(prevDay.getDate() - 1);
-        while(holidays.includes(prevDay.toISOString().slice(0,10))) {
-          prevDay.setDate(prevDay.getDate() - 1);
-        }
-        if(prevDay.toISOString().slice(0,10) === targetDk) {
-          mins += baseMins / 2;
-        }
-      } else {
-        // 일반 출고
-        mins += baseMins / 2;
-      }
-    }
-    
-    // 입고
-    if(isOriginalIn) {
-      if(isLastHoliday) {
-        // 입고일이 휴무 → 다음날로 이동
-        let nextDay = new Date(lastDkDisplay);
-        nextDay.setDate(nextDay.getDate() + 1);
-        while(holidays.includes(nextDay.toISOString().slice(0,10))) {
-          nextDay.setDate(nextDay.getDate() + 1);
-        }
-        if(nextDay.toISOString().slice(0,10) === targetDk) {
-          mins += baseMins / 2;
-        }
-      } else {
-        // 일반 입고
-        mins += baseMins / 2;
-      }
-    }
+    // 2~3일 임대
+    if(effectiveOut === targetDk) mins += entry.baseMins / 2;
+    if(effectiveIn  === targetDk) mins += entry.baseMins / 2;
   }
-
   return mins;
 }
 
-// 부하율 전용 (effective 날짜 기준, 휴무일 반영)
 
 function collectInoutForDate(dk) {
   const results = [];
@@ -2000,7 +1967,6 @@ function renderTriDayPanel() {
     dd.setDate(dd.getDate() + offset);
     const colDk = dd.toISOString().slice(0,10);
     const label = (dd.getMonth()+1)+'/'+ dd.getDate()+'('+DOW2[dd.getDay()]+')';
-    // 휴무일 확인: 날짜탭과 동일하게 (저장된 날짜로 비교)
     const isHol = holidays.includes(colDk);
     const isTod = offset===0;
     const hdrColor = isHol?'#ef4444':isTod?'#818cf8':'#94a3b8';
@@ -2012,11 +1978,8 @@ function renderTriDayPanel() {
       targetSites.forEach(site => {
         if(!state[startDk]||!state[startDk][site]) return;
         state[startDk][site].entries.forEach((e,ei) => {
-          // startDate를 그대로 사용
-          const startDkDisplay = e.startDate;
-          
-          const diff = Math.round((new Date(colDk)-new Date(startDkDisplay))/86400000);
-          const inDkD = new Date(startDkDisplay);
+          const diff = Math.round((new Date(colDk)-new Date(e.startDate))/86400000);
+          const inDkD = new Date(e.startDate);
           inDkD.setDate(inDkD.getDate()+e.days-1);
           const inDk = inDkD.toISOString().slice(0,10);
           const isOut = diff===0;
@@ -2376,10 +2339,13 @@ function openEditModal(startDk, site, idx) {
   // 성명
   document.getElementById('editPersonInp').value = e.personName || '';
 
-  // 시작일 - 저장된 날짜를 그대로 표시
+  // 시작일 - 문자열 직접 설정 (YYYY-MM-DD 그대로)
   const startDkStr = (e.startDate || editTarget.startDk).slice(0, 10);
-  document.getElementById('editStartDate').value = startDkStr;
-  const _dispDate = new Date(startDkStr);
+  // 저장된 날짜는 -1일이므로 표시할 때 +1일
+  const [_ey,_em,_ed] = startDkStr.split('-').map(Number);
+  const _dispDate = new Date(_ey, _em-1, _ed+1);
+  const _dispStr = _dispDate.getFullYear()+'-'+String(_dispDate.getMonth()+1).padStart(2,'0')+'-'+String(_dispDate.getDate()).padStart(2,'0');
+  document.getElementById('editStartDate').value = _dispStr;
   document.getElementById('editStartDateDisplay').textContent = _dispDate.getFullYear()+'년 '+(_dispDate.getMonth()+1)+'월 '+_dispDate.getDate()+'일';
 
   // 임대기간
@@ -2608,10 +2574,12 @@ function saveEdit() {
   const deliveryMins = editDelivery ? 240 : 0;
   const sdEl2 = document.getElementById('editStartDate');
   const sdVal = sdEl2 ? sdEl2.value : '';
-  // 날짜를 있는 그대로 저장
+  // 표시된 날짜는 +1일이므로 저장할 때 -1일
   let newStartDate = startDk;
   if(sdVal && sdVal.length === 10) {
-    newStartDate = sdVal;
+    const [_sy,_sm,_sd] = sdVal.split('-').map(Number);
+    const _saveDate = new Date(_sy, _sm-1, _sd-1);
+    newStartDate = _saveDate.getFullYear()+'-'+String(_saveDate.getMonth()+1).padStart(2,'0')+'-'+String(_saveDate.getDate()).padStart(2,'0');
   }
 
   entry.equipName  = editEquip.n;
