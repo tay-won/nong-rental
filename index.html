@@ -1825,27 +1825,7 @@ function getUsedSite(dk, site) {
       }
       total += mins;
     });
-    // 배송 소요시간
-    if(state[startDk][site].delivery) {
-      const holidays = getHolidays();
-      const isHol = holidays.includes(startDk);
-      if(isHol) {
-        // 휴무일 배송: 전날 120분 + 다음날 120분
-        let prevDay = new Date(startDk);
-        prevDay.setDate(prevDay.getDate() - 1);
-        while(holidays.includes(prevDay.toISOString().slice(0,10)))
-          prevDay.setDate(prevDay.getDate() - 1);
-        let nextDay = new Date(startDk);
-        nextDay.setDate(nextDay.getDate() + 1);
-        while(holidays.includes(nextDay.toISOString().slice(0,10)))
-          nextDay.setDate(nextDay.getDate() + 1);
-        if(prevDay.toISOString().slice(0,10) === dk) total += 120;
-        if(nextDay.toISOString().slice(0,10) === dk) total += 120;
-      } else {
-        // 일반 배송: 해당일 240분
-        if(startDk === dk) total += 240;
-      }
-    }
+    // 배송 소요시간은 이제 calcMinsForLoad()에 포함됨
   });
   console.log(`[getUsedSite] ${dk} ${site}: total=${total}, entries=`, debugInfo);
   return total;
@@ -1880,15 +1860,28 @@ function calcMinsForDate(entry, targetDk) {
   const isOriginalOut = diff === 0;
   const isOriginalIn  = (entry.days === 1 && diff === 0) || (entry.days > 1 && diff === lastDay);
 
+  let mins = 0;
+  
   if(entry.days === 1) {
-    if(isOriginalOut) return entry.baseMins;
+    if(isOriginalOut) {
+      mins = entry.baseMins;
+      // 1일 임대 배송: +240분
+      if(entry.delivery) mins += 240;
+    }
   } else {
-    let mins = 0;
-    if(isOriginalOut) mins += entry.baseMins / 2;
-    if(isOriginalIn)  mins += entry.baseMins / 2;
-    return mins;
+    if(isOriginalOut) {
+      mins += entry.baseMins / 2;
+      // 2일+ 임대 출고일 배송: +120분
+      if(entry.delivery) mins += 120;
+    }
+    if(isOriginalIn) {
+      mins += entry.baseMins / 2;
+      // 2일+ 임대 입고일 배송: +120분
+      if(entry.delivery) mins += 120;
+    }
   }
-  return 0;
+  
+  return mins;
 }
 
 // 부하율 전용 (effective 날짜 기준, 휴무일 반영)
@@ -1913,16 +1906,36 @@ function calcMinsForLoad(entry, targetDk) {
   if(entry.days === 1) {
     if(isStartHoliday) {
       // 1일 임대인데 휴무일 → 출고는 전날(반타임), 입고는 다음날(반타임)
-      if(effectiveOut === targetDk) mins += entry.baseMins / 2;
-      if(effectiveIn  === targetDk) mins += entry.baseMins / 2;
+      if(effectiveOut === targetDk) {
+        mins += entry.baseMins / 2;
+        // 배송: 출고일 120분
+        if(entry.delivery) mins += 120;
+      }
+      if(effectiveIn  === targetDk) {
+        mins += entry.baseMins / 2;
+        // 배송: 입고일 120분
+        if(entry.delivery) mins += 120;
+      }
     } else {
       // 일반 1일 임대 → 당일 전타임
-      if(effectiveOut === targetDk) mins += entry.baseMins;
+      if(effectiveOut === targetDk) {
+        mins += entry.baseMins;
+        // 배송: 1일 임대 240분
+        if(entry.delivery) mins += 240;
+      }
     }
   } else {
     // 2~3일 임대
-    if(effectiveOut === targetDk) mins += entry.baseMins / 2;
-    if(effectiveIn  === targetDk) mins += entry.baseMins / 2;
+    if(effectiveOut === targetDk) {
+      mins += entry.baseMins / 2;
+      // 배송: 출고일 120분
+      if(entry.delivery) mins += 120;
+    }
+    if(effectiveIn  === targetDk) {
+      mins += entry.baseMins / 2;
+      // 배송: 입고일 120분
+      if(entry.delivery) mins += 120;
+    }
   }
   return mins;
 }
