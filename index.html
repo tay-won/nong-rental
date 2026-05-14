@@ -1850,7 +1850,7 @@ function getEffectiveInDate(entry, holidays) {
   return d.toISOString().slice(0,10);
 }
 
-// 목록 소요시간 표시용 (원래 날짜 기준)
+// 목록 소요시간 표시용 (원래 날짜 기준, 배송 제외)
 function calcMinsForDate(entry, targetDk) {
   const start = new Date(entry.startDate);
   const target = new Date(targetDk);
@@ -1865,19 +1865,14 @@ function calcMinsForDate(entry, targetDk) {
   if(entry.days === 1) {
     if(isOriginalOut) {
       mins = entry.baseMins;
-      // 1일 임대 배송: +240분
-      if(entry.delivery) mins += 240;
+      // 배송은 calcMinsForLoad에서만 계산
     }
   } else {
     if(isOriginalOut) {
       mins += entry.baseMins / 2;
-      // 2일+ 임대 출고일 배송: +120분
-      if(entry.delivery) mins += 120;
     }
     if(isOriginalIn) {
       mins += entry.baseMins / 2;
-      // 2일+ 임대 입고일 배송: +120분
-      if(entry.delivery) mins += 120;
     }
   }
   
