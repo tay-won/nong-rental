@@ -1806,8 +1806,8 @@ function addEntry() {
     delivery: selDelivery,
   };
 
-  ensureDay(dk);
-  state[dk][site].entries.push(entry);
+  ensureDay(startDate);
+  state[startDate][site].entries.push(entry);
 
   // 기간에 걸친 날짜들도 ensure
   for (let i = 1; i < selDays; i++) {
