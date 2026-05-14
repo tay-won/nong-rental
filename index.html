@@ -1306,7 +1306,11 @@ function renderSelList(){
     Object.keys(state).forEach(startDk => {
       if(!state[startDk]||!state[startDk][st]) return;
       state[startDk][st].entries.forEach((e, idx2) => {
-        const start   = new Date(e.startDate);
+        // startDate는 저장용(-1일)이므로 표시용으로 변환
+        let startDisplay = new Date(e.startDate);
+        startDisplay.setDate(startDisplay.getDate() + 1);
+        
+        const start   = startDisplay;
         const target  = new Date(dk);
         const diff    = Math.round((target - start) / 86400000);
         const lastDay = e.days - 1;
