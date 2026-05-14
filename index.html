@@ -1912,19 +1912,19 @@ function calcMinsForLoad(entry, targetDk) {
       if(effectiveOut === targetDk) {
         mins += entry.baseMins / 2;
         // 배송: 출고일 120분
-        if(entry.delivery) mins += 120;
+        if(entry.delivery === true) mins += 120;
       }
       if(effectiveIn  === targetDk) {
         mins += entry.baseMins / 2;
         // 배송: 입고일 120분
-        if(entry.delivery) mins += 120;
+        if(entry.delivery === true) mins += 120;
       }
     } else {
       // 일반 1일 임대 → 당일 전타임
       if(effectiveOut === targetDk) {
         mins += entry.baseMins;
         // 배송: 1일 임대 240분
-        if(entry.delivery) mins += 240;
+        if(entry.delivery === true) mins += 240;
       }
     }
   } else {
@@ -1932,12 +1932,12 @@ function calcMinsForLoad(entry, targetDk) {
     if(effectiveOut === targetDk) {
       mins += entry.baseMins / 2;
       // 배송: 출고일 120분
-      if(entry.delivery) mins += 120;
+      if(entry.delivery === true) mins += 120;
     }
     if(effectiveIn  === targetDk) {
       mins += entry.baseMins / 2;
       // 배송: 입고일 120분
-      if(entry.delivery) mins += 120;
+      if(entry.delivery === true) mins += 120;
     }
   }
   return mins;
