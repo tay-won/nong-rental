@@ -1821,7 +1821,15 @@ function getUsedSite(dk, site) {
     state[startDk][site].entries.forEach(e => {
       const mins = calcMinsForLoad(e, dk);
       if(mins > 0) {
-        debugInfo.push({name: e.personName, equip: e.equipName, mins: mins});
+        debugInfo.push({
+          name: e.personName, 
+          equip: e.equipName, 
+          days: e.days,
+          delivery: e.delivery ? '🚚' : '',
+          baseMins: e.baseMins,
+          calcMins: mins,
+          startDk: startDk
+        });
       }
       total += mins;
     });
@@ -1981,9 +1989,9 @@ function renderTriDayPanel() {
     dd.setDate(dd.getDate() + offset);
     const colDk = dd.toISOString().slice(0,10);
     const label = (dd.getMonth()+1)+'/'+ dd.getDate()+'('+DOW2[dd.getDay()]+')';
-    // 휴무일 확인: 표시된 날짜 -2일로 확인 (날짜 보정 시스템 테스트)
+    // 휴무일 확인: 표시용 날짜를 저장용 형식으로 변환 (-1일)
     const checkHolDk = new Date(dd);
-    checkHolDk.setDate(checkHolDk.getDate() - 2);
+    checkHolDk.setDate(checkHolDk.getDate() - 1);
     const isHol = holidays.includes(checkHolDk.toISOString().slice(0,10));
     const isTod = offset===0;
     const hdrColor = isHol?'#ef4444':isTod?'#818cf8':'#94a3b8';
