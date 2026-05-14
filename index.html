@@ -1981,9 +1981,9 @@ function renderTriDayPanel() {
     dd.setDate(dd.getDate() + offset);
     const colDk = dd.toISOString().slice(0,10);
     const label = (dd.getMonth()+1)+'/'+ dd.getDate()+'('+DOW2[dd.getDay()]+')';
-    // 휴무일 확인: 표시된 날짜 -1일로 확인 (날짜 보정 시스템 때문)
+    // 휴무일 확인: 표시된 날짜 -2일로 확인 (날짜 보정 시스템 테스트)
     const checkHolDk = new Date(dd);
-    checkHolDk.setDate(checkHolDk.getDate() - 1);
+    checkHolDk.setDate(checkHolDk.getDate() - 2);
     const isHol = holidays.includes(checkHolDk.toISOString().slice(0,10));
     const isTod = offset===0;
     const hdrColor = isHol?'#ef4444':isTod?'#818cf8':'#94a3b8';
