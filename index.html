@@ -1815,10 +1815,15 @@ function addEntry() {
 function getUsedSite(dk, site) {
   // 부하율: calcMinsForLoad (effective 날짜 기준, 휴무일 반영)
   let total = 0;
+  let debugInfo = []; // 디버깅용
   Object.keys(state).forEach(startDk => {
     if(!state[startDk] || !state[startDk][site]) return;
     state[startDk][site].entries.forEach(e => {
-      total += calcMinsForLoad(e, dk);
+      const mins = calcMinsForLoad(e, dk);
+      if(mins > 0) {
+        debugInfo.push({name: e.personName, equip: e.equipName, mins: mins});
+      }
+      total += mins;
     });
     // 배송 소요시간
     if(state[startDk][site].delivery) {
@@ -1842,6 +1847,7 @@ function getUsedSite(dk, site) {
       }
     }
   });
+  console.log(`[getUsedSite] ${dk} ${site}: total=${total}, entries=`, debugInfo);
   return total;
 }
 
