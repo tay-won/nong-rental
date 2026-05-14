@@ -785,6 +785,26 @@ async function loadData(){
           if(src.delivery!==undefined) state[dk][st].delivery=src.delivery;
         });
       });
+      
+      // baseMins 복구: 0이거나 없는 항목들을 장비 목록에서 찾아서 설정
+      Object.keys(state).forEach(dk => {
+        ['본소','북부'].forEach(st => {
+          if(!state[dk] || !state[dk][st] || !state[dk][st].entries) return;
+          state[dk][st].entries.forEach(e => {
+            if(!e.baseMins || e.baseMins === 0) {
+              // 장비 목록에서 찾기
+              const equipList = st === '본소' ? EQUIPS : EQUIPS_NORTH;
+              const found = equipList.find(eq => eq.n === e.equipName);
+              if(found) {
+                const deliveryMins = e.delivery ? 240 : 0;
+                e.baseMins = found.m + deliveryMins;
+                console.log(`[복구] ${dk} ${st} ${e.personName} ${e.equipName}: baseMins=${e.baseMins}`);
+              }
+            }
+          });
+        });
+      });
+      
       setSyncUI('ok','동기화 완료 · '+new Date().toLocaleTimeString('ko-KR'));
     }
   } catch(e){
@@ -1846,6 +1866,9 @@ function getUsedSite(dk, site) {
 function calcMinsForDate(entry, targetDk) {
   const holidays = getHolidays();
   
+  // baseMins가 없거나 0이면 기본값 50분 사용
+  const baseMins = entry.baseMins || 50;
+  
   // entry.startDate는 저장용(-1일)이므로 표시용(+1일)으로 변환
   let startDate = new Date(entry.startDate);
   startDate.setDate(startDate.getDate() + 1);
@@ -1884,17 +1907,17 @@ function calcMinsForDate(entry, targetDk) {
       }
       
       if(prevDay.toISOString().slice(0,10) === targetDk) {
-        mins += entry.baseMins / 2;
+        mins += baseMins / 2;
         if(entry.delivery === true) mins += 120; // 배송: 출고일
       }
       if(nextDay.toISOString().slice(0,10) === targetDk) {
-        mins += entry.baseMins / 2;
+        mins += baseMins / 2;
         if(entry.delivery === true) mins += 120; // 배송: 입고일
       }
     } else {
       // 일반 1일 임대
       if(isOriginalOut) {
-        mins = entry.baseMins;
+        mins = baseMins;
         if(entry.delivery === true) mins += 240; // 배송: 1일 임대
       }
     }
@@ -1910,12 +1933,12 @@ function calcMinsForDate(entry, targetDk) {
           prevDay.setDate(prevDay.getDate() - 1);
         }
         if(prevDay.toISOString().slice(0,10) === targetDk) {
-          mins += entry.baseMins / 2;
+          mins += baseMins / 2;
           if(entry.delivery === true) mins += 120;
         }
       } else {
         // 일반 출고
-        mins += entry.baseMins / 2;
+        mins += baseMins / 2;
         if(entry.delivery === true) mins += 120;
       }
     }
@@ -1930,12 +1953,12 @@ function calcMinsForDate(entry, targetDk) {
           nextDay.setDate(nextDay.getDate() + 1);
         }
         if(nextDay.toISOString().slice(0,10) === targetDk) {
-          mins += entry.baseMins / 2;
+          mins += baseMins / 2;
           if(entry.delivery === true) mins += 120;
         }
       } else {
         // 일반 입고
-        mins += entry.baseMins / 2;
+        mins += baseMins / 2;
         if(entry.delivery === true) mins += 120;
       }
     }
@@ -2003,8 +2026,13 @@ function renderTriDayPanel() {
       targetSites.forEach(site => {
         if(!state[startDk]||!state[startDk][site]) return;
         state[startDk][site].entries.forEach((e,ei) => {
-          const diff = Math.round((new Date(colDk)-new Date(e.startDate))/86400000);
-          const inDkD = new Date(e.startDate);
+          // startDate는 저장용(-1일)이므로 표시용으로 변환
+          let startDisplay = new Date(e.startDate);
+          startDisplay.setDate(startDisplay.getDate() + 1);
+          const startDkDisplay = startDisplay.toISOString().slice(0,10);
+          
+          const diff = Math.round((new Date(colDk)-new Date(startDkDisplay))/86400000);
+          const inDkD = new Date(startDkDisplay);
           inDkD.setDate(inDkD.getDate()+e.days-1);
           const inDk = inDkD.toISOString().slice(0,10);
           const isOut = diff===0;
