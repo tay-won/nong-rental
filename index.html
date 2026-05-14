@@ -1814,12 +1814,17 @@ function addEntry() {
 // ── 정비시간 계산 재정의 ──
 function getUsedSite(dk, site) {
   // 부하율: calcMinsForLoad (effective 날짜 기준, 휴무일 반영)
+  // dk는 표시용 날짜이므로, 저장용 형식(-1일)으로 변환
+  let dkForCalc = new Date(dk);
+  dkForCalc.setDate(dkForCalc.getDate() - 1);
+  const dkStored = dkForCalc.toISOString().slice(0,10);
+  
   let total = 0;
   let debugInfo = []; // 디버깅용
   Object.keys(state).forEach(startDk => {
     if(!state[startDk] || !state[startDk][site]) return;
     state[startDk][site].entries.forEach(e => {
-      const mins = calcMinsForLoad(e, dk);
+      const mins = calcMinsForLoad(e, dkStored);
       if(mins > 0) {
         debugInfo.push({
           name: e.personName, 
@@ -1891,6 +1896,8 @@ function calcMinsForDate(entry, targetDk) {
 function calcMinsForLoad(entry, targetDk) {
   const holidays = getHolidays();
   const startDk = entry.startDate;
+  
+  // 시작일이 휴무인지 체크 (저장된 날짜 그대로 비교)
   const isStartHoliday = holidays.includes(startDk);
 
   // 마지막날 계산 (입고일)
