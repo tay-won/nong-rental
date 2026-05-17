@@ -1218,17 +1218,13 @@ function renderDateTabs(){
   const rainyDays = getRainy();
   document.getElementById('dateTabs').innerHTML = DATES.map((d,i) => {
     const dk = DKEYS[i];
-    // 업무부하율과 통계는 -1일 데이터를 계산 (날짜 표시용 dk는 그대로 유지)
-    const dkForCalc = new Date(dk);
-    dkForCalc.setDate(dkForCalc.getDate() - 1);
-    const dkPrev = dkForCalc.toISOString().slice(0,10);
-    const pct = getPct(dkPrev, curSite);
+    const pct = getPct(dk, curSite);
     const st = getStatus(pct);
     const isHol = holidays.includes(dk);
     const isRain = rainyDays.includes(dk);
     const isYesterday = dk === toLocalDk(new Date(today().getTime()-86400000));
     let s = {outTotal:0,inTotal:0,delOut:0,delIn:0,outRemain:0,inRemain:0,delOutRemain:0,delInRemain:0};
-    try { s = getDayStats(dkPrev, curSite); } catch(e) {}
+    try { s = getDayStats(dk, curSite); } catch(e) {}
     const countHtml = '<div style="font-size:10px;color:var(--muted);margin-top:3px;line-height:1.5">'
       +'<span style="color:#60a5fa">출'+s.outTotal+'</span> <span style="color:#34d399">입'+s.inTotal+'</span>'
       +(s.delOut||s.delIn ? '<br><span style="color:#f59e0b">🚚'+s.delOut+'/'+s.delIn+'</span>' : '')
@@ -1968,8 +1964,7 @@ function renderTriDayPanel() {
   let colsHtml = '';
   [-1,0,1].forEach(offset => {
     const dd = new Date(d);
-    // 3일 컬럼이 +1일 밀려있으므로 -1일 보정
-    dd.setDate(dd.getDate() + offset - 1);
+    dd.setDate(dd.getDate() + offset);
     const colDk = dd.toISOString().slice(0,10);
     const label = (dd.getMonth()+1)+'/'+ dd.getDate()+'('+DOW2[dd.getDay()]+')';
     const isHol = holidays.includes(colDk);
