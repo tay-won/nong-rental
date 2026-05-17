@@ -1969,8 +1969,8 @@ function renderTriDayPanel() {
   let colsHtml = '';
   [-1,0,1].forEach(offset => {
     const dd = new Date(d);
-    // 3일 컬럼도 +1일 밀려있으므로 +1일 보정
-    dd.setDate(dd.getDate() + offset + 1);
+    // 3일 컬럼이 +1일 밀려있으므로 -1일 보정
+    dd.setDate(dd.getDate() + offset - 1);
     const colDk = dd.toISOString().slice(0,10);
     const label = (dd.getMonth()+1)+'/'+ dd.getDate()+'('+DOW2[dd.getDay()]+')';
     const isHol = holidays.includes(colDk);
