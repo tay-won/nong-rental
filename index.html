@@ -1887,6 +1887,11 @@ function calcMinsForDate(entry, targetDk) {
 
 // 부하율 전용 (effective 날짜 기준, 휴무일 반영)
 function calcMinsForLoad(entry, targetDk) {
+  // 업무부하율이 +1일 데이터를 계산하는 문제 수정: targetDk를 -1일 보정
+  const targetDate = new Date(targetDk);
+  targetDate.setDate(targetDate.getDate() + 1);
+  const adjustedTargetDk = targetDate.toISOString().slice(0,10);
+  
   const holidays = getHolidays();
   const startDk = entry.startDate;
   const isStartHoliday = holidays.includes(startDk);
@@ -1907,16 +1912,16 @@ function calcMinsForLoad(entry, targetDk) {
   if(entry.days === 1) {
     if(isStartHoliday) {
       // 1일 임대인데 휴무일 → 출고는 전날(반타임), 입고는 다음날(반타임)
-      if(effectiveOut === targetDk) mins += entry.baseMins / 2;
-      if(effectiveIn  === targetDk) mins += entry.baseMins / 2;
+      if(effectiveOut === adjustedTargetDk) mins += entry.baseMins / 2;
+      if(effectiveIn  === adjustedTargetDk) mins += entry.baseMins / 2;
     } else {
       // 일반 1일 임대 → 당일 전타임
-      if(effectiveOut === targetDk) mins += entry.baseMins;
+      if(effectiveOut === adjustedTargetDk) mins += entry.baseMins;
     }
   } else {
     // 2~3일 임대
-    if(effectiveOut === targetDk) mins += entry.baseMins / 2;
-    if(effectiveIn  === targetDk) mins += entry.baseMins / 2;
+    if(effectiveOut === adjustedTargetDk) mins += entry.baseMins / 2;
+    if(effectiveIn  === adjustedTargetDk) mins += entry.baseMins / 2;
   }
   return mins;
 }
@@ -1964,7 +1969,8 @@ function renderTriDayPanel() {
   let colsHtml = '';
   [-1,0,1].forEach(offset => {
     const dd = new Date(d);
-    dd.setDate(dd.getDate() + offset);
+    // 3일 컬럼도 +1일 밀려있으므로 +1일 보정
+    dd.setDate(dd.getDate() + offset + 1);
     const colDk = dd.toISOString().slice(0,10);
     const label = (dd.getMonth()+1)+'/'+ dd.getDate()+'('+DOW2[dd.getDay()]+')';
     const isHol = holidays.includes(colDk);
