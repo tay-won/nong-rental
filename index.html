@@ -1965,7 +1965,7 @@ function renderTriDayPanel() {
   [-1,0,1].forEach(offset => {
     const dd = new Date(d);
     dd.setDate(dd.getDate() + offset);
-    const colDk = dd.toISOString().slice(0,10);
+    const colDk = toLocalDk(dd);
     const label = (dd.getMonth()+1)+'/'+ dd.getDate()+'('+DOW2[dd.getDay()]+')';
     const isHol = holidays.includes(colDk);
     const isTod = offset===0;
