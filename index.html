@@ -1755,10 +1755,7 @@ function addEntry() {
   document.getElementById('personNameInp').style.borderColor = '';
 
   const dk = getDkeys()[curIdx];
-  // 렌더링 시 +1일 보정이 있으므로, 저장 시 -1일로 조정
-  const [_y, _m, _d] = dk.split('-').map(Number);
-  const _saveDate = new Date(_y, _m-1, _d-1);
-  const startDate = _saveDate.getFullYear()+'-'+String(_saveDate.getMonth()+1).padStart(2,'0')+'-'+String(_saveDate.getDate()).padStart(2,'0');
+  const startDate = dk;
   
   const site = inputSite || (curSite === '전체' ? '본소' : curSite);
   const outDone = false;
@@ -2341,9 +2338,8 @@ function openEditModal(startDk, site, idx) {
 
   // 시작일 - 문자열 직접 설정 (YYYY-MM-DD 그대로)
   const startDkStr = (e.startDate || editTarget.startDk).slice(0, 10);
-  // 저장된 날짜는 -1일이므로 표시할 때 +1일
   const [_ey,_em,_ed] = startDkStr.split('-').map(Number);
-  const _dispDate = new Date(_ey, _em-1, _ed+1);
+  const _dispDate = new Date(_ey, _em-1, _ed);
   const _dispStr = _dispDate.getFullYear()+'-'+String(_dispDate.getMonth()+1).padStart(2,'0')+'-'+String(_dispDate.getDate()).padStart(2,'0');
   document.getElementById('editStartDate').value = _dispStr;
   document.getElementById('editStartDateDisplay').textContent = _dispDate.getFullYear()+'년 '+(_dispDate.getMonth()+1)+'월 '+_dispDate.getDate()+'일';
@@ -2574,13 +2570,7 @@ function saveEdit() {
   const deliveryMins = editDelivery ? 240 : 0;
   const sdEl2 = document.getElementById('editStartDate');
   const sdVal = sdEl2 ? sdEl2.value : '';
-  // 표시된 날짜는 +1일이므로 저장할 때 -1일
-  let newStartDate = startDk;
-  if(sdVal && sdVal.length === 10) {
-    const [_sy,_sm,_sd] = sdVal.split('-').map(Number);
-    const _saveDate = new Date(_sy, _sm-1, _sd-1);
-    newStartDate = _saveDate.getFullYear()+'-'+String(_saveDate.getMonth()+1).padStart(2,'0')+'-'+String(_saveDate.getDate()).padStart(2,'0');
-  }
+  let newStartDate = sdVal && sdVal.length === 10 ? sdVal : startDk;
 
   entry.equipName  = editEquip.n;
   entry.equipSpec  = editEquip.s || '';
