@@ -720,6 +720,7 @@ const DOW=['일','월','화','수','목','금','토'];
 
 // ─── 상태 ───
 let curIdx=0, curSite='전체', dateOffset=0, ghSha=null, saveTimer=null, state={};
+let lastUpdatedAt = null; // 낙관적 잠금을 위한 버전 추적
 // 입력 패널 상태
 let selMachine=null, selHalf=false, selQty=1;
 
@@ -756,10 +757,16 @@ async function loadData(){
   setSyncUI('saving','불러오는 중…');
   document.getElementById('loadingOverlay').classList.remove('hidden');
   try{
-    const res = await fetch(SB_API+'?id=eq.main&select=data', {headers:SB_HDR});
+    const res = await fetch(SB_API+'?id=eq.main&select=data,updated_at', {headers:SB_HDR});
     if(!res.ok) throw new Error('HTTP '+res.status);
     const rows = await res.json();
     const raw = rows.length > 0 ? rows[0].data : null;
+    
+    // 낙관적 잠금: updated_at 저장
+    if(rows.length > 0 && rows[0].updated_at) {
+      lastUpdatedAt = rows[0].updated_at;
+    }
+    
     if(!raw || Object.keys(raw).length === 0){
       initState();
       setSyncUI('ok','첫 실행 — 입력 후 자동 저장됩니다');
@@ -804,26 +811,113 @@ async function saveData(){
   if(isSaving){pendingSave=true;return;}
   isSaving=true;
   setSyncUI('saving','저장 중…');
+  
   const payload={
     state:JSON.parse(JSON.stringify(state)),
     holidays:getHolidays(),
     rainy:getRainy(),
     cancelled:state._cancelled||[]
   };
-  try{
-    const res=await fetch(SB_API+'?id=eq.main',{
-      method:'PATCH',
-      headers:{...SB_HDR,'Prefer':'return=minimal'},
-      body:JSON.stringify({data:payload,updated_at:new Date().toISOString()})
-    });
-    if(!res.ok) throw new Error('HTTP '+res.status);
-    setSyncUI('ok','저장 완료 · '+new Date().toLocaleTimeString('ko-KR'));
-  } catch(e){
-    setSyncUI('err','❌ 저장 실패: '+e.message);
-  } finally {
-    isSaving=false;
-    if(pendingSave){pendingSave=false;saveData();}
+  
+  let retries = 3;
+  let success = false;
+  
+  while(retries > 0 && !success) {
+    try{
+      // 낙관적 잠금: 조건부 업데이트
+      const condition = lastUpdatedAt 
+        ? `?id=eq.main&updated_at=eq.${encodeURIComponent(lastUpdatedAt)}`
+        : '?id=eq.main';
+      
+      const newUpdatedAt = new Date().toISOString();
+      const res = await fetch(SB_API + condition, {
+        method:'PATCH',
+        headers:{...SB_HDR,'Prefer':'return=representation'},
+        body:JSON.stringify({data:payload, updated_at:newUpdatedAt})
+      });
+      
+      if(!res.ok) {
+        // 406 = 조건부 업데이트 실패 (동시 수정 감지)
+        if(res.status === 406 || res.status === 412) {
+          console.warn(`[낙관적 잠금] 동시 수정 감지 (시도 ${4-retries}/3)`);
+          
+          // 최신 데이터 다시 로드
+          const reloadRes = await fetch(SB_API+'?id=eq.main&select=data,updated_at', {headers:SB_HDR});
+          if(!reloadRes.ok) throw new Error('재로드 실패: HTTP '+reloadRes.status);
+          
+          const rows = await reloadRes.json();
+          if(rows.length > 0) {
+            const serverData = rows[0].data;
+            const serverUpdatedAt = rows[0].updated_at;
+            
+            // 서버 데이터와 로컬 변경사항 병합
+            if(serverData && serverData.state) {
+              // 간단한 병합 전략: 로컬 변경사항을 서버 데이터 위에 덮어씀
+              // (더 정교한 병합이 필요하면 여기를 수정)
+              Object.keys(state).forEach(dk => {
+                if(!serverData.state[dk]) serverData.state[dk] = state[dk];
+                else {
+                  ['본소','북부'].forEach(site => {
+                    if(state[dk][site] && state[dk][site].entries) {
+                      if(!serverData.state[dk][site]) {
+                        serverData.state[dk][site] = state[dk][site];
+                      } else {
+                        // entries 병합: 서버 것 + 로컬 것 (중복 제거)
+                        const serverIds = new Set((serverData.state[dk][site].entries || []).map(e => e.id));
+                        const localNew = (state[dk][site].entries || []).filter(e => !serverIds.has(e.id));
+                        serverData.state[dk][site].entries = [
+                          ...(serverData.state[dk][site].entries || []),
+                          ...localNew
+                        ];
+                      }
+                    }
+                  });
+                }
+              });
+              
+              state = serverData.state;
+              state._cancelled = serverData.cancelled || [];
+            }
+            
+            lastUpdatedAt = serverUpdatedAt;
+            payload.state = JSON.parse(JSON.stringify(state));
+            payload.cancelled = state._cancelled || [];
+          }
+          
+          retries--;
+          if(retries > 0) {
+            await new Promise(resolve => setTimeout(resolve, 200)); // 짧은 대기
+            continue;
+          } else {
+            throw new Error('동시 수정 충돌 (최대 재시도 초과)');
+          }
+        } else {
+          throw new Error('HTTP '+res.status);
+        }
+      } else {
+        // 성공: 새 updated_at 저장
+        const result = await res.json();
+        if(result && result[0] && result[0].updated_at) {
+          lastUpdatedAt = result[0].updated_at;
+        } else {
+          lastUpdatedAt = newUpdatedAt;
+        }
+        setSyncUI('ok','저장 완료 · '+new Date().toLocaleTimeString('ko-KR'));
+        success = true;
+      }
+      
+    } catch(e){
+      if(retries === 1) {
+        setSyncUI('err','❌ 저장 실패: '+e.message);
+        success = false;
+        break;
+      }
+      retries--;
+    }
   }
+  
+  isSaving=false;
+  if(pendingSave){pendingSave=false;saveData();}
 }
 
 
