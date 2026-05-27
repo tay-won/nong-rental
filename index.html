@@ -867,7 +867,6 @@ async function saveData(){
             const serverDates = Object.keys(serverData.state || {});
             const localDates = Object.keys(state);
             addDebugLog(`[병합] 서버: ${serverDates.length}개, 로컬: ${localDates.length}개 날짜`);
-            });
             
             // 서버 데이터와 로컬 변경사항 병합 (양방향)
             if(serverData && serverData.state) {
