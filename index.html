@@ -1611,10 +1611,9 @@ function getDayStats(dk, site) {
     targetSites.forEach(st => {
       if(!state[startDk]||!state[startDk][st]) return;
       state[startDk][st].entries.forEach(e => {
-        // 렌더링과 동일하게 startDate +1일 기준으로 계산
-        const outDkD = new Date((e.startDate||'')+'T12:00:00');
-        outDkD.setDate(outDkD.getDate()+1);
-        const outDk = outDkD.getFullYear()+'-'+String(outDkD.getMonth()+1).padStart(2,'0')+'-'+String(outDkD.getDate()).padStart(2,'0');
+        // 출고일: startDate (보정 없음)
+        const outDk = e.startDate;
+        // 입고일: startDate + days
         const inDkD = new Date((e.startDate||'')+'T12:00:00');
         inDkD.setDate(inDkD.getDate()+e.days);
         const inDk = inDkD.getFullYear()+'-'+String(inDkD.getMonth()+1).padStart(2,'0')+'-'+String(inDkD.getDate()).padStart(2,'0');
