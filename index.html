@@ -1613,10 +1613,11 @@ function getDayStats(dk, site) {
       state[startDk][st].entries.forEach(e => {
         // 출고일: startDate (보정 없음)
         const outDk = e.startDate;
-        // 입고일: startDate + days
-        const inDkD = new Date((e.startDate||'')+'T12:00:00');
-        inDkD.setDate(inDkD.getDate()+e.days);
-        const inDk = inDkD.getFullYear()+'-'+String(inDkD.getMonth()+1).padStart(2,'0')+'-'+String(inDkD.getDate()).padStart(2,'0');
+        // 입고일: startDate + (days-1) 
+        // 문자열 '2024-06-02'를 파싱해서 Date 생성 (타임존 문제 해결)
+        const [yr, mo, da] = (e.startDate || '').split('-').map(Number);
+        const inDkD = new Date(yr, mo - 1, da + e.days - 1);
+        const inDk = toLocalDk(inDkD);
         const isOut = outDk === dk;
         const isIn  = inDk === dk;
         if(!isOut && !isIn) return;
