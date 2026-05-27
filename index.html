@@ -388,6 +388,15 @@ select:focus{border-color:var(--accent)}
 </head>
 <body>
 
+<!-- 디버그 패널 -->
+<div id="debugPanel" style="display:none;position:fixed;bottom:20px;right:20px;width:420px;max-height:400px;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text);z-index:300;box-shadow:0 8px 32px rgba(0,0,0,0.3);overflow-y:auto">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;border-bottom:1px solid var(--border);padding-bottom:8px">
+    <strong style="color:var(--accent)">🔍 디버그 정보</strong>
+    <button onclick="toggleDebugMode()" style="background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:14px">✕</button>
+  </div>
+  <div id="debugLog" style="max-height:360px;overflow-y:auto"></div>
+</div>
+
 <!-- 취소 사유 모달 -->
 <div class="token-modal hidden" id="cancelModal">
   <div class="token-box" style="max-width:320px">
@@ -516,7 +525,7 @@ select:focus{border-color:var(--accent)}
 <div class="sync-bar">
   <div class="sync-left"><div class="sdot idle" id="sdot"></div><span class="stxt" id="stxt">불러오는 중…</span></div>
   <div id="dateBar" style="font-size:12px;font-weight:700;color:var(--accent);text-align:center;flex:1">오늘</div>
-  
+  <button onclick="toggleDebugMode()" style="padding:3px 10px;background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--muted);font-size:11px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .2s;margin-right:10px" id="debugBtn" title="디버그 모드 켜기">🔍 디버그</button>
 </div>
   <div id="dateBar" style="font-size:12px;font-weight:700;color:var(--accent);flex:1;text-align:center;cursor:default"></div>
   
@@ -721,6 +730,8 @@ const DOW=['일','월','화','수','목','금','토'];
 // ─── 상태 ───
 let curIdx=0, curSite='전체', dateOffset=0, ghSha=null, saveTimer=null, state={};
 let lastUpdatedAt = null; // 낙관적 잠금을 위한 버전 추적
+let debugMode = false; // 디버그 모드
+let debugLogs = []; // 디버그 로그 저장소
 // 입력 패널 상태
 let selMachine=null, selHalf=false, selQty=1;
 
@@ -820,11 +831,7 @@ async function saveData(){
   };
   
   // 디버깅: 저장할 데이터 로깅
-  console.log('[saveData] 저장 시도:', {
-    날짜수: Object.keys(payload.state).length,
-    날짜목록: Object.keys(payload.state),
-    lastUpdatedAt: lastUpdatedAt
-  });
+  addDebugLog(`📤 저장 시도: ${Object.keys(payload.state).length}개 날짜`);
   
   let retries = 3;
   let success = false;
@@ -846,7 +853,7 @@ async function saveData(){
       if(!res.ok) {
         // 406 = 조건부 업데이트 실패 (동시 수정 감지)
         if(res.status === 406 || res.status === 412) {
-          console.warn(`[낙관적 잠금] 동시 수정 감지 (시도 ${4-retries}/3)`);
+          addDebugLog(`⚠️ 동시 수정 감지 (시도 ${4-retries}/3)`);
           
           // 최신 데이터 다시 로드
           const reloadRes = await fetch(SB_API+'?id=eq.main&select=data,updated_at', {headers:SB_HDR});
@@ -857,11 +864,9 @@ async function saveData(){
             const serverData = rows[0].data;
             const serverUpdatedAt = rows[0].updated_at;
             
-            console.log('[병합 시작]', {
-              서버날짜수: Object.keys(serverData.state || {}).length,
-              서버날짜: Object.keys(serverData.state || {}),
-              로컬날짜수: Object.keys(state).length,
-              로컬날짜: Object.keys(state)
+            const serverDates = Object.keys(serverData.state || {});
+            const localDates = Object.keys(state);
+            addDebugLog(`[병합] 서버: ${serverDates.length}개, 로컬: ${localDates.length}개 날짜`);
             });
             
             // 서버 데이터와 로컬 변경사항 병합 (양방향)
@@ -914,10 +919,7 @@ async function saveData(){
               state = mergedState;
               state._cancelled = serverData.cancelled || state._cancelled || [];
               
-              console.log('[병합 완료]', {
-                최종날짜수: Object.keys(state).length,
-                최종날짜: Object.keys(state)
-              });
+              addDebugLog(`✅ 병합 완료: ${Object.keys(state).length}개 날짜 보존`);
             }
             
             lastUpdatedAt = serverUpdatedAt;
@@ -943,6 +945,7 @@ async function saveData(){
         } else {
           lastUpdatedAt = newUpdatedAt;
         }
+        addDebugLog(`💾 저장 성공: ${Object.keys(payload.state).length}개 날짜`);
         setSyncUI('ok','저장 완료 · '+new Date().toLocaleTimeString('ko-KR'));
         success = true;
       }
@@ -1086,6 +1089,43 @@ function downloadReport(){
 
 function scheduleSave(){
   if(!GH_TOKEN) return;if(saveTimer)clearTimeout(saveTimer);setSyncUI('saving','변경됨…');saveTimer=setTimeout(saveData,1000);}
+
+// ─── 디버그 모드 ───
+function toggleDebugMode() {
+  debugMode = !debugMode;
+  const panel = document.getElementById('debugPanel');
+  const btn = document.getElementById('debugBtn');
+  
+  if(debugMode) {
+    panel.style.display = 'block';
+    btn.style.borderColor = 'var(--accent)';
+    btn.style.color = 'var(--accent)';
+    addDebugLog('🟢 디버그 모드 활성화');
+  } else {
+    panel.style.display = 'none';
+    btn.style.borderColor = 'var(--border)';
+    btn.style.color = 'var(--muted)';
+  }
+}
+
+function addDebugLog(msg) {
+  const now = new Date().toLocaleTimeString('ko-KR');
+  const log = `[${now}] ${msg}`;
+  debugLogs.push(log);
+  
+  // 최근 50개만 유지
+  if(debugLogs.length > 50) debugLogs.shift();
+  
+  // 화면 업데이트
+  const logDiv = document.getElementById('debugLog');
+  if(logDiv && debugMode) {
+    logDiv.innerHTML = debugLogs.map(l => `<div>${l}</div>`).join('');
+    logDiv.scrollTop = logDiv.scrollHeight; // 맨 아래로 스크롤
+  }
+  
+  // 콘솔에도 출력 (개발자 모드 사용 가능할 때 용)
+  console.log(log);
+}
 
 // ─── 계산 ───
 function getAvailSite(dk,st){return Object.values(state[dk][st].workers).reduce((a,b)=>a+b,0);}
