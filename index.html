@@ -2635,23 +2635,27 @@ function setEditDays(d) {
 }
 
 function openEditDatePicker() {
-  const dk = editTarget ? editTarget.startDk : getDkeys()[curIdx];
+  const dkStr = editTarget ? editTarget.startDk : getDkeys()[curIdx];
   const picker = document.getElementById('editReturnDatePicker');
-  const minDate = new Date(dk);
-  minDate.setDate(minDate.getDate() + 1);
+  // 문자열 파싱으로 타임존 오류 해결
+  const [y, m, d] = dkStr.split('-').map(Number);
+  const minDate = new Date(y, m - 1, d + 1);
   picker.min = minDate.toISOString().slice(0,10);
-  const maxDate = new Date(dk);
-  maxDate.setDate(maxDate.getDate() + 30);
+  const maxDate = new Date(y, m - 1, d + 30);
   picker.max = maxDate.toISOString().slice(0,10);
   picker.value = '';
   picker.style.display = 'block';
-  picker.focus(); picker.click();
+  picker.click();
+  picker.focus();
 }
 
 function setEditDaysByDate(returnDate) {
   if(!returnDate || !editTarget) return;
-  const start = new Date(editTarget.startDk);
-  const end   = new Date(returnDate);
+  // 문자열 파싱으로 타임존 오류 해결
+  const [sy, sm, sd] = editTarget.startDk.split('-').map(Number);
+  const [ey, em, ed] = returnDate.split('-').map(Number);
+  const start = new Date(sy, sm - 1, sd);
+  const end   = new Date(ey, em - 1, ed);
   const diff  = Math.round((end - start) / 86400000);
   if(diff < 1) return;
   editDays = diff;
