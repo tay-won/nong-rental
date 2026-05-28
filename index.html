@@ -1175,14 +1175,31 @@ function openDatePicker() {
   const maxDate = new Date(y, m - 1, d + 30);
   picker.max = maxDate.toISOString().slice(0,10);
   picker.value = '';
+  
+  // 원래 위치에서 보이게 설정
   picker.style.display = 'block';
+  picker.style.position = 'relative';
+  picker.style.width = 'auto';
+  picker.style.opacity = '1';
+  picker.style.visibility = 'visible';
+  picker.style.pointerEvents = 'auto';
+  
+  // 포커스 주기
+  setTimeout(() => picker.focus(), 50);
+  
   // 여러 방식으로 달력 띄우기 시도
-  try {
-    picker.showPicker();
-  } catch(e) {
-    picker.click();
-    picker.focus();
-  }
+  setTimeout(() => {
+    try {
+      picker.showPicker();
+    } catch(e1) {
+      try {
+        picker.click();
+      } catch(e2) {
+        // 마지막 시도: 직접 입력 유도
+        picker.focus();
+      }
+    }
+  }, 100);
 }
 
 function setDaysByDate(returnDate) {
@@ -2632,9 +2649,31 @@ function openEditDatePicker() {
   const maxDate = new Date(y, m - 1, d + 30);
   picker.max = maxDate.toISOString().slice(0,10);
   picker.value = '';
+  
+  // 원래 위치에서 보이게 설정
   picker.style.display = 'block';
-  picker.click();
-  picker.focus();
+  picker.style.position = 'relative';
+  picker.style.width = 'auto';
+  picker.style.opacity = '1';
+  picker.style.visibility = 'visible';
+  picker.style.pointerEvents = 'auto';
+  
+  // 포커스 주기
+  setTimeout(() => picker.focus(), 50);
+  
+  // 여러 방식으로 달력 띄우기 시도
+  setTimeout(() => {
+    try {
+      picker.showPicker();
+    } catch(e1) {
+      try {
+        picker.click();
+      } catch(e2) {
+        // 마지막 시도: 직접 입력 유도
+        picker.focus();
+      }
+    }
+  }, 100);
 }
 
 function setEditDaysByDate(returnDate) {
