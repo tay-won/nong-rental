@@ -1169,26 +1169,29 @@ function setIdx(i){curIdx=i;renderAll();}
 function openDatePicker() {
   const dk = getDkeys()[curIdx];
   const picker = document.getElementById('returnDatePicker');
-  // 최소 날짜: 시작일 + 4일 (4일 이상만)
-  const minDate = new Date(dk);
-  minDate.setDate(minDate.getDate() + 1);
+  // 문자열 파싱으로 타임존 오류 해결
+  const [y, m, d] = dk.split('-').map(Number);
+  // 최소 날짜: 시작일 + 1일
+  const minDate = new Date(y, m - 1, d + 1);
   picker.min = minDate.toISOString().slice(0,10);
   // 최대 날짜: 시작일 + 30일
-  const maxDate = new Date(dk);
-  maxDate.setDate(maxDate.getDate() + 30);
+  const maxDate = new Date(y, m - 1, d + 30);
   picker.max = maxDate.toISOString().slice(0,10);
   picker.value = '';
   picker.style.display = 'block';
-  picker.focus();
   picker.click();
+  picker.focus();
 }
 
 function setDaysByDate(returnDate) {
   if(!returnDate) return;
   const dk = getDkeys()[curIdx];
-  const start = new Date(dk);
-  const end = new Date(returnDate);
-  const diff = Math.round((end - start) / 86400000);
+  // 문자열 파싱으로 타임존 오류 해결
+  const [sy, sm, sd] = dk.split('-').map(Number);
+  const [ey, em, ed] = returnDate.split('-').map(Number);
+  const start = new Date(sy, sm - 1, sd);
+  const end = new Date(ey, em - 1, ed);
+  const diff = Math.round((end - start) / 86400000) + 1;  // +1 추가: 시작일 포함
   if(diff < 1) return;
   selDays = diff;
   // 모든 버튼 비활성화 후 직접 버튼 활성화
@@ -1851,23 +1854,6 @@ function setDays(d) {
   const picker = document.getElementById('returnDatePicker');
   if(picker) picker.style.display = 'none';
   updateHalfInfo();
-}
-
-function openDatePicker() {
-  const dk = getDkeys()[curIdx];
-  const picker = document.getElementById('returnDatePicker');
-  // 최소 날짜: 시작일 + 4일 (4일 이상만)
-  const minDate = new Date(dk);
-  minDate.setDate(minDate.getDate() + 1);
-  picker.min = minDate.toISOString().slice(0,10);
-  // 최대 날짜: 시작일 + 30일
-  const maxDate = new Date(dk);
-  maxDate.setDate(maxDate.getDate() + 30);
-  picker.max = maxDate.toISOString().slice(0,10);
-  picker.value = '';
-  picker.style.display = 'block';
-  picker.focus();
-  picker.click();
 }
 
 function setDaysByDate(returnDate) {
@@ -2656,7 +2642,7 @@ function setEditDaysByDate(returnDate) {
   const [ey, em, ed] = returnDate.split('-').map(Number);
   const start = new Date(sy, sm - 1, sd);
   const end   = new Date(ey, em - 1, ed);
-  const diff  = Math.round((end - start) / 86400000);
+  const diff  = Math.round((end - start) / 86400000) + 1;  // +1 추가: 시작일 포함
   if(diff < 1) return;
   editDays = diff;
   [1,2,3].forEach(n => document.getElementById('editDayBtn'+n).classList.remove('active'));
