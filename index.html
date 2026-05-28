@@ -1179,8 +1179,13 @@ function openDatePicker() {
   picker.max = maxDate.toISOString().slice(0,10);
   picker.value = '';
   picker.style.display = 'block';
-  picker.click();
-  picker.focus();
+  // 여러 방식으로 달력 띄우기 시도
+  try {
+    picker.showPicker();
+  } catch(e) {
+    picker.click();
+    picker.focus();
+  }
 }
 
 function setDaysByDate(returnDate) {
