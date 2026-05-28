@@ -830,9 +830,6 @@ async function saveData(){
     cancelled:state._cancelled||[]
   };
   
-  // 디버깅: 저장할 데이터 로깅
-  addDebugLog(`📤 저장 시도: ${Object.keys(payload.state).length}개 날짜`);
-  
   let retries = 3;
   let success = false;
   
