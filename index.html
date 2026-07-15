@@ -77,7 +77,7 @@ select:focus{border-color:var(--accent)}
 .avail-lbl{font-size:10px;color:var(--muted)}.avail-sub{font-size:9px;color:var(--muted);text-align:right}
 
 /* ── 게이지 ── */
-.status-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:18px;font-size:12px;font-weight:700;margin-bottom:9px;transition:all .3s}
+.status-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:18px;font-size:11px;font-weight:700;margin-bottom:6px;transition:all .3s}
 .status-badge .dot{width:7px;height:7px;border-radius:50%;animation:pulse 1.5s infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
 .s-정상{background:rgba(34,197,94,.15);color:var(--green);border:1px solid rgba(34,197,94,.3)}.s-정상 .dot{background:var(--green)}
@@ -88,9 +88,9 @@ select:focus{border-color:var(--accent)}
 .gauge-bar span{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#fff}
 .gauge-marks{display:flex;justify-content:space-between;font-size:9px;margin-top:3px;padding:0 2px}
 .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:9px}
-.stat-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center}
-.stat-box .val{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:#fff}
-.stat-box .lbl{font-size:9px;color:var(--muted);margin-top:2px}
+.stat-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:6px 4px;text-align:center}
+.stat-box .val{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;color:#fff}
+.stat-box .lbl{font-size:8px;color:var(--muted);margin-top:1px}
 
 /* ── 3주 테이블 ── */
 .mini-table{width:100%;border-collapse:collapse;font-size:10px}
@@ -381,7 +381,7 @@ select:focus{border-color:var(--accent)}
 .tri-reset{width:100%;padding:5px;background:transparent;border:none;color:var(--muted);font-size:10px;cursor:pointer;text-align:center;font-family:"Noto Sans KR",sans-serif;border-top:1px solid var(--border)}
 .tri-reset:hover{color:var(--red)}
 .tri-empty{padding:16px;text-align:center;color:var(--muted);font-size:11px}
-.gauge-wrap{position:relative;height:22px;background:var(--surface);border-radius:12px;overflow:hidden;margin:8px 0}
+.gauge-wrap{position:relative;height:18px;background:var(--surface);border-radius:12px;overflow:hidden;margin:6px 0}
 
 .dtab.rainy{border-color:rgba(96,165,250,.5);background:rgba(96,165,250,.06)}
 .dtab.rainy .day{color:#60a5fa}
@@ -565,6 +565,10 @@ select:focus{border-color:var(--accent)}
 <span id="ghTokenInp" style="display:none"></span></div>
 <div class="layout">
     <div class="col-left">
+      <div class="card" style="padding:8px;margin-bottom:6px">
+        <div class="card-title" style="font-size:9px;margin-bottom:6px">🌤️ 출고 전 체크</div>
+        <div id="safetyChecklistBody" style="font-size:11px;color:var(--dim);line-height:1.6;max-height:120px;overflow-y:auto">날씨 정보를 불러오는 중…</div>
+      </div>
       <div class="card" id="gaugeCard">
         <div class="card-title">업무 부하율</div>
         <div id="statusBadge" class="status-badge">–</div>
@@ -579,7 +583,7 @@ select:focus{border-color:var(--accent)}
         <div class="stat-row">
           <div class="stat-box"><div class="val" id="statPct">–</div><div class="lbl">부하율</div></div>
           <div class="stat-box"><div class="val" id="statUsed">–</div><div class="lbl">소요(분)</div></div>
-          <div class="stat-box"><div class="val" id="statRemain">–</div><div class="lbl">여유(분)</div></div>
+          <div class="stat-box" style="display:none"><div class="val" id="statRemain">–</div><div class="lbl">여유(분)</div></div>
         </div>
       </div>
       <div class="card">
@@ -624,10 +628,10 @@ select:focus{border-color:var(--accent)}
           </div>
         </div>
       </div>
-      <div id="triDayPanel" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:8px;max-height:280px;overflow-y:auto"></div>
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px;margin-bottom:6px;flex:1;min-height:0;overflow-y:auto">
+      <div id="triDayPanel" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:8px;flex:1;min-height:0;overflow-y:auto"></div>
+      <div style="display:none">
         <div class="card-title">🌤️ 출고 전 안전 체크리스트</div>
-        <div id="safetyChecklistBody" style="font-size:12px;color:var(--dim);line-height:1.8">날씨 정보를 불러오는 중…</div>
+        <div id="dummySafetyChecklistBody" style="font-size:12px;color:var(--dim);line-height:1.8">날씨 정보를 불러오는 중…</div>
       </div>
       <div id="selList" style="display:none"></div>
     </div>
