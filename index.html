@@ -624,8 +624,8 @@ select:focus{border-color:var(--accent)}
           </div>
         </div>
       </div>
-      <div id="triDayPanel" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:8px;flex:1;min-height:0;overflow:hidden"></div>
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px;margin-bottom:6px">
+      <div id="triDayPanel" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:8px;max-height:280px;overflow-y:auto"></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px;margin-bottom:6px;flex:1;min-height:0;overflow-y:auto">
         <div class="card-title">🌤️ 출고 전 안전 체크리스트</div>
         <div id="safetyChecklistBody" style="font-size:12px;color:var(--dim);line-height:1.8">날씨 정보를 불러오는 중…</div>
       </div>
