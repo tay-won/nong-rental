@@ -51,6 +51,7 @@ header h1 span{color:var(--accent)}
 /* ── 레이아웃 ── */
 .body{padding:6px;height:calc(100vh - 150px);overflow:hidden}.layout{display:flex;gap:6px;flex-wrap:nowrap;align-items:stretch;height:100%}
 .col-left{width:240px;min-width:240px;flex-shrink:0;display:flex;flex-direction:column;gap:6px;overflow-y:auto;padding:0}
+.col-mid{flex:1;display:flex;flex-direction:column;gap:0;min-width:0}
 .col-right{flex:1;min-width:0;display:flex;flex-direction:column;gap:0;height:100%;overflow:hidden}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px}
 .card-title{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;display:flex;align-items:center;gap:4px}
@@ -595,7 +596,8 @@ select:focus{border-color:var(--accent)}
         </div>
       </div>
     </div>
-    <div class="col-right" style="display:flex;flex-direction:column;gap:0">
+    <!-- 중앙 패널 -->
+    <div class="col-mid" style="display:flex;flex-direction:column;gap:0">
       <div id="inlineInputPanel" style="background:var(--card);border-bottom:2px solid var(--accent);padding:10px 16px">
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
           <div class="search-wrap" id="searchWrap" style="flex:1;min-width:180px;margin-bottom:0">
@@ -629,14 +631,34 @@ select:focus{border-color:var(--accent)}
         </div>
       </div>
       <div id="triDayPanel" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:8px;flex:1;min-height:0;overflow-y:auto"></div>
-      <div style="display:none">
-        <div class="card-title">🌤️ 출고 전 안전 체크리스트</div>
-        <div id="dummySafetyChecklistBody" style="font-size:12px;color:var(--dim);line-height:1.8">날씨 정보를 불러오는 중…</div>
-      </div>
       <div id="selList" style="display:none"></div>
     </div>
+    <!-- 우측 패널: 친환경/GAP 인증 조회 -->
+    <div class="col-right" style="width:260px;min-width:260px;flex-shrink:0;display:flex;flex-direction:column;gap:6px;overflow-y:auto;padding:6px 0;border-left:1px solid var(--border)">
+      <div class="card" style="padding:10px">
+        <div class="card-title" style="font-size:10px;margin-bottom:8px">🌾 친환경/GAP 인증</div>
+        <input 입력="text" id="certFarmName" class="person-inp" placeholder="농가명" autocomplete="off" style="width:100%;margin-bottom:6px;font-size:11px;padding:6px 8px">
+        <button id="certQueryBtn" onclick="queryCertification()" style="width:100%;padding:6px 8px;background:var(--accent);border:none;border-radius:6px;color:#fff;font-size:11px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">🔍 조회</button>
+        <div id="certResult" style="margin-top:10px;font-size:11px;color:var(--dim);line-height:1.6;max-height:300px;overflow-y:auto"></div>
+      </div>
+      <div class="card" style="padding:10px">
+        <div class="card-title" style="font-size:10px;margin-bottom:8px">📊 인증 통계</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+          <div style="background:var(--surface);border-radius:6px;padding:8px;text-align:center">
+            <div style="font-size:12px;font-weight:700;color:#fff" id="ecoCount">-</div>
+            <div style="font-size:9px;color:var(--muted);margin-top:2px">친환경</div>
+          </div>
+          <div style="background:var(--surface);border-radius:6px;padding:8px;text-align:center">
+            <div style="font-size:12px;font-weight:700;color:#fff" id="gapCount">-</div>
+            <div style="font-size:9px;color:var(--muted);margin-top:2px">GAP</div>
+          </div>
+        </div>
+        <div style="background:rgba(255,165,0,.1);border-left:3px solid var(--yellow);padding:6px 8px;margin-top:8px;border-radius:3px;font-size:10px;color:var(--yellow)">
+          <div id="expiringCount">만료예정: - 건</div>
+        </div>
+      </div>
+    </div>
   </div>
-    <!-- 오른쪽 -->
     
   </div>
 
@@ -661,6 +683,11 @@ const PAJU_DONG_COORDS = [
   { name: '금촌동', nx: 56, ny: 131 }, { name: '교하동', nx: 56, ny: 131 },
   { name: '운정동(1~4)', nx: 56, ny: 130 }, { name: '운정동(5~6)', nx: 55, ny: 130 },
 ];
+
+// ─── 친환경/GAP 인증 API ───
+const CERT_API_KEY = 'fa1dc4686eaa2f9073a1274c6bd23dd65421b4e68dd07357f0c83c6feaf94242';
+const ECO_CERT_URL = 'http://211.237.50.150:7080/openapi/sample/xml/Grid_20151027000000000245_1/1/1000';
+const GAP_CERT_URL = 'https://apis.data.go.kr/1543145/GAPCERTINFO';
 
 // ── 휴무일 관리 ──
 function getHolidays() {
@@ -3097,6 +3124,135 @@ async function renderSafetyChecklist() {
     </div>
     <ul style="margin:0;padding-left:16px">${items.map(t => `<li style="margin-bottom:4px">${t}</li>`).join('')}</ul>
   `;
+}
+
+// ═══ 친환경/GAP 인증 조회 ═══
+async function queryCertification() {
+  const farmName = document.getElementById('certFarmName').value.trim();
+  const dong = document.getElementById('dongSelect').value;
+  
+  if (!farmName) {
+    alert('농가명을 입력하세요.');
+    return;
+  }
+  
+  const resultDiv = document.getElementById('certResult');
+  resultDiv.innerHTML = '<div style="color:var(--muted)">조회 중...</div>';
+  
+  try {
+    // 1. 친환경 인증 조회
+    const ecoRes = await fetch(ECO_CERT_URL + `?API_KEY=${CERT_API_KEY}&APPR_FRMHS=${encodeURIComponent(farmName)}`);
+    const ecoText = await ecoRes.text();
+    const ecoData = parseXml(ecoText);
+    
+    // 2. GAP 인증 조회
+    const gapRes = await fetch(GAP_CERT_URL + `?ServiceKey=${encodeURIComponent(CERT_API_KEY)}&PRTNR_NM=${encodeURIComponent(farmName)}&pageNo=1&numOfRows=100`);
+    const gapJson = await gapRes.json();
+    
+    // 결과 표시
+    displayCertResults(farmName, ecoData, gapJson);
+    
+    // 통계 업데이트
+    updateCertStats(ecoData, gapJson);
+  } catch (e) {
+    resultDiv.innerHTML = `<div style="color:var(--red)">조회 실패: ${e.message}</div>`;
+    console.error('인증 조회 오류:', e);
+  }
+}
+
+function parseXml(xmlStr) {
+  const parser = new DOMParser();
+  const xmlDoc = parser.parseFromString(xmlStr, 'text/xml');
+  const rows = xmlDoc.querySelectorAll('row');
+  const result = [];
+  rows.forEach(row => {
+    result.push({
+      apprNo: row.querySelector('APPR_NO')?.textContent || '',
+      apprKnd: row.querySelector('APPR_KND_NM')?.textContent || '',
+      farmhs: row.querySelector('APPR_FRMHS')?.textContent || '',
+      prdlst: row.querySelector('APPR_PRDLST_NM')?.textContent || '',
+      bgnde: row.querySelector('APPR_BGNDE')?.textContent || '',
+      endde: row.querySelector('APPR_ENDDE')?.textContent || '',
+      area: row.querySelector('CTVT_WRKSHP_AR_BRD_CO')?.textContent || '',
+      qty: row.querySelector('PRDCTN_INCME_PLAN_QY')?.textContent || ''
+    });
+  });
+  return result;
+}
+
+function displayCertResults(farmName, ecoData, gapData) {
+  const resultDiv = document.getElementById('certResult');
+  const today = new Date();
+  const todayStr = today.getFullYear() + String(today.getMonth()+1).padStart(2,'0') + String(today.getDate()).padStart(2,'0');
+  
+  let html = '<div style="line-height:1.8">';
+  
+  // 친환경 인증 결과
+  if (ecoData && ecoData.length > 0) {
+    const validEco = ecoData.filter(e => e.endde >= todayStr);
+    html += `<div style="margin-bottom:10px">
+      <div style="font-weight:700;color:#fff;margin-bottom:4px">🌾 친환경 인증</div>`;
+    if (validEco.length > 0) {
+      validEco.forEach(e => {
+        const endDate = e.endde.slice(0,4) + '.' + e.endde.slice(4,6) + '.' + e.endde.slice(6,8);
+        html += `<div style="background:rgba(34,197,94,.1);border-left:2px solid #22c55e;padding:6px 8px;margin-bottom:4px;border-radius:3px">
+          <div>${e.prdlst} (${e.apprKnd})</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px">만료: ${endDate}</div>
+        </div>`;
+      });
+    } else {
+      html += '<div style="color:var(--muted)">유효한 인증 없음</div>';
+    }
+    html += '</div>';
+  }
+  
+  // GAP 인증 결과
+  if (gapData && gapData.response && gapData.response.body && gapData.response.body.items) {
+    const items = gapData.response.body.items;
+    const validGap = Array.isArray(items) ? items.filter(i => i.APPR_ENDDE >= todayStr) : (items.APPR_ENDDE >= todayStr ? [items] : []);
+    html += `<div>
+      <div style="font-weight:700;color:#fff;margin-bottom:4px">🏆 GAP 인증</div>`;
+    if (validGap.length > 0) {
+      validGap.forEach(g => {
+        const endDate = g.APPR_ENDDE.slice(0,4) + '.' + g.APPR_ENDDE.slice(4,6) + '.' + g.APPR_ENDDE.slice(6,8);
+        html += `<div style="background:rgba(59,130,246,.1);border-left:2px solid #3b82f6;padding:6px 8px;margin-bottom:4px;border-radius:3px">
+          <div>${g.PRDLST_NM || '품목정보'}</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px">만료: ${endDate}</div>
+        </div>`;
+      });
+    } else {
+      html += '<div style="color:var(--muted)">유효한 인증 없음</div>';
+    }
+    html += '</div>';
+  }
+  
+  html += '</div>';
+  resultDiv.innerHTML = html;
+}
+
+function updateCertStats(ecoData, gapData) {
+  const today = new Date();
+  const todayStr = today.getFullYear() + String(today.getMonth()+1).padStart(2,'0') + String(today.getDate()).padStart(2,'0');
+  const after30 = new Date(today.getTime() + 30 * 86400000);
+  const after30Str = after30.getFullYear() + String(after30.getMonth()+1).padStart(2,'0') + String(after30.getDate()).padStart(2,'0');
+  
+  let ecoValid = 0, gapValid = 0, expiring = 0;
+  
+  if (ecoData) {
+    ecoValid = ecoData.filter(e => e.endde >= todayStr).length;
+    expiring += ecoData.filter(e => e.endde >= todayStr && e.endde <= after30Str).length;
+  }
+  
+  if (gapData && gapData.response && gapData.response.body && gapData.response.body.items) {
+    const items = gapData.response.body.items;
+    const gapItems = Array.isArray(items) ? items : [items];
+    gapValid = gapItems.filter(i => i.APPR_ENDDE >= todayStr).length;
+    expiring += gapItems.filter(i => i.APPR_ENDDE >= todayStr && i.APPR_ENDDE <= after30Str).length;
+  }
+  
+  document.getElementById('ecoCount').textContent = ecoValid + '건';
+  document.getElementById('gapCount').textContent = gapValid + '건';
+  document.getElementById('expiringCount').textContent = `만료예정: ${expiring} 건`;
 }
 
 </script>
