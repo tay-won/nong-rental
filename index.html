@@ -657,7 +657,7 @@ select:focus{border-color:var(--accent)}
         <div class="card-title">🌾 친환경/GAP</div>
         <input type="text" id="certFarmName" class="person-inp" placeholder="농가명" autocomplete="off" style="width:100%;margin-bottom:4px;font-size:10px;padding:4px 4px;box-sizing:border-box">
         <button id="certQueryBtn" onclick="queryCertification()" style="width:100%;padding:4px 4px;background:var(--accent);border:none;border-radius:4px;color:#fff;font-size:9px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif">조회</button>
-        <div id="certResult" style="margin-top:4px;font-size:9px;color:var(--dim);line-height:1.4;max-height:200px;overflow-y:auto"></div>
+        <div id="certResult" style="margin-top:4px;font-size:10px;color:var(--dim);line-height:1.5;max-height:350px;overflow-y:auto"></div>
       </div>
       <div class="card" style="padding:4px">
         <div class="card-title">📊 통계</div>
@@ -3257,18 +3257,16 @@ function displayCertResults(farmName, ecoData, gapData) {
   const today = new Date();
   const todayStr = today.getFullYear() + String(today.getMonth()+1).padStart(2,'0') + String(today.getDate()).padStart(2,'0');
   
-  let html = '<div style="line-height:1.5;font-size:9px">';
+  let html = '<div style="line-height:1.6;font-size:9px">';
   
   // 친환경 인증 결과
   if (ecoData && ecoData.length > 0) {
     html += `<div style="margin-bottom:6px">
-      <div style="font-weight:700;color:#fff;margin-bottom:2px;font-size:9px">🌾 친환경</div>`;
-    ecoData.slice(0, 3).forEach(e => {
+      <div style="font-weight:700;color:#fff;margin-bottom:4px;font-size:10px">🌾 친환경 (${ecoData.length}건)</div>`;
+    ecoData.forEach(e => {
       const endDate = e.만료일 || '미정';
-      html += `<div style="background:rgba(34,197,94,.1);border-left:2px solid #22c55e;padding:4px 6px;margin-bottom:2px;border-radius:2px;font-size:8px">
-        <div><strong>${e.생산자}</strong></div>
-        <div style="color:var(--muted)">${e.품목} (${e.분류})</div>
-        <div style="color:var(--yellow)">만료: ${endDate}</div>
+      html += `<div style="background:rgba(34,197,94,.1);border-left:2px solid #22c55e;padding:6px;margin-bottom:3px;border-radius:2px;font-size:9px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">
+        <strong>${e.생산자}</strong> • ${e.품목} • ${e.분류} • 만료: ${endDate}
       </div>`;
     });
     html += '</div>';
@@ -3277,19 +3275,17 @@ function displayCertResults(farmName, ecoData, gapData) {
   // GAP 인증 결과
   if (gapData && gapData.length > 0) {
     html += `<div>
-      <div style="font-weight:700;color:#fff;margin-bottom:2px;font-size:9px">🏆 GAP</div>`;
-    gapData.slice(0, 3).forEach(g => {
-      html += `<div style="background:rgba(59,130,246,.1);border-left:2px solid #3b82f6;padding:4px 6px;margin-bottom:2px;border-radius:2px;font-size:8px">
-        <div><strong>${g.생산자}</strong></div>
-        <div style="color:var(--muted)">${g.품목}</div>
-        <div style="color:var(--yellow)">인증: ${g.인증일}</div>
+      <div style="font-weight:700;color:#fff;margin-bottom:4px;font-size:10px">🏆 GAP (${gapData.length}건)</div>`;
+    gapData.forEach(g => {
+      html += `<div style="background:rgba(59,130,246,.1);border-left:2px solid #3b82f6;padding:6px;margin-bottom:3px;border-radius:2px;font-size:9px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">
+        <strong>${g.생산자}</strong> • ${g.품목} • 인증: ${g.인증일} • 대표: ${g.대표자 || '-'}
       </div>`;
     });
     html += '</div>';
   }
   
   if (ecoData.length === 0 && gapData.length === 0) {
-    html += '<div style="color:var(--muted);font-size:8px">🔍 검색 결과가 없습니다.</div>';
+    html += '<div style="color:var(--muted);font-size:9px">🔍 검색 결과가 없습니다.</div>';
   }
   
   html += '</div>';
