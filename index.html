@@ -3049,13 +3049,12 @@ async function loadWeatherBriefing(nx, ny, townName) {
     
     // 금일 날씨
     const todayData = await fetchWeatherForDate(nx, ny, todayStr);
-    if (todayData && todayData.length > 0) {
-      const today_fcst = todayData[0];
-      const temp = today_fcst['기온'] || '–';
-      const pty = today_fcst['강수형태'] || '–';
-      const rn1 = today_fcst['1시간강수량'] || '–';
-      const hmd = today_fcst['습도'] || '–';
-      const wsd = today_fcst['풍속'] || '–';
+    if (todayData) {
+      const temp = todayData.tmp || '–';
+      const pty = ptyLabel(todayData.pty);
+      const rn1 = (todayData.rn1 && todayData.rn1 !== '강수없음') ? todayData.rn1 : '0';
+      const hmd = todayData.reh || '–';
+      const wsd = todayData.wsd || '–';
       
       html += `<div style="background:rgba(59,130,246,.1);border-left:3px solid #3b82f6;padding:12px;margin-bottom:16px;border-radius:8px">
         <div style="font-weight:700;color:#fff;margin-bottom:8px;font-size:14px">📊 금일 기상</div>
@@ -3067,6 +3066,8 @@ async function loadWeatherBriefing(nx, ny, townName) {
           <div><span style="color:var(--muted)">풍속</span>: <strong style="color:#fff">${wsd}m/s</strong></div>
         </div>
       </div>`;
+    } else {
+      html += `<div style="color:var(--muted);padding:8px 0;font-size:12px">금일 예보 정보를 가져올 수 없습니다.</div>`;
     }
     
     // 1주일 예보
@@ -3080,15 +3081,21 @@ async function loadWeatherBriefing(nx, ny, townName) {
       const dateLabel = i === 0 ? '오늘' : i === 1 ? '내일' : date.toLocaleDateString('ko-KR', { month: 'short', day: 'numeric' });
       
       const dayData = await fetchWeatherForDate(nx, ny, dateStr);
-      if (dayData && dayData.length > 0) {
-        const fcst = dayData[0];
-        const t = fcst['기온'] || '–';
-        const p = fcst['강수형태'] || '맑음';
+      if (dayData) {
+        const tMax = dayData.tmx || dayData.tmp || '–';
+        const tMin = dayData.tmn || '';
+        const tempLabel = tMin ? `${tMin}° / ${tMax}°` : `${tMax}°`;
+        const p = ptyLabel(dayData.pty);
         
         html += `<div style="background:var(--surface);border:1px solid var(--border);padding:10px;border-radius:6px;text-align:center">
           <div style="font-size:11px;color:var(--muted);margin-bottom:4px">${dateLabel}</div>
-          <div style="font-weight:700;color:#fff;margin-bottom:4px">${t}°</div>
+          <div style="font-weight:700;color:#fff;margin-bottom:4px">${tempLabel}</div>
           <div style="font-size:10px;color:var(--muted)">${p}</div>
+        </div>`;
+      } else {
+        html += `<div style="background:var(--surface);border:1px solid var(--border);padding:10px;border-radius:6px;text-align:center">
+          <div style="font-size:11px;color:var(--muted);margin-bottom:4px">${dateLabel}</div>
+          <div style="font-size:10px;color:var(--muted)">예보 범위 밖</div>
         </div>`;
       }
     }
@@ -3210,7 +3217,7 @@ async function fetchWeatherForDate(nx, ny, targetDateStr) {
       const noon = arr.find(it => it.fcstTime === '1200');
       return (noon || arr[0]).fcstValue;
     };
-    return { pty: pick('PTY'), sky: pick('SKY'), tmx: pick('TMX'), tmn: pick('TMN'), wsd: pick('WSD') };
+    return { pty: pick('PTY'), sky: pick('SKY'), tmx: pick('TMX'), tmn: pick('TMN'), wsd: pick('WSD'), tmp: pick('TMP'), reh: pick('REH'), rn1: pick('RN1') };
   } catch (e) { console.error('날씨 조회 실패:', e); return null; }
 }
 
