@@ -489,31 +489,4 @@ document.addEventListener('click',e=>{
   }
 });
 
-// 초기 드롭다운 목록 채우기
-filterDD();
-
-const t=today();
-// ?reset=1 이면 로그인 초기화
-const _urlP = new URLSearchParams(window.location.search);
-if(_urlP.get('reset')==='1'){
-  localStorage.removeItem('gh_auth');
-  document.getElementById('loadingOverlay').classList.add('hidden');
-  window.history.replaceState({}, document.title, window.location.pathname);
-}
-
-// 이전에 로그인한 적 있으면 자동 로그인
-const _savedAuth = localStorage.getItem('gh_auth') === 'ok';
-
-if(_savedAuth) {
-  GH_TOKEN = 'ok';
-  document.getElementById('tokenModal').classList.add('hidden');
-  loadData();
-} else {
-  document.getElementById('loadingOverlay').classList.add('hidden');
-  document.getElementById('tokenModal').classList.remove('hidden');
-  initState(); renderAll();
-}
-
-document.getElementById('headerSub')&&(document.getElementById('headerSub').textContent='파주시 농업기계임대사업소 · '+t.getFullYear()+'년 '+(t.getMonth()+1)+'월 '+t.getDate()+'일');
-
 
