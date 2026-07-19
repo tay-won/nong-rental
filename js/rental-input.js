@@ -70,6 +70,7 @@ function selectEquip(e) {
   document.getElementById('personNameInp').value = '';
   setDays(1);
   updateHalfInfo();
+  showMachineSafetyInfo(e.n);
   setTimeout(() => document.getElementById('personNameInp').focus(), 50);
 }
 
@@ -189,6 +190,7 @@ function addEntry() {
   document.getElementById('searchInp').value = '';
   document.getElementById('inputRow').style.display = 'none';
   document.getElementById('halfInfo').classList.remove('show');
+  hideMachineSafetyInfo();
   [1,2,3].forEach(n => document.getElementById('dayBtn'+n).classList.remove('active'));
   const btnXr = document.getElementById('dayBtnX');
   if(btnXr) { btnXr.classList.remove('active'); btnXr.textContent = '📅 직접'; }
