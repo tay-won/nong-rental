@@ -136,7 +136,7 @@ function updateHalfInfo() {
 }
 
 // ── 입력 추가 ──
-function addEntry() {
+async function addEntry() {
   if (!selEquip) return;
   const person = document.getElementById('personNameInp').value.trim();
   if (!person) {
@@ -148,7 +148,10 @@ function addEntry() {
 
   const dk = getDkeys()[curIdx];
   const startDate = dk;
-  
+
+  const okToProceed = await checkWeatherBeforeEntry(startDate);
+  if (!okToProceed) return;
+
   const site = inputSite || (curSite === '전체' ? '본소' : curSite);
   const outDone = false;
   const inDone  = false;
