@@ -359,6 +359,12 @@ if(_savedAuth) {
 }
 
 document.getElementById('headerSub')&&(document.getElementById('headerSub').textContent='파주시 농업기계임대사업소 · '+t.getFullYear()+'년 '+(t.getMonth()+1)+'월 '+t.getDate()+'일');
+
+// 공휴일 정보 미리 로드 (실패해도 요일/계절 규칙만으로 정상 동작)
+loadPublicHolidays([t.getFullYear()-1, t.getFullYear(), t.getFullYear()+1]).then(() => {
+  renderAll();
+  if (document.getElementById('inoutCol0')) renderInoutCols();
+});
 </script>
 </body>
 </html

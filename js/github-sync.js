@@ -26,14 +26,16 @@ async function loadData(){
       initState();
       setSyncUI('ok','첫 실행 — 입력 후 자동 저장됩니다');
     } else {
-      let decoded, savedHolidays = [];
+      let decoded, savedHolidays = [], savedWorkdayOverrides = [];
       if(raw.state && typeof raw.state === 'object'){
         decoded = raw.state;
         savedHolidays = raw.holidays || [];
+        savedWorkdayOverrides = raw.workdayOverrides || [];
       } else {
         decoded = raw;
       }
       if(savedHolidays.length > 0) saveHolidays(savedHolidays);
+      if(savedWorkdayOverrides.length > 0) saveWorkdayOverrides(savedWorkdayOverrides);
       if(raw.rainy && raw.rainy.length > 0) saveRainy(raw.rainy);
       if(raw.cancelled && Array.isArray(raw.cancelled)) state._cancelled = raw.cancelled;
       initState();
@@ -71,6 +73,7 @@ async function saveData(){
   const payload={
     state:JSON.parse(JSON.stringify(state)),
     holidays:getHolidays(),
+    workdayOverrides:getWorkdayOverrides(),
     rainy:getRainy(),
     cancelled:state._cancelled||[]
   };

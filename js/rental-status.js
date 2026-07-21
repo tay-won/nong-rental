@@ -52,7 +52,7 @@ function renderInoutCols() {
     const dk = toLocalDk(d);
 
     const isToday2 = dk === toLocalDk(today());
-    const isHol = holidays.includes(dk);
+    const isHol = isHoliday(dk);
     const dateStr = (d.getMonth()+1)+'/'+d.getDate()+'('+DOW2[d.getDay()]+')';
     const hdrColor = isToday2 ? 'var(--accent)' : (isHol ? 'var(--red)' : 'var(--muted)');
 
@@ -146,7 +146,7 @@ function renderDateTabs(){
     const dk = DKEYS[i];
     const pct = getPct(dk, curSite);
     const st = getStatus(pct);
-    const isHol = holidays.includes(dk);
+    const isHol = isHoliday(dk);
     const isRain = rainyDays.includes(dk);
     const isYesterday = dk === toLocalDk(new Date(today().getTime()-86400000));
     let s = {outTotal:0,inTotal:0,delOut:0,delIn:0,outRemain:0,inRemain:0,delOutRemain:0,delInRemain:0};
@@ -176,7 +176,7 @@ function renderAll(){
   renderDateTabs();
   const d=DATES[curIdx],dk=DKEYS[curIdx];
   const _dkCur = getDkeys()[curIdx];
-  const _isHolCur = getHolidays().includes(_dkCur);
+  const _isHolCur = isHoliday(_dkCur);
   const _holBtnStyle = 'margin-left:8px;padding:2px 8px;background:transparent;border:1px solid ' + (_isHolCur ? '#ef4444' : '#2e3350') + ';border-radius:8px;color:' + (_isHolCur ? '#ef4444' : '#64748b') + ';font-size:10px;cursor:pointer';
   document.getElementById('dateBar').innerHTML =
     '📅 ' + d.getFullYear() + '년 ' + (d.getMonth()+1) + '월 ' + d.getDate() + '일 (' + DOW[d.getDay()] + '요일)' + (isToday(d) ? ' — 오늘' : (dk === toLocalDk(new Date(today().getTime()-86400000)) ? ' — 어제' : ''))

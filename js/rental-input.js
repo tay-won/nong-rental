@@ -216,16 +216,16 @@ function getUsedSite(dk, site) {
     // 배송 소요시간
     if(state[startDk][site].delivery) {
       const holidays = getHolidays();
-      const isHol = holidays.includes(startDk);
+      const isHol = isHoliday(startDk);
       if(isHol) {
         // 휴무일 배송: 전날 120분 + 다음날 120분
         let prevDay = new Date(startDk);
         prevDay.setDate(prevDay.getDate() - 1);
-        while(holidays.includes(toLocalDk(prevDay)))
+        while(isHoliday(toLocalDk(prevDay)))
           prevDay.setDate(prevDay.getDate() - 1);
         let nextDay = new Date(startDk);
         nextDay.setDate(nextDay.getDate() + 1);
-        while(holidays.includes(toLocalDk(nextDay)))
+        while(isHoliday(toLocalDk(nextDay)))
           nextDay.setDate(nextDay.getDate() + 1);
         if(toLocalDk(prevDay) === dk) total += 120;
         if(toLocalDk(nextDay) === dk) total += 120;
@@ -241,7 +241,7 @@ function getUsedSite(dk, site) {
 function getEffectiveOutDate(entry, holidays) {
   // 출고일(시작일)이 휴무면 전날 근무일로
   let d = new Date(entry.startDate);
-  while(holidays.includes(toLocalDk(d))) {
+  while(isHoliday(toLocalDk(d))) {
     d.setDate(d.getDate() - 1);
   }
   return toLocalDk(d);
@@ -251,7 +251,7 @@ function getEffectiveInDate(entry, holidays) {
   // 입고일 = 시작일 + (days-1), 휴무면 다음 근무일로
   let d = new Date(entry.startDate);
   d.setDate(d.getDate() + entry.days - 1);
-  while(holidays.includes(toLocalDk(d))) {
+  while(isHoliday(toLocalDk(d))) {
     d.setDate(d.getDate() + 1);
   }
   return toLocalDk(d);
@@ -282,13 +282,13 @@ function calcMinsForDate(entry, targetDk) {
 function calcMinsForLoad(entry, targetDk) {
   const holidays = getHolidays();
   const startDk = entry.startDate;
-  const isStartHoliday = holidays.includes(startDk);
+  const isStartHoliday = isHoliday(startDk);
 
   // 마지막날 계산 (입고일)
   let lastDate = new Date(startDk);
   lastDate.setDate(lastDate.getDate() + entry.days - 1);
   const lastDk = toLocalDk(lastDate);
-  const isLastHoliday = holidays.includes(lastDk);
+  const isLastHoliday = isHoliday(lastDk);
 
   // 출고 effective 날짜 (시작일이 휴무면 전날)
   const effectiveOut = getEffectiveOutDate(entry, holidays);

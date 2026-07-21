@@ -30,18 +30,98 @@ let isAuthenticated = false;
 // ─── 친환경/GAP 인증 데이터 (정제 완료) ───
 
 // ── 휴무일 관리 ──
+// 수동 휴무 지정 목록(과거 기록 포함, 항상 휴무로 인정) + 특별근무 예외 목록(항상 근무로 인정)
+// 이 둘에 없으면 아래 자동 규칙(요일+계절+공휴일 API)으로 판정
 function getHolidays() {
   return JSON.parse(localStorage.getItem('holidays_' + GH_REPO) || '[]');
 }
 function saveHolidays(arr) {
   localStorage.setItem('holidays_' + GH_REPO, JSON.stringify(arr));
 }
+function getWorkdayOverrides() {
+  return JSON.parse(localStorage.getItem('workday_overrides_' + GH_REPO) || '[]');
+}
+function saveWorkdayOverrides(arr) {
+  localStorage.setItem('workday_overrides_' + GH_REPO, JSON.stringify(arr));
+}
+
+// 근무하는 토요일이 있는 달(농번기): 3~6월, 9~11월 — 그 외 달의 토요일은 휴무
+function isWorkingSaturdaySeason(month) {
+  return [3,4,5,6,9,10,11].includes(month);
+}
+// 요일+계절 기본 규칙 (공휴일 API, 수동 지정과 무관하게 순수 규칙만)
+function isRuleHoliday(d) {
+  const dow = d.getDay(); // 0=일 6=토
+  if (dow === 0) return true;
+  if (dow === 6) return !isWorkingSaturdaySeason(d.getMonth() + 1);
+  return false;
+}
+
+// ── 공휴일(한국천문연구원 특일정보 API) 캐시 ──
+const KASI_SERVICE_KEY = KMA_SERVICE_KEY; // data.go.kr 일반 인증키 재사용
+const KASI_HOLIDAY_URL = 'https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo';
+let _publicHolidayCache = null; // { 'YYYY-MM-DD': 명칭 }
+let _publicHolidayLoading = null;
+
+async function loadPublicHolidays(years) {
+  if (_publicHolidayCache) return _publicHolidayCache;
+  if (_publicHolidayLoading) return _publicHolidayLoading;
+  _publicHolidayLoading = (async () => {
+    const map = {};
+    for (const y of years) {
+      try {
+        const url = `${KASI_HOLIDAY_URL}?serviceKey=${encodeURIComponent(KASI_SERVICE_KEY)}&solYear=${y}&numOfRows=50&_type=json`;
+        const res = await fetch(url);
+        if (!res.ok) continue;
+        const json = await res.json();
+        const items = json?.response?.body?.items?.item;
+        const arr = Array.isArray(items) ? items : (items ? [items] : []);
+        arr.forEach(it => {
+          if (String(it.isHoliday) === 'Y') {
+            const s = String(it.locdate);
+            const dk = s.slice(0,4) + '-' + s.slice(4,6) + '-' + s.slice(6,8);
+            map[dk] = it.dateName || true;
+          }
+        });
+      } catch (e) {
+        console.warn('공휴일 정보 로드 실패(' + y + '):', e.message);
+      }
+    }
+    _publicHolidayCache = map;
+    return map;
+  })();
+  return _publicHolidayLoading;
+}
+function isPublicHoliday(dk) {
+  return !!(_publicHolidayCache && _publicHolidayCache[dk]);
+}
+
+// ── 최종 휴무일 판정: 특별근무 예외 > 수동 휴무 지정 > 공휴일 > 요일/계절 규칙 ──
+function isHoliday(dk) {
+  if (getWorkdayOverrides().includes(dk)) return false;
+  if (getHolidays().includes(dk)) return true;
+  if (isPublicHoliday(dk)) return true;
+  return isRuleHoliday(new Date(dk + 'T00:00:00'));
+}
+
 function toggleHoliday(dk) {
   const holidays = getHolidays();
-  const idx = holidays.indexOf(dk);
-  if (idx === -1) holidays.push(dk);
-  else holidays.splice(idx, 1);
-  saveHolidays(holidays);
+  const overrides = getWorkdayOverrides();
+  const currentlyHoliday = isHoliday(dk);
+
+  if (currentlyHoliday) {
+    // 휴무 해제 → 특별근무로 고정
+    if (!overrides.includes(dk)) overrides.push(dk);
+    saveWorkdayOverrides(overrides);
+    const hi = holidays.indexOf(dk);
+    if (hi !== -1) { holidays.splice(hi, 1); saveHolidays(holidays); }
+  } else {
+    // 휴무 지정
+    if (!holidays.includes(dk)) holidays.push(dk);
+    saveHolidays(holidays);
+    const oi = overrides.indexOf(dk);
+    if (oi !== -1) { overrides.splice(oi, 1); saveWorkdayOverrides(overrides); }
+  }
   saveData();
   renderAll();
 }

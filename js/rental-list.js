@@ -17,7 +17,7 @@ function renderTriDayPanel() {
     dd.setDate(dd.getDate() + offset);
     const colDk = toLocalDk(dd);
     const label = (dd.getMonth()+1)+'/'+ dd.getDate()+'('+DOW2[dd.getDay()]+')';
-    const isHol = holidays.includes(colDk);
+    const isHol = isHoliday(colDk);
     const isTod = offset===0;
     const hdrColor = isHol?'#ef4444':isTod?'#818cf8':'#94a3b8';
     const hdrBg = isTod?'rgba(99,102,241,.1)':'';
@@ -212,7 +212,7 @@ function openInoutPopup() {
   let colHeaderHtml = '';
   cols.forEach(col => {
     const isToday2 = col.offset === 0;
-    const isHol = holidays.includes(col.dk);
+    const isHol = isHoliday(col.dk);
     const color = isToday2 ? 'var(--accent)' : (isHol ? 'var(--red)' : 'var(--muted)');
     const dateStr = (col.d.getMonth()+1)+'/'+col.d.getDate()+'('+DOW2[col.d.getDay()]+')';
     // 이 날짜의 미완결 건수
