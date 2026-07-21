@@ -166,7 +166,7 @@ function performExport(startDk, endDk){
   let s5 = '우천일\n' + getRainy().sort().join('\n');
 
   // ── 파일 다운로드 ──
-  const dateStr = new Date().toISOString().slice(0,10);
+  const dateStr = toLocalDk(new Date());
   const files = [
     {name: `농기계임대현황_일자별부하_${dateStr}.csv`, content: '\uFEFF'+s1},
     {name: `농기계임대현황_임대상세_${dateStr}.csv`,   content: '\uFEFF'+s2},

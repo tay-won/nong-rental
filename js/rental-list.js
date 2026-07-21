@@ -31,7 +31,7 @@ function renderTriDayPanel() {
           const diff = Math.round((new Date(colDk)-new Date(e.startDate))/86400000);
           const inDkD = new Date(e.startDate);
           inDkD.setDate(inDkD.getDate()+e.days-1);
-          const inDk = inDkD.toISOString().slice(0,10);
+          const inDk = toLocalDk(inDkD);
           const isOut = diff===0;
           const isIn  = inDk===colDk;
           const isPastOut = e.outDone&&!e.inDone&&isIn;
@@ -152,7 +152,7 @@ function openInoutPopup() {
   const cols = [-1, 0, 1].map(offset => {
     const d = new Date(selD);
     d.setDate(d.getDate() + offset);
-    const dk = d.toISOString().slice(0,10);
+    const dk = toLocalDk(d);
     return { dk, d: new Date(d), offset };
   });
 
@@ -177,7 +177,7 @@ function openInoutPopup() {
         const outDk   = e.startDate; // 출고일 = 시작일
         const inDate  = new Date(e.startDate);
         inDate.setDate(inDate.getDate() + e.days - 1);
-        const inDk    = inDate.toISOString().slice(0,10); // 입고일
+        const inDk    = toLocalDk(inDate); // 입고일
 
         // 이 entry가 3일 범위와 관련 있는지 판단
         const outInRange = colDks.includes(outDk);

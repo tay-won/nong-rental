@@ -221,14 +221,14 @@ function getUsedSite(dk, site) {
         // 휴무일 배송: 전날 120분 + 다음날 120분
         let prevDay = new Date(startDk);
         prevDay.setDate(prevDay.getDate() - 1);
-        while(holidays.includes(prevDay.toISOString().slice(0,10)))
+        while(holidays.includes(toLocalDk(prevDay)))
           prevDay.setDate(prevDay.getDate() - 1);
         let nextDay = new Date(startDk);
         nextDay.setDate(nextDay.getDate() + 1);
-        while(holidays.includes(nextDay.toISOString().slice(0,10)))
+        while(holidays.includes(toLocalDk(nextDay)))
           nextDay.setDate(nextDay.getDate() + 1);
-        if(prevDay.toISOString().slice(0,10) === dk) total += 120;
-        if(nextDay.toISOString().slice(0,10) === dk) total += 120;
+        if(toLocalDk(prevDay) === dk) total += 120;
+        if(toLocalDk(nextDay) === dk) total += 120;
       } else {
         // 일반 배송: 해당일 240분
         if(startDk === dk) total += 240;
@@ -241,20 +241,20 @@ function getUsedSite(dk, site) {
 function getEffectiveOutDate(entry, holidays) {
   // 출고일(시작일)이 휴무면 전날 근무일로
   let d = new Date(entry.startDate);
-  while(holidays.includes(d.toISOString().slice(0,10))) {
+  while(holidays.includes(toLocalDk(d))) {
     d.setDate(d.getDate() - 1);
   }
-  return d.toISOString().slice(0,10);
+  return toLocalDk(d);
 }
 
 function getEffectiveInDate(entry, holidays) {
   // 입고일 = 시작일 + (days-1), 휴무면 다음 근무일로
   let d = new Date(entry.startDate);
   d.setDate(d.getDate() + entry.days - 1);
-  while(holidays.includes(d.toISOString().slice(0,10))) {
+  while(holidays.includes(toLocalDk(d))) {
     d.setDate(d.getDate() + 1);
   }
-  return d.toISOString().slice(0,10);
+  return toLocalDk(d);
 }
 
 // 목록 소요시간 표시용 (원래 날짜 기준)
@@ -287,7 +287,7 @@ function calcMinsForLoad(entry, targetDk) {
   // 마지막날 계산 (입고일)
   let lastDate = new Date(startDk);
   lastDate.setDate(lastDate.getDate() + entry.days - 1);
-  const lastDk = lastDate.toISOString().slice(0,10);
+  const lastDk = toLocalDk(lastDate);
   const isLastHoliday = holidays.includes(lastDk);
 
   // 출고 effective 날짜 (시작일이 휴무면 전날)

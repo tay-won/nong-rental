@@ -104,9 +104,9 @@ function openEditDatePicker() {
   // 문자열 파싱으로 타임존 오류 해결
   const [y, m, d] = dkStr.split('-').map(Number);
   const minDate = new Date(y, m - 1, d + 1);
-  picker.min = minDate.toISOString().slice(0,10);
+  picker.min = toLocalDk(minDate);
   const maxDate = new Date(y, m - 1, d + 30);
-  picker.max = maxDate.toISOString().slice(0,10);
+  picker.max = toLocalDk(maxDate);
   picker.value = '';
   
   // 원래 위치에서 보이게 설정

@@ -83,10 +83,10 @@ function openDatePicker() {
   const [y, m, d] = dk.split('-').map(Number);
   // 최소 날짜: 시작일 + 1일
   const minDate = new Date(y, m - 1, d + 1);
-  picker.min = minDate.toISOString().slice(0,10);
+  picker.min = toLocalDk(minDate);
   // 최대 날짜: 시작일 + 30일
   const maxDate = new Date(y, m - 1, d + 30);
-  picker.max = maxDate.toISOString().slice(0,10);
+  picker.max = toLocalDk(maxDate);
   picker.value = '';
   
   // 원래 위치에서 보이게 설정

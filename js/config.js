@@ -141,7 +141,7 @@ function today(){const d=new Date();d.setHours(0,0,0,0);return d;}
 function getDates(){return Array.from({length:22},(_,i)=>{const d=new Date(today());d.setDate(today().getDate()+dateOffset+i);return d;});}
 function toLocalDk(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function getDkeys(){return getDates().map(d=>toLocalDk(d));}
-function isToday(d){return d.toISOString().slice(0,10)===today().toISOString().slice(0,10);}
+function isToday(d){return toLocalDk(d)===toLocalDk(today());}
 function fmtDate(d){return (d.getMonth()+1)+'/'+d.getDate();}
 
 // state[dk][site] = { workers:{}, entries:[{name,half,qty,mins}] }

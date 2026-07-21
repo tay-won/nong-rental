@@ -17,7 +17,7 @@ function getEquipStatus(equipName, siteName) {
       // 입고일 계산 (원래 스케줄 기준)
       const inDate = new Date(e.startDate);
       inDate.setDate(inDate.getDate() + e.days - 1);
-      const inDk = inDate.toISOString().slice(0,10);
+      const inDk = toLocalDk(inDate);
 
       // 정비중: 오늘이 입고일 (실제 입고 여부와 무관)
       if(inDk === dk) return '정비중';
@@ -49,9 +49,9 @@ function renderInoutCols() {
     // 날짜 계산 (탭 범위 밖이어도 실제 날짜 사용)
     const d = new Date(DATES[idx]);
     d.setDate(d.getDate() + offset);
-    const dk = d.toISOString().slice(0,10);
+    const dk = toLocalDk(d);
 
-    const isToday2 = dk === today().toISOString().slice(0,10);
+    const isToday2 = dk === toLocalDk(today());
     const isHol = holidays.includes(dk);
     const dateStr = (d.getMonth()+1)+'/'+d.getDate()+'('+DOW2[d.getDay()]+')';
     const hdrColor = isToday2 ? 'var(--accent)' : (isHol ? 'var(--red)' : 'var(--muted)');
@@ -64,7 +64,7 @@ function renderInoutCols() {
         state[startDk][site].entries.forEach(e => {
           const inDate = new Date(e.startDate);
           inDate.setDate(inDate.getDate() + e.days - 1);
-          const inDk  = inDate.toISOString().slice(0,10);
+          const inDk  = toLocalDk(inDate);
           const outDk = e.startDate;
 
           const needOut = outDk === dk && !e.outDone;
@@ -179,7 +179,7 @@ function renderAll(){
   const _isHolCur = getHolidays().includes(_dkCur);
   const _holBtnStyle = 'margin-left:8px;padding:2px 8px;background:transparent;border:1px solid ' + (_isHolCur ? '#ef4444' : '#2e3350') + ';border-radius:8px;color:' + (_isHolCur ? '#ef4444' : '#64748b') + ';font-size:10px;cursor:pointer';
   document.getElementById('dateBar').innerHTML =
-    '📅 ' + d.getFullYear() + '년 ' + (d.getMonth()+1) + '월 ' + d.getDate() + '일 (' + DOW[d.getDay()] + '요일)' + (isToday(d) ? ' — 오늘' : (dk === new Date(today().getTime()-86400000).toISOString().slice(0,10) ? ' — 어제' : ''))
+    '📅 ' + d.getFullYear() + '년 ' + (d.getMonth()+1) + '월 ' + d.getDate() + '일 (' + DOW[d.getDay()] + '요일)' + (isToday(d) ? ' — 오늘' : (dk === toLocalDk(new Date(today().getTime()-86400000)) ? ' — 어제' : ''))
     + (_isHolCur ? ' <span style="color:#ef4444;font-size:11px">🔴 휴무일</span>' : '')
     + ' <button onclick="toggleHoliday(\'' + _dkCur + '\')" style="' + _holBtnStyle + '">' + (_isHolCur ? '휴무 해제' : '휴무 지정') + '</button>'
     + (!isToday(d) ? ' <button onclick="resetDates()" style="margin-left:6px;padding:2px 8px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);border-radius:8px;color:var(--accent);font-size:10px;cursor:pointer">오늘로</button>' : '')
