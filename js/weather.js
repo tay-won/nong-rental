@@ -141,17 +141,11 @@ async function saveCheck(entryId, outDone, inDone) {
     const chk = await fetch(SB_CHK+'?entry_id=eq.'+entryIdStr, {headers: SB_HDR});
     const existing = await chk.json();
     if(existing.length > 0) {
-      await fetch(SB_CHK+'?entry_id=eq.'+entryIdStr, {
-        method: 'PATCH',
-        headers: {...SB_HDR, 'Prefer': 'return=minimal'},
-        body: JSON.stringify({out_done: outDone, in_done: inDone, updated_at: new Date().toISOString()})
-      });
+      await writeViaProxy('patchCheck', {entryId: entryIdStr},
+        {out_done: outDone, in_done: inDone, updated_at: new Date().toISOString()});
     } else {
-      await fetch(SB_CHK, {
-        method: 'POST',
-        headers: {...SB_HDR, 'Prefer': 'return=minimal'},
-        body: JSON.stringify({entry_id: entryIdStr, out_done: outDone, in_done: inDone, updated_at: new Date().toISOString()})
-      });
+      await writeViaProxy('insertCheck', null,
+        {entry_id: entryIdStr, out_done: outDone, in_done: inDone, updated_at: new Date().toISOString()});
     }
   } catch(e) { console.error('saveCheck error:', e); }
 }

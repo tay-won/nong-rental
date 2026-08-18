@@ -324,34 +324,8 @@ function toggleEntryCheckInline(startDk, site, idx, 입력, val) {
   renderTriDayPanel();
 }
 
-async function saveCheck(entryId, outDone, inDone) {
-  const SB_CHK = SB_URL+'/rest/v1/nong_rental_checks';
-  // entry_id를 문자열로 변환 (Number 정밀도 문제 해결)
-  const entryIdStr = String(entryId);
-  try {
-    // 먼저 있는지 확인
-    const chk = await fetch(SB_CHK+'?entry_id=eq.'+entryIdStr, {headers: SB_HDR});
-    const existing = await chk.json();
-    if(existing.length > 0) {
-      // update
-      await fetch(SB_CHK+'?entry_id=eq.'+entryIdStr, {
-        method: 'PATCH',
-        headers: {...SB_HDR, 'Prefer': 'return=minimal'},
-        body: JSON.stringify({out_done: outDone, in_done: inDone, updated_at: new Date().toISOString()})
-      });
-    } else {
-      // insert
-      await fetch(SB_CHK, {
-        method: 'POST',
-        headers: {...SB_HDR, 'Prefer': 'return=minimal'},
-        body: JSON.stringify({entry_id: entryIdStr, out_done: outDone, in_done: inDone, updated_at: new Date().toISOString()})
-      });
-    }
-  } catch(e) {
-    console.error('saveCheck error:', e);
-  }
-}
-
+// saveCheck()는 js/weather.js에 정의됨 (여기 있던 중복은 어차피 나중에 로드되는
+// weather.js 쪽 정의로 덮어써져서 실행되지 않던 죽은 코드였음 — 정리 차원에서 제거)
 
 // 날짜별 출고/입고/배송 카운트 계산
 function getDayStats(dk, site) {
@@ -390,32 +364,7 @@ function getDayStats(dk, site) {
   });
   return {outTotal, inTotal, delOut, delIn, outRemain, inRemain, delOutRemain, delInRemain};
 }
-async function loadChecks() {
-  const SB_CHK = SB_URL+'/rest/v1/nong_rental_checks?select=entry_id,out_done,in_done';
-  try {
-    const res = await fetch(SB_CHK, {headers: SB_HDR});
-    if(!res.ok) return;
-    const rows = await res.json();
-    // 체크 데이터를 state에 반영 (문자열 매칭으로 정밀도 문제 해결)
-    const checkMap = {};
-    rows.forEach(r => { checkMap[String(r.entry_id)] = r; });
-    Object.keys(state).forEach(dk => {
-      ['본소','북부'].forEach(st => {
-        if(!state[dk]||!state[dk][st]) return;
-        state[dk][st].entries.forEach(e => {
-          const key = String(e.id);
-          if(checkMap[key]) {
-            e.outDone = checkMap[key].out_done;
-            e.inDone  = checkMap[key].in_done;
-          }
-        });
-      });
-    });
-  } catch(e) {
-    console.error('loadChecks error:', e);
-  }
-}
-
+// loadChecks()도 js/weather.js에 정의됨 (동일 사유로 여기 있던 중복 제거)
 
 // ── 상하 이동 ──
 function moveEntry(site, idx, dir, startDk) {

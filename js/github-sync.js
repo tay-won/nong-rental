@@ -4,6 +4,18 @@ const SB_URL='https://wddtagovsimavguvlrzr.supabase.co';
 const SB_KEY='sb_publishable_7lAcbxdOEZQUGk3ioBMP3w_G7Ejh-uf';
 const SB_API=SB_URL+'/rest/v1/nong_rental';
 const SB_HDR={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json'};
+// 쓰기(INSERT/UPDATE)는 RLS로 막혀있어서 이 프록시(비밀번호 검증 후 서버가 대신 씀)를 거침 — 조회는 그대로 anon key 사용
+const DATA_WRITE_PROXY_URL = SB_URL+'/functions/v1/data-write-proxy';
+async function writeViaProxy(action, condition, payload){
+  const res = await fetch(DATA_WRITE_PROXY_URL, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({password:APP_PASSWORD, action, condition, payload})
+  });
+  const outer = await res.json();
+  if(outer.error) throw new Error(outer.error);
+  return outer; // {ok, status, body}
+}
 
 function setSyncUI(mode,msg){document.getElementById('sdot').className='sdot '+mode;document.getElementById('stxt').textContent=msg;}
 
@@ -84,17 +96,12 @@ async function saveData(){
   while(retries > 0 && !success) {
     try{
       // 낙관적 잠금: 조건부 업데이트
-      const condition = lastUpdatedAt 
-        ? `?id=eq.main&updated_at=eq.${encodeURIComponent(lastUpdatedAt)}`
-        : '?id=eq.main';
-      
       const newUpdatedAt = new Date().toISOString();
-      const res = await fetch(SB_API + condition, {
-        method:'PATCH',
-        headers:{...SB_HDR,'Prefer':'return=representation'},
-        body:JSON.stringify({data:payload, updated_at:newUpdatedAt})
-      });
-      
+      const outer = await writeViaProxy('patchMain',
+        lastUpdatedAt ? {updatedAt: lastUpdatedAt} : null,
+        {data:payload, updated_at:newUpdatedAt});
+      const res = {ok: outer.ok, status: outer.status, json: async () => outer.body};
+
       if(!res.ok) {
         // 406 = 조건부 업데이트 실패 (동시 수정 감지)
         if(res.status === 406 || res.status === 412) {
