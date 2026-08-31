@@ -12,10 +12,17 @@ function readFileAsBase64(file) {
   });
 }
 
+const MAX_AI_FILE_BYTES = 5 * 1024 * 1024; // 5MB
+
 async function handleAiFileSelect(event) {
   const file = event.target.files[0];
   event.target.value = '';
   if (!file) return;
+
+  if (file.size > MAX_AI_FILE_BYTES) {
+    displayAiMessage('assistant', '❌ 파일이 너무 큽니다 (5MB 이하만 가능). "' + file.name + '"');
+    return;
+  }
 
   displayAiMessage('assistant', '📎 "' + file.name + '" 읽는 중...');
   const msgDiv = document.getElementById('aiMessages');
@@ -112,7 +119,8 @@ function displayAiMessage(role, text) {
   const msgDiv = document.getElementById('aiMessages');
   const msgEl = document.createElement('div');
   msgEl.style.marginBottom = '6px';
-  
+  msgEl.style.whiteSpace = 'pre-wrap';
+
   if (role === 'user') {
     msgEl.style.textAlign = 'right';
     msgEl.style.color = 'var(--accent)';
