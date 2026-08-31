@@ -1,6 +1,61 @@
 // AI 채팅 함수 (NVIDIA NIM 경유, Edge Function 함수명은 claude-chat 그대로 유지)
 // ═══ AI 채팅 함수 ═══
 let aiMessages = [];
+let attachedAiFile = null; // {name}
+
+function readFileAsBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function handleAiFileSelect(event) {
+  const file = event.target.files[0];
+  event.target.value = '';
+  if (!file) return;
+
+  displayAiMessage('assistant', '📎 "' + file.name + '" 읽는 중...');
+  const msgDiv = document.getElementById('aiMessages');
+  const loadingDiv = msgDiv.lastChild;
+
+  try {
+    const base64 = await readFileAsBase64(file);
+    const response = await fetch(CLAUDE_EDGE_FUNCTION_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        extractFile: { name: file.name, base64 }
+      })
+    });
+    const data = await response.json();
+    loadingDiv.remove();
+
+    if (data.error) {
+      displayAiMessage('assistant', '❌ 파일 처리 오류: ' + data.error.message);
+      return;
+    }
+
+    // 첨부 파일 내용을 대화 맥락에 심어둠 (화면에는 요약만 표시)
+    aiMessages.push({ role: 'user', content: '[첨부파일: ' + file.name + ']\n\n' + data.text });
+    aiMessages.push({ role: 'assistant', content: '첨부하신 "' + file.name + '" 내용을 확인했습니다. 궁금하신 점을 질문해주세요.' });
+
+    attachedAiFile = { name: file.name };
+    document.getElementById('aiFileName').textContent = file.name;
+    document.getElementById('aiFileChip').style.display = 'flex';
+    displayAiMessage('assistant', '✅ "' + file.name + '" 내용을 확인했습니다. 궁금하신 점을 질문해주세요.');
+  } catch (error) {
+    loadingDiv.remove();
+    displayAiMessage('assistant', '❌ 파일 처리 오류: ' + error.message);
+  }
+}
+
+function removeAiFile() {
+  attachedAiFile = null;
+  document.getElementById('aiFileChip').style.display = 'none';
+}
 
 async function sendAiMessage() {
   const input = document.getElementById('aiInput');
