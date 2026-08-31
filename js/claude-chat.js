@@ -115,20 +115,62 @@ async function sendAiMessage() {
   }
 }
 
+function escapeHtml(s) {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function inlineMd(s) {
+  return s
+    .replace(/\*\*(.+?)\*\*/g, '<b>$1</b>')
+    .replace(/__(.+?)__/g, '<b>$1</b>');
+}
+
+// 챗봇 응답의 가벼운 마크다운(굵게, 번호목록, 불릿목록)을 HTML로 렌더링
+function renderMarkdownLite(text) {
+  const lines = escapeHtml(text).split('\n');
+  let html = '';
+  let listType = null; // 'ol' | 'ul' | null
+
+  function closeList() {
+    if (listType) { html += listType === 'ol' ? '</ol>' : '</ul>'; listType = null; }
+  }
+
+  lines.forEach((raw) => {
+    const line = raw.trim();
+    if (!line) { closeList(); return; }
+
+    const numMatch = line.match(/^(\d+)\.\s+(.*)$/);
+    const bulletMatch = line.match(/^[-*]\s+(.*)$/);
+
+    if (numMatch) {
+      if (listType !== 'ol') { closeList(); html += '<ol style="margin:2px 0 2px 18px;padding:0">'; listType = 'ol'; }
+      html += '<li>' + inlineMd(numMatch[2]) + '</li>';
+    } else if (bulletMatch) {
+      if (listType !== 'ul') { closeList(); html += '<ul style="margin:2px 0 2px 18px;padding:0">'; listType = 'ul'; }
+      html += '<li>' + inlineMd(bulletMatch[1]) + '</li>';
+    } else {
+      closeList();
+      html += '<div style="margin:2px 0">' + inlineMd(line) + '</div>';
+    }
+  });
+  closeList();
+  return html;
+}
+
 function displayAiMessage(role, text) {
   const msgDiv = document.getElementById('aiMessages');
   const msgEl = document.createElement('div');
-  msgEl.style.marginBottom = '6px';
-  msgEl.style.whiteSpace = 'pre-wrap';
+  msgEl.style.marginBottom = '10px';
 
   if (role === 'user') {
     msgEl.style.textAlign = 'right';
     msgEl.style.color = 'var(--accent)';
+    msgEl.style.whiteSpace = 'pre-wrap';
     msgEl.textContent = '나: ' + text;
   } else {
     msgEl.style.textAlign = 'left';
     msgEl.style.color = '#333';
-    msgEl.textContent = '🤖: ' + text;
+    msgEl.innerHTML = '<b>🤖:</b> ' + renderMarkdownLite(text);
   }
   
   msgDiv.appendChild(msgEl);
