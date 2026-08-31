@@ -20,7 +20,7 @@ const PAJU_DONG_COORDS = [
   { name: '운정동(1~4)', nx: 56, ny: 130 }, { name: '운정동(5~6)', nx: 55, ny: 130 },
 ];
 
-// ─── Claude API 설정 (Supabase Edge Function) ───
+// ─── AI 채팅 API 설정 (Supabase Edge Function, 내부는 NVIDIA NIM 호출로 전환됨) ───
 const CLAUDE_EDGE_FUNCTION_URL = 'https://wddtagovsimavguvlrzr.supabase.co/functions/v1/claude-chat';
 const REQUIRED_PASSWORD = '5260';
 let isAuthenticated = false;

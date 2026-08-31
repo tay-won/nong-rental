@@ -1,5 +1,5 @@
-// Claude AI 채팅 함수
-// ═══ Claude AI 채팅 함수 ═══
+// AI 채팅 함수 (NVIDIA NIM 경유, Edge Function 함수명은 claude-chat 그대로 유지)
+// ═══ AI 채팅 함수 ═══
 let aiMessages = [];
 
 async function sendAiMessage() {
