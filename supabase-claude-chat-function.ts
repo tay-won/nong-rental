@@ -22,7 +22,7 @@ const CORS_HEADERS = {
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
 
-const NVIDIA_MODEL = 'nvidia/nemotron-3-nano-30b-a3b';
+const NVIDIA_MODEL = 'nvidia/nemotron-3-super-120b-a12b';
 const NVIDIA_URL = 'https://integrate.api.nvidia.com/v1/chat/completions';
 const MAX_FILE_TEXT_CHARS = 20000;
 
@@ -222,6 +222,7 @@ Deno.serve(async (req: Request) => {
     }
 
     const res = await fetch(NVIDIA_URL, {
+      signal: AbortSignal.timeout(25000),
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${apiKey}`,
